@@ -1,5 +1,5 @@
 is_global = true
-build_property.TargetFramework = net6.0
+build_property.TargetFramework = net7.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
@@ -10,15 +10,11 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MVC
 build_property.RootNamespace = MVC
 build_property.ProjectDir = C:\Users\marti\source\repos\tfg_daw_2024\MVC\MVC\
-build_property.RazorLangVersion = 6.0
+build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\marti\source\repos\tfg_daw_2024\MVC\MVC
 build_property._RazorSourceGeneratorDebug = 
-
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Component.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
