@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qZ4zBeGwzAFaa2nnd3yjeEGETDgE03wyAOLkwOzuRSNRy1pGOXTQisNLrly0VLizTI3gvvjyfo7jKNw8sBr7yg==",
+  "dgSpecHash": "9z1W7jskWXMtSh6j6fG1U57wA0Pz3VcInBk6u8x2aZxL1q3+vodYdHJCJQgk1jDWFwRG9in9nLUyNc0U30LjVQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marti\\source\\repos\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj",
+  "projectFilePath": "C:\\Users\\marti\\source\\repos\\MVC\\MVC\\MVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marti\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\marti\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
