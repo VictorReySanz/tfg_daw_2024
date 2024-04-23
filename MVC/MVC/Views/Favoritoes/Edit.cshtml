@@ -15,18 +15,18 @@
             <input type="hidden" asp-for="FavoritoId" />
             <div class="form-group">
                 <label asp-for="UsuarioId" class="control-label"></label>
-                <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
+                <input asp-for="UsuarioId" class="form-control" />
                 <span asp-validation-for="UsuarioId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="OpcionId" class="control-label"></label>
-                <select asp-for="OpcionId" class="form-control" asp-items="ViewBag.OpcionId"></select>
-                <span asp-validation-for="OpcionId" class="text-danger"></span>
+                <label asp-for="CategoriaId" class="control-label"></label>
+                <input asp-for="CategoriaId" class="form-control" />
+                <span asp-validation-for="CategoriaId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TipoOpcion" class="control-label"></label>
-                <input asp-for="TipoOpcion" class="form-control" />
-                <span asp-validation-for="TipoOpcion" class="text-danger"></span>
+                <label asp-for="FavoritoRefId" class="control-label"></label>
+                <input asp-for="FavoritoRefId" class="form-control" />
+                <span asp-validation-for="FavoritoRefId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -9,87 +9,87 @@ using MVC.Models;
 
 namespace MVC.Controllers
 {
-    public class CategoriasController : Controller
+    public class GrupoesController : Controller
     {
         private readonly ShareEnjoyContext _context;
 
-        public CategoriasController(ShareEnjoyContext context)
+        public GrupoesController(ShareEnjoyContext context)
         {
             _context = context;
         }
 
-        // GET: Categorias
+        // GET: Grupoes
         public async Task<IActionResult> Index()
         {
-              return _context.Categorias != null ? 
-                          View(await _context.Categorias.ToListAsync()) :
-                          Problem("Entity set 'ShareEnjoyContext.Categorias'  is null.");
+              return _context.Grupo != null ? 
+                          View(await _context.Grupo.ToListAsync()) :
+                          Problem("Entity set 'ShareEnjoyContext.Grupo'  is null.");
         }
 
-        // GET: Categorias/Details/5
+        // GET: Grupoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Categorias == null)
+            if (id == null || _context.Grupo == null)
             {
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias
-                .FirstOrDefaultAsync(m => m.CategoriaId == id);
-            if (categoria == null)
+            var grupo = await _context.Grupo
+                .FirstOrDefaultAsync(m => m.GrupoId == id);
+            if (grupo == null)
             {
                 return NotFound();
             }
 
-            return View(categoria);
+            return View(grupo);
         }
 
-        // GET: Categorias/Create
+        // GET: Grupoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categorias/Create
+        // POST: Grupoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoriaId,NombreCategoria")] Categoria categoria)
+        public async Task<IActionResult> Create([Bind("GrupoId,NombreGrupo")] Grupo grupo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoria);
+                _context.Add(grupo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            return View(grupo);
         }
 
-        // GET: Categorias/Edit/5
+        // GET: Grupoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Categorias == null)
+            if (id == null || _context.Grupo == null)
             {
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias.FindAsync(id);
-            if (categoria == null)
+            var grupo = await _context.Grupo.FindAsync(id);
+            if (grupo == null)
             {
                 return NotFound();
             }
-            return View(categoria);
+            return View(grupo);
         }
 
-        // POST: Categorias/Edit/5
+        // POST: Grupoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoriaId,NombreCategoria")] Categoria categoria)
+        public async Task<IActionResult> Edit(int id, [Bind("GrupoId,NombreGrupo")] Grupo grupo)
         {
-            if (id != categoria.CategoriaId)
+            if (id != grupo.GrupoId)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace MVC.Controllers
             {
                 try
                 {
-                    _context.Update(categoria);
+                    _context.Update(grupo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoriaExists(categoria.CategoriaId))
+                    if (!GrupoExists(grupo.GrupoId))
                     {
                         return NotFound();
                     }
@@ -114,49 +114,49 @@ namespace MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            return View(grupo);
         }
 
-        // GET: Categorias/Delete/5
+        // GET: Grupoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Categorias == null)
+            if (id == null || _context.Grupo == null)
             {
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias
-                .FirstOrDefaultAsync(m => m.CategoriaId == id);
-            if (categoria == null)
+            var grupo = await _context.Grupo
+                .FirstOrDefaultAsync(m => m.GrupoId == id);
+            if (grupo == null)
             {
                 return NotFound();
             }
 
-            return View(categoria);
+            return View(grupo);
         }
 
-        // POST: Categorias/Delete/5
+        // POST: Grupoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Categorias == null)
+            if (_context.Grupo == null)
             {
-                return Problem("Entity set 'ShareEnjoyContext.Categorias'  is null.");
+                return Problem("Entity set 'ShareEnjoyContext.Grupo'  is null.");
             }
-            var categoria = await _context.Categorias.FindAsync(id);
-            if (categoria != null)
+            var grupo = await _context.Grupo.FindAsync(id);
+            if (grupo != null)
             {
-                _context.Categorias.Remove(categoria);
+                _context.Grupo.Remove(grupo);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoriaExists(int id)
+        private bool GrupoExists(int id)
         {
-          return (_context.Categorias?.Any(e => e.CategoriaId == id)).GetValueOrDefault();
+          return (_context.Grupo?.Any(e => e.GrupoId == id)).GetValueOrDefault();
         }
     }
 }

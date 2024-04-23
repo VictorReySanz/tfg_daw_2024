@@ -56,44 +56,44 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3ZzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favorito/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9cQ3JlYXRlLmNzaHRtbA==
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favorito/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9cRGVsZXRlLmNzaHRtbA==
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favorito/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9cRGV0YWlscy5jc2h0bWw=
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favorito/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9cRWRpdC5jc2h0bWw=
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favorito/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9cSW5kZXguY3NodG1s
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupo/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9cQ3JlYXRlLmNzaHRtbA==
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupo/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9cRGVsZXRlLmNzaHRtbA==
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupo/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9cRGV0YWlscy5jc2h0bWw=
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupo/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9cRWRpdC5jc2h0bWw=
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupo/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9cSW5kZXguY3NodG1s
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Home/Index.cshtml]

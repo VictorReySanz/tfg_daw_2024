@@ -9,11 +9,11 @@ using MVC.Models;
 
 namespace MVC.Controllers
 {
-    public class FavoritoController : Controller
+    public class FavoritoesController : Controller
     {
         private readonly ShareEnjoyContext _context;
 
-        public FavoritoController(ShareEnjoyContext context)
+        public FavoritoesController(ShareEnjoyContext context)
         {
             _context = context;
         }
@@ -21,8 +21,9 @@ namespace MVC.Controllers
         // GET: Favoritoes
         public async Task<IActionResult> Index()
         {
-            var shareEnjoyContext = _context.Favoritos.Include(f => f.Opcion).Include(f => f.Opcion1).Include(f => f.OpcionNavigation).Include(f => f.Usuario);
-            return View(await shareEnjoyContext.ToListAsync());
+              return _context.Favoritos != null ? 
+                          View(await _context.Favoritos.ToListAsync()) :
+                          Problem("Entity set 'ShareEnjoyContext.Favoritos'  is null.");
         }
 
         // GET: Favoritoes/Details/5
@@ -34,10 +35,6 @@ namespace MVC.Controllers
             }
 
             var favorito = await _context.Favoritos
-                .Include(f => f.Opcion)
-                .Include(f => f.Opcion1)
-                .Include(f => f.OpcionNavigation)
-                .Include(f => f.Usuario)
                 .FirstOrDefaultAsync(m => m.FavoritoId == id);
             if (favorito == null)
             {
@@ -50,10 +47,6 @@ namespace MVC.Controllers
         // GET: Favoritoes/Create
         public IActionResult Create()
         {
-            ViewData["OpcionId"] = new SelectList(_context.Cvs, "CvId", "CvId");
-            ViewData["OpcionId"] = new SelectList(_context.Libros, "LibroId", "LibroId");
-            ViewData["OpcionId"] = new SelectList(_context.Juegos, "JuegoId", "JuegoId");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId");
             return View();
         }
 
@@ -62,7 +55,7 @@ namespace MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FavoritoId,UsuarioId,OpcionId,TipoOpcion")] Favorito favorito)
+        public async Task<IActionResult> Create([Bind("FavoritoId,UsuarioId,CategoriaId,FavoritoRefId")] Favorito favorito)
         {
             if (ModelState.IsValid)
             {
@@ -70,10 +63,6 @@ namespace MVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OpcionId"] = new SelectList(_context.Cvs, "CvId", "CvId", favorito.OpcionId);
-            ViewData["OpcionId"] = new SelectList(_context.Libros, "LibroId", "LibroId", favorito.OpcionId);
-            ViewData["OpcionId"] = new SelectList(_context.Juegos, "JuegoId", "JuegoId", favorito.OpcionId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId", favorito.UsuarioId);
             return View(favorito);
         }
 
@@ -90,10 +79,6 @@ namespace MVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["OpcionId"] = new SelectList(_context.Cvs, "CvId", "CvId", favorito.OpcionId);
-            ViewData["OpcionId"] = new SelectList(_context.Libros, "LibroId", "LibroId", favorito.OpcionId);
-            ViewData["OpcionId"] = new SelectList(_context.Juegos, "JuegoId", "JuegoId", favorito.OpcionId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId", favorito.UsuarioId);
             return View(favorito);
         }
 
@@ -102,7 +87,7 @@ namespace MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FavoritoId,UsuarioId,OpcionId,TipoOpcion")] Favorito favorito)
+        public async Task<IActionResult> Edit(int id, [Bind("FavoritoId,UsuarioId,CategoriaId,FavoritoRefId")] Favorito favorito)
         {
             if (id != favorito.FavoritoId)
             {
@@ -129,10 +114,6 @@ namespace MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OpcionId"] = new SelectList(_context.Cvs, "CvId", "CvId", favorito.OpcionId);
-            ViewData["OpcionId"] = new SelectList(_context.Libros, "LibroId", "LibroId", favorito.OpcionId);
-            ViewData["OpcionId"] = new SelectList(_context.Juegos, "JuegoId", "JuegoId", favorito.OpcionId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId", favorito.UsuarioId);
             return View(favorito);
         }
 
@@ -145,10 +126,6 @@ namespace MVC.Controllers
             }
 
             var favorito = await _context.Favoritos
-                .Include(f => f.Opcion)
-                .Include(f => f.Opcion1)
-                .Include(f => f.OpcionNavigation)
-                .Include(f => f.Usuario)
                 .FirstOrDefaultAsync(m => m.FavoritoId == id);
             if (favorito == null)
             {

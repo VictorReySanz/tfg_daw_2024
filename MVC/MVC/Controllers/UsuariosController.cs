@@ -21,20 +21,20 @@ namespace MVC.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-              return _context.Usuarios != null ? 
-                          View(await _context.Usuarios.ToListAsync()) :
-                          Problem("Entity set 'ShareEnjoyContext.Usuarios'  is null.");
+              return _context.Usuario != null ? 
+                          View(await _context.Usuario.ToListAsync()) :
+                          Problem("Entity set 'ShareEnjoyContext.Usuario'  is null.");
         }
 
         // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (id == null || _context.Usuario == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios
+            var usuario = await _context.Usuario
                 .FirstOrDefaultAsync(m => m.UsuarioId == id);
             if (usuario == null)
             {
@@ -69,12 +69,12 @@ namespace MVC.Controllers
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (id == null || _context.Usuario == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuario.FindAsync(id);
             if (usuario == null)
             {
                 return NotFound();
@@ -120,12 +120,12 @@ namespace MVC.Controllers
         // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (id == null || _context.Usuario == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios
+            var usuario = await _context.Usuario
                 .FirstOrDefaultAsync(m => m.UsuarioId == id);
             if (usuario == null)
             {
@@ -140,14 +140,14 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Usuarios == null)
+            if (_context.Usuario == null)
             {
-                return Problem("Entity set 'ShareEnjoyContext.Usuarios'  is null.");
+                return Problem("Entity set 'ShareEnjoyContext.Usuario'  is null.");
             }
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuario.FindAsync(id);
             if (usuario != null)
             {
-                _context.Usuarios.Remove(usuario);
+                _context.Usuario.Remove(usuario);
             }
             
             await _context.SaveChangesAsync();
@@ -156,7 +156,7 @@ namespace MVC.Controllers
 
         private bool UsuarioExists(int id)
         {
-          return (_context.Usuarios?.Any(e => e.UsuarioId == id)).GetValueOrDefault();
+          return (_context.Usuario?.Any(e => e.UsuarioId == id)).GetValueOrDefault();
         }
     }
 }
