@@ -1,0 +1,95 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #006FFF;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Utilizar flexbox */
+    text-align: center;
+}
+
+        nav ul li {
+            flex-grow: 1; /* Que cada elemento ocupe todo el espacio disponible */
+            margin-right: 20px;
+        }
+
+    nav ul #liVerMenu {
+        display: flex; /* Utilizar flexbox */
+        justify-content: flex-start;
+    }
+
+
+            nav ul li input {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                box-sizing: border-box;
+            }
+
+            .cuenta {
+                background-image: url('~/imgs/iconocuenta.png');
+                background-size: cover;
+            }
+
+                nav ul li a:hover {
+                    text-decoration: underline;
+                }
+
+
+#menu {
+    display: none;
+    position: absolute;
+    background-color: #4F91E8;
+    width: 15%;
+    height: 100%;
+    animation: aparecer 0.75s forwards;
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes mover {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(2300%);
+    }
+}
+
+/*@keyframes mover2 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}*/
+
+#verMenu:checked {
+    animation: mover 0.75s forwards;
+}
+
+/*#verMenu:not(:checked) {
+    animation: mover2 0.75s forwards;
+}*/

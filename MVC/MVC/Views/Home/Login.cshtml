@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Inicio Sesion";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <img class="logo" src="~/imgs/shareenjoylogo.png" alt="Imagen de ejemplo" />
+
+        <form action="@Url.Action("EnviarFormulario", "Home")" method="post" class="form-container">
+            <input class="inputs" type="text" id="correoNombrePriv" name="correoNombrePriv" placeholder="Correo electrónico o nombre privado" required />
+            <input class="inputs" type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required />
+
+            <input class="boton" type="submit" value="INICIAR SESIÓN" />
+        </form>
+        <div class="crear-cuenta">
+            <p>¿Aun no tienes cuenta? <a href="@Url.Action("Registro", "Home")"><b>CREAR CUENTA</b></a></p>
+        </div>
+    </div>
+</body>
+</html>
+
