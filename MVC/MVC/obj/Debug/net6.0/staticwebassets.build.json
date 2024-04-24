@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Dm3W/bjdJ9ZPZYGod+ptBIx627gqqYjChfRG607GAGY=",
+  "Hash": "ybYVXPn4fyICdalnE+/mD69uwL89mFtPbsrS0bbpiBs=",
   "Source": "MVC",
   "BasePath": "_content/MVC",
   "Mode": "Default",
@@ -167,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imgs\\iconocuenta.png"
+    },
+    {
+      "Identity": "C:\\Users\\Victor Rey\\Source\\Repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\wwwroot\\imgs\\quijote.jpg",
+      "SourceId": "MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Victor Rey\\Source\\Repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\wwwroot\\",
+      "BasePath": "_content/MVC",
+      "RelativePath": "imgs/quijote.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\quijote.jpg"
     },
     {
       "Identity": "C:\\Users\\Victor Rey\\Source\\Repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\wwwroot\\imgs\\shareenjoylogo.png",
