@@ -33,15 +33,11 @@ nav {
     display: none;
     position: absolute;
     background-color: #4F91E8;
-    width: 15%;
+    width: 250px;
     height: 100%;
     text-align: center;
     animation: aparecer 0.75s forwards;
 }
-
-    #menu ul {
-        list-style: none;
-    }
 
 #verMenu {
     display: none;
@@ -50,6 +46,10 @@ nav {
     #verMenu:checked {
         animation: mover 0.75s forwards;
     }
+
+#menu #contenidoMenu {
+    margin-top: 20px;
+}
 
 /*visual*/
 .verMenuDiv {
@@ -112,9 +112,51 @@ nav ul #liVerMenuCuenta {
     animation: aparecerCuenta 0.75s forwards;
 }
 
-    #menuCuenta ul {
-        list-style: none;
+#verMenuCuenta {
+    display: none;
+}
+
+#menuCuenta #contenidoMenuCuenta {
+    margin-top: 20px;
+}
+
+.cuentaImg {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.cuentaClose {
+    width: 20px;
+}
+
+    .cuentaClose .linea1 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+        opacity: 0;
     }
+
+    .cuentaClose .linea2 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+        opacity: 0;
+    }
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .cuentaImg {
+    animation: animacionCuenta 1s forwards;
+}
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .linea1 {
+    animation: animacionCuentaLinea1 1s forwards;
+}
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .linea2 {
+    animation: animacionCuentaLinea2 1s forwards;
+}
 
 /************************ buscar ************************/
 nav ul #liBuscar {
@@ -125,7 +167,7 @@ nav ul #liBuscar {
 nav ul li #buscar {
     padding: 5px;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    border-radius: 20px;
     box-sizing: border-box;
 }
 
@@ -149,6 +191,10 @@ nav ul #liVerFiltro {
 
 #verFiltro {
     display: none;
+}
+
+#filtro #contenidoFiltro {
+    margin-top: 20px;
 }
 
 /*visual*/
@@ -191,7 +237,6 @@ nav ul #liVerFiltro {
 #verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea3 {
     animation: linea3Filtro 0.75s forwards;
 }
-
 
 
 /************************ Contenido ************************/
@@ -322,3 +367,41 @@ nav ul #liVerFiltro {
         transform: translateX(15px);
     }
 }
+
+/*Animacion de verCuenta*/
+@keyframes animacionCuenta {
+
+    100% {
+        rotate: 360deg;
+        transform: translateX(200%);
+    }
+}
+
+@keyframes animacionCuentaLinea1 {
+
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        rotate: -30deg;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes animacionCuentaLinea2 {
+
+    0% {
+        opacity: 0;
+        transform: translate(200%, -500%);
+    }
+
+    100% {
+        opacity: 1;
+        rotate: 30deg;
+        transform: translate(50%, -550%);
+    }
+}
+

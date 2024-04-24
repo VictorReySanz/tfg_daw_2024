@@ -14,13 +14,13 @@
 <body>
     <!-- Menu -->
     <div id="menu">
-        <div>
-        <p>Mis elementos</p>
-        <div class="linea"></div>
-        <p>Grupos</p>
-        <div class="linea"></div>
-        <p>Favoritos</p></li>
-        <div class="linea"></div><p>CVs</p>
+        <div id="contenidoMenu">
+            <p>Mis elementos</p>
+            <div class="linea"></div>
+            <p>Grupos</p>
+            <div class="linea"></div>
+            <p>Favoritos</p></li>
+            <div class="linea"></div><p>CVs</p>
         </div>
     </div>
 
@@ -48,28 +48,42 @@
                     </div>
                 </label>
             </li>
-            <li id="liVerMenuCuenta"><input type="checkbox" id="verMenuCuenta"></li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="~/imgs/iconocuenta.png" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+                </li>
         </ul>
     </nav>
 
     <!-- Filtro -->
     <div id="filtro">
-        <p>Nombre</p>
-        <div class="linea"></div>
-        <p>Algo</p>
-        <div class="linea"></div>
-        <p>Algo</p></li>
-        <div class="linea"></div><p>CVs</p>
+        <div id="contenidoFiltro">
+            <p>Nombre</p>
+            <div class="linea"></div>
+            <p>Algo</p>
+            <div class="linea"></div>
+            <p>Algo</p></li>
+            <div class="linea"></div><p>CVs</p>
+        </div>
     </div>
 
     <!-- Menu de cuenta -->
     <div id="menuCuenta">
-        <p>Algo</p>
-        <div class="linea"></div>
-        <p>Algo</p>
-        <div class="linea"></div>
-        <p>Algo</p></li>
-        <div class="linea"></div><p>CVs</p>
+
+        <div id="contenidoMenuCuenta">
+            <p>Algo</p>
+            <div class="linea"></div>
+            <p>Algo</p>
+            <div class="linea"></div>
+            <p>Algo</p></li>
+            <div class="linea"></div><p>CVs</p>
+        </div>
     </div>
 
     <!-- main -->
