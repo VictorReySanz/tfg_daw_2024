@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj": {}
+    "C:\\Users\\Victor Rey\\Source\\Repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj": {
+    "C:\\Users\\Victor Rey\\Source\\Repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj",
+        "projectUniqueName": "C:\\Users\\Victor Rey\\Source\\Repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj",
         "projectName": "MVC",
-        "projectPath": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj",
+        "projectPath": "C:\\Users\\Victor Rey\\Source\\Repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\MVC.csproj",
         "packagesPath": "C:\\Users\\Victor Rey\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\obj\\",
+        "outputPath": "C:\\Users\\Victor Rey\\Source\\Repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Victor Rey\\AppData\\Roaming\\NuGet\\NuGet.Config",

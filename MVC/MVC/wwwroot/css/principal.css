@@ -1,49 +1,33 @@
-﻿body {
+﻿/************************ body ************************/
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
+/************************ nav ************************/
 nav {
     background-color: #006FFF;
     padding: 10px;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex; /* Utilizar flexbox */
-    text-align: center;
-}
-
-        nav ul li {
-            flex-grow: 1; /* Que cada elemento ocupe todo el espacio disponible */
-            margin-right: 20px;
-        }
-
-    nav ul #liVerMenu {
-        display: flex; /* Utilizar flexbox */
-        justify-content: flex-start;
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        text-align: center;
     }
 
+        nav ul li {
+            flex-grow: 1;
+        }
 
-            nav ul li input {
-                padding: 5px;
-                border: 1px solid #ccc;
-                border-radius: 15px;
-                box-sizing: border-box;
-            }
-
-            .cuenta {
-                background-image: url('~/imgs/iconocuenta.png');
-                background-size: cover;
-            }
-
-                nav ul li a:hover {
-                    text-decoration: underline;
-                }
-
+        /************************ menu ************************/
+        nav ul #liVerMenu {
+            display: flex;
+            justify-content: flex-start;
+        }
 
 #menu {
     display: none;
@@ -51,9 +35,207 @@ nav ul {
     background-color: #4F91E8;
     width: 15%;
     height: 100%;
+    text-align: center;
     animation: aparecer 0.75s forwards;
 }
 
+    #menu ul {
+        list-style: none;
+    }
+
+#verMenu {
+    display: none;
+}
+
+    #verMenu:checked {
+        animation: mover 0.75s forwards;
+    }
+
+/*visual*/
+.verMenuDiv {
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+    .verMenuDiv .linea1 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    .verMenuDiv .linea2 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    .verMenuDiv .linea3 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+#verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
+    animation: linea1Menu 0.75s forwards;
+}
+
+#verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
+    animation: linea2Menu 0.75s forwards;
+}
+
+#verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
+    animation: linea3Menu 0.75s forwards;
+}
+
+/************************ menu cuenta ************************/
+nav ul #liVerMenuCuenta {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#menuCuenta {
+    display: none;
+    position: absolute;
+    left: 85%;
+    background-color: #4F91E8;
+    width: 15%;
+    height: 27%;
+    border-radius: 15px;
+    text-align: center;
+    animation: aparecerCuenta 0.75s forwards;
+}
+
+    #menuCuenta ul {
+        list-style: none;
+    }
+
+/************************ buscar ************************/
+nav ul #liBuscar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li #buscar {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+/************************ filtro ************************/
+nav ul #liVerFiltro {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#filtro {
+    display: none;
+    position: absolute;
+    left: 50%;
+    background-color: #4F91E8;
+    width: 15%;
+    height: 27%;
+    border-radius: 15px;
+    text-align: center;
+    animation: aparecerFiltro 0.75s forwards;
+}
+
+#verFiltro {
+    display: none;
+}
+
+/*visual*/
+.verFiltroDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+    .verFiltroDiv .linea1 {
+        width: 20px;
+        background: black;
+        height: 4px;
+        border-radius: 10em;
+        z-index: 1;
+    }
+
+    .verFiltroDiv .linea2 {
+        width: 12.5px;
+        background: black;
+        height: 4px;
+        border-radius: 10em;
+        z-index: 1;
+    }
+
+    .verFiltroDiv .linea3 {
+        width: 5px;
+        background: black;
+        height: 4px;
+        border-radius: 10em;
+        z-index: 1;
+    }
+
+#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea2 {
+    animation: linea2Filtro 0.75s forwards;
+}
+
+#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea3 {
+    animation: linea3Filtro 0.75s forwards;
+}
+
+
+
+/************************ Contenido ************************/
+#contenido {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px 50px;
+    padding: 30px;
+}
+
+    #contenido .elemento {
+        text-align: center;
+    }
+
+        #contenido .elemento:hover > .portada {
+            /* border: 1px solid red; */
+            border-radius: 15px;
+            box-shadow: 20px 20px 7px rgba(0, 0, 0, 0.3);
+            width: 160px;
+            height: 235px;
+        }
+
+.portada {
+    width: 150px;
+    height: 225px;
+    border-radius: 15px;
+}
+
+/* .nombre {
+} */
+
+/************************ extras ************************/
+.linea {
+    width: 50%;
+    height: 1px;
+    background-color: #000;
+    position: relative;
+    left: 25%;
+    margin: 5px;
+}
+
+/************************ animaciones ************************/
+/*Desplegar menu*/
 @keyframes aparecer {
     0% {
         opacity: 0;
@@ -66,6 +248,7 @@ nav ul {
     }
 }
 
+/* Mover el checkbox del menu */
 @keyframes mover {
     0% {
         transform: translateX(0%);
@@ -76,20 +259,66 @@ nav ul {
     }
 }
 
-/*@keyframes mover2 {
+/*Desplegar menu de cuenta*/
+@keyframes aparecerCuenta {
     0% {
-        transform: translateX(0);
+        opacity: 0;
+        transform: translateX(200%);
     }
 
     100% {
+        opacity: 1;
         transform: translateX(0%);
     }
-}*/
-
-#verMenu:checked {
-    animation: mover 0.75s forwards;
 }
 
-/*#verMenu:not(:checked) {
-    animation: mover2 0.75s forwards;
-}*/
+/*Desplegar filtro*/
+@keyframes aparecerFiltro {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+/*Animacion de verMenu*/
+@keyframes linea1Menu {
+
+    100% {
+        rotate: -30deg;
+    }
+}
+
+@keyframes linea2Menu {
+
+    100% {
+        rotate: 30deg;
+        transform: translate(2px, 2px);
+    }
+}
+
+@keyframes linea3Menu {
+
+    100% {
+        transform: translateX(-100px);
+    }
+}
+
+/*Animacion de verFiltro*/
+@keyframes linea2Filtro {
+
+    100% {
+        transform: translateX(7.5px);
+    }
+}
+
+@keyframes linea3Filtro {
+
+    100% {
+        transform: translateX(15px);
+    }
+}
