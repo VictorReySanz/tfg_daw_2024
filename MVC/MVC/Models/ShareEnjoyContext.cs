@@ -10,17 +10,32 @@ public partial class ShareEnjoyContext : DbContext
     public ShareEnjoyContext()
     {
     }
+    public ShareEnjoyContext(DbContextOptions<ShareEnjoyContext> options)
+     : base(options)
+    {
 
+    }
+    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Categoria> Categorias { get; set; }
+    public DbSet<Libro> Libros { get; set; }
+    public DbSet<Cv> CVs { get; set; }
+    public DbSet<Juego> Juegos { get; set; }
+    public DbSet<Grupo> Grupos { get; set; }
+    public DbSet<Favorito> Favoritos { get; set; }
+   
+ }
+
+    /*
     public ShareEnjoyContext(DbContextOptions<ShareEnjoyContext> options)
         : base(options)
     {
+
     }
 
     public virtual DbSet<Favorito> Favoritos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-MFNE5M6\\SQLEXPRESS;Initial Catalog=share_enjoy;Integrated Security=True;Trusted_Connection=SSPI;MultipleActiveResultSets=true;Trust Server Certificate=true");
+       => optionsBuilder.UseSqlServer("Data Source=DESKTOP-MFNE5M6\\SQLEXPRESS;Initial Catalog=share_enjoy;Integrated Security=True;Trusted_Connection=SSPI;MultipleActiveResultSets=true;Trust Server Certificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -46,4 +61,6 @@ public partial class ShareEnjoyContext : DbContext
     public DbSet<MVC.Models.Usuario>? Usuario { get; set; }
 
     public DbSet<MVC.Models.Cv>? Cv { get; set; }
-}
+
+    */
+

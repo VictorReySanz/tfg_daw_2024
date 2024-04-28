@@ -21,19 +21,19 @@ namespace MVC.Controllers
         // GET: Cvs
         public async Task<IActionResult> Index()
         {
-            var shareEnjoyContext = _context.Cv.Include(c => c.Categoria);
+            var shareEnjoyContext = _context.CVs.Include(c => c.Categoria);
             return View(await shareEnjoyContext.ToListAsync());
         }
 
         // GET: Cvs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Cv == null)
+            if (id == null || _context.CVs == null)
             {
                 return NotFound();
             }
 
-            var cv = await _context.Cv
+            var cv = await _context.CVs
                 .Include(c => c.Categoria)
                 .FirstOrDefaultAsync(m => m.CvId == id);
             if (cv == null)
@@ -71,12 +71,12 @@ namespace MVC.Controllers
         // GET: Cvs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Cv == null)
+            if (id == null || _context.CVs == null)
             {
                 return NotFound();
             }
 
-            var cv = await _context.Cv.FindAsync(id);
+            var cv = await _context.CVs.FindAsync(id);
             if (cv == null)
             {
                 return NotFound();
@@ -124,12 +124,12 @@ namespace MVC.Controllers
         // GET: Cvs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Cv == null)
+            if (id == null || _context.CVs == null)
             {
                 return NotFound();
             }
 
-            var cv = await _context.Cv
+            var cv = await _context.CVs
                 .Include(c => c.Categoria)
                 .FirstOrDefaultAsync(m => m.CvId == id);
             if (cv == null)
@@ -145,14 +145,14 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Cv == null)
+            if (_context.CVs == null)
             {
                 return Problem("Entity set 'ShareEnjoyContext.Cv'  is null.");
             }
-            var cv = await _context.Cv.FindAsync(id);
+            var cv = await _context.CVs.FindAsync(id);
             if (cv != null)
             {
-                _context.Cv.Remove(cv);
+                _context.CVs.Remove(cv);
             }
             
             await _context.SaveChangesAsync();
@@ -161,7 +161,7 @@ namespace MVC.Controllers
 
         private bool CvExists(int id)
         {
-          return (_context.Cv?.Any(e => e.CvId == id)).GetValueOrDefault();
+          return (_context.CVs?.Any(e => e.CvId == id)).GetValueOrDefault();
         }
     }
 }

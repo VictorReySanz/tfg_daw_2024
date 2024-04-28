@@ -21,20 +21,20 @@ namespace MVC.Controllers
         // GET: Grupoes
         public async Task<IActionResult> Index()
         {
-              return _context.Grupo != null ? 
-                          View(await _context.Grupo.ToListAsync()) :
+              return _context.Grupos != null ? 
+                          View(await _context.Grupos.ToListAsync()) :
                           Problem("Entity set 'ShareEnjoyContext.Grupo'  is null.");
         }
 
         // GET: Grupoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Grupo == null)
+            if (id == null || _context.Grupos == null)
             {
                 return NotFound();
             }
 
-            var grupo = await _context.Grupo
+            var grupo = await _context.Grupos
                 .FirstOrDefaultAsync(m => m.GrupoId == id);
             if (grupo == null)
             {
@@ -69,12 +69,12 @@ namespace MVC.Controllers
         // GET: Grupoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Grupo == null)
+            if (id == null || _context.Grupos == null)
             {
                 return NotFound();
             }
 
-            var grupo = await _context.Grupo.FindAsync(id);
+            var grupo = await _context.Grupos.FindAsync(id);
             if (grupo == null)
             {
                 return NotFound();
@@ -120,12 +120,12 @@ namespace MVC.Controllers
         // GET: Grupoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Grupo == null)
+            if (id == null || _context.Grupos == null)
             {
                 return NotFound();
             }
 
-            var grupo = await _context.Grupo
+            var grupo = await _context.Grupos
                 .FirstOrDefaultAsync(m => m.GrupoId == id);
             if (grupo == null)
             {
@@ -140,14 +140,14 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Grupo == null)
+            if (_context.Grupos == null)
             {
                 return Problem("Entity set 'ShareEnjoyContext.Grupo'  is null.");
             }
-            var grupo = await _context.Grupo.FindAsync(id);
+            var grupo = await _context.Grupos.FindAsync(id);
             if (grupo != null)
             {
-                _context.Grupo.Remove(grupo);
+                _context.Grupos.Remove(grupo);
             }
             
             await _context.SaveChangesAsync();
@@ -156,7 +156,7 @@ namespace MVC.Controllers
 
         private bool GrupoExists(int id)
         {
-          return (_context.Grupo?.Any(e => e.GrupoId == id)).GetValueOrDefault();
+          return (_context.Grupos?.Any(e => e.GrupoId == id)).GetValueOrDefault();
         }
     }
 }
