@@ -1,0 +1,48 @@
+﻿@model TfgDAW.Models.Favoritos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Favoritos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.favorito_ref_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.favorito_ref_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorias.nombre_categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorias.nombre_categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

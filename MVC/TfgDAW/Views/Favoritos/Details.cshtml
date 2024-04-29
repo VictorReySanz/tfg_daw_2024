@@ -1,0 +1,42 @@
+﻿@model TfgDAW.Models.Favoritos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Favoritos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.favorito_ref_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.favorito_ref_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorias.nombre_categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorias.nombre_categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.favorito_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

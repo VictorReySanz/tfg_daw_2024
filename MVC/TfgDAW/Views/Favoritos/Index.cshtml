@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TfgDAW.Models.Favoritos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.favorito_ref_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorias.nombre_categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.favorito_ref_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categorias.nombre_categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.favorito_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.favorito_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.favorito_id })
+        </td>
+    </tr>
+}
+
+</table>

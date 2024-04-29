@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0beb4d83ca5848418096916f0fc2f9a2" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="share_enjoyModel.Categorias" Width="1.5" PointX="5.625" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.CV" Width="1.5" PointX="9.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Favoritos" Width="1.5" PointX="1.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Grupos" Width="1.5" PointX="10.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Juegos" Width="1.5" PointX="5.625" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Libros" Width="1.5" PointX="2" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Usuarios" Width="1.5" PointX="5.5" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="share_enjoyModel.FK__CV__categoria_id__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Favoritos__categ__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Juegos__categori__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Libros__categori__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Favoritos__usuar__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.Usuarios_Categorias" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.Usuarios_Grupos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
