@@ -4,20 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0beb4d83ca5848418096916f0fc2f9a2" Name="Diagram1" ZoomLevel="63">
-        <EntityTypeShape EntityType="share_enjoyModel.Categorias" Width="1.5" PointX="5.625" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.CV" Width="1.5" PointX="9.625" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Favoritos" Width="1.5" PointX="1.5" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Grupos" Width="1.5" PointX="10.5" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Juegos" Width="1.5" PointX="5.625" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Libros" Width="1.5" PointX="2" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Usuarios" Width="1.5" PointX="5.5" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="share_enjoyModel.FK__CV__categoria_id__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="share_enjoyModel.FK__Favoritos__categ__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="share_enjoyModel.FK__Juegos__categori__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="share_enjoyModel.FK__Libros__categori__2E1BDC42" ManuallyRouted="false" />
-        <AssociationConnector Association="share_enjoyModel.FK__Favoritos__usuar__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="share_enjoyModel.Usuarios_Categorias" ManuallyRouted="false" />
+      <Diagram DiagramId="a8b9fba2d3f447aa8d9b44b5b42a5099" Name="Diagram1">
+        <EntityTypeShape EntityType="share_enjoyModel.Categorias" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Cv" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Favoritos" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Grupos" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Juegos" Width="1.5" PointX="8.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Libros" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Roles" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Usuarios" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="share_enjoyModel.FK__cv__categoria_id__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Favoritos__categ__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Juegos__categori__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Libros__categori__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__cv__usuario_id__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Favoritos__usuar__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Juegos__usuario___33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Libros__usuario___2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="share_enjoyModel.FK__Usuarios__rol_id__267ABA7A" ManuallyRouted="false" />
         <AssociationConnector Association="share_enjoyModel.Usuarios_Grupos" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

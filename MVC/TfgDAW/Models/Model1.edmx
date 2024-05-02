@@ -12,7 +12,7 @@
           <Property Name="categoria_id" Type="int" Nullable="false" />
           <Property Name="nombre_categoria" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="CV">
+        <EntityType Name="Cv">
           <Key>
             <PropertyRef Name="cv_id" />
           </Key>
@@ -20,6 +20,7 @@
           <Property Name="nombre_completo" Type="varchar" MaxLength="100" />
           <Property Name="visible" Type="bit" />
           <Property Name="categoria_id" Type="int" />
+          <Property Name="usuario_id" Type="int" />
         </EntityType>
         <EntityType Name="Favoritos">
           <Key>
@@ -46,6 +47,7 @@
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
           <Property Name="visible" Type="bit" />
           <Property Name="categoria_id" Type="int" />
+          <Property Name="usuario_id" Type="int" />
         </EntityType>
         <EntityType Name="Libros">
           <Key>
@@ -57,6 +59,14 @@
           <Property Name="descripcion" Type="text" />
           <Property Name="visible" Type="bit" />
           <Property Name="categoria_id" Type="int" />
+          <Property Name="usuario_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="rol_id" Type="int" Nullable="false" />
+          <Property Name="nombre_rol" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -64,15 +74,8 @@
           </Key>
           <Property Name="usuario_id" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
-          <Property Name="email" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="Usuarios_Categorias">
-          <Key>
-            <PropertyRef Name="usuario_id" />
-            <PropertyRef Name="categoria_id" />
-          </Key>
-          <Property Name="usuario_id" Type="int" Nullable="false" />
-          <Property Name="categoria_id" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="rol_id" Type="int" />
         </EntityType>
         <EntityType Name="Usuarios_Grupos">
           <Key>
@@ -82,19 +85,31 @@
           <Property Name="usuario_id" Type="int" Nullable="false" />
           <Property Name="grupo_id" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__CV__categoria_id__30F848ED">
+        <Association Name="FK__cv__categoria_id__2F10007B">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
-          <End Role="CV" Type="Self.CV" Multiplicity="*" />
+          <End Role="Cv" Type="Self.Cv" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categorias">
               <PropertyRef Name="categoria_id" />
             </Principal>
-            <Dependent Role="CV">
+            <Dependent Role="Cv">
               <PropertyRef Name="categoria_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favoritos__categ__440B1D61">
+        <Association Name="FK__cv__usuario_id__300424B4">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Cv" Type="Self.Cv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="Cv">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Favoritos__categ__3D5E1FD2">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Favoritos" Type="Self.Favoritos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -106,7 +121,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favoritos__usuar__4316F928">
+        <Association Name="FK__Favoritos__usuar__3C69FB99">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
           <End Role="Favoritos" Type="Self.Favoritos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -118,7 +133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Juegos__categori__33D4B598">
+        <Association Name="FK__Juegos__categori__32E0915F">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Juegos" Type="Self.Juegos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,7 +145,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Libros__categori__2E1BDC42">
+        <Association Name="FK__Juegos__usuario___33D4B598">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Juegos" Type="Self.Juegos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="Juegos">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Libros__categori__2B3F6F97">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,15 +169,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios___categ__2B3F6F97">
-          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
-          <End Role="Usuarios_Categorias" Type="Self.Usuarios_Categorias" Multiplicity="*" />
+        <Association Name="FK__Libros__usuario___2C3393D0">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Categorias">
-              <PropertyRef Name="categoria_id" />
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario_id" />
             </Principal>
-            <Dependent Role="Usuarios_Categorias">
-              <PropertyRef Name="categoria_id" />
+            <Dependent Role="Libros">
+              <PropertyRef Name="usuario_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -166,18 +193,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios___usuar__2A4B4B5E">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="Usuarios_Categorias" Type="Self.Usuarios_Categorias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="usuario_id" />
-            </Principal>
-            <Dependent Role="Usuarios_Categorias">
-              <PropertyRef Name="usuario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Usuarios___usuar__38996AB5">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
           <End Role="Usuarios_Grupos" Type="Self.Usuarios_Grupos" Multiplicity="*" />
@@ -190,51 +205,71 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuarios__rol_id__267ABA7A">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="share_enjoyModelStoreContainer">
           <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CV" EntityType="Self.CV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cv" EntityType="Self.Cv" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Favoritos" EntityType="Self.Favoritos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Juegos" EntityType="Self.Juegos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuarios_Categorias" EntityType="Self.Usuarios_Categorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios_Grupos" EntityType="Self.Usuarios_Grupos" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CV__categoria_id__30F848ED" Association="Self.FK__CV__categoria_id__30F848ED">
+          <AssociationSet Name="FK__cv__categoria_id__2F10007B" Association="Self.FK__cv__categoria_id__2F10007B">
             <End Role="Categorias" EntitySet="Categorias" />
-            <End Role="CV" EntitySet="CV" />
+            <End Role="Cv" EntitySet="Cv" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favoritos__categ__440B1D61" Association="Self.FK__Favoritos__categ__440B1D61">
+          <AssociationSet Name="FK__cv__usuario_id__300424B4" Association="Self.FK__cv__usuario_id__300424B4">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cv" EntitySet="Cv" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Favoritos__categ__3D5E1FD2" Association="Self.FK__Favoritos__categ__3D5E1FD2">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Favoritos" EntitySet="Favoritos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favoritos__usuar__4316F928" Association="Self.FK__Favoritos__usuar__4316F928">
+          <AssociationSet Name="FK__Favoritos__usuar__3C69FB99" Association="Self.FK__Favoritos__usuar__3C69FB99">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Favoritos" EntitySet="Favoritos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Juegos__categori__33D4B598" Association="Self.FK__Juegos__categori__33D4B598">
+          <AssociationSet Name="FK__Juegos__categori__32E0915F" Association="Self.FK__Juegos__categori__32E0915F">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Juegos" EntitySet="Juegos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Libros__categori__2E1BDC42" Association="Self.FK__Libros__categori__2E1BDC42">
+          <AssociationSet Name="FK__Juegos__usuario___33D4B598" Association="Self.FK__Juegos__usuario___33D4B598">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Juegos" EntitySet="Juegos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Libros__categori__2B3F6F97" Association="Self.FK__Libros__categori__2B3F6F97">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Libros" EntitySet="Libros" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios___categ__2B3F6F97" Association="Self.FK__Usuarios___categ__2B3F6F97">
-            <End Role="Categorias" EntitySet="Categorias" />
-            <End Role="Usuarios_Categorias" EntitySet="Usuarios_Categorias" />
+          <AssociationSet Name="FK__Libros__usuario___2C3393D0" Association="Self.FK__Libros__usuario___2C3393D0">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Libros" EntitySet="Libros" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuarios___grupo__398D8EEE" Association="Self.FK__Usuarios___grupo__398D8EEE">
             <End Role="Grupos" EntitySet="Grupos" />
             <End Role="Usuarios_Grupos" EntitySet="Usuarios_Grupos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios___usuar__2A4B4B5E" Association="Self.FK__Usuarios___usuar__2A4B4B5E">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Usuarios_Categorias" EntitySet="Usuarios_Categorias" />
-          </AssociationSet>
           <AssociationSet Name="FK__Usuarios___usuar__38996AB5" Association="Self.FK__Usuarios___usuar__38996AB5">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Usuarios_Grupos" EntitySet="Usuarios_Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__rol_id__267ABA7A" Association="Self.FK__Usuarios__rol_id__267ABA7A">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -248,13 +283,12 @@
           </Key>
           <Property Name="categoria_id" Type="Int32" Nullable="false" />
           <Property Name="nombre_categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CV" Relationship="Self.FK__CV__categoria_id__30F848ED" FromRole="Categorias" ToRole="CV" />
-          <NavigationProperty Name="Favoritos" Relationship="Self.FK__Favoritos__categ__440B1D61" FromRole="Categorias" ToRole="Favoritos" />
-          <NavigationProperty Name="Juegos" Relationship="Self.FK__Juegos__categori__33D4B598" FromRole="Categorias" ToRole="Juegos" />
-          <NavigationProperty Name="Libros" Relationship="Self.FK__Libros__categori__2E1BDC42" FromRole="Categorias" ToRole="Libros" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.Usuarios_Categorias" FromRole="Categorias" ToRole="Usuarios" />
+          <NavigationProperty Name="Cv" Relationship="Self.FK__cv__categoria_id__2F10007B" FromRole="Categorias" ToRole="Cv" />
+          <NavigationProperty Name="Favoritos" Relationship="Self.FK__Favoritos__categ__3D5E1FD2" FromRole="Categorias" ToRole="Favoritos" />
+          <NavigationProperty Name="Juegos" Relationship="Self.FK__Juegos__categori__32E0915F" FromRole="Categorias" ToRole="Juegos" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK__Libros__categori__2B3F6F97" FromRole="Categorias" ToRole="Libros" />
         </EntityType>
-        <EntityType Name="CV">
+        <EntityType Name="Cv">
           <Key>
             <PropertyRef Name="cv_id" />
           </Key>
@@ -262,7 +296,9 @@
           <Property Name="nombre_completo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="visible" Type="Boolean" />
           <Property Name="categoria_id" Type="Int32" />
-          <NavigationProperty Name="Categorias" Relationship="Self.FK__CV__categoria_id__30F848ED" FromRole="CV" ToRole="Categorias" />
+          <Property Name="usuario_id" Type="Int32" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__cv__categoria_id__2F10007B" FromRole="Cv" ToRole="Categorias" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__cv__usuario_id__300424B4" FromRole="Cv" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Favoritos">
           <Key>
@@ -272,8 +308,8 @@
           <Property Name="usuario_id" Type="Int32" />
           <Property Name="categoria_id" Type="Int32" />
           <Property Name="favorito_ref_id" Type="Int32" />
-          <NavigationProperty Name="Categorias" Relationship="Self.FK__Favoritos__categ__440B1D61" FromRole="Favoritos" ToRole="Categorias" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Favoritos__usuar__4316F928" FromRole="Favoritos" ToRole="Usuarios" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__Favoritos__categ__3D5E1FD2" FromRole="Favoritos" ToRole="Categorias" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Favoritos__usuar__3C69FB99" FromRole="Favoritos" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Grupos">
           <Key>
@@ -292,7 +328,9 @@
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="visible" Type="Boolean" />
           <Property Name="categoria_id" Type="Int32" />
-          <NavigationProperty Name="Categorias" Relationship="Self.FK__Juegos__categori__33D4B598" FromRole="Juegos" ToRole="Categorias" />
+          <Property Name="usuario_id" Type="Int32" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__Juegos__categori__32E0915F" FromRole="Juegos" ToRole="Categorias" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Juegos__usuario___33D4B598" FromRole="Juegos" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Libros">
           <Key>
@@ -304,7 +342,17 @@
           <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="visible" Type="Boolean" />
           <Property Name="categoria_id" Type="Int32" />
-          <NavigationProperty Name="Categorias" Relationship="Self.FK__Libros__categori__2E1BDC42" FromRole="Libros" ToRole="Categorias" />
+          <Property Name="usuario_id" Type="Int32" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__Libros__categori__2B3F6F97" FromRole="Libros" ToRole="Categorias" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Libros__usuario___2C3393D0" FromRole="Libros" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <Property Name="nombre_rol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__rol_id__267ABA7A" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -312,24 +360,28 @@
           </Key>
           <Property Name="usuario_id" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Favoritos" Relationship="Self.FK__Favoritos__usuar__4316F928" FromRole="Usuarios" ToRole="Favoritos" />
-          <NavigationProperty Name="Categorias" Relationship="Self.Usuarios_Categorias" FromRole="Usuarios" ToRole="Categorias" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rol_id" Type="Int32" />
+          <NavigationProperty Name="Cv" Relationship="Self.FK__cv__usuario_id__300424B4" FromRole="Usuarios" ToRole="Cv" />
+          <NavigationProperty Name="Favoritos" Relationship="Self.FK__Favoritos__usuar__3C69FB99" FromRole="Usuarios" ToRole="Favoritos" />
+          <NavigationProperty Name="Juegos" Relationship="Self.FK__Juegos__usuario___33D4B598" FromRole="Usuarios" ToRole="Juegos" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK__Libros__usuario___2C3393D0" FromRole="Usuarios" ToRole="Libros" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__rol_id__267ABA7A" FromRole="Usuarios" ToRole="Roles" />
           <NavigationProperty Name="Grupos" Relationship="Self.Usuarios_Grupos" FromRole="Usuarios" ToRole="Grupos" />
         </EntityType>
-        <Association Name="FK__CV__categoria_id__30F848ED">
+        <Association Name="FK__cv__categoria_id__2F10007B">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
-          <End Role="CV" Type="Self.CV" Multiplicity="*" />
+          <End Role="Cv" Type="Self.Cv" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categorias">
               <PropertyRef Name="categoria_id" />
             </Principal>
-            <Dependent Role="CV">
+            <Dependent Role="Cv">
               <PropertyRef Name="categoria_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favoritos__categ__440B1D61">
+        <Association Name="FK__Favoritos__categ__3D5E1FD2">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Favoritos" Type="Self.Favoritos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,7 +393,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Juegos__categori__33D4B598">
+        <Association Name="FK__Juegos__categori__32E0915F">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Juegos" Type="Self.Juegos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -353,7 +405,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Libros__categori__2E1BDC42">
+        <Association Name="FK__Libros__categori__2B3F6F97">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
           <ReferentialConstraint>
@@ -365,7 +417,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favoritos__usuar__4316F928">
+        <Association Name="FK__cv__usuario_id__300424B4">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Cv" Type="Self.Cv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="Cv">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Favoritos__usuar__3C69FB99">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
           <End Role="Favoritos" Type="Self.Favoritos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -377,9 +441,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Usuarios_Categorias">
-          <End Role="Categorias" Type="Self.Categorias" Multiplicity="*" />
+        <Association Name="FK__Juegos__usuario___33D4B598">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Juegos" Type="Self.Juegos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="Juegos">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Libros__usuario___2C3393D0">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__rol_id__267ABA7A">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="Usuarios_Grupos">
           <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
@@ -387,34 +483,47 @@
         </Association>
         <EntityContainer Name="share_enjoyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categorias" EntityType="Self.Categorias" />
-          <EntitySet Name="CV" EntityType="Self.CV" />
+          <EntitySet Name="Cv" EntityType="Self.Cv" />
           <EntitySet Name="Favoritos" EntityType="Self.Favoritos" />
           <EntitySet Name="Grupos" EntityType="Self.Grupos" />
           <EntitySet Name="Juegos" EntityType="Self.Juegos" />
           <EntitySet Name="Libros" EntityType="Self.Libros" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
-          <AssociationSet Name="FK__CV__categoria_id__30F848ED" Association="Self.FK__CV__categoria_id__30F848ED">
+          <AssociationSet Name="FK__cv__categoria_id__2F10007B" Association="Self.FK__cv__categoria_id__2F10007B">
             <End Role="Categorias" EntitySet="Categorias" />
-            <End Role="CV" EntitySet="CV" />
+            <End Role="Cv" EntitySet="Cv" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favoritos__categ__440B1D61" Association="Self.FK__Favoritos__categ__440B1D61">
+          <AssociationSet Name="FK__Favoritos__categ__3D5E1FD2" Association="Self.FK__Favoritos__categ__3D5E1FD2">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Favoritos" EntitySet="Favoritos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Juegos__categori__33D4B598" Association="Self.FK__Juegos__categori__33D4B598">
+          <AssociationSet Name="FK__Juegos__categori__32E0915F" Association="Self.FK__Juegos__categori__32E0915F">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Juegos" EntitySet="Juegos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Libros__categori__2E1BDC42" Association="Self.FK__Libros__categori__2E1BDC42">
+          <AssociationSet Name="FK__Libros__categori__2B3F6F97" Association="Self.FK__Libros__categori__2B3F6F97">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Libros" EntitySet="Libros" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favoritos__usuar__4316F928" Association="Self.FK__Favoritos__usuar__4316F928">
+          <AssociationSet Name="FK__cv__usuario_id__300424B4" Association="Self.FK__cv__usuario_id__300424B4">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cv" EntitySet="Cv" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Favoritos__usuar__3C69FB99" Association="Self.FK__Favoritos__usuar__3C69FB99">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Favoritos" EntitySet="Favoritos" />
           </AssociationSet>
-          <AssociationSet Name="Usuarios_Categorias" Association="Self.Usuarios_Categorias">
-            <End Role="Categorias" EntitySet="Categorias" />
+          <AssociationSet Name="FK__Juegos__usuario___33D4B598" Association="Self.FK__Juegos__usuario___33D4B598">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Juegos" EntitySet="Juegos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Libros__usuario___2C3393D0" Association="Self.FK__Libros__usuario___2C3393D0">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__rol_id__267ABA7A" Association="Self.FK__Usuarios__rol_id__267ABA7A">
+            <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
           <AssociationSet Name="Usuarios_Grupos" Association="Self.Usuarios_Grupos">
@@ -436,13 +545,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CV">
-            <EntityTypeMapping TypeName="share_enjoyModel.CV">
-              <MappingFragment StoreEntitySet="CV">
+          <EntitySetMapping Name="Cv">
+            <EntityTypeMapping TypeName="share_enjoyModel.Cv">
+              <MappingFragment StoreEntitySet="Cv">
                 <ScalarProperty Name="cv_id" ColumnName="cv_id" />
                 <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
                 <ScalarProperty Name="visible" ColumnName="visible" />
                 <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -472,6 +582,7 @@
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="visible" ColumnName="visible" />
                 <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -484,6 +595,15 @@
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="visible" ColumnName="visible" />
                 <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="share_enjoyModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -493,17 +613,10 @@
                 <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Usuarios_Categorias" TypeName="share_enjoyModel.Usuarios_Categorias" StoreEntitySet="Usuarios_Categorias">
-            <EndProperty Name="Categorias">
-              <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
-            </EndProperty>
-            <EndProperty Name="Usuarios">
-              <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="Usuarios_Grupos" TypeName="share_enjoyModel.Usuarios_Grupos" StoreEntitySet="Usuarios_Grupos">
             <EndProperty Name="Grupos">
               <ScalarProperty Name="grupo_id" ColumnName="grupo_id" />

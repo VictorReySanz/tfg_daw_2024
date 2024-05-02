@@ -9,187 +9,189 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MVC
 build_property.RootNamespace = MVC
-build_property.ProjectDir = C:\Users\Victor Rey\Source\Repos\VictorReySanz\tfg_daw_2024\MVC\MVC\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\marti\source\repos\tfg_daw_2024\MVC\MVC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Victor Rey\Source\Repos\VictorReySanz\tfg_daw_2024\MVC\MVC
+build_property.MSBuildProjectDirectory = C:\Users\marti\source\repos\tfg_daw_2024\MVC\MVC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Categorias/Create.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Categorias/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Categorias/Delete.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Categorias/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Categorias/Details.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Categorias/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Categorias/Edit.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Categorias/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Categorias/Index.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Categorias/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Cvs/Create.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Cvs/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3ZzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Cvs/Delete.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Cvs/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3ZzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Cvs/Details.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Cvs/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3ZzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Cvs/Edit.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Cvs/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3ZzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Cvs/Index.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Cvs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3ZzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Create.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Delete.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Details.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Edit.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Index.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Favoritoes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdG9lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Grupoes/Create.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Grupoes/Delete.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Grupoes/Details.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Grupoes/Edit.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Grupoes/Index.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Grupoes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3J1cG9lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Home/Index.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Home/Favoritos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYXZvcml0b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Home/Login.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Home/Privacy.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Home/Registro.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Home/Registro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Ryby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Juego/Create.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Juego/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSnVlZ29cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Juego/Delete.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Juego/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSnVlZ29cRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Juego/Details.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Juego/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSnVlZ29cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Juego/Edit.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Juego/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSnVlZ29cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Juego/Index.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Juego/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSnVlZ29cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Libro/Create.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Libro/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicm9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Libro/Delete.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Libro/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicm9cRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Libro/Details.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Libro/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicm9cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Libro/Edit.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Libro/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicm9cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Libro/Index.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Libro/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicm9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Shared/Error.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Usuarios/Create.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Usuarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Usuarios/Delete.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Usuarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Usuarios/Details.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Usuarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Usuarios/Edit.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Usuarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Usuarios/Index.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Usuarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/_ViewImports.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/_ViewStart.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Victor Rey/Source/Repos/VictorReySanz/tfg_daw_2024/MVC/MVC/Views/Shared/_Layout.cshtml]
+[C:/Users/marti/source/repos/tfg_daw_2024/MVC/MVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-q0a04yuu0e

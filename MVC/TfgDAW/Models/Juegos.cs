@@ -19,7 +19,9 @@ namespace TfgDAW.Models
         public string descripcion { get; set; }
         public Nullable<bool> visible { get; set; }
         public Nullable<int> categoria_id { get; set; }
+        public Nullable<int> usuario_id { get; set; }
     
         public virtual Categorias Categorias { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

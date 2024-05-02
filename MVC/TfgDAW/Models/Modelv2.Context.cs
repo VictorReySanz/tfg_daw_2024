@@ -13,10 +13,10 @@ namespace TfgDAW.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class share_enjoyEntities : DbContext
+    public partial class share_enjoyEntities1 : DbContext
     {
-        public share_enjoyEntities()
-            : base("name=share_enjoyEntities")
+        public share_enjoyEntities1()
+            : base("name=share_enjoyEntities1")
         {
         }
     
@@ -25,13 +25,14 @@ namespace TfgDAW.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Categorias> Categorias { get; set; }
-        public virtual DbSet<Cv> Cv { get; set; }
-        public virtual DbSet<Favoritos> Favoritos { get; set; }
+        public virtual DbSet<categorias> categorias { get; set; }
+        public virtual DbSet<cv> cv { get; set; }
+        public virtual DbSet<favoritos> favoritos { get; set; }
         public virtual DbSet<Grupos> Grupos { get; set; }
-        public virtual DbSet<Juegos> Juegos { get; set; }
-        public virtual DbSet<Libros> Libros { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<juegos> juegos { get; set; }
+        public virtual DbSet<libros> libros { get; set; }
+        public virtual DbSet<roles> roles { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<usuarios> usuarios { get; set; }
     }
 }
