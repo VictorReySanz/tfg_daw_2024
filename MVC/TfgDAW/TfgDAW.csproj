@@ -271,11 +271,12 @@
     <Content Include="Views\Grupos\Details.cshtml" />
     <Content Include="Views\Grupos\Edit.cshtml" />
     <Content Include="Views\Grupos\Index.cshtml" />
+    <Content Include="Views\Usuarios\index.cshtml" />
+    <Content Include="Views\Usuarios\Registro.cshtml" />
+    <Content Include="Views\Libros\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Libros\" />
-    <Folder Include="Views\Usuarios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
