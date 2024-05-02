@@ -14,6 +14,12 @@ namespace TfgDAW.Controllers
             return View();
         }
 
+        // Vista rgistro
+        public ActionResult Registro()
+        {
+            return View();
+        }
+
         // GET: Usuarios/Details/5
         public ActionResult Details(int id)
         {

@@ -1,0 +1,221 @@
+@{
+    ViewData["Title"] = "Principal";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/principal.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <div class="linea"></div>
+            <p>Mis elementos</p>
+            <div class="linea"></div>
+            <p>Grupos</p>
+            <div class="linea"></div>
+            <a href="@Url.Action("Favoritos", "Home")">Favoritos</a>
+            <div class="linea"></div><p>CVs</p>
+        </div>
+    </div>
+
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liBuscar"><input id="buscar" type="text" placeholder="Buscar"></li>
+            <li id="liVerFiltro">
+                <input type="checkbox" id="verFiltro">
+                <label id="verFiltroLabel" for="verFiltro">
+                    <div class="verFiltroDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Filtro -->
+    <div id="filtro">
+        <div id="contenidoFiltro">
+            <p>Categoria</p>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+
+        <div id="contenidoMenuCuenta">
+            <p>Nombres</p>
+            <div class="linea"></div>
+            <p>Mis datos</p>
+            <div class="linea"></div>
+            <p>Cerrar sesi�n</p></li>
+            <div class="linea"></div><p>CVs</p>
+        </div>
+    </div>
+
+    <!-- main -->
+    <main>
+        <!-- Contenido --><!--ESTO NO SERA ASI, LA ESTRUCTURA SERA ASI, PERO NO SE REPETIRA-->
+        <div id="contenido">
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div><div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                <p class="nombre">Quijote</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

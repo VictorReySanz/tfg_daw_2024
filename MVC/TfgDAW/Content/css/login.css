@@ -1,0 +1,42 @@
+﻿.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 300px;
+    height: auto;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.inputs {
+    margin-bottom: 30px;
+    padding: 5px;
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.boton {
+    margin-bottom: 10px;
+    padding: 15px;
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background-color: #E01B84;
+}
+
+.crear-cuenta {
+    flex-direction: row;
+}

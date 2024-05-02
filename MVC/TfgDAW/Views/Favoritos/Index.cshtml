@@ -1,45 +1,269 @@
-﻿@model IEnumerable<TfgDAW.Models.Favoritos>
-
+﻿
 @{
-    ViewBag.Title = "Index";
+    ViewData["Title"] = "Favoritos";
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
+<html>
+<head>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.favorito_ref_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categorias.nombre_categoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuarios.nombre)
-        </th>
-        <th></th>
-    </tr>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/favoritos.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Home")">Inicio</a>
+            <div class="linea"></div>
+            <p>Mis elementos</p>
+            <div class="linea"></div>
+            <p>Grupos</p>
+            <div class="linea"></div>
+            <a href="@Url.Action("Favoritos", "Home")">Favoritos</a>
+            <div class="linea"></div>
+            <p>CVs</p>
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.favorito_ref_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categorias.nombre_categoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuarios.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.favorito_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.favorito_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.favorito_id })
-        </td>
-    </tr>
-}
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liBuscar"><input id="buscar" type="text" placeholder="Buscar"></li>
+            <li id="liVerFiltro">
+                <input type="checkbox" id="verFiltro">
+                <label id="verFiltroLabel" for="verFiltro">
+                    <div class="verFiltroDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
 
-</table>
+    <!-- Filtro -->
+    <div id="filtro">
+        <div id="contenidoFiltro">
+            <p>Categoria</p>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+
+        <div id="contenidoMenuCuenta">
+            <p>Nombres</p>
+            <div class="linea"></div>
+            <p>Mis datos</p>
+            <div class="linea"></div>
+            <p>Cerrar sesión</p></li>
+            <div class="linea"></div><p>CVs</p>
+        </div>
+    </div>
+
+    <!-- main -->
+    <main>
+        <!-- Contenido --><!--ESTO NO SERA ASI, LA ESTRUCTURA SERA ASI, PERO NO SE REPETIRA-->
+        <div id="contenido">
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div><div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+            <div class="elemento">
+                <img class="portada" src="~/Content/imgs/senordelosanillos.jpg" />
+                <p class="nombre">El señor de lo anillos</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+@*@model IEnumerable<TfgDAW.Models.Favoritos>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.favorito_ref_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categorias.nombre_categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuarios.nombre)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.favorito_ref_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorias.nombre_categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuarios.nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.favorito_id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.favorito_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.favorito_id })
+            </td>
+        </tr>
+    }
+
+    </table>*@

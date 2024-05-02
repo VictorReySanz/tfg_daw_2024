@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Registro";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <img class="logo" src="~/Content/imgs/shareenjoylogo.png" alt="Imagen de ejemplo" />
+
+        <form action="@Url.Action("EnviarFormulario", "Home")" method="post" class="form-container">
+            <input class="inputs" type="text" id="correo" name="correo" placeholder="Correo electrónico" required />
+            <input class="inputs" type="text" id="nombrePriv" name="nombrePriv" placeholder="Nombre privado" required />
+            <input class="inputs" type="text" id="nombrePub" name="nombrePub" placeholder="Nombre público" required />
+            <input class="inputs" type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required />
+            <input class="inputs" type="password" id="contrasenaRep" name="contrasenaRep" placeholder="Repetir contraseña" required />
+
+            <input class="boton" type="submit" value="REGISTRARSE" />
+        </form>
+    </div>
+</body>
+</html>
+
