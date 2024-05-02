@@ -1,3 +1,5 @@
+@model IEnumerable<TfgDAW.Models.Libros>
+
 @{
     ViewData["Title"] = "Principal";
 }
@@ -25,7 +27,6 @@
             <div class="linea"></div><p>CVs</p>
         </div>
     </div>
-
     <!-- Nav -->
     <nav>
         <ul>
@@ -62,7 +63,6 @@
             </li>
         </ul>
     </nav>
-
     <!-- Filtro -->
     <div id="filtro">
         <div id="contenidoFiltro">
@@ -70,7 +70,6 @@
             <div class="linea"></div>
         </div>
     </div>
-
     <!-- Menu de cuenta -->
     <div id="menuCuenta">
 
@@ -83,139 +82,229 @@
             <div class="linea"></div><p>CVs</p>
         </div>
     </div>
-
     <!-- main -->
     <main>
         <!-- Contenido --><!--ESTO NO SERA ASI, LA ESTRUCTURA SERA ASI, PERO NO SE REPETIRA-->
         <div id="contenido">
+
+
+            @foreach (var item in Model)
+            {
+
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
+                </div>
+
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.autor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.visible)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categorias.nombre_categoria)
+                    </td>*@
+            }
+
+
+
             <div class="elemento">
                 <img class="portada" src="~/Content/imgs/quijote.jpg" />
                 <p class="nombre">Quijote</p>
             </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div><div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
-            <div class="elemento">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                <p class="nombre">Quijote</p>
-            </div>
+            @*<div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div><div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>
+                <div class="elemento">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                    <p class="nombre">Quijote</p>
+                </div>*@
         </div>
     </main>
 </body>
 </html>
+
+
+
+
+@*@model IEnumerable<TfgDAW.Models.Libros>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.visible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categorias.nombre_categoria)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.visible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorias.nombre_categoria)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.libro_id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.libro_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.libro_id })
+            </td>
+        </tr>
+    }
+
+    </table>*@
