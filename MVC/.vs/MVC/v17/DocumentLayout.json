@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E9F65508-A30A-4032-BD4E-FC8E3EA7DFE8}|MVC\\MVC.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\mvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E9F65508-A30A-4032-BD4E-FC8E3EA7DFE8}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\tfgdaw\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|solutionrelative:tfgdaw\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E9F65508-A30A-4032-BD4E-FC8E3EA7DFE8}|MVC\\MVC.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E9F65508-A30A-4032-BD4E-FC8E3EA7DFE8}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\tfgdaw\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|solutionrelative:tfgdaw\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\tfgdaw\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|solutionrelative:tfgdaw\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\tfgdaw\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|solutionrelative:tfgdaw\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\tfgdaw\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|solutionrelative:tfgdaw\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\tfgdaw\\views\\libros\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|solutionrelative:tfgdaw\\views\\libros\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|c:\\users\\victor rey\\source\\repos\\victorreysanz\\tfg_daw_2024\\mvc\\tfgdaw\\controllers\\libroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC004C6B-D615-43F1-A62B-8E2EA36317EB}|TfgDAW\\TfgDAW.csproj|solutionrelative:tfgdaw\\controllers\\libroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 357,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,10 +54,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
@@ -46,28 +62,94 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "MVC\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAJ8AAAAAAAAAAAAowMoAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-23T22:44:45.053Z",
+              "DocumentIndex": 1,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "TfgDAW\\App_Start\\RouteConfig.cs",
+              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "TfgDAW\\App_Start\\RouteConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T18:04:31.081Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Views\\Web.config",
+              "RelativeDocumentMoniker": "TfgDAW\\Views\\Web.config",
+              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Views\\Web.config",
+              "RelativeToolTip": "TfgDAW\\Views\\Web.config",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAuwCAAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-05-02T17:59:25.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Web.config",
+              "RelativeDocumentMoniker": "TfgDAW\\Web.config",
+              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Web.config",
+              "RelativeToolTip": "TfgDAW\\Web.config",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-05-02T17:57:36.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "TfgDAW\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "TfgDAW\\Controllers\\UsuariosController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T17:54:21.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LibrosController.cs",
+              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Controllers\\LibrosController.cs",
+              "RelativeDocumentMoniker": "TfgDAW\\Controllers\\LibrosController.cs",
+              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Controllers\\LibrosController.cs",
+              "RelativeToolTip": "TfgDAW\\Controllers\\LibrosController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T17:52:27.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\MVC\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "MVC\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAACQAAAAOAAAA",
+              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "TfgDAW\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "TfgDAW\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACcAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-23T22:37:50.948Z"
+              "WhenOpened": "2024-05-02T17:42:33.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Views\\libros\\index.cshtml",
+              "RelativeDocumentMoniker": "TfgDAW\\Views\\libros\\index.cshtml",
+              "ToolTip": "C:\\Users\\Victor Rey\\source\\repos\\VictorReySanz\\tfg_daw_2024\\MVC\\TfgDAW\\Views\\libros\\index.cshtml",
+              "RelativeToolTip": "TfgDAW\\Views\\libros\\index.cshtml",
+              "ViewState": "AQIAADUAAAAAAAAAAAAkwKYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-02T17:40:12.339Z",
+              "EditorCaption": ""
             }
           ]
         }
