@@ -15,10 +15,24 @@ namespace TfgDAW.Controllers
         private share_enjoyEntities db = new share_enjoyEntities();
 
         // GET: Libros
-        public ActionResult Index()
+        /* public ActionResult Index()
+         {
+             var libros = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios);
+             return View(libros.ToList());
+         }*/
+        public ActionResult Index(string buscar)
         {
-            var libros = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios);
-            return View(libros.ToList());
+            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios);
+
+            // Aplicamos el filtro si searchString no está vacío
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                librosQuery = librosQuery.Where(l => l.titulo.Contains(buscar) || l.autor.Contains(buscar));
+            }
+
+            var libros = librosQuery.ToList();
+
+            return View(libros);
         }
 
         // GET: Libros/Details/5

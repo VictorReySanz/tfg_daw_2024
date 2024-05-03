@@ -1,8 +1,8 @@
 @model IEnumerable<TfgDAW.Models.Libros>
 
-@{
-    ViewData["Title"] = "Principal";
-}
+    @{
+        ViewData["Title"] = "Principal";
+    }
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +40,14 @@
                     </div>
                 </label>
             </li>
-            <li id="liBuscar"><input id="buscar" type="text" placeholder="Buscar"></li>
+            <li id="liBuscar">
+
+                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
+                {
+                    <button type="submit">Buscar</button>
+                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
+                }
+            </li>
             <li id="liVerFiltro">
                 <input type="checkbox" id="verFiltro">
                 <label id="verFiltroLabel" for="verFiltro">
