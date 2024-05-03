@@ -1,8 +1,8 @@
-@model IEnumerable<TfgDAW.Models.Libros>
+﻿@model IEnumerable<TfgDAW.Models.Libros>
 
-    @{
-        ViewData["Title"] = "Principal";
-    }
+@{
+    ViewData["Title"] = "Mis Elementos";
+}
 
 <!DOCTYPE html>
 <html>
@@ -10,20 +10,20 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/principal.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/miselementos.css">
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
 <body>
     <!-- Menu -->
     <div id="menu">
         <div id="contenidoMenu">
-            <a href="@Url.Action("Index", "Libros")">Inicio</a>
+            <a href="@Url.Action("index", "Libros")">Inicio</a>
             <div class="linea"></div>
             <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
             <div class="linea"></div>
             <p>Grupos</p>
             <div class="linea"></div>
-            <a href="@Url.Action("Favoritos", "Home")">Favoritos</a>
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
             <div class="linea"></div><p>CVs</p>
         </div>
     </div>
@@ -39,10 +39,13 @@
                         <div class="linea3"></div>
                     </div>
                 </label>
+
+                <!-- Añadir elemento -->
+                <input id="anadir" type="submit" value="Añadir">
             </li>
             <li id="liBuscar">
 
-                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
+                @using (Html.BeginForm("MisElementos", "Libros", FormMethod.Get))
                 {
                     <button type="submit">Buscar</button>
                     <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
@@ -97,16 +100,23 @@
             @foreach (var item in Model)
             {
 
-                    <a href="@Url.Action("VerElemento", "Libros", new { id = item.libro_id })" class="elemento" name="id">
-                        <img class="portada" src="~/Content/imgs/quijote.jpg" />
-                        <div class="tituloAutor">
-                            <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
-                            <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
-                        </div>
-                    </a>
+               <a href="@Url.Action("VerElemento", "Libros", new { id = item.libro_id })" class="elemento" name="id">
+                   <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                   <div class="tituloAutor">
+                       <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
+                       <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
+                   </div>
+                   <div class="visibilidad">
+                       <input type="checkbox" id="visible">
+                       <label id="visibleLabel" for="visible">
+                           <img class="visibleImg" src="~/Content/imgs/novisible.jpg" />
+                       </label>
+                   </div>
+               </a>
+
             }
 
-            </div>
+        </div>
     </main>
 </body>
 </html>

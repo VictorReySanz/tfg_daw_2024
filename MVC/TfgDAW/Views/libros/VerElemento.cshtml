@@ -1,0 +1,12 @@
+﻿@model IEnumerable<TfgDAW.Models.Libros>
+
+@{
+    ViewBag.Title = "VerElemento";
+}
+
+@foreach (var item in Model)
+{
+    <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
+    <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
+    <p class="autor">@Html.DisplayFor(modelItem => item.descripcion)</p>
+}

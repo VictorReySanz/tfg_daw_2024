@@ -14,12 +14,7 @@ namespace TfgDAW.Controllers
     {
         private share_enjoyEntities db = new share_enjoyEntities();
 
-        // GET: Libros
-        /* public ActionResult Index()
-         {
-             var libros = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios);
-             return View(libros.ToList());
-         }*/
+        // Principal
         public ActionResult Index(string buscar)
         {
             var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios);
@@ -34,6 +29,37 @@ namespace TfgDAW.Controllers
 
             return View(libros);
         }
+        //Mis elementos
+        public ActionResult MisElementos(string buscar)
+        {
+            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.usuario_id == 1);
+
+            // Aplicamos el filtro si searchString no está vacío
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                librosQuery = librosQuery.Where(l => l.titulo.Contains(buscar) || l.autor.Contains(buscar));
+            }
+
+            var libros = librosQuery.ToList();
+
+            return View(libros);
+        }
+
+        //Ver elemento
+        public ActionResult VerElemento(int id)
+        {
+            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.libro_id == id);
+
+            var libros = librosQuery.ToList();
+
+            return View(libros);
+        }
+
+
+
+
+
+
 
         // GET: Libros/Details/5
         public ActionResult Details(int? id)

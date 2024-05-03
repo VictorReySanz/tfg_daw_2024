@@ -7,7 +7,7 @@ body {
 
 /************************ nav ************************/
 nav {
-    background-color: #006FFF;
+    background-color: #E6B965;
     padding: 10px;
 }
 
@@ -32,7 +32,7 @@ nav {
 #menu {
     display: none;
     position: absolute;
-    background-color: #4F91E8;
+    background-color: #E8CB69;
     width: 250px;
     height: 100%;
     text-align: center;
@@ -104,7 +104,7 @@ nav ul #liVerMenuCuenta {
     display: none;
     position: absolute;
     left: 85%;
-    background-color: #4F91E8;
+    background-color: #E8CB69;
     width: 250px;
     height: 200px;
     border-radius: 15px;
@@ -181,7 +181,7 @@ nav ul #liVerFiltro {
     display: none;
     position: absolute;
     left: 50%;
-    background-color: #4F91E8;
+    background-color: #E8CB69;
     width: 250px;
     height: 200px;
     border-radius: 15px;
@@ -275,6 +275,16 @@ nav ul #liVerFiltro {
 .autor {
     font-size: 12px;
     margin-top: -15px;
+}
+
+#visible {
+    display: none;
+}
+
+.visibleImg {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
 }
 
 /************************ extras ************************/
