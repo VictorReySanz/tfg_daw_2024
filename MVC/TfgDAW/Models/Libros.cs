@@ -17,6 +17,9 @@ namespace TfgDAW.Models
         public int libro_id { get; set; }
         public string titulo { get; set; }
         public string autor { get; set; }
+        public string genero { get; set; }
+        public byte[] portada { get; set; }
+        public byte[] file_libros { get; set; }
         public string descripcion { get; set; }
         public Nullable<bool> visible { get; set; }
         public Nullable<int> categoria_id { get; set; }

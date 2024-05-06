@@ -16,17 +16,20 @@
           <Key>
             <PropertyRef Name="cv_id" />
           </Key>
-          <Property Name="cv_id" Type="int" Nullable="false" />
+          <Property Name="cv_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_completo" Type="varchar" MaxLength="100" />
           <Property Name="visible" Type="bit" />
           <Property Name="categoria_id" Type="int" />
           <Property Name="usuario_id" Type="int" />
+          <Property Name="profesión" Type="varchar" MaxLength="100" />
+          <Property Name="Portafolio" Type="varchar(max)" />
+          <Property Name="tecnología" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Favoritos">
           <Key>
             <PropertyRef Name="favorito_id" />
           </Key>
-          <Property Name="favorito_id" Type="int" Nullable="false" />
+          <Property Name="favorito_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="usuario_id" Type="int" />
           <Property Name="categoria_id" Type="int" />
           <Property Name="favorito_ref_id" Type="int" />
@@ -35,17 +38,20 @@
           <Key>
             <PropertyRef Name="grupo_id" />
           </Key>
-          <Property Name="grupo_id" Type="int" Nullable="false" />
+          <Property Name="grupo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_grupo" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Juegos">
           <Key>
             <PropertyRef Name="juego_id" />
           </Key>
-          <Property Name="juego_id" Type="int" Nullable="false" />
+          <Property Name="juego_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_juego" Type="varchar" MaxLength="100" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="archivo" Type="varbinary(max)" />
           <Property Name="visible" Type="bit" />
+          <Property Name="ing" Type="varbinary(max)" />
+          <Property Name="file_juegos" Type="varbinary(max)" />
           <Property Name="categoria_id" Type="int" />
           <Property Name="usuario_id" Type="int" />
         </EntityType>
@@ -53,9 +59,12 @@
           <Key>
             <PropertyRef Name="libro_id" />
           </Key>
-          <Property Name="libro_id" Type="int" Nullable="false" />
+          <Property Name="libro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titulo" Type="varchar" MaxLength="100" />
           <Property Name="autor" Type="varchar" MaxLength="100" />
+          <Property Name="genero" Type="varchar" MaxLength="100" />
+          <Property Name="portada" Type="varbinary(max)" />
+          <Property Name="file_libros" Type="varbinary(max)" />
           <Property Name="descripcion" Type="text" />
           <Property Name="visible" Type="bit" />
           <Property Name="categoria_id" Type="int" />
@@ -65,15 +74,16 @@
           <Key>
             <PropertyRef Name="rol_id" />
           </Key>
-          <Property Name="rol_id" Type="int" Nullable="false" />
+          <Property Name="rol_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_rol" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="usuario_id" />
           </Key>
-          <Property Name="usuario_id" Type="int" Nullable="false" />
+          <Property Name="usuario_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="foto" Type="varbinary(max)" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="rol_id" Type="int" />
         </EntityType>
@@ -85,7 +95,7 @@
           <Property Name="usuario_id" Type="int" Nullable="false" />
           <Property Name="grupo_id" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__cv__categoria_id__2F10007B">
+        <Association Name="FK__Cv__categoria_id__2F10007B">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Cv" Type="Self.Cv" Multiplicity="*" />
           <ReferentialConstraint>
@@ -97,7 +107,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__cv__usuario_id__300424B4">
+        <Association Name="FK__Cv__usuario_id__300424B4">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
           <End Role="Cv" Type="Self.Cv" Multiplicity="*" />
           <ReferentialConstraint>
@@ -227,11 +237,11 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios_Grupos" EntityType="Self.Usuarios_Grupos" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__cv__categoria_id__2F10007B" Association="Self.FK__cv__categoria_id__2F10007B">
+          <AssociationSet Name="FK__Cv__categoria_id__2F10007B" Association="Self.FK__Cv__categoria_id__2F10007B">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Cv" EntitySet="Cv" />
           </AssociationSet>
-          <AssociationSet Name="FK__cv__usuario_id__300424B4" Association="Self.FK__cv__usuario_id__300424B4">
+          <AssociationSet Name="FK__Cv__usuario_id__300424B4" Association="Self.FK__Cv__usuario_id__300424B4">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Cv" EntitySet="Cv" />
           </AssociationSet>
@@ -283,7 +293,7 @@
           </Key>
           <Property Name="categoria_id" Type="Int32" Nullable="false" />
           <Property Name="nombre_categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cv" Relationship="Self.FK__cv__categoria_id__2F10007B" FromRole="Categorias" ToRole="Cv" />
+          <NavigationProperty Name="Cv" Relationship="Self.FK__Cv__categoria_id__2F10007B" FromRole="Categorias" ToRole="Cv" />
           <NavigationProperty Name="Favoritos" Relationship="Self.FK__Favoritos__categ__3D5E1FD2" FromRole="Categorias" ToRole="Favoritos" />
           <NavigationProperty Name="Juegos" Relationship="Self.FK__Juegos__categori__32E0915F" FromRole="Categorias" ToRole="Juegos" />
           <NavigationProperty Name="Libros" Relationship="Self.FK__Libros__categori__2B3F6F97" FromRole="Categorias" ToRole="Libros" />
@@ -292,19 +302,22 @@
           <Key>
             <PropertyRef Name="cv_id" />
           </Key>
-          <Property Name="cv_id" Type="Int32" Nullable="false" />
+          <Property Name="cv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_completo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="visible" Type="Boolean" />
           <Property Name="categoria_id" Type="Int32" />
           <Property Name="usuario_id" Type="Int32" />
-          <NavigationProperty Name="Categorias" Relationship="Self.FK__cv__categoria_id__2F10007B" FromRole="Cv" ToRole="Categorias" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__cv__usuario_id__300424B4" FromRole="Cv" ToRole="Usuarios" />
+          <Property Name="profesión" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Portafolio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tecnología" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__Cv__categoria_id__2F10007B" FromRole="Cv" ToRole="Categorias" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Cv__usuario_id__300424B4" FromRole="Cv" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Favoritos">
           <Key>
             <PropertyRef Name="favorito_id" />
           </Key>
-          <Property Name="favorito_id" Type="Int32" Nullable="false" />
+          <Property Name="favorito_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="usuario_id" Type="Int32" />
           <Property Name="categoria_id" Type="Int32" />
           <Property Name="favorito_ref_id" Type="Int32" />
@@ -315,7 +328,7 @@
           <Key>
             <PropertyRef Name="grupo_id" />
           </Key>
-          <Property Name="grupo_id" Type="Int32" Nullable="false" />
+          <Property Name="grupo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_grupo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuarios" Relationship="Self.Usuarios_Grupos" FromRole="Grupos" ToRole="Usuarios" />
         </EntityType>
@@ -323,10 +336,13 @@
           <Key>
             <PropertyRef Name="juego_id" />
           </Key>
-          <Property Name="juego_id" Type="Int32" Nullable="false" />
+          <Property Name="juego_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_juego" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="visible" Type="Boolean" />
+          <Property Name="ing" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="file_juegos" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="categoria_id" Type="Int32" />
           <Property Name="usuario_id" Type="Int32" />
           <NavigationProperty Name="Categorias" Relationship="Self.FK__Juegos__categori__32E0915F" FromRole="Juegos" ToRole="Categorias" />
@@ -336,9 +352,12 @@
           <Key>
             <PropertyRef Name="libro_id" />
           </Key>
-          <Property Name="libro_id" Type="Int32" Nullable="false" />
+          <Property Name="libro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="autor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="genero" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="portada" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="file_libros" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="visible" Type="Boolean" />
           <Property Name="categoria_id" Type="Int32" />
@@ -350,7 +369,7 @@
           <Key>
             <PropertyRef Name="rol_id" />
           </Key>
-          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_rol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__rol_id__267ABA7A" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
@@ -358,18 +377,19 @@
           <Key>
             <PropertyRef Name="usuario_id" />
           </Key>
-          <Property Name="usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="usuario_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="rol_id" Type="Int32" />
-          <NavigationProperty Name="Cv" Relationship="Self.FK__cv__usuario_id__300424B4" FromRole="Usuarios" ToRole="Cv" />
+          <NavigationProperty Name="Cv" Relationship="Self.FK__Cv__usuario_id__300424B4" FromRole="Usuarios" ToRole="Cv" />
           <NavigationProperty Name="Favoritos" Relationship="Self.FK__Favoritos__usuar__3C69FB99" FromRole="Usuarios" ToRole="Favoritos" />
           <NavigationProperty Name="Juegos" Relationship="Self.FK__Juegos__usuario___33D4B598" FromRole="Usuarios" ToRole="Juegos" />
           <NavigationProperty Name="Libros" Relationship="Self.FK__Libros__usuario___2C3393D0" FromRole="Usuarios" ToRole="Libros" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__rol_id__267ABA7A" FromRole="Usuarios" ToRole="Roles" />
           <NavigationProperty Name="Grupos" Relationship="Self.Usuarios_Grupos" FromRole="Usuarios" ToRole="Grupos" />
         </EntityType>
-        <Association Name="FK__cv__categoria_id__2F10007B">
+        <Association Name="FK__Cv__categoria_id__2F10007B">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Cv" Type="Self.Cv" Multiplicity="*" />
           <ReferentialConstraint>
@@ -417,7 +437,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__cv__usuario_id__300424B4">
+        <Association Name="FK__Cv__usuario_id__300424B4">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
           <End Role="Cv" Type="Self.Cv" Multiplicity="*" />
           <ReferentialConstraint>
@@ -490,7 +510,7 @@
           <EntitySet Name="Libros" EntityType="Self.Libros" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
-          <AssociationSet Name="FK__cv__categoria_id__2F10007B" Association="Self.FK__cv__categoria_id__2F10007B">
+          <AssociationSet Name="FK__Cv__categoria_id__2F10007B" Association="Self.FK__Cv__categoria_id__2F10007B">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Cv" EntitySet="Cv" />
           </AssociationSet>
@@ -506,7 +526,7 @@
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Libros" EntitySet="Libros" />
           </AssociationSet>
-          <AssociationSet Name="FK__cv__usuario_id__300424B4" Association="Self.FK__cv__usuario_id__300424B4">
+          <AssociationSet Name="FK__Cv__usuario_id__300424B4" Association="Self.FK__Cv__usuario_id__300424B4">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Cv" EntitySet="Cv" />
           </AssociationSet>
@@ -553,6 +573,9 @@
                 <ScalarProperty Name="visible" ColumnName="visible" />
                 <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
                 <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="profesión" ColumnName="profesión" />
+                <ScalarProperty Name="Portafolio" ColumnName="Portafolio" />
+                <ScalarProperty Name="tecnología" ColumnName="tecnología" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -580,7 +603,10 @@
                 <ScalarProperty Name="juego_id" ColumnName="juego_id" />
                 <ScalarProperty Name="nombre_juego" ColumnName="nombre_juego" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
                 <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="ing" ColumnName="ing" />
+                <ScalarProperty Name="file_juegos" ColumnName="file_juegos" />
                 <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
                 <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
               </MappingFragment>
@@ -592,6 +618,9 @@
                 <ScalarProperty Name="libro_id" ColumnName="libro_id" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="autor" ColumnName="autor" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="portada" ColumnName="portada" />
+                <ScalarProperty Name="file_libros" ColumnName="file_libros" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="visible" ColumnName="visible" />
                 <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
@@ -612,6 +641,7 @@
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="rol_id" ColumnName="rol_id" />
               </MappingFragment>

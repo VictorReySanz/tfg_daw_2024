@@ -17,7 +17,10 @@ namespace TfgDAW.Models
         public int juego_id { get; set; }
         public string nombre_juego { get; set; }
         public string descripcion { get; set; }
+        public byte[] archivo { get; set; }
         public Nullable<bool> visible { get; set; }
+        public byte[] ing { get; set; }
+        public byte[] file_juegos { get; set; }
         public Nullable<int> categoria_id { get; set; }
         public Nullable<int> usuario_id { get; set; }
     

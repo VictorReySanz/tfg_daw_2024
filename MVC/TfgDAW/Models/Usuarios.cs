@@ -26,6 +26,7 @@ namespace TfgDAW.Models
     
         public int usuario_id { get; set; }
         public string nombre { get; set; }
+        public byte[] foto { get; set; }
         public string email { get; set; }
         public Nullable<int> rol_id { get; set; }
     
