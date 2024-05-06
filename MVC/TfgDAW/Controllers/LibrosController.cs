@@ -17,7 +17,7 @@ namespace TfgDAW.Controllers
         // Principal
         public ActionResult Index(string buscar)
         {
-            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios);
+            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.visible == true);
 
             // Aplicamos el filtro si searchString no está vacío
             if (!string.IsNullOrEmpty(buscar))
@@ -55,6 +55,31 @@ namespace TfgDAW.Controllers
             return View(libros);
         }
 
+
+        //Crear elemento GET
+        public ActionResult CrearElemento()
+        {
+            return View();
+        }
+
+        //Crear elemento POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CrearElemento([Bind(Include = "libro_id,titulo,autor,descripcion,visible,categoria_id,usuario_id")] Libros libros)
+        {
+            libros.libro_id = 8;
+            libros.categoria_id = 1;
+            libros.usuario_id = 1;
+
+            if (ModelState.IsValid)
+            {
+                db.Libros.Add(libros);
+                db.SaveChanges();
+                return RedirectToAction("MisElementos");
+            }
+
+            return View(libros);
+        }
 
 
 

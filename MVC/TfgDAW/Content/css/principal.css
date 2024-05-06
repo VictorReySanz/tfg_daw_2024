@@ -270,11 +270,15 @@ nav ul #liVerFiltro {
 
 .tituloAutor {
     margin-top: 10px;
+    max-width: 150px;
+    margin: 0 auto;
 }
 
 .autor {
     font-size: 12px;
     margin-top: -15px;
+    max-width: 150px;
+    margin: 0 auto; 
 }
 
 /************************ extras ************************/

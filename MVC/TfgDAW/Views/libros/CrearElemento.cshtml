@@ -1,0 +1,113 @@
+﻿@model TfgDAW.Models.Libros
+
+@{
+    ViewBag.Title = "CrearElemento";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/crearelemento.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Libros")">Inicio</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
+            <div class="linea"></div>
+            <p>Grupos</p>
+            <div class="linea"></div>
+            <a href="@Url.Action("Favoritos", "Home")">Favoritos</a>
+            <div class="linea"></div><p>CVs</p>
+        </div>
+    </div>
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+
+        <div id="contenidoMenuCuenta">
+            <p>Nombres</p>
+            <div class="linea"></div>
+            <p>Mis datos</p>
+            <div class="linea"></div>
+            <p>Cerrar sesiï¿½n</p></li>
+            <div class="linea"></div><p>CVs</p>
+        </div>
+    </div>
+    <!-- main -->
+    <main>
+
+        <!-- contenido -->
+        <div class="contenido">
+
+            <div class="izquierda">
+                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+
+
+                <div class="visibilidad">
+                    @Html.EditorFor(model => model.visible, new { htmlAttributes = new { @class = "visibilidad-campo" } })
+                </div>
+
+                <input class="descarga" type="submit" value="Descargar">
+            </div>
+            <div class="derecha">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                        <div class="titulo">
+                                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo", placeholder = "Titulo", maxlength = "100" } })
+                        </div>
+
+                        <div class="autor">
+                                @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo", placeholder = "Autor", maxlength = "100" } })
+                        </div>
+
+                        <div class="descripcion">
+                                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "descripcion-campo", placeholder = "Sipnopsis"} })
+                        </div>
+
+                            <input class="subir" type="submit" value="Subir" />
+                }
+                </div>
+
+
+            </div>
+        </main>
+    </body>
+</html>
+
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }

@@ -41,7 +41,7 @@
                 </label>
 
                 <!-- Añadir elemento -->
-                <input id="anadir" type="submit" value="Añadir">
+                <a href="@Url.Action("CrearElemento", "Libros")" id="anadir">Añadir</a>
             </li>
             <li id="liBuscar">
 
@@ -107,9 +107,9 @@
                        <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
                    </div>
                    <div class="visibilidad">
-                       <input type="checkbox" id="visible">
-                       <label id="visibleLabel" for="visible">
-                           <img class="visibleImg" src="~/Content/imgs/novisible.jpg" />
+                       <input type="checkbox" class="visible" @(item.visible ?? false ? "checked" : "")> <!-- Usar el ID único del libro -->
+                       <label class="visibleLabel" for="visible">
+                           <img class="visibleImg" src="~/Content/imgs/@(item.visible ?? false ? "visible.jpg" : "novisible.jpg")" /> <!-- Cambiar la imagen basada en la visibilidad -->
                        </label>
                    </div>
                </a>
