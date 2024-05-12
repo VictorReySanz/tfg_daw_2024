@@ -100,7 +100,7 @@
                     <a href="@Url.Action("VerElemento", "Libros", new { id = item.libro_id })" class="elemento" name="id">
                         <img class="portada" src="~/Content/imgs/quijote.jpg" />
                         <div class="tituloAutor">
-                            <p class="nombre">@Html.DisplayFor(modelItem => item.genero)</p>
+                            <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
                             <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
                         </div>
                     </a>

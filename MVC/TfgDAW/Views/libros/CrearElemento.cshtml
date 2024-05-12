@@ -68,42 +68,45 @@
     <main>
 
         <!-- contenido -->
-        <div class="contenido">
+        @using (Html.BeginForm("CrearElemento","Libros",FormMethod.Post,new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
 
-            <div class="izquierda">
-                <img class="portada" src="~/Content/imgs/quijote.jpg" />
+            <div class="contenido">
+
+                <div class="izquierda">
+                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
+
+                    <input type="file" name="imageFile" />
+
+                    <div class="visibilidad">
+                        @Html.EditorFor(model => model.visible, new { htmlAttributes = new { @class = "visibilidad-campo" } })
+                    </div>
+
+                </div>
+                <div class="derecha">
 
 
-                <div class="visibilidad">
-                    @Html.EditorFor(model => model.visible, new { htmlAttributes = new { @class = "visibilidad-campo" } })
+                    <div class="titulo">
+                        @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo", placeholder = "Titulo", maxlength = "100" } })
+                    </div>
+
+                    <div class="autor">
+                        @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo", placeholder = "Autor", maxlength = "100" } })
+                    </div>
+
+                    <div class="descripcion">
+                        @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "descripcion-campo", placeholder = "Sipnopsis" } })
+                    </div>
+
+                    <input class="subir" type="submit" value="Subir" />
+
                 </div>
 
-                <input class="descarga" type="submit" value="Descargar">
-            </div>
-            <div class="derecha">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                        <div class="titulo">
-                                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo", placeholder = "Titulo", maxlength = "100" } })
-                        </div>
-
-                        <div class="autor">
-                                @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo", placeholder = "Autor", maxlength = "100" } })
-                        </div>
-
-                        <div class="descripcion">
-                                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "descripcion-campo", placeholder = "Sipnopsis"} })
-                        </div>
-
-                            <input class="subir" type="submit" value="Subir" />
-                }
-                </div>
-
 
             </div>
-        </main>
+        }
+    </main>
     </body>
 </html>
 
