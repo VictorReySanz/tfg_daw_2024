@@ -28,8 +28,10 @@ namespace TfgDAW.Models
         public string nombre { get; set; }
         public byte[] foto { get; set; }
         public string email { get; set; }
-        public Nullable<int> rol_id { get; set; }
-    
+        public string rol { get; set; }
+
+        public string password { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cv> Cv { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -38,7 +40,6 @@ namespace TfgDAW.Models
         public virtual ICollection<Juegos> Juegos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Libros> Libros { get; set; }
-        public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grupos> Grupos { get; set; }
     }
