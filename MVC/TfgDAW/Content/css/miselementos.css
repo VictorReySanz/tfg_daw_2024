@@ -23,6 +23,13 @@ nav {
             flex-grow: 1;
         }
 
+
+.anadirImg {
+    margin-left: 20px;
+    width: 30px;
+    height: auto;
+}
+
         /************************ menu ************************/
         nav ul #liVerMenu {
             display: flex;
@@ -281,14 +288,9 @@ nav ul #liVerFiltro {
     margin: 0 auto;
 }
 
-/*.visible {
-    display: none;
-}*/
-
 .visibleImg {
     width: 30px;
     height: auto;
-    cursor: pointer;
 }
 
 /************************ extras ************************/
