@@ -14,14 +14,14 @@ namespace TfgDAW.Models
         public bool ExisteUsuario(String usuario, String password)
         {
 
-            List<Usuarios> userObj = db.Usuarios.Where(u => u.nombre == "admin").ToList();
+            List<Usuarios> userObj = db.Usuarios.Where(u => u.nombre == usuario).ToList();
             if (userObj.Count == 0)
             {
                 return false;
             }
             else
             {
-                this.Role = "ADMINISTRADOR";
+                this.Role = "usuario";
                 return true;
 
             }

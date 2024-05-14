@@ -62,6 +62,12 @@ namespace TfgDAW.Controllers
             return View();
         }
 
+        public ActionResult EditarElemento()
+        {
+            return View();
+        }
+
+
         //Crear elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
