@@ -70,13 +70,6 @@
           <Property Name="categoria_id" Type="int" />
           <Property Name="usuario_id" Type="int" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="rol_id" />
-          </Key>
-          <Property Name="rol_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre_rol" Type="varchar" MaxLength="10" />
-        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="usuario_id" />
@@ -85,7 +78,8 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="foto" Type="varbinary(max)" />
           <Property Name="email" Type="varchar" MaxLength="50" />
-          <Property Name="rol_id" Type="int" />
+          <Property Name="rol" Type="varchar" MaxLength="10" />
+          <Property Name="password" Type="char" MaxLength="64" />
         </EntityType>
         <EntityType Name="Usuarios_Grupos">
           <Key>
@@ -215,18 +209,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__rol_id__267ABA7A">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="rol_id" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="rol_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="share_enjoyModelStoreContainer">
           <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cv" EntityType="Self.Cv" Schema="dbo" store:Type="Tables" />
@@ -234,7 +216,6 @@
           <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Juegos" EntityType="Self.Juegos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios_Grupos" EntityType="Self.Usuarios_Grupos" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Cv__categoria_id__2F10007B" Association="Self.FK__Cv__categoria_id__2F10007B">
@@ -276,10 +257,6 @@
           <AssociationSet Name="FK__Usuarios___usuar__38996AB5" Association="Self.FK__Usuarios___usuar__38996AB5">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Usuarios_Grupos" EntitySet="Usuarios_Grupos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__rol_id__267ABA7A" Association="Self.FK__Usuarios__rol_id__267ABA7A">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -365,14 +342,6 @@
           <NavigationProperty Name="Categorias" Relationship="Self.FK__Libros__categori__2B3F6F97" FromRole="Libros" ToRole="Categorias" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK__Libros__usuario___2C3393D0" FromRole="Libros" ToRole="Usuarios" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="rol_id" />
-          </Key>
-          <Property Name="rol_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_rol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__rol_id__267ABA7A" FromRole="Roles" ToRole="Usuarios" />
-        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="usuario_id" />
@@ -381,12 +350,12 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="rol_id" Type="Int32" />
+          <Property Name="rol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Cv" Relationship="Self.FK__Cv__usuario_id__300424B4" FromRole="Usuarios" ToRole="Cv" />
           <NavigationProperty Name="Favoritos" Relationship="Self.FK__Favoritos__usuar__3C69FB99" FromRole="Usuarios" ToRole="Favoritos" />
           <NavigationProperty Name="Juegos" Relationship="Self.FK__Juegos__usuario___33D4B598" FromRole="Usuarios" ToRole="Juegos" />
           <NavigationProperty Name="Libros" Relationship="Self.FK__Libros__usuario___2C3393D0" FromRole="Usuarios" ToRole="Libros" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__rol_id__267ABA7A" FromRole="Usuarios" ToRole="Roles" />
           <NavigationProperty Name="Grupos" Relationship="Self.Usuarios_Grupos" FromRole="Usuarios" ToRole="Grupos" />
         </EntityType>
         <Association Name="FK__Cv__categoria_id__2F10007B">
@@ -485,18 +454,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__rol_id__267ABA7A">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="rol_id" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="rol_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Usuarios_Grupos">
           <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
@@ -508,7 +465,6 @@
           <EntitySet Name="Grupos" EntityType="Self.Grupos" />
           <EntitySet Name="Juegos" EntityType="Self.Juegos" />
           <EntitySet Name="Libros" EntityType="Self.Libros" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <AssociationSet Name="FK__Cv__categoria_id__2F10007B" Association="Self.FK__Cv__categoria_id__2F10007B">
             <End Role="Categorias" EntitySet="Categorias" />
@@ -541,10 +497,6 @@
           <AssociationSet Name="FK__Libros__usuario___2C3393D0" Association="Self.FK__Libros__usuario___2C3393D0">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Libros" EntitySet="Libros" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__rol_id__267ABA7A" Association="Self.FK__Usuarios__rol_id__267ABA7A">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
           <AssociationSet Name="Usuarios_Grupos" Association="Self.Usuarios_Grupos">
             <End Role="Grupos" EntitySet="Grupos" />
@@ -628,14 +580,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="share_enjoyModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-                <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="share_enjoyModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
@@ -643,7 +587,8 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="foto" ColumnName="foto" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
