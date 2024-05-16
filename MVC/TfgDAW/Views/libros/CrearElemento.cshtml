@@ -1,7 +1,7 @@
 ﻿@model TfgDAW.Models.Libros
 
 @{
-    ViewBag.Title = "CrearElemento";
+    ViewBag.Title = "Agregar libro";
 }
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
             <div class="linea"></div>
             <p>Grupos</p>
             <div class="linea"></div>
-            <a href="@Url.Action("Favoritos", "Home")">Favoritos</a>
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
             <div class="linea"></div><p>CVs</p>
         </div>
     </div>
@@ -75,13 +75,17 @@
             <div class="contenido">
 
                 <div class="izquierda">
-                    <img class="portada" src="~/Content/imgs/quijote.jpg" />
 
-                    <input type="file" name="archivo" />
+                    <img class="portada" id="imgPreview" src="~/Content/imgs/imgpordefecto.jpg" />
+                    <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
 
                     <div class="visibilidad">
+                        <div>Visibilidad</div>
                         @Html.EditorFor(model => model.visible, new { htmlAttributes = new { @class = "visibilidad-campo" } })
                     </div>
+
+
+                    <input type="file" name="pdfFile" id="pdfFile" />
 
                 </div>
                 <div class="derecha">
@@ -114,3 +118,16 @@
                 @section Scripts {
                     @Scripts.Render("~/bundles/jqueryval")
                 }
+
+@*Script para previsualizar la imagen*@
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var imgElement = document.getElementById('imgPreview');
+            imgElement.src = reader.result;
+            imgElement.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

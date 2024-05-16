@@ -207,6 +207,8 @@ nav ul #liVerMenuCuenta {
     border-radius: 20px;
     width: 40%;
     font-size: 40px;
+    text-decoration: none;
+    color: black;
 }
 
 

@@ -49,7 +49,7 @@ nav {
 #menu {
     display: none;
     position: absolute;
-    background-color: #4F91E8;
+    background-color: #E8CB69;
     width: 250px;
     height: 100%;
     text-align: center;
@@ -184,19 +184,18 @@ nav ul #liVerMenuCuenta {
     border-radius: 15px;
 }
 
-.descarga {
-    margin-top: 150px;
-    background-color: #D9CA50;
-    border-radius: 20px;
-    width: 40%;
-    font-size: 40px;
-}
-
 .visibilidad {
-    margin-top: 100px;
+    padding-top: 100px;
+    max-width: 100%;
+    text-align: center;
 }
 
 .visibilidad-campo {
+    font-size: 17px;
+    text-align: center;
+    background-color: #F5891B;
+    border: 3px solid;
+    border-radius: 15px;
 }
 
 .titulo {
@@ -209,6 +208,10 @@ nav ul #liVerMenuCuenta {
     max-width: 100%;
     text-align: center;
     background-color: #F5891B;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
 }
 
 .titulo-campo::placeholder {
@@ -226,6 +229,10 @@ nav ul #liVerMenuCuenta {
     max-width: 100%;
     text-align: center;
     background-color: #F5891B;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
 }
 
     .autor-campo::placeholder {
@@ -244,6 +251,10 @@ nav ul #liVerMenuCuenta {
     height: 450px;
     text-align: center;
     background-color: #F5891B;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
 }
 
     .descripcion-campo::placeholder {
@@ -258,7 +269,15 @@ nav ul #liVerMenuCuenta {
     font-size: 40px;
 }
 
+#imageFile {
+    color: rgba(0,0,0,0);
+    margin-left: 125px;
+    margin-top: 10px;
+}
 
+#pdfFile {
+    margin-top: 100px;
+}
 
 /************************ extras ************************/
 .linea {
@@ -366,21 +385,4 @@ nav ul #liVerMenuCuenta {
         rotate: 30deg;
         transform: translate(50%, -550%);
     }
-}
-
-
-
-
-
-
-
-/* Estilos adicionales para los campos */
-.titulo-campo,
-.autor-campo,
-.descripcion-campo {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    padding: 10px; /* Espacio interno */
-    border: 1px solid #ccc; /* Borde para claridad */
-    border-radius: 4px; /* Bordes redondeados */
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
 }

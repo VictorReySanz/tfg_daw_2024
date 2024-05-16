@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TfgDAW.Models.Libros>
 
 @{
-    ViewData["Title"] = "Mis Libros";
+    ViewData["Title"] = "Favoritos";
 }
 
 <!DOCTYPE html>
@@ -10,14 +10,14 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/miselementos.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/principal.css">
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
 <body>
     <!-- Menu -->
     <div id="menu">
         <div id="contenidoMenu">
-            <a href="@Url.Action("index", "Libros")">Inicio</a>
+            <a href="@Url.Action("Index", "Libros")">Inicio</a>
             <div class="linea"></div>
             <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
             <div class="linea"></div>
@@ -39,16 +39,10 @@
                         <div class="linea3"></div>
                     </div>
                 </label>
-
-                <!-- Añadir elemento -->
-                <a href="@Url.Action("CrearElemento", "Libros")" id="anadir">
-
-                    <img class="anadirImg" src="~/Content/imgs/anadir.png" />
-                </a>
             </li>
             <li id="liBuscar">
 
-                @using (Html.BeginForm("MisElementos", "Libros", FormMethod.Get))
+                @using (Html.BeginForm("Favoritos", "Libros", FormMethod.Get))
                 {
                     <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
                 }
@@ -90,7 +84,7 @@
             <div class="linea"></div>
             <p>Mis datos</p>
             <div class="linea"></div>
-            <p>Cerrar sesión</p></li>
+            <p>Cerrar sesiï¿½n</p></li>
             <div class="linea"></div><p>CVs</p>
         </div>
     </div>
@@ -102,31 +96,20 @@
             @foreach (var item in Model)
             {
 
-               <a href="@Url.Action("EditarElemento", "Libros", new { id = item.libro_id })" class="elemento" name="id">
-                   @if (item.portada != null && item.portada.Length > 0)
-                   {
-                       <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
-                   }
-                   else
-                   {
-                       <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
-                   }
-                   <div class="tituloAutor">
-                       <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
-                       <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
-                   </div>
-                   <div class="visibilidad">
-                       @if (item.visible ?? false)
-                       {
-                           <img class="visibleImg" src="~/Content/imgs/visible.png" />
-                       }
-                       else
-                       {
-                           <img class="visibleImg" src="~/Content/imgs/novisible.png" />
-                       }
-                   </div>
-               </a>
-
+                <a href="@Url.Action("VerElemento", "Libros", new { id = item.libro_id })" class="elemento" name="id">
+                    @if (item.portada != null && item.portada.Length > 0)
+                    {
+                        <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
+                    }
+                    else
+                    {
+                        <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
+                    }
+                    <div class="tituloAutor">
+                        <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
+                        <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
+                    </div>
+                </a>
             }
 
         </div>

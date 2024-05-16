@@ -1,1 +1,131 @@
-﻿
+﻿@model TfgDAW.Models.Libros
+
+@{
+    ViewBag.Title = "Editar " + Model.titulo;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/editarelemento.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Libros")">Inicio</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
+            <div class="linea"></div>
+            <p>Grupos</p>
+            <div class="linea"></div>
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
+            <div class="linea"></div><p>CVs</p>
+        </div>
+    </div>
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+
+        <div id="contenidoMenuCuenta">
+            <p>Nombres</p>
+            <div class="linea"></div>
+            <p>Mis datos</p>
+            <div class="linea"></div>
+            <p>Cerrar sesiï¿½n</p></li>
+            <div class="linea"></div><p>CVs</p>
+        </div>
+    </div>
+    <!-- main -->
+    <main>
+
+        <!-- contenido -->
+
+
+        @using (Html.BeginForm("EditarElemento", "Libros", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.libro_id)
+
+        <div class="contenido">
+            <div class="izquierda">
+                <img class="portada" id="imgPreview" src="@Url.Action("GetImage", "Libros", new { id = Model.libro_id })" />
+
+
+                <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
+
+                <div class="visibilidad">
+                    <div>Visibilidad</div>
+                    @Html.EditorFor(model => model.visible)
+                </div>
+                <a class="descarga" href="@Url.Action("DescargarArchivo", "Libros", new { id = Model.libro_id })">Descargar</a>
+
+            </div>
+            <div class="derecha">
+                <div class="titulo">
+                    @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo" } })
+                </div>
+                <div class="autor">
+                    @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo" } })
+                </div>
+                <div class="descripcion">
+                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "descripcion-campo" } })
+                </div>
+                    
+
+                    <input type="submit" name="boton" value="Guardar" class="btn btn-default" />
+                    <input type="submit" name="boton" value="Eliminar" class="btn btn-default" />
+                </div>
+            </div>
+                }
+
+        </main>
+    </body>
+</html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@*Script para previsualizar la imagen*@
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var imgElement = document.getElementById('imgPreview');
+            imgElement.src = reader.result;
+            imgElement.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

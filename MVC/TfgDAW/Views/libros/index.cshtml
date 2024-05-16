@@ -1,7 +1,7 @@
 @model IEnumerable<TfgDAW.Models.Libros>
 
     @{
-        ViewData["Title"] = "Principal";
+        ViewData["Title"] = "Libros";
     }
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
             <div class="linea"></div>
             <p>Grupos</p>
             <div class="linea"></div>
-            <a href="@Url.Action("Favoritos", "Home")">Favoritos</a>
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
             <div class="linea"></div><p>CVs</p>
         </div>
     </div>
@@ -90,14 +90,21 @@
     </div>
     <!-- main -->
     <main>
-        <!-- Contenido --><!--ESTO NO SERA ASI, LA ESTRUCTURA SERA ASI, PERO NO SE REPETIRA-->
+        <!-- Contenido -->
         <div id="contenido">
 
             @foreach (var item in Model)
             {
 
                     <a href="@Url.Action("VerElemento", "Libros", new { id = item.libro_id })" class="elemento" name="id">
-                        <img class="portada" src="~/Content/imgs/quijote.jpg" />
+                        @if (item.portada != null && item.portada.Length > 0)
+                        {
+                            <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
+                        }
+                        else
+                        {
+                            <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
+                        }
                         <div class="tituloAutor">
                             <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
                             <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>

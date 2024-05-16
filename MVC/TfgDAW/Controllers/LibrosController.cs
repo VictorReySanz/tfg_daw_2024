@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using TfgDAW.Models;
 
 namespace TfgDAW.Controllers
@@ -29,6 +31,24 @@ namespace TfgDAW.Controllers
 
             return View(libros);
         }
+
+        // Favoritos
+        public ActionResult Favoritos(string buscar)
+        {
+
+            var librosQuery = db.Libros.Where(a => db.Favoritos.Any(b => b.favorito_id == a.libro_id)).Where(l => l.usuario_id == 1);
+
+            // Aplicamos el filtro si searchString no está vacío
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                librosQuery = librosQuery.Where(l => l.titulo.Contains(buscar) || l.autor.Contains(buscar));
+            }
+
+            var libros = librosQuery.ToList();
+
+            return View(libros);
+        }
+
         //Mis elementos
         public ActionResult MisElementos(string buscar)
         {
@@ -55,14 +75,30 @@ namespace TfgDAW.Controllers
             return View(libros);
         }
 
+        //Descargar elemento
+        public FileResult DescargarArchivo(int id)
+        {
+            var libro = db.Libros.FirstOrDefault(l => l.libro_id == id);
+
+            if (libro != null && libro.file_libros != null)
+            {
+                // archivo contiene el contenido del archivo que deseas descargar
+                byte[] archivoContenido = libro.file_libros;
+                string nombreArchivo = libro.titulo + ".pdf"; // Nombre del archivo a descargar
+
+                // Devuelve el archivo para descargar
+                return File(archivoContenido, "application/pdf", nombreArchivo);
+            }
+
+            return null;
+        }
+
+
+
+
 
         //Crear elemento GET
         public ActionResult CrearElemento()
-        {
-            return View();
-        }
-
-        public ActionResult EditarElemento()
         {
             return View();
         }
@@ -71,14 +107,32 @@ namespace TfgDAW.Controllers
         //Crear elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CrearElemento([Bind(Include = "libro_id,titulo,autor,descripcion,visible,categoria_id,usuario_id")] Libros libros)
+        public ActionResult CrearElemento(Libros libros, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
-            libros.libro_id = 8;
             libros.categoria_id = 1;
             libros.usuario_id = 1;
 
             if (ModelState.IsValid)
             {
+                // Leer la imagen del archivo
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    using (var binaryReader = new BinaryReader(imageFile.InputStream))
+                    {
+                        libros.portada = binaryReader.ReadBytes(imageFile.ContentLength);
+                    }
+                }
+
+                // Leer el archivo del archivo
+                if (pdfFile != null && pdfFile.ContentLength > 0)
+                {
+                    using (var binaryReader = new BinaryReader(pdfFile.InputStream))
+                    {
+                        libros.file_libros = binaryReader.ReadBytes(pdfFile.ContentLength);
+                    }
+                }
+
+                // Guardar el libro en la base de datos
                 db.Libros.Add(libros);
                 db.SaveChanges();
                 return RedirectToAction("MisElementos");
@@ -88,112 +142,97 @@ namespace TfgDAW.Controllers
         }
 
 
-
-
-
-
-        // GET: Libros/Details/5
-        public ActionResult Details(int? id)
+        // Editar/eliminar elemento GET
+        public ActionResult EditarElemento(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Libros libros = db.Libros.Find(id);
-            if (libros == null)
-            {
-                return HttpNotFound();
-            }
+
             return View(libros);
         }
 
-        // GET: Libros/Create
-        public ActionResult Create()
-        {
-            ViewBag.categoria_id = new SelectList(db.Categorias, "categoria_id", "nombre_categoria");
-            ViewBag.usuario_id = new SelectList(db.Usuarios, "usuario_id", "nombre");
-            return View();
-        }
-
-        // POST: Libros/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Editar/eliminar elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "libro_id,titulo,autor,descripcion,visible,categoria_id,usuario_id")] Libros libros)
+        public ActionResult EditarElemento([Bind(Include = "libro_id,titulo,autor,descripcion,visible,portada")] Libros libros, string boton, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
-            if (ModelState.IsValid)
+
+            libros.categoria_id = 1;
+            libros.usuario_id = 1;
+
+            if (boton == "Guardar")
             {
-                db.Libros.Add(libros);
+
+
+
+                var existingLibro = db.Libros.Find(libros.libro_id);
+                if (existingLibro != null)
+                {
+
+                    // Leer la imagen del archivo
+                    if (imageFile != null && imageFile.ContentLength > 0)
+                    {
+                        using (var binaryReader = new BinaryReader(imageFile.InputStream))
+                        {
+                            libros.portada = binaryReader.ReadBytes(imageFile.ContentLength);
+                            existingLibro.portada = libros.portada;
+                        }
+                    }
+
+                    // Actualizar solo las propiedades necesarias
+                    existingLibro.titulo = libros.titulo;
+                    existingLibro.autor = libros.autor;
+                    existingLibro.descripcion = libros.descripcion;
+                    existingLibro.visible = libros.visible;
+                    existingLibro.categoria_id = libros.categoria_id;
+                    existingLibro.usuario_id = libros.usuario_id;
+
+                    // Mantener el valor existente de file_libros si no se modifica
+                    if (imageFile == null || imageFile.ContentLength == 0)
+                    {
+                        // Conservar el valor existente de file_libros
+                        libros.file_libros = existingLibro.file_libros;
+                    }
+                }
+
+                if (ModelState.IsValid)
+                {
+                    db.Entry(existingLibro).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("MisElementos");
+                }
+            }
+            else if (boton == "Eliminar")
+            {
+                Libros librosEliminar = db.Libros.Find(libros.libro_id);
+                db.Libros.Remove(librosEliminar);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MisElementos");
             }
 
-            ViewBag.categoria_id = new SelectList(db.Categorias, "categoria_id", "nombre_categoria", libros.categoria_id);
-            ViewBag.usuario_id = new SelectList(db.Usuarios, "usuario_id", "nombre", libros.usuario_id);
             return View(libros);
         }
 
-        // GET: Libros/Edit/5
-        public ActionResult Edit(int? id)
+        //Mostrar imagen en editar elemento
+        public ActionResult GetImage(int id)
         {
-            if (id == null)
+            var libro = db.Libros.Find(id);
+            if (libro != null && libro.portada != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return File(libro.portada, "image/jpg");
             }
-            Libros libros = db.Libros.Find(id);
-            if (libros == null)
+            else
             {
                 return HttpNotFound();
             }
-            ViewBag.categoria_id = new SelectList(db.Categorias, "categoria_id", "nombre_categoria", libros.categoria_id);
-            ViewBag.usuario_id = new SelectList(db.Usuarios, "usuario_id", "nombre", libros.usuario_id);
-            return View(libros);
         }
 
-        // POST: Libros/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "libro_id,titulo,autor,descripcion,visible,categoria_id,usuario_id")] Libros libros)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(libros).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.categoria_id = new SelectList(db.Categorias, "categoria_id", "nombre_categoria", libros.categoria_id);
-            ViewBag.usuario_id = new SelectList(db.Usuarios, "usuario_id", "nombre", libros.usuario_id);
-            return View(libros);
-        }
 
-        // GET: Libros/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Libros libros = db.Libros.Find(id);
-            if (libros == null)
-            {
-                return HttpNotFound();
-            }
-            return View(libros);
-        }
 
-        // POST: Libros/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Libros libros = db.Libros.Find(id);
-            db.Libros.Remove(libros);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

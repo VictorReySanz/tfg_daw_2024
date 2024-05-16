@@ -1,13 +1,30 @@
-﻿/************************ body ************************/
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+﻿.contenido {
+    display: grid;
+    grid-template-columns: 0.5fr auto;
+    margin-top: 50px;
 }
+
+.izquierda {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.derecha {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+}
+
 
 /************************ nav ************************/
 nav {
-    background-color: #006FFF;
+    background-color: #E6B965;
     padding: 10px;
 }
 
@@ -32,7 +49,7 @@ nav {
 #menu {
     display: none;
     position: absolute;
-    background-color: #4F91E8;
+    background-color: #E8CB69;
     width: 250px;
     height: 100%;
     text-align: center;
@@ -158,126 +175,106 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
-/************************ buscar ************************/
-nav ul #liBuscar {
-    display: flex;
-    justify-content: flex-end;
-}
-
-nav ul li #buscar {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
-/************************ filtro ************************/
-nav ul #liVerFiltro {
-    display: flex;
-    justify-content: flex-start;
-}
-
-#filtro {
-    display: none;
-    position: absolute;
-    left: 50%;
-    background-color: #4F91E8;
-    width: 250px;
-    height: 200px;
-    border-radius: 15px;
-    text-align: center;
-    animation: aparecerFiltro 0.75s forwards;
-}
-
-#verFiltro {
-    display: none;
-}
-
-#filtro #contenidoFiltro {
-    margin-top: 20px;
-}
-
-/*visual*/
-.verFiltroDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-    .verFiltroDiv .linea1 {
-        width: 20px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea2 {
-        width: 12.5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea3 {
-        width: 5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea2 {
-    animation: linea2Filtro 0.75s forwards;
-}
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea3 {
-    animation: linea3Filtro 0.75s forwards;
-}
 
 
-/************************ Contenido ************************/
-#contenido {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px 50px;
-    padding: 30px;
-}
-
-    #contenido .elemento {
-        text-align: center;
-        text-decoration: none;
-        color: inherit;
-    }
-
-        #contenido .elemento:hover > .portada {
-            border-radius: 15px;
-            box-shadow: 20px 20px 7px rgba(0, 0, 0, 0.3);
-            width: 160px;
-            height: 235px;
-        }
-
+/************************ contenido ************************/
 .portada {
-    width: 150px;
-    height: 225px;
+    width: 300px;
+    height: 425px;
     border-radius: 15px;
 }
 
-.tituloAutor {
-    margin-top: 10px;
-    max-width: 150px;
-    margin: 0 auto;
+.visibilidad {
+    padding-top: 100px;
+    max-width: 100%;
+    text-align: center;
 }
+
+.visibilidad-campo {
+    font-size: 17px;
+    text-align: center;
+    background-color: #F5891B;
+    border: 3px solid;
+    border-radius: 15px;
+}
+
+.titulo {
+    max-width: 100%;
+    text-align: center;
+}
+
+.titulo-campo {
+    font-size: 55px;
+    max-width: 100%;
+    text-align: center;
+    background-color: #F5891B;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
+}
+
+    .titulo-campo::placeholder {
+        color: black;
+    }
 
 .autor {
-    font-size: 12px;
-    margin-top: -15px;
-    max-width: 150px;
-    margin: 0 auto; 
+    padding-top: 30px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.autor-campo {
+    font-size: 40px;
+    max-width: 100%;
+    text-align: center;
+    background-color: #F5891B;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
+}
+
+    .autor-campo::placeholder {
+        color: black;
+    }
+
+.descripcion {
+    padding-top: 30px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.descripcion-campo {
+    font-size: 17px;
+    max-width: 100%;
+    height: 450px;
+    text-align: center;
+    background-color: #F5891B;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
+}
+
+    .descripcion-campo::placeholder {
+        color: black;
+    }
+
+.descarga {
+    margin-top: 100px;
+    background-color: #EDBD1A;
+    border-radius: 20px;
+    width: 40%;
+    font-size: 40px;
+    text-decoration: none;
+    color: black;
+}
+
+#imageFile {
+    color: rgba(0,0,0,0);
+    margin-left: 125px;
+    margin-top: 10px;
 }
 
 /************************ extras ************************/
@@ -328,19 +325,6 @@ nav ul #liVerFiltro {
     }
 }
 
-/*Desplegar filtro*/
-@keyframes aparecerFiltro {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
-
 /*Animacion de verMenu*/
 @keyframes linea1Menu {
 
@@ -361,21 +345,6 @@ nav ul #liVerFiltro {
 
     100% {
         transform: translateX(-100px);
-    }
-}
-
-/*Animacion de verFiltro*/
-@keyframes linea2Filtro {
-
-    100% {
-        transform: translateX(7.5px);
-    }
-}
-
-@keyframes linea3Filtro {
-
-    100% {
-        transform: translateX(15px);
     }
 }
 
