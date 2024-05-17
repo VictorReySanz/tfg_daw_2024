@@ -1,26 +1,9 @@
-﻿.contenido {
-    display: grid;
-    grid-template-columns: 0.5fr auto;
-    margin-top: 100px;
-}
-
-.izquierda {
-    text-align: center;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.derecha {
-    text-align: center;
-}
+﻿
 
 
 /************************ nav ************************/
 nav {
-    background-color: #006FFF;
+    background-color: #F573C7;
     padding: 10px;
 }
 
@@ -45,7 +28,7 @@ nav {
 #menu {
     display: none;
     position: absolute;
-    background-color: #4F91E8;
+    background-color: #F74ABB;
     width: 250px;
     height: 100%;
     text-align: center;
@@ -117,7 +100,7 @@ nav ul #liVerMenuCuenta {
     display: none;
     position: absolute;
     left: 85%;
-    background-color: #4F91E8;
+    background-color: #F74ABB;
     width: 250px;
     height: 200px;
     border-radius: 15px;
@@ -172,44 +155,56 @@ nav ul #liVerMenuCuenta {
 }
 
 
+
 /************************ contenido ************************/
-.portada {
+.contenido {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imgCuenta {
     width: 300px;
-    height: 425px;
+    height: 300px;
+    border-radius: 100%;
+    border: 2px solid black;
+    object-fit: cover;
+}
+
+#imageFile {
+    color: rgba(0,0,0,0);
+    margin-left: 125px;
+    margin-top: 10px;
+}
+
+.campos {
+    max-width: 100%;
+    text-align: center;
+    margin: 10px;
+}
+
+.inputs {
+    font-size: 35px;
+    max-width: 100%;
+    text-align: center;
+    background-color: #F79DA1;
+    border: 3px solid;
     border-radius: 15px;
 }
 
-.nombre {
-    font-size: 55px;
-    max-width: 800px;
-    margin: 0 auto;
+.botones {
+    display: flex;
+    column-gap: 10px;
 }
 
-.autor {
-    font-size: 40px;
-    padding-top: 50px;
-    max-width: 800px;
-    margin: 0 auto;
+.boton {
+    height: 2.5em;
+    width: 7em;
+    border-radius: 12px;
+    background-color: #F74ABB;
+    margin-top: 40px;
 }
-
-.descripcion {
-    font-size: 20px;
-    padding-top: 50px;
-    margin-top: 50px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.descarga {
-    margin-top: 100px;
-    background-color: #1CC4FC;
-    border-radius: 20px;
-    width: 40%;
-    font-size: 40px;
-    text-decoration: none;
-    color: black;
-}
-
 
 
 /************************ extras ************************/
@@ -260,19 +255,6 @@ nav ul #liVerMenuCuenta {
     }
 }
 
-/*Desplegar filtro*/
-@keyframes aparecerFiltro {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
-
 /*Animacion de verMenu*/
 @keyframes linea1Menu {
 
@@ -293,21 +275,6 @@ nav ul #liVerMenuCuenta {
 
     100% {
         transform: translateX(-100px);
-    }
-}
-
-/*Animacion de verFiltro*/
-@keyframes linea2Filtro {
-
-    100% {
-        transform: translateX(7.5px);
-    }
-}
-
-@keyframes linea3Filtro {
-
-    100% {
-        transform: translateX(15px);
     }
 }
 

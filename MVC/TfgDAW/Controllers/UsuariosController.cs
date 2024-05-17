@@ -8,7 +8,7 @@ namespace TfgDAW.Controllers
 {
     public class UsuariosController : Controller
     {
-        // GET: Usuarios
+        // Login
            public ActionResult Index()
             {
                 return View();
@@ -20,8 +20,25 @@ namespace TfgDAW.Controllers
                 return View();
             }
 
-            // GET: Usuarios/Details/5
-            public ActionResult Details(int id)
+        // Mis datos
+        public ActionResult MisDatos()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        // GET: Usuarios/Details/5
+        public ActionResult Details(int id)
             {
                 return View();
             }

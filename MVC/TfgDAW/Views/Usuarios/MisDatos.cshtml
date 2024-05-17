@@ -1,7 +1,7 @@
-﻿@model TfgDAW.Models.Libros
+﻿@model TfgDAW.Models.Usuarios
 
 @{
-    ViewBag.Title = "Editar " + Model.titulo;
+    ViewBag.Title = "Mis datos";
 }
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/editarelemento.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/misdatos.css">
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
 <body>
@@ -66,48 +66,39 @@
     <main>
 
         <!-- contenido -->
+            <div class="contenido">
+                    @*<img class="portada" id="imgPreview" src="@Url.Action("GetImage", "Libros", new { id = Model.usuario_id })" />*@
+                    <img class="imgCuenta" id="imgPreview" src="~/Content/imgs/iconocuenta.png" />
 
 
-        @using (Html.BeginForm("EditarElemento", "Libros", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
+                    <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
 
-            @Html.HiddenFor(model => model.libro_id)
+                    <div class="campos">
+                        <div>Nombre</div>
+                        <input class="inputs" placeholder="input de prueba" />
+                        @*@Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "titulo-campo" } })*@
+                    </div>
+                    <div class="campos">
+                        <div>Correo electronico</div>
+                        <input class="inputs" placeholder="input de prueba" />
+                        @*@Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "autor-campo" } })*@
+                    </div>
+                    <div class="campos">
+                        <div>Contraseña</div>
+                        <input class="inputs" placeholder="input de prueba" />
+                        @*@Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "descripcion-campo" } })*@
+                    </div>
 
-        <div class="contenido">
-            <div class="izquierda">
-                <img class="portada" id="imgPreview" src="@Url.Action("GetImage", "Libros", new { id = Model.libro_id })" />
-
-
-                <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
-
-                <div class="visibilidad">
-                    <div>Visibilidad</div>
-                    @Html.EditorFor(model => model.visible)
+                <div class="botones">
+                        <input type="submit" name="boton" value="Guardar" class="boton" />
+                        <input type="submit" name="boton" value="Eliminar" class="boton" />
                 </div>
-                <a class="descarga" href="@Url.Action("DescargarArchivo", "Libros", new { id = Model.libro_id })">Descargar</a>
-
+                    </div>
             </div>
-            <div class="derecha">
-                <div class="titulo">
-                    @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo" } })
-                </div>
-                <div class="autor">
-                    @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo" } })
-                </div>
-                <div class="descripcion">
-                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "descripcion-campo" } })
-                </div>
-                    
+        
 
-                    <input type="submit" name="boton" value="Guardar" class="btn btn-default" />
-                    <input type="submit" name="boton" value="Eliminar" class="btn btn-default" />
-                </div>
-            </div>
-                }
-
-        </main>
-    </body>
+    </main>
+</body>
 </html>
 
 
