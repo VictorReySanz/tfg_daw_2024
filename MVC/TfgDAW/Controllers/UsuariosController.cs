@@ -1,15 +1,20 @@
-﻿using System;
+﻿using BCrypt.Net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TfgDAW.Models;
 
 namespace TfgDAW.Controllers
 {
     public class UsuariosController : Controller
     {
+
+        private share_enjoyEntities db = new share_enjoyEntities();
+
         // Login
-           public ActionResult Index()
+        public ActionResult Index()
             {
                 return View();
             }
@@ -27,13 +32,49 @@ namespace TfgDAW.Controllers
         }
 
 
+        /*public Usuarios GetUser(string nombre)
+        {
+            return this.db.Usuarios.Where(user => user.nombre == nombre).FirstOrDefault();
+        }*/
 
 
+        public void CrearUser(string nombre, string password, string email) {
+
+            Usuarios nuevo = new Usuarios
+            {
+
+                usuario_id = this.GetMaxID() + 1,
+                nombre = nombre,
+                password = BCrypt.Net.BCrypt.HashPassword(password),
+                email=email,
+                rol="usuario"
+            };
+
+            this.db.Usuarios.Add(nuevo);
+            this.db.SaveChanges();
+        
+        }
+
+        private int GetMaxID() {
+            if (this.db.Usuarios.Count() != 0) {
+                int maxid = this.db.Usuarios.Max(user => user.usuario_id);
+
+                if (maxid > 0)
+                {
+                    return maxid;
+                }
+                else {
+                    return 0;
+                }
+
+            }
+            else
+            {
+                return 0;
+            }
 
 
-
-
-
+        }
 
 
 

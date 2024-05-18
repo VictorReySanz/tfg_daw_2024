@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Registro";
+﻿@{@model TfgDAW.Models.Usuarios
+
+ViewData["Title"] = "Registro";
 }
 
 <!DOCTYPE html>
@@ -11,16 +12,26 @@
     <div class="login-container">
         <img class="logo" src="~/Content/imgs/shareenjoylogo.png" alt="Imagen de ejemplo" />
 
-        <form action="@Url.Action("EnviarFormulario", "Home")" method="post" class="form-container">
-            <input class="inputs" type="text" id="correo" name="correo" placeholder="Correo electrónico" required />
-            <input class="inputs" type="text" id="nombrePriv" name="nombrePriv" placeholder="Nombre privado" required />
-            <input class="inputs" type="text" id="nombrePub" name="nombrePub" placeholder="Nombre público" required />
-            <input class="inputs" type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required />
-            <input class="inputs" type="password" id="contrasenaRep" name="contrasenaRep" placeholder="Repetir contraseña" required />
+        @using (Html.BeginForm("CrearUser", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+             <div class="nombre">
+                @Html.EditorFor(model => model.nombre , new { htmlAttributes = new { @class = "nombre-campo", placeholder = "nombre", maxlength = "100" } })
+            </div>
+            <div class="email">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "correo-campo", placeholder = "correo", maxlength = "100" } })
+            </div>
+
+            <div class="pass">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "pass-campo", placeholder = "pass", maxlength = "100" } })
+            </div>
 
             <input class="boton" type="submit" value="REGISTRARSE" />
-        </form>
+        }
     </div>
 </body>
 </html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
