@@ -38,21 +38,43 @@ namespace TfgDAW.Controllers
         }*/
 
 
-        public void CrearUser(string nombre, string password, string email) {
-
-            Usuarios nuevo = new Usuarios
+        public   Boolean  Validapass(string password, string passwordRepeat)
+        {
+            if (password != passwordRepeat)
             {
+                //ViewData["ERROR"] = "las dos Contraseñas debe ser iguales";
+                return false;             
+            }
+            else
+            {
+                return true;
+               
+            }
 
-                usuario_id = this.GetMaxID() + 1,
-                nombre = nombre,
-                password = BCrypt.Net.BCrypt.HashPassword(password),
-                email=email,
-                rol="usuario"
-            };
 
-            this.db.Usuarios.Add(nuevo);
-            this.db.SaveChanges();
-        
+        }
+
+        public ActionResult CrearUser(string nombre, string password, string email, string pass2) {
+            if (Validapass(password, pass2)) {
+
+                Usuarios nuevo = new Usuarios
+                {
+
+                    usuario_id = this.GetMaxID() + 1,
+                    nombre = nombre,
+                    password = BCrypt.Net.BCrypt.HashPassword(password),
+                    email = email,
+                    rol = "usuario"
+                };
+
+                this.db.Usuarios.Add(nuevo);
+                this.db.SaveChanges();
+
+                return RedirectToAction("index","Libros");
+
+            }
+            return RedirectToAction("Registro");
+
         }
 
         private int GetMaxID() {

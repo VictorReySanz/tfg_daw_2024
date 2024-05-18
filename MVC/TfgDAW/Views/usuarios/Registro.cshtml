@@ -15,8 +15,8 @@ ViewData["Title"] = "Registro";
         @using (Html.BeginForm("CrearUser", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-             <div class="nombre">
-                @Html.EditorFor(model => model.nombre , new { htmlAttributes = new { @class = "nombre-campo", placeholder = "nombre", maxlength = "100" } })
+            <div class="nombre">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "nombre-campo", placeholder = "nombre", maxlength = "100" } })
             </div>
             <div class="email">
                 @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "correo-campo", placeholder = "correo", maxlength = "100" } })
@@ -24,6 +24,9 @@ ViewData["Title"] = "Registro";
 
             <div class="pass">
                 @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "pass-campo", placeholder = "pass", maxlength = "100" } })
+            </div>
+            <div class="pass2">
+                <input type="password" name="pass2" class="inputs" placeholder="pass" maxlength="100" />
             </div>
 
             <input class="boton" type="submit" value="REGISTRARSE" />
