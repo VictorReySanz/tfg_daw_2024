@@ -1,33 +1,122 @@
 ﻿@model IEnumerable<TfgDAW.Models.Grupos>
 
-    @{
-        ViewBag.Title = "Index";
-    }
+@{
+    ViewBag.Title = "Chat";
+}
 
-    <h2>Index</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nombre_grupo)
-            </th>
-            <th></th>
-        </tr>
+<!DOCTYPE html>
+<html>
+<head>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre_grupo)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.grupo_id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.grupo_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.grupo_id })
-            </td>
-        </tr>
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/grupos.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Libros")">Inicio</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("index", "Grupos")">Grupos</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
+            <div class="linea"></div>
+            <input id="cvDesplegar" type="checkbox">
+            <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+        </div>
+    </div>
+    <!-- SubMenu CV -->
+    <div id="menuCV">
+        <div id="contenidoMenuCV">
+            <a href="@Url.Action("Index", "Libros")">Mi CV</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisElementos", "Libros")">Ver CVs</a>
+        </div>
+    </div>
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liBuscar">
 
-    </table>
+                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
+                {
+                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
+                }
+            </li>
+            <li id="liVerFiltro">
+                <input type="checkbox" id="verFiltro">
+                <label id="verFiltroLabel" for="verFiltro">
+                    <div class="verFiltroDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liVerMenuCuenta">
+                @* Centenido grupo *@
+                Contenido<input type="checkbox" id="verContenido">
+                @*Cuenta*@
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
+    <!-- Filtro -->
+    <div id="filtro">
+        <div id="contenidoFiltro">
+            <p>Categoria</p>
+            <div class="linea"></div>
+        </div>
+    </div>
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+        <div id="contenidoMenuCuenta">
+            <p>Nombres</p>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
+            <div class="linea"></div>
+            <p>Cerrar sesion</p>
+        </div>
+    </div>
+        <!-- Contenido -->
+    <div class="contenido">
+        <div class="grupos-container">
+            <div class="grupos">
+                @foreach (var item in Model)
+                {
+                    <div class="nombre-grupo">@Html.DisplayFor(modelItem => item.nombre_grupo)</div>
+                }
+            </div>
+        </div>
+            <div class="chat">
+                <div class="envioMensaje">
+                    <input id="envioMensajeInput" type="text" placeholder="Enviar mensaje" />
+                    <input type="button" value="Enviar" />
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+
