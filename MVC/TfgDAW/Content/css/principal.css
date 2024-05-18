@@ -93,6 +93,29 @@ nav {
 #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
     animation: linea3Menu 0.75s forwards;
 }
+/****************************** CVS ********************************/
+
+#cvDesplegar {
+    display: none;
+}
+
+#cvDesplegarLabel {
+    cursor: pointer;
+}
+
+#menuCV {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 8em;
+    background-color: #73E665;
+    width: 250px;
+    height: 7em;
+    text-align: center;
+    padding-top: 1.5em;
+    border-radius: 15px;
+    animation: aparecerCV 0.75s forwards;
+}
 
 /************************ menu cuenta ************************/
 nav ul #liVerMenuCuenta {
@@ -413,5 +436,18 @@ nav ul #liVerFiltro {
         opacity: 1;
         rotate: 30deg;
         transform: translate(50%, -550%);
+    }
+}
+
+/*Desplegar menu CV*/
+@keyframes aparecerCV {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
     }
 }

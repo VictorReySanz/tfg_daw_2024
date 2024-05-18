@@ -39,3 +39,17 @@ verMenuCuenta.addEventListener('change', function () {
         menuCuenta.style.display = 'none';
     }
 });
+
+// Desplegar menu CV
+const cvDesplegar = document.getElementById('cvDesplegar');
+const menuCV = document.getElementById('menuCV');
+
+cvDesplegar.addEventListener('change', function () {
+    if (this.checked) {
+        menuCV.style.display = 'block';
+        menuCV.classList.add('aparecerCV-animacion');
+    } else {
+        menuCV.classList.remove('aparecerCV-animacion');
+        menuCV.style.display = 'none';
+    }
+});
