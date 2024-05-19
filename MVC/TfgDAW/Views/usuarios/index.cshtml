@@ -1,5 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Inicio Sesion";
+﻿@{@model TfgDAW.Models.Usuarios
+ViewData["Title"] = "Inicio Sesion";
 }
 
 <!DOCTYPE html>
@@ -11,15 +11,26 @@
     <div class="login-container">
         <img class="logo" src="~/Content/imgs/shareenjoylogo.png" alt="Imagen de ejemplo" />
 
-        <form action="@Url.Action("EnviarFormulario", "Home")" method="post" class="form-container">
-            <input class="inputs" type="text" id="correoNombrePriv" name="correoNombrePriv" placeholder="Correo electrónico o nombre privado" required />
-            <input class="inputs" type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required />
+        @using (Html.BeginForm("EnviarFormulario", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
 
+            <div class="nombre">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "inputs", placeholder = "nombre", maxlength = "100" } })
+            </div>
+            <div class="email">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "inputs", placeholder = "correo", maxlength = "100" } })
+            </div>
+
+            <div class="pass">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "inputs", placeholder = "pass", maxlength = "100" } })
+            </div>
             <input class="boton" type="submit" value="INICIAR SESIÓN" />
-        </form>
+        }
         <div class="crear-cuenta">
             <p>¿Aun no tienes cuenta? <a href="@Url.Action("Registro", "Usuarios")"><b>CREAR CUENTA</b></a></p>
         </div>
+
     </div>
 </body>
 </html>

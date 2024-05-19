@@ -32,10 +32,10 @@ namespace TfgDAW.Controllers
         }
 
 
-        /*public Usuarios GetUser(string nombre)
+        public Usuarios GetUserbyEmail(string email)
         {
-            return this.db.Usuarios.Where(user => user.nombre == nombre).FirstOrDefault();
-        }*/
+            return this.db.Usuarios.Where(user => user.email  == email).FirstOrDefault();
+        }
 
 
         public   Boolean  Validapass(string password, string passwordRepeat)
@@ -98,7 +98,42 @@ namespace TfgDAW.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult EnviarFormulario(string email, string password) {
 
+        /*Prueba del bcrypt
+         * 
+                string originalPassword = "luis";
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(originalPassword);
+
+                bool isMatch = BCrypt.Net.BCrypt.Verify(originalPassword, hashedPassword);
+                Console.WriteLine($"Password matches: {isMatch}"); // Debería imprimir "Password matches: True"
+          */  
+
+
+            Usuarios usermail = this.GetUserbyEmail(email);
+            if (usermail != null) {
+
+                bool valida = BCrypt.Net.BCrypt.Verify(password, usermail.password);
+                if (valida)
+                {
+                    return RedirectToAction("index", "Libros");
+                }
+                else
+                {
+
+                    ViewData["ERROR"] = "Revisa tus datos";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+
+                ViewData["ERROR"] = "Revisa tus datos";
+                return RedirectToAction("Index");
+            }
+
+        }
 
         // GET: Usuarios/Details/5
         public ActionResult Details(int id)
