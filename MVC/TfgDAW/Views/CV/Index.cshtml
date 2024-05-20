@@ -4,42 +4,55 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
+<html>
+<head>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre_completo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.visible)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categorias.nombre_categoria)
-        </th>
-        <th></th>
-    </tr>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/principal.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+</head>
+<body>
+    <h2>Index</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_completo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.visible)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categorias.nombre_categoria)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.cv_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.cv_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.cv_id })
-        </td>
-    </tr>
-}
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_completo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.visible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categorias.nombre_categoria)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_completo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.visible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categorias.nombre_categoria)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.cv_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.cv_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.cv_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

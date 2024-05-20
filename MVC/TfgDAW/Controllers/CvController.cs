@@ -1,17 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TfgDAW.Models;
 
 namespace TfgDAW.Controllers
 {
     public class CvController : Controller
     {
+        private share_enjoyEntities db = new share_enjoyEntities();
+
         // GET: CV
-        public ActionResult Index()
+        public ActionResult Index(string buscar)
         {
-            return View();
+             var CvQuery = db.Cv.Include(c => c.Categorias).Include(c => c.Usuarios).Where(c => c.visible == true);
+
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                CvQuery = CvQuery.Where(c => c.tecnología.Contains(buscar) || c.profesión.Contains(buscar));
+            }
+
+            var cv = CvQuery.ToList();
+
+            return View(cv);
         }
 
         // GET: CV/Details/5
