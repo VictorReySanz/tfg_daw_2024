@@ -15,12 +15,8 @@ namespace TfgDAW.Controllers
         private share_enjoyEntities db = new share_enjoyEntities();
 
         // GET: Grupos
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            var grupo  = db.Grupos.Find(id);
-
-
-            ViewBag.nombreGrupo = grupo.nombre_grupo + " |";
             return View(db.Grupos.ToList());
         }
 
