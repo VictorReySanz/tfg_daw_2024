@@ -51,23 +51,12 @@
                     </div>
                 </label>
             </li>
-            <li id="liBuscar">
-
-                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
-                {
-                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
-                }
+            @*grupo seleccionado*@
+            <li id="grupoSeleccionado">
+                <div>@ViewBag.nombreGrupo</div>
+                <div>Vitor, Luis, Maria, ...</div>
             </li>
-            <li id="liVerFiltro">
-                <input type="checkbox" id="verFiltro">
-                <label id="verFiltroLabel" for="verFiltro">
-                    <div class="verFiltroDiv">
-                        <div class="linea1"></div>
-                        <div class="linea2"></div>
-                        <div class="linea3"></div>
-                    </div>
-                </label>
-            </li>
+           
             <li id="liVerMenuCuenta">
                 @* Centenido grupo *@
                 Contenido<input type="checkbox" id="verContenido">
@@ -83,32 +72,18 @@
             </li>
         </ul>
     </nav>
-    <!-- Filtro -->
-    <div id="filtro">
-        <div id="contenidoFiltro">
-            <p>Categoria</p>
-            <div class="linea"></div>
-        </div>
-    </div>
-    <!-- Menu de cuenta -->
-    <div id="menuCuenta">
-        <div id="contenidoMenuCuenta">
-            <p>Nombres</p>
-            <div class="linea"></div>
-            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
-            <div class="linea"></div>
-            <p>Cerrar sesion</p>
-        </div>
-    </div>
         <!-- Contenido -->
     <div class="contenido">
         <div class="grupos-container">
             <div class="grupos">
                 @foreach (var item in Model)
                 {
-                    <div class="nombre-grupo">@Html.DisplayFor(modelItem => item.nombre_grupo)</div>
-                }
-            </div>
+                    <div class="nombre-grupo">
+                        <a href="@Url.Action("Index", "Grupos", new { id = item.grupo_id })" name="id">
+                            @Html.DisplayFor(modelItem => item.nombre_grupo)
+                    </div>
+                        }
+                </div>
         </div>
             <div class="chat">
                 <div class="envioMensaje">
