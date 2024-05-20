@@ -3,16 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TfgDAW.Models;
 
 namespace TfgDAW.Controllers
 {
     public class CvController : Controller
     {
+
+        private share_enjoyEntities db = new share_enjoyEntities();
         // GET: CV
         public ActionResult Index()
         {
-            return View();
+            return View(db.Cv.ToList());
         }
+
+        // GET: CV
+        public ActionResult VerCv()
+        {
+            var cvQuery = db.Cv.Where(c => c.usuario_id == 1);
+            var cv = cvQuery.ToList();
+
+            return View(cv);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: CV/Details/5
         public ActionResult Details(int id)
