@@ -38,6 +38,7 @@ nav {
     height: 100%;
     text-align: center;
     animation: aparecer 0.75s forwards;
+    z-index: 1;
 }
 
 #verMenu {
@@ -116,6 +117,7 @@ nav {
     padding-top: 1.5em;
     border-radius: 15px;
     animation: aparecerCV 0.75s forwards;
+    z-index: 2;
 }
 
 /************************ menu cuenta ************************/
@@ -182,45 +184,6 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
-/************************ buscar ************************/
-nav ul #liBuscar {
-    display: flex;
-    justify-content: flex-end;
-}
-
-nav ul li #buscar {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
-/************************ filtro ************************/
-nav ul #liVerFiltro {
-    display: flex;
-    justify-content: flex-start;
-}
-
-#filtro {
-    display: none;
-    position: absolute;
-    left: 50%;
-    background-color: #4F91E8;
-    width: 250px;
-    height: 200px;
-    border-radius: 15px;
-    text-align: center;
-    animation: aparecerFiltro 0.75s forwards;
-}
-
-#verFiltro {
-    display: none;
-}
-
-#filtro #contenidoFiltro {
-    margin-top: 20px;
-}
-
 /*visual*/
 .verFiltroDiv {
     display: flex;
@@ -278,6 +241,16 @@ nav ul #liVerFiltro {
     height: 94%;
 }
 
+.nombre-grupo {
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+    .nombre-grupo:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+    }
+
 .chat {
     background-color: yellow;
     top: 50%;
@@ -294,6 +267,12 @@ nav ul #liVerFiltro {
 #envioMensajeInput {
     width: 100%;
 }
+
+
+#grupoSeleccionado {
+    display: flex;
+}
+
 /************************ extras ************************/
 .linea {
     width: 50%;

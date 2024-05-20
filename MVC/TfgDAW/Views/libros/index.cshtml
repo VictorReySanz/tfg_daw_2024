@@ -21,7 +21,7 @@
             <div class="linea"></div>
             <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
             <div class="linea"></div>
-            <a href="@Url.Action("index", "Grupos")">Grupos</a>
+            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
             <div class="linea"></div>
             <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
             <div class="linea"></div>
@@ -32,9 +32,9 @@
     <!-- SubMenu CV -->
     <div id="menuCV">
         <div id="contenidoMenuCV">
-            <a href="@Url.Action("VerCv", "Cv")">Mi CV</a>
+            <a href="@Url.Action("Index", "Libros")">Mi CV</a>
             <div class="linea"></div>
-            <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+            <a href="@Url.Action("MisElementos", "Libros")">Ver CVs</a>
         </div>
     </div>
     <!-- Nav -->
