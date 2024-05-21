@@ -215,6 +215,26 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\crearelemento.css" />
+    <Content Include="Content\css\editarelemento.css" />
+    <Content Include="Content\css\favoritos.css" />
+    <Content Include="Content\css\grupos.css" />
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\misdatos.css" />
+    <Content Include="Content\css\miselementos.css" />
+    <Content Include="Content\css\principal.css" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\css\verelemento.css" />
+    <Content Include="Content\imgs\anadir.png" />
+    <Content Include="Content\imgs\iconocuenta.png" />
+    <Content Include="Content\imgs\imgpordefecto.jpg" />
+    <Content Include="Content\imgs\novisible.png" />
+    <Content Include="Content\imgs\quijote.jpg" />
+    <Content Include="Content\imgs\senordelosanillos.jpg" />
+    <Content Include="Content\imgs\shareenjoylogo.png" />
+    <Content Include="Content\imgs\visible.png" />
+    <Content Include="Content\js\scripts.js" />
+    <Content Include="Content\js\site.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -304,6 +324,9 @@
     <Content Include="Views\Validacion\Error.cshtml" />
     <Content Include="Views\Seguridad\Index.cshtml" />
     <Content Include="Views\Libros\EditarElemento.cshtml" />
+    <Content Include="Views\Usuarios\index.cshtml" />
+    <Content Include="Views\Usuarios\MisDatos.cshtml" />
+    <Content Include="Views\Libros\Favoritos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

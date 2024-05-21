@@ -1,0 +1,216 @@
+﻿@model IEnumerable<TfgDAW.Models.Cv>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/vercv.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Libros")">Inicio</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
+            <div class="linea"></div>
+            <input id="cvDesplegar" type="checkbox">
+            <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+        </div>
+    </div>
+    <!-- SubMenu CV -->
+    <div id="menuCV">
+        <div id="contenidoMenuCV">
+            <a href="@Url.Action("MiCv", "Cv")">Mi CV</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+        </div>
+    </div>
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liBuscar">
+
+                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
+                {
+                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
+                }
+            </li>
+            <li id="liVerFiltro">
+                <input type="checkbox" id="verFiltro">
+                <label id="verFiltroLabel" for="verFiltro">
+                    <div class="verFiltroDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
+    <!-- Filtro -->
+    <div id="filtro">
+        <div id="contenidoFiltro">
+            <p>Categoria</p>
+            <div class="linea"></div>
+        </div>
+    </div>
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+        <div id="contenidoMenuCuenta">
+            <p>Nombres</p>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
+            <div class="linea"></div>
+            <p>Cerrar sesion</p>
+        </div>
+    </div>
+    <!-- main -->
+    <main>
+        <!-- Contenido -->
+        <div class="contenido">
+            <div class="cv-container">
+                @*CAMBIAR POR LA ETIQUET CORRESPONDIENTE PARA MOSTRAR EL ARCHIVO*@
+                <img class="cv" src="~/Content/imgs/cvEjemplo.jpg" />
+            </div>
+            <div class="portafolio-container">
+                <div id="portafolio-titulo">PORTAFOLIO</div>
+                <div class="portafolio">
+                    @* CAMBIAR ESTO POR UN FOREACH *@
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                    <div class="portafolio-elemento">
+                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <p class="nombre">Nombre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
