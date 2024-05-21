@@ -1,14 +1,13 @@
-﻿body /************************ body ************************/
+﻿/************************ body ************************/
 body {
     font-family: Arial, sans-serif;
-    height: 100%;
     margin: 0;
     padding: 0;
 }
 
 /************************ nav ************************/
 nav {
-    background-color: #A08095;
+    background-color: #006FFF;
     padding: 10px;
 }
 
@@ -38,7 +37,6 @@ nav {
     height: 100%;
     text-align: center;
     animation: aparecer 0.75s forwards;
-    z-index: 1;
 }
 
 #verMenu {
@@ -117,7 +115,6 @@ nav {
     padding-top: 1.5em;
     border-radius: 15px;
     animation: aparecerCV 0.75s forwards;
-    z-index: 2;
 }
 
 /************************ menu cuenta ************************/
@@ -184,6 +181,45 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
+/************************ buscar ************************/
+nav ul #liBuscar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li #buscar {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+/************************ filtro ************************/
+nav ul #liVerFiltro {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#filtro {
+    display: none;
+    position: absolute;
+    left: 50%;
+    background-color: #4F91E8;
+    width: 250px;
+    height: 200px;
+    border-radius: 15px;
+    text-align: center;
+    animation: aparecerFiltro 0.75s forwards;
+}
+
+#verFiltro {
+    display: none;
+}
+
+#filtro #contenidoFiltro {
+    margin-top: 20px;
+}
+
 /*visual*/
 .verFiltroDiv {
     display: flex;
@@ -225,52 +261,55 @@ nav ul #liVerMenuCuenta {
     animation: linea3Filtro 0.75s forwards;
 }
 
+
 /************************ Contenido ************************/
 .contenido {
     display: grid;
-    grid-template-columns: 1fr 2.5fr;
+    grid-template-columns: 1fr 1fr;
 }
 
-.grupos {
-    background-color: #F7836D;
-    padding-top: 10px;
+.cv-container {
     text-align: center;
-    position: absolute;
-    top: 58px;
-    width: 28.6%;
-    height: 94%;
+    padding: 20px;
 }
 
-.nombre-grupo {
-    padding-top: 35px;
-    padding-bottom: 35px;
+/*ESTO ES SOLO DE PRUEBA, AL CAMBAIR LA ETIQUET TAMBIEN HAY QUE CAMBIAR LOS ESTILOS*/
+.cv {
+    margin-top: 80px;
+    width: 95%;
+    border: 3px solid black;
+    border-radius: 15px;
 }
 
-    .nombre-grupo:hover {
-        background-color: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-    }
-
-.chat {
-    background-color: yellow;
-    top: 50%;
+.portafolio-container {
+    padding: 20px;
     text-align: center;
 }
 
-.envioMensaje {
-    background-color: red;
-    position: absolute;
-    bottom: 10px;
-    width: 71.4%;
-}
-
-#envioMensajeInput {
-    width: 100%;
-}
-
-
-#grupoSeleccionado {
+.portafolio {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px 80px;
+    padding: 30px;
+    height: 1500px;
+    overflow-y: auto;
+}
+
+.portafolio-elemento {
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+#portafolio-titulo {
+    font-size: 40px;
+}
+
+.img {
+    width: 150px;
+    height: 225px;
+    border-radius: 15px;
 }
 
 /************************ extras ************************/

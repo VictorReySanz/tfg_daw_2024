@@ -1,14 +1,31 @@
-﻿body /************************ body ************************/
-body {
-    font-family: Arial, sans-serif;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+﻿Actualizaciones en las combinaciones de teclas … El jueves, 1 de agosto de 2024, las combinaciones de teclas de Drive se actualizarán para que puedas navegar escribiendo las primeras letras.Más información
+﻿.contenido {
+    display: grid;
+    grid-template-columns: 0.5fr auto;
+    margin-top: 50px;
 }
+
+.izquierda {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.derecha {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+}
+
 
 /************************ nav ************************/
 nav {
-    background-color: #A08095;
+    background-color: #73E665;
     padding: 10px;
 }
 
@@ -33,12 +50,11 @@ nav {
 #menu {
     display: none;
     position: absolute;
-    background-color: #4F91E8;
+    background-color: #5DE3AB;
     width: 250px;
     height: 100%;
     text-align: center;
     animation: aparecer 0.75s forwards;
-    z-index: 1;
 }
 
 #verMenu {
@@ -94,30 +110,6 @@ nav {
 
 #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
     animation: linea3Menu 0.75s forwards;
-}
-/****************************** CVS ********************************/
-
-#cvDesplegar {
-    display: none;
-}
-
-#cvDesplegarLabel {
-    cursor: pointer;
-}
-
-#menuCV {
-    display: none;
-    position: absolute;
-    top: 20%;
-    left: 8em;
-    background-color: #73E665;
-    width: 250px;
-    height: 7em;
-    text-align: center;
-    padding-top: 1.5em;
-    border-radius: 15px;
-    animation: aparecerCV 0.75s forwards;
-    z-index: 2;
 }
 
 /************************ menu cuenta ************************/
@@ -184,93 +176,74 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
-/*visual*/
-.verFiltroDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 5px;
-    cursor: pointer;
+
+
+/************************ contenido ************************/
+.portada {
+    width: 300px;
+    height: 425px;
+    border-radius: 15px;
 }
 
-    .verFiltroDiv .linea1 {
-        width: 20px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea2 {
-        width: 12.5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea3 {
-        width: 5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea2 {
-    animation: linea2Filtro 0.75s forwards;
-}
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea3 {
-    animation: linea3Filtro 0.75s forwards;
-}
-
-/************************ Contenido ************************/
-.contenido {
-    display: grid;
-    grid-template-columns: 1fr 2.5fr;
-}
-
-.grupos {
-    background-color: #F7836D;
-    padding-top: 10px;
+.titulo {
+    max-width: 100%;
     text-align: center;
-    position: absolute;
-    top: 58px;
-    width: 28.6%;
-    height: 94%;
+    margin-right: 80px;
 }
 
-.nombre-grupo {
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
-
-    .nombre-grupo:hover {
-        background-color: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-    }
-
-.chat {
-    background-color: yellow;
-    top: 50%;
+.titulo-campo {
+    font-size: 55px;
+    max-width: 100%;
     text-align: center;
-}
-
-.envioMensaje {
-    background-color: red;
-    position: absolute;
-    bottom: 10px;
-    width: 71.4%;
-}
-
-#envioMensajeInput {
+    background-color: #A5E35D;
     width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
 }
 
+    .titulo-campo::placeholder {
+        color: black;
+    }
 
-#grupoSeleccionado {
-    display: flex;
+.enlace {
+    padding-top: 30px;
+    max-width: 100%;
+    text-align: center;
+    margin-right: 80px;
+}
+
+.enlace-campo {
+    font-size: 40px;
+    max-width: 100%;
+    text-align: center;
+    background-color: #A5E35D;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
+}
+
+    .enlace-campo::placeholder {
+        color: black;
+    }
+
+.subir {
+    margin-top: 50px;
+    background-color: #5DE37E;
+    border-radius: 20px;
+    width: 40%;
+    font-size: 40px;
+}
+
+#imageFile {
+    color: rgba(0,0,0,0);
+    margin-left: 125px;
+    margin-top: 10px;
+}
+
+#pdfFile {
+    margin-top: 100px;
 }
 
 /************************ extras ************************/
@@ -321,19 +294,6 @@ nav ul #liVerMenuCuenta {
     }
 }
 
-/*Desplegar filtro*/
-@keyframes aparecerFiltro {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
-
 /*Animacion de verMenu*/
 @keyframes linea1Menu {
 
@@ -354,21 +314,6 @@ nav ul #liVerMenuCuenta {
 
     100% {
         transform: translateX(-100px);
-    }
-}
-
-/*Animacion de verFiltro*/
-@keyframes linea2Filtro {
-
-    100% {
-        transform: translateX(7.5px);
-    }
-}
-
-@keyframes linea3Filtro {
-
-    100% {
-        transform: translateX(15px);
     }
 }
 
@@ -406,18 +351,5 @@ nav ul #liVerMenuCuenta {
         opacity: 1;
         rotate: 30deg;
         transform: translate(50%, -550%);
-    }
-}
-
-/*Desplegar menu CV*/
-@keyframes aparecerCV {
-    0% {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0%);
     }
 }

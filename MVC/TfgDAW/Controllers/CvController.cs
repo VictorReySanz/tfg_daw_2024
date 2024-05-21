@@ -12,22 +12,49 @@ namespace TfgDAW.Controllers
 {
     public class CvController : Controller
     {
+
         private share_enjoyEntities db = new share_enjoyEntities();
+        // GET: CV
+        public ActionResult Index()
+        {
+            return View(db.Cv.ToList());
+        }
 
         // GET: CV
-        public ActionResult Index(string buscar)
+        public ActionResult VerCv()
         {
-             var CvQuery = db.Cv.Include(c => c.Categorias).Include(c => c.Usuarios).Where(c => c.visible == true);
-
-            if (!string.IsNullOrEmpty(buscar))
-            {
-                CvQuery = CvQuery.Where(c => c.tecnología.Contains(buscar) || c.profesión.Contains(buscar));
-            }
-
-            var cv = CvQuery.ToList();
+            var cvQuery = db.Cv.Where(c => c.usuario_id == 1);
+            var cv = cvQuery.ToList();
 
             return View(cv);
         }
+
+        public ActionResult EditarElementoPortafolio()
+        {
+
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: CV/Details/5
         public ActionResult Details(int id)

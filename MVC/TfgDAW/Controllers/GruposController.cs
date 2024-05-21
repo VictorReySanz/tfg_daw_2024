@@ -17,7 +17,7 @@ namespace TfgDAW.Controllers
         // GET: Grupos
         public ActionResult Index(int id)
         {
-            var grupo  = db.Grupos.Find(id);
+            var grupo = db.Grupos.Find(id);
 
 
             ViewBag.nombreGrupo = grupo.nombre_grupo + " |";

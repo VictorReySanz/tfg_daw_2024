@@ -1,14 +1,16 @@
-﻿body /************************ body ************************/
-body {
-    font-family: Arial, sans-serif;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+﻿.contenido {
+    display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 100px;
+    justify-content: center;
 }
+
 
 /************************ nav ************************/
 nav {
-    background-color: #A08095;
+    background-color: #73E665;
     padding: 10px;
 }
 
@@ -33,12 +35,11 @@ nav {
 #menu {
     display: none;
     position: absolute;
-    background-color: #4F91E8;
+    background-color: #5DE3AB;
     width: 250px;
     height: 100%;
     text-align: center;
     animation: aparecer 0.75s forwards;
-    z-index: 1;
 }
 
 #verMenu {
@@ -94,30 +95,6 @@ nav {
 
 #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
     animation: linea3Menu 0.75s forwards;
-}
-/****************************** CVS ********************************/
-
-#cvDesplegar {
-    display: none;
-}
-
-#cvDesplegarLabel {
-    cursor: pointer;
-}
-
-#menuCV {
-    display: none;
-    position: absolute;
-    top: 20%;
-    left: 8em;
-    background-color: #73E665;
-    width: 250px;
-    height: 7em;
-    text-align: center;
-    padding-top: 1.5em;
-    border-radius: 15px;
-    animation: aparecerCV 0.75s forwards;
-    z-index: 2;
 }
 
 /************************ menu cuenta ************************/
@@ -184,93 +161,121 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
-/*visual*/
-.verFiltroDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 5px;
-    cursor: pointer;
-}
 
-    .verFiltroDiv .linea1 {
-        width: 20px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
 
-    .verFiltroDiv .linea2 {
-        width: 12.5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea3 {
-        width: 5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea2 {
-    animation: linea2Filtro 0.75s forwards;
-}
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea3 {
-    animation: linea3Filtro 0.75s forwards;
-}
-
-/************************ Contenido ************************/
-.contenido {
-    display: grid;
-    grid-template-columns: 1fr 2.5fr;
-}
-
-.grupos {
-    background-color: #F7836D;
-    padding-top: 10px;
-    text-align: center;
-    position: absolute;
-    top: 58px;
-    width: 28.6%;
-    height: 94%;
-}
-
-.nombre-grupo {
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
-
-    .nombre-grupo:hover {
-        background-color: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-    }
-
-.chat {
-    background-color: yellow;
-    top: 50%;
-    text-align: center;
-}
-
-.envioMensaje {
-    background-color: red;
-    position: absolute;
-    bottom: 10px;
-    width: 71.4%;
-}
-
-#envioMensajeInput {
+/************************ contenido ************************/
+.img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/**/
+.card-client {
+    background: #49EBDE;
+    width: 13rem;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 4px solid black;
+    box-shadow: 0 6px 10px rgba(207, 212, 222, 1);
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease;
 }
 
+    .card-client:hover {
+        transform: translateY(-10px);
+    }
 
-#grupoSeleccionado {
+.user-picture {
+    overflow: hidden;
+    width: 5rem;
+    height: 5rem;
+    border: 4px solid white;
+    border-radius: 999px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.name-client {
+    margin: 0;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+    .name-client span {
+        display: block;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+.social-media:before {
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin: 20px 0;
+    background: white;
+}
+
+.social-media a {
+    position: relative;
+    margin-right: 15px;
+    text-decoration: none;
+    color: inherit;
+}
+
+    .social-media a:last-child {
+        margin-right: 0;
+    }
+
+    .social-media a svg {
+        width: 1.1rem;
+        fill: currentColor;
+    }
+
+/*-- Tooltip Social Media --*/
+.tooltip-social {
+    background: #262626;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    padding: 0.5rem 0.4rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -90%);
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+    .tooltip-social:after {
+        content: " ";
+        position: absolute;
+        bottom: 1px;
+        left: 50%;
+        border: solid;
+        border-width: 10px 10px 0 10px;
+        border-color: transparent;
+        transform: translate(-50%, 100%);
+    }
+
+.social-media a .tooltip-social:after {
+    border-top-color: #262626;
+}
+
+.social-media a:hover .tooltip-social {
+    opacity: 1;
+    transform: translate(-50%, -130%);
 }
 
 /************************ extras ************************/
@@ -321,19 +326,6 @@ nav ul #liVerMenuCuenta {
     }
 }
 
-/*Desplegar filtro*/
-@keyframes aparecerFiltro {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
-
 /*Animacion de verMenu*/
 @keyframes linea1Menu {
 
@@ -354,21 +346,6 @@ nav ul #liVerMenuCuenta {
 
     100% {
         transform: translateX(-100px);
-    }
-}
-
-/*Animacion de verFiltro*/
-@keyframes linea2Filtro {
-
-    100% {
-        transform: translateX(7.5px);
-    }
-}
-
-@keyframes linea3Filtro {
-
-    100% {
-        transform: translateX(15px);
     }
 }
 
@@ -406,18 +383,5 @@ nav ul #liVerMenuCuenta {
         opacity: 1;
         rotate: 30deg;
         transform: translate(50%, -550%);
-    }
-}
-
-/*Desplegar menu CV*/
-@keyframes aparecerCV {
-    0% {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0%);
     }
 }
