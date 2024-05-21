@@ -11,13 +11,16 @@ namespace TfgDAW.Controllers
     {
 
         private share_enjoyEntities db = new share_enjoyEntities();
-        // GET: CV
+
+        //Buscar CVs
         public ActionResult Index()
         {
-            return View(db.Cv.ToList());
+            var cvQuery = db.Cv.Where(l => l.visible == true);
+            var cv = cvQuery.ToList();
+            return View(cv);
         }
 
-        // GET: CV
+        // Ver CV
         public ActionResult VerCv()
         {
             var cvQuery = db.Cv.Where(c => c.usuario_id == 1);
@@ -26,6 +29,7 @@ namespace TfgDAW.Controllers
             return View(cv);
         }
 
+        //Editar un elemento del portafolio
         public ActionResult EditarElementoPortafolio()
         {
 
