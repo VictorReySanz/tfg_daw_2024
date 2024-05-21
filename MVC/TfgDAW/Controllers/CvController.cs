@@ -26,6 +26,12 @@ namespace TfgDAW.Controllers
             return View(cv);
         }
 
+        public ActionResult EditarElementoPortafolio()
+        {
+
+            return View();
+        }
+
 
 
 
