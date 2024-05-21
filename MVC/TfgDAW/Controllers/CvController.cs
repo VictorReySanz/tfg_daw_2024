@@ -21,9 +21,9 @@ namespace TfgDAW.Controllers
         }
 
         // Ver CV
-        public ActionResult VerCv()
+        public ActionResult VerCv(int id)
         {
-            var cvQuery = db.Cv.Where(c => c.usuario_id == 1);
+            var cvQuery = db.Cv.Where(c => c.cv_id == id);
             var cv = cvQuery.ToList();
 
             return View(cv);

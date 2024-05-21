@@ -7,7 +7,7 @@ body {
 
 /************************ nav ************************/
 nav {
-    background-color: #006FFF;
+    background-color: #73E665;
     padding: 10px;
 }
 
@@ -273,9 +273,14 @@ nav ul #liVerFiltro {
     padding: 20px;
 }
 
+.nombre-completo {
+    margin-top: 20px;
+    font-size: 40px;
+}
+
 /*ESTO ES SOLO DE PRUEBA, AL CAMBAIR LA ETIQUET TAMBIEN HAY QUE CAMBIAR LOS ESTILOS*/
 .cv {
-    margin-top: 80px;
+    margin-top: 40px;
     width: 95%;
     border: 3px solid black;
     border-radius: 15px;

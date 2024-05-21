@@ -169,6 +169,17 @@ nav ul #liVerMenuCuenta {
     height: 100%;
     object-fit: cover;
 }
+
+.cv-a {
+    text-decoration: none;
+    color: inherit;
+}
+
+    .cv-a:hover {
+        color: inherit;
+    }
+
+
 /**/
 .card-client {
     background: #49EBDE;
