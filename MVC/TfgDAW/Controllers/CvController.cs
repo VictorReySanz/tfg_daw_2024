@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,21 +11,25 @@ namespace TfgDAW.Controllers
     {
 
         private share_enjoyEntities db = new share_enjoyEntities();
-        // GET: CV
+
+        //Buscar CVs
         public ActionResult Index()
         {
-            return View(db.Cv.ToList());
+            var cvQuery = db.Cv.Where(l => l.visible == true);
+            var cv = cvQuery.ToList();
+            return View(cv);
         }
 
-        // GET: CV
-        public ActionResult VerCv()
+        // Ver CV
+        public ActionResult VerCv(int id)
         {
-            var cvQuery = db.Cv.Where(c => c.usuario_id == 1);
+            var cvQuery = db.Cv.Where(c => c.cv_id == id);
             var cv = cvQuery.ToList();
 
             return View(cv);
         }
 
+        //Editar un elemento del portafolio
         public ActionResult EditarElementoPortafolio()
         {
 
