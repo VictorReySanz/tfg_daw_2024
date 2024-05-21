@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MVC",
+    "\\MVC\\TfgDAW",
+    "\\MVC\\TfgDAW\\Controllers",
+    "\\MVC\\TfgDAW\\Views",
+    "\\MVC\\TfgDAW\\Views\\Shared"
   ],
+  "SelectedNode": "\\MVC\\TfgDAW\\Controllers\\LibrosController.cs",
   "PreviewInSolutionExplorer": false
 }
