@@ -14,7 +14,6 @@ namespace TfgDAW.Controllers
 {
     public class CvController : Controller
     {
-
         private share_enjoyEntities db = new share_enjoyEntities();
 
         //Buscar CVs
@@ -25,9 +24,10 @@ namespace TfgDAW.Controllers
             return View(cv);
         }
 
-        // Ver CV
+        // Ver CV-
         public ActionResult VerCv(int id)
-            var cvQuery = db.Cv.Where(c => c.usuario_id == 1);
+        {
+            var cvQuery = db.Cv.Where(c => c.cv_id == id);
             var cv = cvQuery.ToList();
 
             //Listar portafolio
@@ -116,8 +116,8 @@ namespace TfgDAW.Controllers
         {
             return View();
         }
-            //Editar un elemento del portafolio: put
-            [HttpPost]
+        //Editar un elemento del portafolio: put
+        [HttpPost]
         public ActionResult CrearElementoPortafolio(FormCollection form)
         {
             string titulo = form["titulo"];
@@ -144,7 +144,7 @@ namespace TfgDAW.Controllers
                 db.SaveChanges();
                 return RedirectToAction("EditarCv");
             }
-        
+
 
             return View();
         }
@@ -242,4 +242,5 @@ namespace TfgDAW.Controllers
             }
         }
     }
+
 }

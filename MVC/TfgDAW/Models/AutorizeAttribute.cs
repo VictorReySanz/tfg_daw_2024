@@ -22,7 +22,7 @@ namespace TfgDAW.Models
 
                 //PREGUNTAMOS POR EL ROLE DEL USUARIO 
 
-                if (!usuario.IsInRole("ADMINISTRADOR"))
+                if (!usuario.IsInRole("usuario"))
 
                 {
                     //SI EL USUARIO NO ESTÁ EN NUESTRO ROLE 
