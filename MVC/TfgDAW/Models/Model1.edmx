@@ -24,6 +24,8 @@
           <Property Name="profesión" Type="varchar" MaxLength="100" />
           <Property Name="Portafolio" Type="varchar(max)" />
           <Property Name="tecnología" Type="varchar(max)" />
+          <Property Name="file_cv" Type="varbinary(max)" />
+          <Property Name="redes_sociales" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Favoritos">
           <Key>
@@ -70,6 +72,16 @@
           <Property Name="categoria_id" Type="int" />
           <Property Name="usuario_id" Type="int" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="usuario_id" />
@@ -79,7 +91,7 @@
           <Property Name="foto" Type="varbinary(max)" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="rol" Type="varchar" MaxLength="10" />
-          <Property Name="password" Type="char" MaxLength="64" />
+          <Property Name="password" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Usuarios_Grupos">
           <Key>
@@ -216,6 +228,7 @@
           <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Juegos" EntityType="Self.Juegos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios_Grupos" EntityType="Self.Usuarios_Grupos" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Cv__categoria_id__2F10007B" Association="Self.FK__Cv__categoria_id__2F10007B">
@@ -287,6 +300,8 @@
           <Property Name="profesión" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Portafolio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="tecnología" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="file_cv" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="redes_sociales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Categorias" Relationship="Self.FK__Cv__categoria_id__2F10007B" FromRole="Cv" ToRole="Categorias" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK__Cv__usuario_id__300424B4" FromRole="Cv" ToRole="Usuarios" />
         </EntityType>
@@ -342,6 +357,16 @@
           <NavigationProperty Name="Categorias" Relationship="Self.FK__Libros__categori__2B3F6F97" FromRole="Libros" ToRole="Categorias" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK__Libros__usuario___2C3393D0" FromRole="Libros" ToRole="Usuarios" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="usuario_id" />
@@ -351,7 +376,7 @@
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="rol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cv" Relationship="Self.FK__Cv__usuario_id__300424B4" FromRole="Usuarios" ToRole="Cv" />
           <NavigationProperty Name="Favoritos" Relationship="Self.FK__Favoritos__usuar__3C69FB99" FromRole="Usuarios" ToRole="Favoritos" />
           <NavigationProperty Name="Juegos" Relationship="Self.FK__Juegos__usuario___33D4B598" FromRole="Usuarios" ToRole="Juegos" />
@@ -465,6 +490,7 @@
           <EntitySet Name="Grupos" EntityType="Self.Grupos" />
           <EntitySet Name="Juegos" EntityType="Self.Juegos" />
           <EntitySet Name="Libros" EntityType="Self.Libros" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <AssociationSet Name="FK__Cv__categoria_id__2F10007B" Association="Self.FK__Cv__categoria_id__2F10007B">
             <End Role="Categorias" EntitySet="Categorias" />
@@ -528,6 +554,8 @@
                 <ScalarProperty Name="profesión" ColumnName="profesión" />
                 <ScalarProperty Name="Portafolio" ColumnName="Portafolio" />
                 <ScalarProperty Name="tecnología" ColumnName="tecnología" />
+                <ScalarProperty Name="file_cv" ColumnName="file_cv" />
+                <ScalarProperty Name="redes_sociales" ColumnName="redes_sociales" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -577,6 +605,17 @@
                 <ScalarProperty Name="visible" ColumnName="visible" />
                 <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
                 <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="share_enjoyModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

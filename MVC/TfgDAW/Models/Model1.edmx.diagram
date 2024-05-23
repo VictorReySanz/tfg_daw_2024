@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="00e3049ee4134696bde66f58b8aa8564" Name="Diagram1">
-        <EntityTypeShape EntityType="share_enjoyModel.Categorias" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+      <Diagram DiagramId="afc39e121b01471c93fbd4c44a6f8bdb" Name="Diagram1">
+        <EntityTypeShape EntityType="share_enjoyModel.Categorias" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="share_enjoyModel.Cv" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Favoritos" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Grupos" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Juegos" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Libros" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="share_enjoyModel.Usuarios" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Favoritos" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Grupos" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Juegos" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Libros" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="share_enjoyModel.Usuarios" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
         <AssociationConnector Association="share_enjoyModel.FK__Cv__categoria_id__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="share_enjoyModel.FK__Favoritos__categ__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="share_enjoyModel.FK__Juegos__categori__32E0915F" ManuallyRouted="false" />

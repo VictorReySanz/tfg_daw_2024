@@ -22,6 +22,8 @@ namespace TfgDAW.Models
         public string profesión { get; set; }
         public string Portafolio { get; set; }
         public string tecnología { get; set; }
+        public byte[] file_cv { get; set; }
+        public string redes_sociales { get; set; }
     
         public virtual Categorias Categorias { get; set; }
         public virtual Usuarios Usuarios { get; set; }
