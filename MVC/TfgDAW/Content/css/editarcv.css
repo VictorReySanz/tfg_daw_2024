@@ -1,26 +1,13 @@
-﻿.contenido {
-    display: grid;
-    grid-template-columns: 0.5fr auto;
-    margin-top: 100px;
+﻿/************************ body ************************/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
-
-.izquierda {
-    text-align: center;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.derecha {
-    text-align: center;
-}
-
 
 /************************ nav ************************/
 nav {
-    background-color: #006FFF;
+    background-color: #73E665;
     padding: 10px;
 }
 
@@ -106,6 +93,29 @@ nav {
 #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
     animation: linea3Menu 0.75s forwards;
 }
+/****************************** CVS ********************************/
+
+#cvDesplegar {
+    display: none;
+}
+
+#cvDesplegarLabel {
+    cursor: pointer;
+}
+
+#menuCV {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 8em;
+    background-color: #73E665;
+    width: 250px;
+    height: 7em;
+    text-align: center;
+    padding-top: 1.5em;
+    border-radius: 15px;
+    animation: aparecerCV 0.75s forwards;
+}
 
 /************************ menu cuenta ************************/
 nav ul #liVerMenuCuenta {
@@ -171,59 +181,158 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
-
-/************************ contenido ************************/
-.portada {
-    width: 300px;
-    height: 425px;
-    border-radius: 15px;
+/************************ buscar ************************/
+nav ul #liBuscar {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.nombre {
-    font-size: 55px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.autor {
-    font-size: 40px;
-    padding-top: 50px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.descripcion {
-    font-size: 20px;
-    padding-top: 50px;
-    margin-top: 50px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.descarga {
-    margin-top: 100px;
-    background-color: #1CC4FC;
+nav ul li #buscar {
+    padding: 5px;
+    border: 1px solid #ccc;
     border-radius: 20px;
-    width: 40%;
-    font-size: 40px;
-    text-decoration: none;
-    color: black;
+    box-sizing: border-box;
 }
 
-/*Vista archivo*/
+/************************ filtro ************************/
+nav ul #liVerFiltro {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#filtro {
+    display: none;
+    position: absolute;
+    left: 50%;
+    background-color: #4F91E8;
+    width: 250px;
+    height: 200px;
+    border-radius: 15px;
+    text-align: center;
+    animation: aparecerFiltro 0.75s forwards;
+}
+
+#verFiltro {
+    display: none;
+}
+
+#filtro #contenidoFiltro {
+    margin-top: 20px;
+}
+
+/*visual*/
+.verFiltroDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+    .verFiltroDiv .linea1 {
+        width: 20px;
+        background: black;
+        height: 4px;
+        border-radius: 10em;
+        z-index: 1;
+    }
+
+    .verFiltroDiv .linea2 {
+        width: 12.5px;
+        background: black;
+        height: 4px;
+        border-radius: 10em;
+        z-index: 1;
+    }
+
+    .verFiltroDiv .linea3 {
+        width: 5px;
+        background: black;
+        height: 4px;
+        border-radius: 10em;
+        z-index: 1;
+    }
+
+#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea2 {
+    animation: linea2Filtro 0.75s forwards;
+}
+
+#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea3 {
+    animation: linea3Filtro 0.75s forwards;
+}
+
+
+/************************ Contenido ************************/
+.contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cv-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.nombre-completo {
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+.profesion {
+    font-size: 20px;
+}
+
 #pdf-viewer {
     margin-top: 50px;
     width: 100%;
-    height: 100%;
+    height: 1000px;
     border: 1px solid black;
+    border-radius: 20px;
     overflow: auto;
     grid-column: span 2;
     text-align: center;
 }
 
-.pdf-page {
-    width: 51%;
+.portafolio-container {
+    padding: 20px;
+    text-align: center;
 }
+
+.portafolio {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.portafolio-elemento {
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 30px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+    .portafolio-elemento:hover {
+        background-color: #3EEDA4;
+        color: white;
+    }
+
+#portafolio-titulo {
+    font-size: 40px;
+}
+
+#anadirImg {
+    width: 40px;
+    height: auto;
+    border-radius: 100%;
+}
+
+#anadirImg:hover {
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+}
+
+
 
 
 /************************ extras ************************/
@@ -359,5 +468,18 @@ nav ul #liVerMenuCuenta {
         opacity: 1;
         rotate: 30deg;
         transform: translate(50%, -550%);
+    }
+}
+
+/*Desplegar menu CV*/
+@keyframes aparecerCV {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
     }
 }

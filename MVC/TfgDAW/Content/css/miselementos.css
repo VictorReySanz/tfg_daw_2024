@@ -28,13 +28,18 @@ nav {
     margin-left: 20px;
     width: 30px;
     height: auto;
+    border-radius: 100%;
 }
 
-        /************************ menu ************************/
-        nav ul #liVerMenu {
-            display: flex;
-            justify-content: flex-start;
-        }
+    .anadirImg:hover {
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+    }
+
+/************************ menu ************************/
+nav ul #liVerMenu {
+    display: flex;
+    justify-content: flex-start;
+}
 
 #menu {
     display: none;
