@@ -25,10 +25,9 @@ namespace TfgDAW.Controllers
             return View(cv);
         }
 
-        // Ver CV-
+        // Ver CV
         public ActionResult VerCv(int id)
-        {
-            var cvQuery = db.Cv.Where(c => c.cv_id == id);
+            var cvQuery = db.Cv.Where(c => c.usuario_id == 1);
             var cv = cvQuery.ToList();
 
             //Listar portafolio
