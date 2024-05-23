@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using System.Xml.Linq;
 using TfgDAW.Models;
 
 namespace TfgDAW.Controllers
@@ -26,12 +31,121 @@ namespace TfgDAW.Controllers
             var cvQuery = db.Cv.Where(c => c.cv_id == id);
             var cv = cvQuery.ToList();
 
+            //Listar portafolio
+            var cvPortafolioQuery = db.Cv.Where(c => c.cv_id == id).Select(c => c.Portafolio).FirstOrDefault();
+
+            if (cvPortafolioQuery != null)
+            {
+                string[] elementos = cvPortafolioQuery.Split('|');
+                List<string> nombres = new List<string>();
+                List<string> enlaces = new List<string>();
+
+                foreach (var elemento in elementos)
+                {
+                    string[] elementosSeparados = elemento.Split(';');
+                    if (elementosSeparados.Length >= 2)
+                    {
+                        nombres.Add(elementosSeparados[0]);
+                        enlaces.Add(elementosSeparados[1]);
+                    }
+                }
+
+                ViewBag.Nombres = nombres;
+                ViewBag.Enlaces = enlaces;
+            }
+            else
+            {
+                ViewBag.Nombres = null;
+                ViewBag.Enlaces = null;
+            }
+
             return View(cv);
         }
 
-        //Editar un elemento del portafolio
-        public ActionResult EditarElementoPortafolio()
+        // Editar CV
+        public ActionResult EditarCv()
         {
+            var cvQuery = db.Cv.Where(c => c.usuario_id == 1004);/*cambiar por id del usuario correcto*/
+            var cv = cvQuery.ToList();
+
+            //Listar portafolio                      /*cambiar por id del usuario correcto*/
+            var cvPortafolioQuery = db.Cv.Where(c => c.usuario_id == 1004).Select(c => c.Portafolio).FirstOrDefault();
+
+            if (cvPortafolioQuery != null)
+            {
+                string[] elementos = cvPortafolioQuery.Split('|');
+                List<string> nombres = new List<string>();
+                List<string> enlaces = new List<string>();
+
+                foreach (var elemento in elementos)
+                {
+                    string[] elementosSeparados = elemento.Split(';');
+                    if (elementosSeparados.Length >= 2)
+                    {
+                        nombres.Add(elementosSeparados[0]);
+                        enlaces.Add(elementosSeparados[1]);
+                    }
+                }
+
+                ViewBag.Nombres = nombres;
+                ViewBag.Enlaces = enlaces;
+            }
+            else
+            {
+                ViewBag.Nombres = null;
+                ViewBag.Enlaces = null;
+            }
+
+            return View(cv);
+        }
+
+        //Mostrar archivo
+        public ActionResult VerArchivo(int id)
+        {
+            var librosArchivo = db.Libros.Find(2002);/*cambiar por id, como en libros*/
+            if (librosArchivo == null)
+            {
+                return HttpNotFound();
+            }
+
+            return File(librosArchivo.file_libros, "application/pdf");
+        }
+
+
+        //Editar un elemento del portafolio: get
+        public ActionResult CrearElementoPortafolio()
+        {
+            return View();
+        }
+            //Editar un elemento del portafolio: put
+            [HttpPost]
+        public ActionResult CrearElementoPortafolio(FormCollection form)
+        {
+            string titulo = form["titulo"];
+            string enlace = form["enlace"];
+
+
+
+
+
+
+
+
+            var existingCv = db.Cv.Find(1002);
+            if (existingCv != null)
+            {
+
+                // Actualizar solo las propiedades necesarias
+                existingCv.Portafolio = existingCv.Portafolio + titulo + ";" + enlace + "|";
+            }
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(existingCv).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("EditarCv");
+            }
+        
 
             return View();
         }
