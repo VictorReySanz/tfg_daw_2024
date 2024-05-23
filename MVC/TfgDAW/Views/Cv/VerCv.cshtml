@@ -1,0 +1,161 @@
+﻿@model IEnumerable<TfgDAW.Models.Cv>
+
+@{
+    ViewBag.Title = "CV de";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/vercv.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+    @*Visor de pdf PDF.js*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Libros")">Inicio</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
+            <div class="linea"></div>
+            <input id="cvDesplegar" type="checkbox">
+            <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+        </div>
+    </div>
+    <!-- SubMenu CV -->
+    <div id="menuCV">
+        <div id="contenidoMenuCV">
+            <a href="@Url.Action("MiCv", "Cv")">Mi CV</a>
+            <div class="linea"></div>
+            <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+        </div>
+    </div>
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liBuscar">
+
+                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
+                {
+                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
+                }
+            </li>
+            <li id="liVerFiltro">
+                <input type="checkbox" id="verFiltro">
+                <label id="verFiltroLabel" for="verFiltro">
+                    <div class="verFiltroDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
+    <!-- Filtro -->
+    <div id="filtro">
+        <div id="contenidoFiltro">
+            <p>Categoria</p>
+            <div class="linea"></div>
+        </div>
+    </div>
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+        <div id="contenidoMenuCuenta">
+            <p>Nombres</p>
+            <div class="linea"></div>
+            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
+            <div class="linea"></div>
+            <p>Cerrar sesion</p>
+        </div>
+    </div>
+    <!--  main  -->
+    <main>
+        <!--  Contenido -->
+        <div class="contenido">
+            @foreach (var item in Model)
+            {
+
+                ViewBag.Title = "CV de " + @Html.DisplayFor(modelItem => item.nombre_completo);
+                <div class="cv-container">
+                    <p class="nombre-completo">@Html.DisplayFor(modelItem => item.nombre_completo)</p>
+                    <p class="profesion">@Html.DisplayFor(modelItem => item.profesión)</p>
+
+                    @*Ver archivo*@
+                    <div id="pdf-viewer"></div>
+                    <script>
+const url = '@Url.Action("VerArchivo", "Cv", new { id = item.cv_id })';
+
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
+
+const loadingTask = pdfjsLib.getDocument(url);
+loadingTask.promise.then(function(pdf) {
+    const viewer = document.getElementById('pdf-viewer');
+
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        pdf.getPage(pageNum).then(function(page) {
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-page';
+            viewer.appendChild(canvas);
+
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext);
+        });
+    }
+});
+                    </script>
+                </div>
+                <div class="portafolio-container">
+                    <div id="portafolio-titulo">PORTAFOLIO</div>
+                    <div class="portafolio">
+                        @for (int i = 0; i < ViewBag.Nombres.Count; i++)
+                        {
+                            <a href="@ViewBag.Enlaces[i]" class="portafolio-elemento">@ViewBag.Nombres[i]</a>
+                        }
+                    </div>
+                </div>
+            }
+            </div>
+    </main>
+</body>
+</html>
