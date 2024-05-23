@@ -56,6 +56,7 @@ namespace TfgDAW.Controllers
 
         public ActionResult CrearUser(string nombre, string password, string email, string pass2) {
             if (Validapass(password, pass2)) {
+                password = password.Trim();
 
                 Usuarios nuevo = new Usuarios
                 {
