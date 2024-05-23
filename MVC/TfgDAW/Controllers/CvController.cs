@@ -112,6 +112,9 @@ namespace TfgDAW.Controllers
 
 
         //Editar un elemento del portafolio: get
+
+
+
         public ActionResult CrearElementoPortafolio()
         {
             return View();
