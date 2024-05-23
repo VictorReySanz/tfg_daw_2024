@@ -1,13 +1,6 @@
-﻿/************************ body ************************/
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-/************************ nav ************************/
+﻿/************************ nav ************************/
 nav {
-    background-color: #006FFF;
+    background-color: #73E665;
     padding: 10px;
 }
 
@@ -32,7 +25,7 @@ nav {
 #menu {
     display: none;
     position: absolute;
-    background-color: #4F91E8;
+    background-color: #5DE3AB;
     width: 250px;
     height: 100%;
     text-align: center;
@@ -49,19 +42,7 @@ nav {
 
 #menu #contenidoMenu {
     margin-top: 20px;
-    width: 100%;
 }
-
-    #menu #contenidoMenu a {
-        text-decoration: none;
-        color: inherit;
-        padding: 0.5em;
-    }
-
-        #menu #contenidoMenu a:hover {
-            margin-left: 2em;
-            color: white;
-        }
 
 /*visual*/
 .verMenuDiv {
@@ -105,45 +86,6 @@ nav {
 #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
     animation: linea3Menu 0.75s forwards;
 }
-/****************************** CVS ********************************/
-#cvDesplegar {
-    display: none;
-}
-
-#cvDesplegarLabel {
-    cursor: pointer;
-    padding: 0.5em;
-}
-
-    #cvDesplegarLabel:hover {
-        margin-left: 2em;
-        color: white;
-    }
-
-#contenidoMenuCV a {
-    text-decoration: none;
-    color: inherit;
-    padding: 0.5em;
-}
-
-#contenidoMenuCV a:hover {
-    margin-left: 2em;
-    color: white;
-}
-
-#menuCV {
-    display: none;
-    position: absolute;
-    top: 20%;
-    left: 8em;
-    background-color: #73E665;
-    width: 250px;
-    height: 7em;
-    text-align: center;
-    padding-top: 1.5em;
-    border-radius: 15px;
-    animation: aparecerCV 0.75s forwards;
-}
 
 /************************ menu cuenta ************************/
 nav ul #liVerMenuCuenta {
@@ -169,18 +111,6 @@ nav ul #liVerMenuCuenta {
 
 #menuCuenta #contenidoMenuCuenta {
     margin-top: 20px;
-}
-
-
-#contenidoMenuCuenta a {
-    text-decoration: none;
-    color: inherit;
-    padding: 0.5em;
-}
-
-#contenidoMenuCuenta a:hover {
-    margin-left: 2em;
-    color: white;
 }
 
 .cuentaImg {
@@ -221,126 +151,63 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
-/************************ buscar ************************/
-nav ul #liBuscar {
-    display: flex;
-    justify-content: flex-end;
-}
 
-nav ul li #buscar {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
 
-/************************ filtro ************************/
-nav ul #liVerFiltro {
-    display: flex;
-    justify-content: flex-start;
-}
-
-#filtro {
-    display: none;
-    position: absolute;
-    left: 50%;
-    background-color: #4F91E8;
-    width: 250px;
-    height: 200px;
-    border-radius: 15px;
+/************************ contenido ************************/
+.contenido {
+    margin-top: 100px;
+    width: 100%;
+    padding: 20px;
     text-align: center;
-    animation: aparecerFiltro 0.75s forwards;
 }
 
-#verFiltro {
-    display: none;
+.titulo {
+    max-width: 100%;
+    text-align: center;
 }
 
-#filtro #contenidoFiltro {
-    margin-top: 20px;
-}
-
-/*visual*/
-.verFiltroDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-    .verFiltroDiv .linea1 {
-        width: 20px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea2 {
-        width: 12.5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea3 {
-        width: 5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea2 {
-    animation: linea2Filtro 0.75s forwards;
-}
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea3 {
-    animation: linea3Filtro 0.75s forwards;
-}
-
-
-/************************ Contenido ************************/
-#contenido {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px 50px;
-    padding: 30px;
-}
-
-    #contenido .elemento {
-        text-align: center;
-        text-decoration: none;
-        color: inherit;
-    }
-
-        #contenido .elemento:hover > .portada {
-            border-radius: 15px;
-            box-shadow: 20px 20px 7px rgba(0, 0, 0, 0.3);
-            width: 160px;
-            height: 235px;
-        }
-
-.portada {
-    width: 150px;
-    height: 225px;
+.titulo-campo {
+    font-size: 55px;
+    max-width: 50%;
+    text-align: center;
+    background-color: #A5E35D;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
     border-radius: 15px;
 }
 
-.tituloAutor {
-    margin-top: 10px;
-    max-width: 150px;
-    margin: 0 auto;
+    .titulo-campo::placeholder {
+        color: black;
+    }
+
+.enlace {
+    padding-top: 30px;
+    max-width: 100%;
+    text-align: center;
 }
 
-.autor {
-    font-size: 12px;
-    margin-top: -15px;
-    max-width: 150px;
-    margin: 0 auto; 
+.enlace-campo {
+    font-size: 40px;
+    max-width: 80%;
+    text-align: center;
+    background-color: #A5E35D;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
+}
+
+    .enlace-campo::placeholder {
+        color: black;
+    }
+
+.subir {
+    margin-top: 50px;
+    background-color: #5DE37E;
+    border-radius: 20px;
+    width: 10%;
+    font-size: 40px;
 }
 
 /************************ extras ************************/
@@ -391,19 +258,6 @@ nav ul #liVerFiltro {
     }
 }
 
-/*Desplegar filtro*/
-@keyframes aparecerFiltro {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
-
 /*Animacion de verMenu*/
 @keyframes linea1Menu {
 
@@ -424,21 +278,6 @@ nav ul #liVerFiltro {
 
     100% {
         transform: translateX(-100px);
-    }
-}
-
-/*Animacion de verFiltro*/
-@keyframes linea2Filtro {
-
-    100% {
-        transform: translateX(7.5px);
-    }
-}
-
-@keyframes linea3Filtro {
-
-    100% {
-        transform: translateX(15px);
     }
 }
 
@@ -476,18 +315,5 @@ nav ul #liVerFiltro {
         opacity: 1;
         rotate: 30deg;
         transform: translate(50%, -550%);
-    }
-}
-
-/*Desplegar menu CV*/
-@keyframes aparecerCV {
-    0% {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0%);
     }
 }

@@ -102,7 +102,7 @@ namespace TfgDAW.Controllers
         //Mostrar archivo
         public ActionResult VerArchivo(int id)
         {
-            var librosArchivo = db.Libros.Find(2002);/*cambiar por id, como en libros*/
+            var librosArchivo = db.Libros.Find(2013);/*cambiar por id, como en libros*/
             if (librosArchivo == null)
             {
                 return HttpNotFound();
