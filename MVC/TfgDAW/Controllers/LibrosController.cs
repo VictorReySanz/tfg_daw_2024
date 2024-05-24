@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using TfgDAW.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TfgDAW.Controllers
 {
@@ -224,6 +225,18 @@ namespace TfgDAW.Controllers
             {
                 return HttpNotFound();
             }
+        }
+
+        //Mostrar archivo
+        public ActionResult VerArchivo(int id)
+        {
+            var librosArchivo = db.Libros.Find(id);
+            if (librosArchivo == null)
+            {
+                return HttpNotFound();
+            }
+
+            return File(librosArchivo.file_libros, "application/pdf");
         }
 
 

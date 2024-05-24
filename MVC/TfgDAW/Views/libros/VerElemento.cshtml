@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="~/Content/css/verelemento.css">
         <script src="~/Content/js/scripts.js" defer></script>
+        @*Visor de pdf PDF.js*@
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
     </head>
     <body>
         <!-- Menu -->
@@ -80,13 +82,46 @@
 
                         <a class="descarga" href="@Url.Action("DescargarArchivo", "Libros", new { id = item.libro_id })">Descargar</a>
 
-
                     </div>
                     <div class="derecha">
                         <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
                         <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
                         <p class="descripcion">@Html.DisplayFor(modelItem => item.descripcion)</p>
                     </div>
+                    @*Ver archivo*@
+                    <div id="pdf-viewer"></div>
+                    <script>
+const url = '@Url.Action("VerArchivo", "Libros", new { id = item.libro_id })';
+
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
+
+const loadingTask = pdfjsLib.getDocument(url);
+loadingTask.promise.then(function(pdf) {
+    const viewer = document.getElementById('pdf-viewer');
+
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        pdf.getPage(pageNum).then(function(page) {
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-page';
+            viewer.appendChild(canvas);
+
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext);
+        });
+    }
+});
+                    </script>
                 }
             </div>
         </main>

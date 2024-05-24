@@ -49,7 +49,19 @@ nav {
 
 #menu #contenidoMenu {
     margin-top: 20px;
+    width: 100%;
 }
+
+    #menu #contenidoMenu a {
+        text-decoration: none;
+        color: inherit;
+        padding: 0.5em;
+    }
+
+        #menu #contenidoMenu a:hover {
+            margin-left: 2em;
+            color: white;
+        }
 
 /*visual*/
 .verMenuDiv {
@@ -94,13 +106,29 @@ nav {
     animation: linea3Menu 0.75s forwards;
 }
 /****************************** CVS ********************************/
-
 #cvDesplegar {
     display: none;
 }
 
 #cvDesplegarLabel {
     cursor: pointer;
+    padding: 0.5em;
+}
+
+    #cvDesplegarLabel:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#contenidoMenuCV a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+#contenidoMenuCV a:hover {
+    margin-left: 2em;
+    color: white;
 }
 
 #menuCV {
@@ -141,6 +169,18 @@ nav ul #liVerMenuCuenta {
 
 #menuCuenta #contenidoMenuCuenta {
     margin-top: 20px;
+}
+
+
+#contenidoMenuCuenta a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+#contenidoMenuCuenta a:hover {
+    margin-left: 2em;
+    color: white;
 }
 
 .cuentaImg {

@@ -56,6 +56,7 @@ namespace TfgDAW.Controllers
 
         public ActionResult CrearUser(string nombre, string password, string email, string pass2) {
             if (Validapass(password, pass2)) {
+                password = password.Trim();
 
                 Usuarios nuevo = new Usuarios
                 {
@@ -98,20 +99,20 @@ namespace TfgDAW.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult EnviarFormulario(string email, string password) {
+         [HttpPost]
+         public ActionResult EnviarFormulario(string email, string password) {
 
-        /*Prueba del bcrypt
-         * 
-                string originalPassword = "luis";
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(originalPassword);
+         /*Prueba del bcrypt
+          * 
+                 string originalPassword = "luis";
+                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(originalPassword);
 
-                bool isMatch = BCrypt.Net.BCrypt.Verify(originalPassword, hashedPassword);
-                Console.WriteLine($"Password matches: {isMatch}"); // Debería imprimir "Password matches: True"
-          */  
+                 bool isMatch = BCrypt.Net.BCrypt.Verify(originalPassword, hashedPassword);
+                 Console.WriteLine($"Password matches: {isMatch}"); // Debería imprimir "Password matches: True"
+           */
 
 
-            Usuarios usermail = this.GetUserbyEmail(email);
+        Usuarios usermail = this.GetUserbyEmail(email);
             if (usermail != null) {
 
                 bool valida = BCrypt.Net.BCrypt.Verify(password, usermail.password);

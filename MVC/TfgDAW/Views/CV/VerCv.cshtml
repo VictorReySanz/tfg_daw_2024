@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TfgDAW.Models.Cv>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CV de";
 }
 
 <!DOCTYPE html>
@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/vercv.css">
     <script src="~/Content/js/scripts.js" defer></script>
+    @*Visor de pdf PDF.js*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
 </head>
 <body>
     <!-- Menu -->
@@ -96,121 +98,64 @@
             <p>Cerrar sesion</p>
         </div>
     </div>
-    <!-- main -->
+    <!--  main  -->
     <main>
-        <!-- Contenido -->
+        <!--  Contenido -->
         <div class="contenido">
-            <div class="cv-container">
-                @*CAMBIAR POR LA ETIQUET CORRESPONDIENTE PARA MOSTRAR EL ARCHIVO*@
-                <img class="cv" src="~/Content/imgs/cvEjemplo.jpg" />
-            </div>
-            <div class="portafolio-container">
-                <div id="portafolio-titulo">PORTAFOLIO</div>
-                <div class="portafolio">
-                    @* CAMBIAR ESTO POR UN FOREACH *@
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
-                    </div>
-                    <div class="portafolio-elemento">
-                        <img class="img" src="~/Content/imgs/imgpordefecto.jpg" />
-                        <p class="nombre">Nombre</p>
+            @foreach (var item in Model)
+            {
+
+                ViewBag.Title = "CV de " + @Html.DisplayFor(modelItem => item.nombre_completo);
+                <div class="cv-container">
+                    <p class="nombre-completo">@Html.DisplayFor(modelItem => item.nombre_completo)</p>
+                    <p class="profesion">@Html.DisplayFor(modelItem => item.profesión)</p>
+
+                    @*Ver archivo*@
+                    <div id="pdf-viewer"></div>
+                    <script>
+const url = '@Url.Action("VerArchivo", "Cv", new { id = item.cv_id })';
+
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
+
+const loadingTask = pdfjsLib.getDocument(url);
+loadingTask.promise.then(function(pdf) {
+    const viewer = document.getElementById('pdf-viewer');
+
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        pdf.getPage(pageNum).then(function(page) {
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-page';
+            viewer.appendChild(canvas);
+
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext);
+        });
+    }
+});
+                    </script>
+                </div>
+                <div class="portafolio-container">
+                    <div id="portafolio-titulo">PORTAFOLIO</div>
+                    <div class="portafolio">
+                        @for (int i = 0; i < ViewBag.Nombres.Count; i++)
+                        {
+                            <a href="@ViewBag.Enlaces[i]" class="portafolio-elemento">@ViewBag.Nombres[i]</a>
+                        }
                     </div>
                 </div>
+            }
             </div>
-        </div>
     </main>
 </body>
 </html>

@@ -1,7 +1,7 @@
-@model IEnumerable<TfgDAW.Models.Libros>
+﻿@model IEnumerable<TfgDAW.Models.Cv>
 
 @{
-    ViewData["Title"] = "Buscar CVs";
+    ViewBag.Title = "CV de";
 }
 
 <!DOCTYPE html>
@@ -10,8 +10,10 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/principal.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/editarcv.css">
     <script src="~/Content/js/scripts.js" defer></script>
+    @*Visor de pdf PDF.js*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
 </head>
 <body>
     <!-- Menu -->
@@ -32,7 +34,7 @@
     <!-- SubMenu CV -->
     <div id="menuCV">
         <div id="contenidoMenuCV">
-            <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+            <a href="@Url.Action("MiCv", "Cv")">Mi CV</a>
             <div class="linea"></div>
             <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
         </div>
@@ -99,27 +101,66 @@
     <!-- main -->
     <main>
         <!-- Contenido -->
-        <div id="contenido">
-
+        <div class="contenido">
             @foreach (var item in Model)
             {
 
-                <a href="@Url.Action("VerElemento", "Libros", new { id = item.libro_id })" class="elemento" name="id">
-                    @if (item.portada != null && item.portada.Length > 0)
-                    {
-                        <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
-                    }
-                    else
-                    {
-                        <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
-                    }
-                    <div class="tituloAutor">
-                        <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
-                        <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
-                    </div>
-                </a>
-            }
+                ViewBag.Title = "CV de " + @Html.DisplayFor(modelItem => item.nombre_completo);
+                <div class="cv-container">
+                    <p class="nombre-completo">@Html.DisplayFor(modelItem => item.nombre_completo)</p>
+                    <p class="profesion">@Html.DisplayFor(modelItem => item.profesión)</p>
 
+                    @*Ver archivo*@
+                    <div id="pdf-viewer"></div>
+                    <script>
+const url = '@Url.Action("VerArchivo", "Cv", new { id = item.cv_id })';
+
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
+
+const loadingTask = pdfjsLib.getDocument(url);
+loadingTask.promise.then(function(pdf) {
+    const viewer = document.getElementById('pdf-viewer');
+
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        pdf.getPage(pageNum).then(function(page) {
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-page';
+            viewer.appendChild(canvas);
+
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext);
+        });
+    }
+});
+                    </script>
+                </div>
+                <div class="portafolio-container">
+                    <div id="portafolio-titulo">PORTAFOLIO</div>
+
+                    <!-- Añadir elemento -->
+                    <a href="@Url.Action("CrearElementoPortafolio", "Cv")" id="anadir">
+
+                        <img id="anadirImg" src="~/Content/imgs/anadir.png" />
+                    </a>
+                    <div class="portafolio">
+                        @for (int i = 0; i < ViewBag.Nombres.Count; i++)
+                        {
+                            <a href="@ViewBag.Enlaces[i]" class="portafolio-elemento">@ViewBag.Nombres[i]</a>
+                        }
+                    </div>
+                </div>
+            }
         </div>
     </main>
 </body>
