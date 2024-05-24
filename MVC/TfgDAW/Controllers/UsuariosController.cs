@@ -70,7 +70,7 @@ namespace TfgDAW.Controllers
 
                 this.db.Usuarios.Add(nuevo);
                 this.db.SaveChanges();
-
+                Session["userId"] =nuevo.usuario_id;
                 return RedirectToAction("index","Libros");
 
             }
@@ -118,6 +118,8 @@ namespace TfgDAW.Controllers
                 bool valida = BCrypt.Net.BCrypt.Verify(password, usermail.password);
                 if (valida)
                 {
+                    Session["userId"] = usermail.usuario_id;
+                    int userId = (int)Session["userId"];
                     return RedirectToAction("index", "Libros");
                 }
                 else

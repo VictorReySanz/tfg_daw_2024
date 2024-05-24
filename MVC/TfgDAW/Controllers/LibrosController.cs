@@ -53,7 +53,12 @@ namespace TfgDAW.Controllers
         //Mis elementos
         public ActionResult MisElementos(string buscar)
         {
-            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.usuario_id == 1);
+          
+            
+
+            int userId = (int)Session["userId"];
+       
+            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.usuario_id == userId );
 
             // Aplicamos el filtro si searchString no está vacío
             if (!string.IsNullOrEmpty(buscar))
