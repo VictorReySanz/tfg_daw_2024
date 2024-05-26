@@ -140,7 +140,7 @@ namespace TfgDAW.Controllers
             string titulo = form["titulo"];
             string enlace = form["enlace"];
 
-            var existingCv = db.Cv.Find(1002);
+            var existingCv = db.Cv.Find(3);
             if (existingCv != null)
             {
 
@@ -199,7 +199,7 @@ namespace TfgDAW.Controllers
                 string resultado = String.Join("|", elementosCombinados);
 
 
-                var existingCv = db.Cv.Find(1002);
+                var existingCv = db.Cv.Find(3);
                 existingCv.Portafolio = resultado;
                 if (ModelState.IsValid)
                 {
