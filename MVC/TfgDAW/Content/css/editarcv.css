@@ -1,4 +1,4 @@
-﻿/************************ body ************************/
+/************************ body ************************/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -307,14 +307,25 @@ nav ul #liVerFiltro {
 
 .portafolio-elemento {
     text-align: center;
-    text-decoration: none;
-    color: inherit;
     padding: 30px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
     .portafolio-elemento:hover {
         background-color: #3EEDA4;
+        color: white;
+        cursor: pointer;
+    }
+
+.portafolio-elemento-nombre {
+    text-decoration: none;
+    color: inherit;
+}
+
+    .portafolio-elemento-nombre:hover {
         color: white;
     }
 
@@ -331,6 +342,26 @@ nav ul #liVerFiltro {
 #anadirImg:hover {
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
 }
+
+#editarImg {
+    width: 40px;
+    height: auto;
+    border-radius: 100%;
+}
+
+    #editarImg:hover {
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+    }
+
+#eliminarImg {
+    width: 40px;
+    height: auto;
+    border-radius: 100%;
+}
+
+    #eliminarImg:hover {
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+    }
 
 
 
