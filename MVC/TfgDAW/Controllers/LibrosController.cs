@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,6 +17,7 @@ namespace TfgDAW.Controllers
     {
         private share_enjoyEntities db = new share_enjoyEntities();
 
+
         // Principal
         public ActionResult Index(string buscar)
         {
@@ -30,6 +31,12 @@ namespace TfgDAW.Controllers
 
             var libros = librosQuery.ToList();
 
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
             return View(libros);
         }
 
@@ -37,7 +44,8 @@ namespace TfgDAW.Controllers
         public ActionResult Favoritos(string buscar)
         {
 
-            var librosQuery = db.Libros.Where(a => db.Favoritos.Any(b => b.favorito_id == a.libro_id)).Where(l => l.usuario_id == 1);
+            int userId = (int)Session["userId"];
+            var librosQuery = db.Libros.Where(a => db.Favoritos.Any(b => b.favorito_id == a.libro_id)).Where(l => l.usuario_id == userId);
 
             // Aplicamos el filtro si searchString no está vacío
             if (!string.IsNullOrEmpty(buscar))
@@ -53,12 +61,9 @@ namespace TfgDAW.Controllers
         //Mis elementos
         public ActionResult MisElementos(string buscar)
         {
-          
-            
 
             int userId = (int)Session["userId"];
-       
-            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.usuario_id == userId );
+            var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.usuario_id == userId);
 
             // Aplicamos el filtro si searchString no está vacío
             if (!string.IsNullOrEmpty(buscar))
@@ -115,8 +120,11 @@ namespace TfgDAW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CrearElemento(Libros libros, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
+
+            int userId = (int)Session["userId"];
+
             libros.categoria_id = 1;
-            libros.usuario_id = 1;
+            libros.usuario_id = userId;
 
             if (ModelState.IsValid)
             {
@@ -162,8 +170,9 @@ namespace TfgDAW.Controllers
         public ActionResult EditarElemento([Bind(Include = "libro_id,titulo,autor,descripcion,visible,portada")] Libros libros, string boton, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
 
+            int userId = (int)Session["userId"];
             libros.categoria_id = 1;
-            libros.usuario_id = 1;
+            libros.usuario_id = userId;
 
             if (boton == "Guardar")
             {
