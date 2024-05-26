@@ -32,10 +32,15 @@ namespace TfgDAW.Controllers
             var libros = librosQuery.ToList();
 
             //Mostrar nombre de usuario en el menu usuario
-            int userId = (int)Session["userId"];
 
-            var user = db.Usuarios.Find(userId);
-            ViewBag.user = user.nombre;
+            if (Session["userId"] != null) {
+                int userId = (int)Session["userId"];
+
+                var user = db.Usuarios.Find(userId);
+                ViewBag.user = user.nombre;
+
+            }
+         
 
             return View(libros);
         }
