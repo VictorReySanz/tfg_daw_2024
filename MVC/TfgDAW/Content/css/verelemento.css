@@ -1,4 +1,4 @@
-﻿.contenido {
+.contenido {
     display: grid;
     grid-template-columns: 0.5fr auto;
     margin-top: 100px;
