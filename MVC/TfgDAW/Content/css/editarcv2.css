@@ -264,8 +264,7 @@ nav ul #liVerFiltro {
 
 /************************ Contenido ************************/
 .contenido {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    text-align: center;
 }
 
 .cv-container {
@@ -290,7 +289,6 @@ nav ul #liVerFiltro {
     border-radius: 20px;
     overflow: auto;
     grid-column: span 2;
-    text-align: center;
 }
 
 .portafolio-container {
@@ -298,70 +296,6 @@ nav ul #liVerFiltro {
     text-align: center;
 }
 
-.portafolio {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-}
-
-.portafolio-elemento {
-    text-align: center;
-    padding: 30px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-    .portafolio-elemento:hover {
-        background-color: #3EEDA4;
-        color: white;
-        cursor: pointer;
-    }
-
-.portafolio-elemento-nombre {
-    text-decoration: none;
-    color: inherit;
-}
-
-    .portafolio-elemento-nombre:hover {
-        color: white;
-    }
-
-#portafolio-titulo {
-    font-size: 40px;
-}
-
-#anadirImg {
-    width: 40px;
-    height: auto;
-    border-radius: 100%;
-}
-
-#anadirImg:hover {
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
-}
-
-#editarImg {
-    width: 40px;
-    height: auto;
-    border-radius: 100%;
-}
-
-    #editarImg:hover {
-        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
-    }
-
-#eliminarImg {
-    width: 40px;
-    height: auto;
-    border-radius: 100%;
-}
-
-    #eliminarImg:hover {
-        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
-    }
 
 
 

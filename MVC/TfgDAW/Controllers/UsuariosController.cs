@@ -1,4 +1,5 @@
-﻿using BCrypt.Net;
+﻿
+using BCrypt.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,15 @@ namespace TfgDAW.Controllers
 
         // Login
         public ActionResult Index()
-            {
-                return View();
-            }
+        {
+            return View();
+        }
 
-            // Vista rgistro
-            public ActionResult Registro()
-            {
-                return View();
-            }
+        // Vista rgistro
+        public ActionResult Registro()
+        {
+            return View();
+        }
 
         // Mis datos
         public ActionResult MisDatos()
@@ -34,28 +35,30 @@ namespace TfgDAW.Controllers
 
         public Usuarios GetUserbyEmail(string email)
         {
-            return this.db.Usuarios.Where(user => user.email  == email).FirstOrDefault();
+            return this.db.Usuarios.Where(user => user.email == email).FirstOrDefault();
         }
 
 
-        public   Boolean  Validapass(string password, string passwordRepeat)
+        public Boolean Validapass(string password, string passwordRepeat)
         {
             if (password != passwordRepeat)
             {
                 //ViewData["ERROR"] = "las dos Contraseñas debe ser iguales";
-                return false;             
+                return false;
             }
             else
             {
                 return true;
-               
+
             }
 
 
         }
 
-        public ActionResult CrearUser(string nombre, string password, string email, string pass2) {
-            if (Validapass(password, pass2)) {
+        public ActionResult CrearUser(string nombre, string password, string email, string pass2)
+        {
+            if (Validapass(password, pass2))
+            {
                 password = password.Trim();
 
                 Usuarios nuevo = new Usuarios
@@ -70,23 +73,26 @@ namespace TfgDAW.Controllers
 
                 this.db.Usuarios.Add(nuevo);
                 this.db.SaveChanges();
-
-                return RedirectToAction("index","Libros");
+                Session["userId"] = nuevo.usuario_id;
+                return RedirectToAction("index", "Libros");
 
             }
             return RedirectToAction("Registro");
 
         }
 
-        private int GetMaxID() {
-            if (this.db.Usuarios.Count() != 0) {
+        private int GetMaxID()
+        {
+            if (this.db.Usuarios.Count() != 0)
+            {
                 int maxid = this.db.Usuarios.Max(user => user.usuario_id);
 
                 if (maxid > 0)
                 {
                     return maxid;
                 }
-                else {
+                else
+                {
                     return 0;
                 }
 
@@ -99,25 +105,28 @@ namespace TfgDAW.Controllers
 
         }
 
-         [HttpPost]
-         public ActionResult EnviarFormulario(string email, string password) {
+        [HttpPost]
+        public ActionResult EnviarFormulario(string email, string password)
+        {
 
-         /*Prueba del bcrypt
-          * 
-                 string originalPassword = "luis";
-                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(originalPassword);
+            /*Prueba del bcrypt
+             * 
+                    string originalPassword = "luis";
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(originalPassword);
 
-                 bool isMatch = BCrypt.Net.BCrypt.Verify(originalPassword, hashedPassword);
-                 Console.WriteLine($"Password matches: {isMatch}"); // Debería imprimir "Password matches: True"
-           */
+                    bool isMatch = BCrypt.Net.BCrypt.Verify(originalPassword, hashedPassword);
+                    Console.WriteLine($"Password matches: {isMatch}"); // Debería imprimir "Password matches: True"
+              */
 
 
-        Usuarios usermail = this.GetUserbyEmail(email);
-            if (usermail != null) {
-
+            Usuarios usermail = this.GetUserbyEmail(email);
+            if (usermail != null)
+            {
                 bool valida = BCrypt.Net.BCrypt.Verify(password, usermail.password);
                 if (valida)
                 {
+                    Session["userId"] = usermail.usuario_id;
+                    int userId = (int)Session["userId"];
                     return RedirectToAction("index", "Libros");
                 }
                 else
@@ -138,74 +147,74 @@ namespace TfgDAW.Controllers
 
         // GET: Usuarios/Details/5
         public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Usuarios/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Usuarios/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
             {
                 return View();
             }
+        }
 
-            // GET: Usuarios/Create
-            public ActionResult Create()
+        // GET: Usuarios/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Usuarios/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
             {
                 return View();
             }
+        }
 
-            // POST: Usuarios/Create
-            [HttpPost]
-            public ActionResult Create(FormCollection collection)
+        // GET: Usuarios/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Usuarios/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
             {
-                try
-                {
-                    // TODO: Add insert logic here
+                // TODO: Add delete logic here
 
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
+                return RedirectToAction("Index");
             }
-
-            // GET: Usuarios/Edit/5
-            public ActionResult Edit(int id)
-            {
-                return View();
-            }
-
-            // POST: Usuarios/Edit/5
-            [HttpPost]
-            public ActionResult Edit(int id, FormCollection collection)
-            {
-                try
-                {
-                    // TODO: Add update logic here
-
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-
-            // GET: Usuarios/Delete/5
-            public ActionResult Delete(int id)
+            catch
             {
                 return View();
             }
-
-            // POST: Usuarios/Delete/5
-            [HttpPost]
-            public ActionResult Delete(int id, FormCollection collection)
-            {
-                try
-                {
-                    // TODO: Add delete logic here
-
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
+        }
     }
 }

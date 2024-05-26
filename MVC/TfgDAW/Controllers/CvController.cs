@@ -21,10 +21,25 @@ namespace TfgDAW.Controllers
         {
             var cvQuery = db.Cv.Where(l => l.visible == true);
             var cv = cvQuery.ToList();
+
+            //Listar redes
+            var cvRedesQuery = db.Cv.Where(l => l.visible == true).Select(c => c.redes_sociales).FirstOrDefault();
+
+            if (cvRedesQuery != null)
+            {
+                string[] redes = cvRedesQuery.Split(';');
+
+                ViewBag.Redes = redes;
+            }
+            else
+            {
+                ViewBag.Redes = null;
+            }
+
             return View(cv);
         }
 
-        // Ver CV-
+        // Ver CV
         public ActionResult VerCv(int id)
         {
             var cvQuery = db.Cv.Where(c => c.cv_id == id);
@@ -64,6 +79,8 @@ namespace TfgDAW.Controllers
         // Editar CV
         public ActionResult EditarCv()
         {
+
+           // int userId = (int)Session["userId"];
             var cvQuery = db.Cv.Where(c => c.usuario_id == 1004);/*cambiar por id del usuario correcto*/
             var cv = cvQuery.ToList();
 
@@ -111,27 +128,17 @@ namespace TfgDAW.Controllers
         }
 
 
-        //Editar un elemento del portafolio: get
-
-
-
+        //Crear un elemento del portafolio: get
         public ActionResult CrearElementoPortafolio()
         {
             return View();
         }
-        //Editar un elemento del portafolio: put
+        //Crear un elemento del portafolio: put
         [HttpPost]
         public ActionResult CrearElementoPortafolio(FormCollection form)
         {
             string titulo = form["titulo"];
             string enlace = form["enlace"];
-
-
-
-
-
-
-
 
             var existingCv = db.Cv.Find(1002);
             if (existingCv != null)
@@ -152,9 +159,122 @@ namespace TfgDAW.Controllers
             return View();
         }
 
+        //Eliminar un elemento del portafolio
+        public ActionResult EliminarPortafolio(int id)
+        {
+
+            // int userId = (int)Session["userId"];
+            var cvQuery = db.Cv.Where(c => c.usuario_id == 1004);/*cambiar por id del usuario correcto*/
+            var cv = cvQuery.ToList();
+
+            //Listar portafolio                      /*cambiar por id del usuario correcto*/
+            var cvPortafolioQuery = db.Cv.Where(c => c.usuario_id == 1004).Select(c => c.Portafolio).FirstOrDefault();
+
+            if (cvPortafolioQuery != null)
+            {
+                string[] elementos = cvPortafolioQuery.Split('|');
+                List<string> nombres = new List<string>();
+                List<string> enlaces = new List<string>();
+
+                foreach (var elemento in elementos)
+                {
+                    string[] elementosSeparados = elemento.Split(';');
+                    if (elementosSeparados.Length >= 2)
+                    {
+                        nombres.Add(elementosSeparados[0]);
+                        enlaces.Add(elementosSeparados[1]);
+                    }
+                }
+
+                List<string> elementosCombinados = new List<string>();
+
+                for (int i = 0; i < nombres.Count; i++)
+                {
+                    if (i != id) {
+                    elementosCombinados.Add($"{nombres[i]};{enlaces[i]}");
+                }
+                }
+
+                // Volver a juntar todo en una sola cadena con el separador '|'
+                string resultado = String.Join("|", elementosCombinados);
 
 
+                var existingCv = db.Cv.Find(1002);
+                existingCv.Portafolio = resultado;
+                if (ModelState.IsValid)
+                {
+                    db.Entry(existingCv).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("EditarCv");
+                }
+            }
 
+            return RedirectToAction("EditarCv");
+        }
+
+        //Editar un elemento del portafolio: get
+        //public ActionResult EditarElementoPortafolio()
+        //{
+        //    return View();
+        //}
+        ////Editar un elemento del portafolio: put
+        //[HttpPost]
+        //public ActionResult EditarElementoPortafolio(int id, string nombre, string enlace)
+        //{
+
+
+        //    // int userId = (int)Session["userId"];
+        //    var cvQuery = db.Cv.Where(c => c.usuario_id == 1004);/*cambiar por id del usuario correcto*/
+        //    var cv = cvQuery.ToList();
+
+        //    //Listar portafolio                      /*cambiar por id del usuario correcto*/
+        //    var cvPortafolioQuery = db.Cv.Where(c => c.usuario_id == 1004).Select(c => c.Portafolio).FirstOrDefault();
+
+        //    if (cvPortafolioQuery != null)
+        //    {
+        //        string[] elementos = cvPortafolioQuery.Split('|');
+        //        List<string> nombres = new List<string>();
+        //        List<string> enlaces = new List<string>();
+
+        //        foreach (var elemento in elementos)
+        //        {
+        //            string[] elementosSeparados = elemento.Split(';');
+        //            if (elementosSeparados.Length >= 2)
+        //            {
+        //                nombres.Add(elementosSeparados[0]);
+        //                enlaces.Add(elementosSeparados[1]);
+        //            }
+        //        }
+
+        //        List<string> elementosCombinados = new List<string>();
+
+        //        for (int i = 0; i < nombres.Count; i++)
+        //        {
+        //            if (i != id)
+        //            {
+        //                elementosCombinados.Add($"{nombres[i]};{enlaces[i]}");
+        //            } else
+        //            {
+        //                elementosCombinados.Add($"{nombre};{enlace}");
+        //            }
+        //        }
+
+        //        // Volver a juntar todo en una sola cadena con el separador '|'
+        //        string resultado = String.Join("|", elementosCombinados);
+
+
+        //        var existingCv = db.Cv.Find(1002);
+        //        existingCv.Portafolio = resultado;
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Entry(existingCv).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            return RedirectToAction("EditarCv");
+        //        }
+        //    }
+
+        //    return View("EditarElementoPortafolio");
+        //}
 
 
 
