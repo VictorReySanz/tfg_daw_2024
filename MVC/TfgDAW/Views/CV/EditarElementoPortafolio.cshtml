@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +52,7 @@
         <div id="contenidoMenuCuenta">
             <p>Nombres</p>
             <div class="linea"></div>
-            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a> 
+            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
             <div class="linea"></div>
             <p>Cerrar sesion</p>
         </div>
@@ -61,57 +61,29 @@
     <main>
 
         <!-- contenido -->
-         @*@using (Html.BeginForm("CrearElemento","Libros",FormMethod.Post,new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("EditarElementoPortafolio", "Cv", FormMethod.Post))
         {
-            @Html.AntiForgeryToken()*@
 
             <div class="contenido">
 
-                <div class="izquierda">
-
-                    <img class="portada" id="imgPreview" src="~/Content/imgs/imgpordefecto.jpg" />
-                    <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
-
-
+                <div class="titulo">
+                    <input type="text" name="titulo" class="titulo-campo" placeholder="Titulo" value="" />
                 </div>
-                <div class="derecha">
 
+                <div class="enlace">
+                    <input type="text" name="enlace" class="enlace-campo" placeholder="Enlace" />
+                </div>
 
-                    <div class="titulo">
-                        <input type="text" name="titulo" class="titulo-campo" placeholder="Titulo" />
-                         @*@Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo", placeholder = "Titulo", maxlength = "100" } })*@ 
-        </div>
+                <input class="subir" type="submit" value="Subir" />
 
-        <div class="enlace">
-            <input type="text" name="enlace" class="enlace-campo" placeholder="Enlace" />
-            @* @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo", placeholder = "Autor", maxlength = "100" } })*@ 
-        </div>
-
-        <input class="subir" type="submit" value="Subir" />
-
-        </div>
-
-
-        </div>
-        @*}*@ 
+            </div>
+        }
     </main>
 </body>
 </html>
 
 
-<!-- @section Scripts {
-                    @Scripts.Render("~/bundles/jqueryval")
-                }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
-@*Script para previsualizar la imagen*@ -->
-<script>
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function () {
-            var imgElement = document.getElementById('imgPreview');
-            imgElement.src = reader.result;
-            imgElement.style.display = 'block';
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
