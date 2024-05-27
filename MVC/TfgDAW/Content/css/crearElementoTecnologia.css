@@ -1,0 +1,300 @@
+﻿body { /************************ nav ************************/
+    nav
+
+{
+    background-color: #73E665;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    text-align: center;
+}
+
+    nav ul li {
+        flex-grow: 1;
+    }
+
+    /************************ menu ************************/
+    nav ul #liVerMenu {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+#menu {
+    display: none;
+    position: absolute;
+    background-color: #5DE3AB;
+    width: 250px;
+    height: 100%;
+    text-align: center;
+    animation: aparecer 0.75s forwards;
+}
+
+#verMenu {
+    display: none;
+}
+
+    #verMenu:checked {
+        animation: mover 0.75s forwards;
+    }
+
+#menu #contenidoMenu {
+    margin-top: 20px;
+}
+
+/*visual*/
+.verMenuDiv {
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+    .verMenuDiv .linea1 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    .verMenuDiv .linea2 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    .verMenuDiv .linea3 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+#verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
+    animation: linea1Menu 0.75s forwards;
+}
+
+#verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
+    animation: linea2Menu 0.75s forwards;
+}
+
+#verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
+    animation: linea3Menu 0.75s forwards;
+}
+
+/************************ menu cuenta ************************/
+nav ul #liVerMenuCuenta {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#menuCuenta {
+    display: none;
+    position: absolute;
+    left: 85%;
+    background-color: #4F91E8;
+    width: 250px;
+    height: 200px;
+    border-radius: 15px;
+    text-align: center;
+    animation: aparecerCuenta 0.75s forwards;
+}
+
+#verMenuCuenta {
+    display: none;
+}
+
+#menuCuenta #contenidoMenuCuenta {
+    margin-top: 20px;
+}
+
+.cuentaImg {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.cuentaClose {
+    width: 20px;
+}
+
+    .cuentaClose .linea1 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+        opacity: 0;
+    }
+
+    .cuentaClose .linea2 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+        opacity: 0;
+    }
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .cuentaImg {
+    animation: animacionCuenta 1s forwards;
+}
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .linea1 {
+    animation: animacionCuentaLinea1 1s forwards;
+}
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .linea2 {
+    animation: animacionCuentaLinea2 1s forwards;
+}
+
+
+
+/************************ contenido ************************/
+.contenido {
+    margin-top: 100px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.titulo {
+    max-width: 100%;
+    text-align: center;
+}
+
+.titulo-campo {
+    font-size: 55px;
+    max-width: 50%;
+    text-align: center;
+    background-color: #A5E35D;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 15px;
+}
+
+    .titulo-campo::placeholder {
+        color: black;
+    }
+
+.subir {
+    margin-top: 50px;
+    background-color: #5DE37E;
+    border-radius: 20px;
+    width: 10%;
+    font-size: 40px;
+}
+
+/************************ extras ************************/
+.linea {
+    width: 50%;
+    height: 1px;
+    background-color: #000;
+    position: relative;
+    left: 25%;
+    margin: 5px;
+}
+
+/************************ animaciones ************************/
+/*Desplegar menu*/
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+/* Mover el checkbox del menu */
+@keyframes mover {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(2300%);
+    }
+}
+
+/*Desplegar menu de cuenta*/
+@keyframes aparecerCuenta {
+    0% {
+        opacity: 0;
+        transform: translateX(200%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(15%);
+    }
+}
+
+/*Animacion de verMenu*/
+@keyframes linea1Menu {
+
+    100% {
+        rotate: -30deg;
+    }
+}
+
+@keyframes linea2Menu {
+
+    100% {
+        rotate: 30deg;
+        transform: translate(2px, 2px);
+    }
+}
+
+@keyframes linea3Menu {
+
+    100% {
+        transform: translateX(-100px);
+    }
+}
+
+/*Animacion de verCuenta*/
+@keyframes animacionCuenta {
+
+    100% {
+        rotate: 360deg;
+        transform: translateX(200%);
+    }
+}
+
+@keyframes animacionCuentaLinea1 {
+
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        rotate: -30deg;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes animacionCuentaLinea2 {
+
+    0% {
+        opacity: 0;
+        transform: translate(200%, -500%);
+    }
+
+    100% {
+        opacity: 1;
+        rotate: 30deg;
+        transform: translate(50%, -550%);
+    }
+}
