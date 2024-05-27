@@ -1,28 +1,4 @@
-﻿.contenido {
-    display: grid;
-    grid-template-columns: 0.5fr auto;
-    margin-top: 50px;
-}
-
-.izquierda {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    padding: 20px;
-}
-
-.derecha {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
-    text-align: center;
-}
-
-
-/************************ nav ************************/
+﻿/************************ nav ************************/
 nav {
     background-color: #73E665;
     padding: 10px;
@@ -178,21 +154,21 @@ nav ul #liVerMenuCuenta {
 
 
 /************************ contenido ************************/
-.portada {
-    width: 300px;
-    height: 425px;
-    border-radius: 15px;
+.contenido {
+    margin-top: 100px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
 }
 
 .titulo {
     max-width: 100%;
     text-align: center;
-    margin-right: 80px;
 }
 
 .titulo-campo {
     font-size: 55px;
-    max-width: 100%;
+    max-width: 50%;
     text-align: center;
     background-color: #A5E35D;
     width: 100%;
@@ -209,12 +185,11 @@ nav ul #liVerMenuCuenta {
     padding-top: 30px;
     max-width: 100%;
     text-align: center;
-    margin-right: 80px;
 }
 
 .enlace-campo {
     font-size: 40px;
-    max-width: 100%;
+    max-width: 80%;
     text-align: center;
     background-color: #A5E35D;
     width: 100%;
@@ -231,18 +206,9 @@ nav ul #liVerMenuCuenta {
     margin-top: 50px;
     background-color: #5DE37E;
     border-radius: 20px;
-    width: 40%;
+    width: 10%;
     font-size: 40px;
 }
-
-#imageFile {
-    color: rgba(0,0,0,0);
-    margin-left: 125px;
-    margin-top: 10px;
-}
-
-#pdfFile {
-    margin-top: 100px;
 }
 
 /************************ extras ************************/

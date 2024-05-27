@@ -365,6 +365,11 @@ nav ul #liVerFiltro {
 
 
 
+.visibleImg {
+    width: 40px;
+    height: auto;
+}
+
 
 /************************ extras ************************/
 .linea {
