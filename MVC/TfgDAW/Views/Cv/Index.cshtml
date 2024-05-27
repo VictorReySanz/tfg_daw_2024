@@ -42,7 +42,7 @@
             </li>
             <li id="liBuscar">
 
-                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
+                @using (Html.BeginForm("Index", "Cv", FormMethod.Get))
                 {
                     <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
                 }
@@ -86,9 +86,9 @@
                         </div>
                         <p class="name-client">
                             @Html.DisplayFor(modelItem => item.nombre_completo)
-                          @*  <span>
+                            <span>
                                 @Html.DisplayFor(modelItem => item.profesión)
-                            </span>*@
+                            </span>
                         </p>
                         <div class="social-media">
                             <a href="@ViewBag.Redes[0]">
