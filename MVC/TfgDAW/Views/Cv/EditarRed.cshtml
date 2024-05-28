@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/editarElementoPortafolio.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/editarRed.css">
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
 <body>
@@ -61,23 +61,18 @@
     <main>
 
         <!-- contenido -->
-        @using (Html.BeginForm("EditarElementoPortafolio", "Cv", FormMethod.Post))
+        @using (Html.BeginForm("EditarRed", "Cv", FormMethod.Post))
         {
 
             <div class="contenido">
 
-                <div class="titulo">
-                    <input type="text" name="nombre" class="titulo-campo" placeholder="Nombre" value="@ViewBag.NombrePortafolioEditar" />
-                </div>
-
                 <div class="enlace">
-                    <input type="text" name="enlace" class="enlace-campo" placeholder="Enlace" value="@ViewBag.EnlacePortafolioEditar" />
+                    <input type="text" name="enlace" class="enlace-campo" placeholder="Enlace" value="@ViewBag.EnlaceRPortafolioEditar" />
                 </div>
 
                 <input class="subir" type="submit" value="Subir" />
 
-
-                <input type="hidden" name="ideditar" value="@ViewBag.Ideditar" />
+                <input type="hidden" name="ideditarR" value="@ViewBag.IdeditarR" />
 
             </div>
         }
