@@ -1,12 +1,13 @@
-﻿@model IEnumerable<TfgDAW.Models.Cv>
+@model TfgDAW.Models.Cv
 
 @{
-    ViewBag.Title = "Editar Cv";
+    ViewBag.Title = "Edit";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/editarcv2.css">
@@ -51,22 +52,6 @@
                     </div>
                 </label>
             </li>
-            <li id="liBuscar">
-                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
-                {
-                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
-                }
-            </li>
-            <li id="liVerFiltro">
-                <input type="checkbox" id="verFiltro">
-                <label id="verFiltroLabel" for="verFiltro">
-                    <div class="verFiltroDiv">
-                        <div class="linea1"></div>
-                        <div class="linea2"></div>
-                        <div class="linea3"></div>
-                    </div>
-                </label>
-            </li>
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
@@ -98,115 +83,32 @@
     </div>
     <!-- main -->
     <main>
-        <!-- Contenido -->
         <div class="contenido">
-            @foreach (var item in Model)
+            @using (Html.BeginForm("EditarCV2", "Cv", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                <div class="cv-container">
-                    @using (Html.BeginForm("EditarCV2", "Cv", FormMethod.Post))
-                    {
-                        @Html.HiddenFor(modelItem => item.cv_id)
-                        <p class="profesion">
-                            @Html.EditorFor(modelItem => item.profesión)
-                        </p>
-                        @Html.HiddenFor(modelItem => item.nombre_completo)
-                        @Html.HiddenFor(modelItem => item.visible)
-                        @Html.HiddenFor(modelItem => item.categoria_id)
-                        @Html.HiddenFor(modelItem => item.usuario_id)
-                        @Html.HiddenFor(modelItem => item.Portafolio)
-                        @Html.HiddenFor(modelItem => item.tecnología)
-                        <button type="submit">Guardar</button>
-                    }
+                @Html.AntiForgeryToken()
 
-                    @*Ver archivo*@
-                    <div>
-                        <input type="file" id="file-input" accept="application/pdf" />
-                    </div>
-                    <div id="pdf-viewer"></div>
+                @Html.HiddenFor(model => model.cv_id)
 
-                    <script>
-                        const pdfjsLib = window['pdfjs-dist/build/pdf'];
-                        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
-
-                        // URL del archivo PDF por defecto (desde la base de datos)
-                        const defaultUrl = '@Url.Action("VerArchivo", "Cv", new { id = item.cv_id })';
-
-                        // Cargar y mostrar el PDF por defecto
-                        loadPDF(defaultUrl);
-
-                        document.getElementById('file-input').addEventListener('change', function (event) {
-                            const file = event.target.files[0];
-                            if (file) {
-                                const reader = new FileReader();
-                                reader.onload = function (e) {
-                                    const arrayBuffer = e.target.result;
-                                    displayPDF(arrayBuffer);
-                                };
-                                reader.readAsArrayBuffer(file);
-                            }
-                        });
-
-                        function loadPDF(url) {
-                            const loadingTask = pdfjsLib.getDocument(url);
-                            loadingTask.promise.then(function (pdf) {
-                                const viewer = document.getElementById('pdf-viewer');
-                                viewer.innerHTML = ''; // Limpiar el visor antes de cargar el nuevo archivo
-
-                                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                                    pdf.getPage(pageNum).then(function (page) {
-                                        const scale = 1.5;
-                                        const viewport = page.getViewport({ scale: scale });
-
-                                        const canvas = document.createElement('canvas');
-                                        canvas.className = 'pdf-page';
-                                        viewer.appendChild(canvas);
-
-                                        const context = canvas.getContext('2d');
-                                        canvas.height = viewport.height;
-                                        canvas.width = viewport.width;
-
-                                        const renderContext = {
-                                            canvasContext: context,
-                                            viewport: viewport
-                                        };
-                                        page.render(renderContext);
-                                    });
-                                }
-                            });
-                        }
-
-                        function displayPDF(arrayBuffer) {
-                            const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-                            loadingTask.promise.then(function (pdf) {
-                                const viewer = document.getElementById('pdf-viewer');
-                                viewer.innerHTML = ''; // Limpiar el visor antes de cargar el nuevo archivo
-
-                                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                                    pdf.getPage(pageNum).then(function (page) {
-                                        const scale = 1.5;
-                                        const viewport = page.getViewport({ scale: scale });
-
-                                        const canvas = document.createElement('canvas');
-                                        canvas.className = 'pdf-page';
-                                        viewer.appendChild(canvas);
-
-                                        const context = canvas.getContext('2d');
-                                        canvas.height = viewport.height;
-                                        canvas.width = viewport.width;
-
-                                        const renderContext = {
-                                            canvasContext: context,
-                                            viewport: viewport
-                                        };
-                                        page.render(renderContext);
-                                    });
-                                }
-                            });
-                        }
-                    </script>
+                <div class="profesion">
+                    @Html.EditorFor(model => model.profesión, new { htmlAttributes = new { @class = "profesion-campo" } })
+                </div>
+                <div class="visible">
+                    @Html.EditorFor(model => model.visible, new { htmlAttributes = new { @class = "visible-campo" } })
+                </div>
+                <div class="documento">
+                    <input type="file" name="file" class="documento-campo" />
+                </div>
+                <div class="boton">
+                    <input type="submit" value="Guardar" class="guardar" />
                 </div>
             }
         </div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
     </main>
 </body>
 </html>
