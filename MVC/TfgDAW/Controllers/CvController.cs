@@ -30,17 +30,27 @@ namespace TfgDAW.Controllers
             var cv = cvQuery.ToList();
 
             //Listar redes
-            var cvRedesQuery = db.Cv.Where(l => l.visible == true).Select(c => c.redes_sociales).FirstOrDefault();
+            var cvRedesQuery = db.Cv.Where(l => l.visible == true).Select(c => c.redes_sociales);
 
-            if (cvRedesQuery != null)
+            if (cvRedesQuery.Any())
             {
-                string[] redes = cvRedesQuery.Split(';');
+                List<string> redesList = new List<string>();
 
-                ViewBag.Redes = redes;
+                foreach (var redes in cvRedesQuery)
+                {
+                    if (!string.IsNullOrEmpty(redes))
+                    {
+                        string[] redesArray = redes.Split(';');
+                        redesArray = redesArray.Where(r => !string.IsNullOrEmpty(r)).ToArray();
+                        redesList.AddRange(redesArray);
+                    }
+                }
+
+                ViewBag.RedesIndex = redesList.ToArray();
             }
             else
             {
-                ViewBag.Redes = null;
+                ViewBag.RedesIndex = null;
             }
 
             return View(cv);
@@ -87,7 +97,7 @@ namespace TfgDAW.Controllers
                 ViewBag.Enlaces = enlacesVacio;
             }
 
-            //Listar tecnologias                      /*cambiar por id del usuario correcto*/
+            //Listar tecnologias
             var cvTecnologiasQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.tecnología).FirstOrDefault();
 
             if (cvTecnologiasQuery != null)
@@ -111,7 +121,7 @@ namespace TfgDAW.Controllers
         {
 
            int userId = (int)Session["userId"];
-            var cvQuery = db.Cv.Where(c => c.usuario_id == userId);/*cambiar por id del usuario correcto*/
+            var cvQuery = db.Cv.Where(c => c.usuario_id == userId);
             var cv = cvQuery.ToList();
 
             if (!cv.Any())
@@ -138,17 +148,17 @@ namespace TfgDAW.Controllers
                     visible = false,
                     categoria_id = 2,
                     usuario_id = user.usuario_id,
+                    redes_sociales = "#;#;#;#;",
                     file_cv = documentoEjemplo
                 };
 
                 db.Cv.Add(nuevoCv);
                 db.SaveChanges();
 
-                // Actualizar la variable cv después de agregar el nuevo CV
                 cv = new List<Cv> { nuevoCv };
             }
 
-            //Listar portafolio                      /*cambiar por id del usuario correcto*/
+            //Listar portafolio
             var cvPortafolioQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.Portafolio).FirstOrDefault();
 
             if (cvPortafolioQuery != null)
@@ -181,7 +191,7 @@ namespace TfgDAW.Controllers
                 ViewBag.Enlaces = enlacesVacio;
             }
 
-            //Listar tecnologias                      /*cambiar por id del usuario correcto*/
+            //Listar tecnologias
             var cvTecnologiasQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.tecnología).FirstOrDefault();
 
             if (cvTecnologiasQuery != null)
@@ -195,6 +205,20 @@ namespace TfgDAW.Controllers
                 string[] tecnologiasVacio = { "Añade aqui tus tecnologias" };
 
                 ViewBag.Tecnologias = tecnologiasVacio;
+            }
+
+            //Listar redes
+            var cvRedesQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.redes_sociales).FirstOrDefault();
+
+            if (cvRedesQuery != null)
+            {
+                string[] redes = cvRedesQuery.Split(';');
+
+                ViewBag.RedesPersonal = redes;
+            }
+            else
+            {
+                ViewBag.RedesPersonal = null;
             }
 
             return View(cv);
@@ -298,11 +322,12 @@ namespace TfgDAW.Controllers
         }
 
         //Editar un elemento del portafolio: get
-        public ActionResult EditarElementoPortafolio(string nombre, string enlace)
+        public ActionResult EditarElementoPortafolio(string nombre, string enlace, int ideditar)
         {
 
             ViewBag.NombrePortafolioEditar = nombre;
             ViewBag.EnlacePortafolioEditar = enlace;
+            ViewBag.Ideditar = ideditar;
             return View();
         }
         //Editar un elemento del portafolio: put
@@ -350,7 +375,7 @@ namespace TfgDAW.Controllers
                 string resultado = String.Join("|", elementosCombinados);
 
 
-                var existingCv = db.Cv.Find(id);
+                var existingCv = db.Cv.Find(ideditar);
                 existingCv.Portafolio = resultado;
                 if (ModelState.IsValid)
                 {
@@ -443,12 +468,12 @@ namespace TfgDAW.Controllers
             return RedirectToAction("EditarCv");
         }
 
-        //Crear un elemento del portafolio: get
+        //Crear un elemento de tecnologia: get
         public ActionResult CrearElementoTecnologia()
         {
             return View();
         }
-        //Crear un elemento del portafolio: put
+        //Crear un elemento de tecnologia: put
         [HttpPost]
         public ActionResult CrearElementoTecnologia(int id, FormCollection form)
         {
@@ -469,6 +494,97 @@ namespace TfgDAW.Controllers
 
 
             return View();
+        }
+
+        //Eliminar un elemento de redes sociales
+        public ActionResult EliminarRed(int id, int ideliminarR)
+        {
+
+            int userId = (int)Session["userId"];
+
+            var cvRedesQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.redes_sociales).FirstOrDefault();
+
+            string[] redes = cvRedesQuery.Split(';');
+
+            List<string> elementosCombinados = new List<string>();
+
+            for (int i = 0; i < redes.Length; i++)
+            {
+                if (i != id)
+                {
+                    elementosCombinados.Add($"{redes[i]}");
+                } else
+                {
+                    elementosCombinados.Add($"#");
+                }
+            }
+
+            string resultado = String.Join(";", elementosCombinados);
+
+
+            var existingCv = db.Cv.Find(ideliminarR);
+            existingCv.redes_sociales = resultado;
+            if (ModelState.IsValid)
+            {
+                db.Entry(existingCv).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("EditarCv");
+            }
+            return RedirectToAction("EditarCv");
+        }
+
+        //Editar un elemento de rede social: get
+        public ActionResult EditarRed(string enlace, int ideditarR)
+        {
+            ViewBag.EnlaceRPortafolioEditar = enlace;
+            ViewBag.IdeditarR = ideditarR;
+            return View();
+        }
+        //Editar un elemento de red social: put
+        [HttpPost]
+        public ActionResult EditarRed(int id, string enlace, int ideditarR)
+        {
+
+            int userId = (int)Session["userId"];
+            var cvQuery = db.Cv.Where(c => c.usuario_id == userId);
+            var cv = cvQuery.ToList();
+
+            //Listar portafolio
+            var cvRedQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.redes_sociales).FirstOrDefault();
+
+            if (cvRedQuery != null)
+            {
+                string[] redes = cvRedQuery.Split(';');
+
+                List<string> elementosCombinados = new List<string>();
+
+                for (int i = 0; i < redes.Length; i++)
+                {
+                    if (i != id)
+                    {
+                        elementosCombinados.Add($"{redes[i]}");
+                    }
+                    else
+                    {
+                        elementosCombinados.Add($"{enlace}");
+                    }
+                }
+
+                // Volver a juntar todo en una sola cadena con el separador '|'
+                string resultado = String.Join(";", elementosCombinados);
+
+
+                var existingCv = db.Cv.Find(ideditarR);
+                existingCv.redes_sociales = resultado;
+                if (ModelState.IsValid)
+                {
+                    db.Entry(existingCv).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("EditarCv");
+                }
+            }
+
+            return View("EditarRed");
         }
 
 
