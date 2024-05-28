@@ -52,23 +52,6 @@
                     </div>
                 </label>
             </li>
-            <li id="liBuscar">
-
-                @using (Html.BeginForm("Index", "Libros", FormMethod.Get))
-                {
-                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
-                }
-            </li>
-            <li id="liVerFiltro">
-                <input type="checkbox" id="verFiltro">
-                <label id="verFiltroLabel" for="verFiltro">
-                    <div class="verFiltroDiv">
-                        <div class="linea1"></div>
-                        <div class="linea2"></div>
-                        <div class="linea3"></div>
-                    </div>
-                </label>
-            </li>
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
@@ -108,9 +91,9 @@
                 ViewBag.Title = "CV de " + @Html.DisplayFor(modelItem => item.nombre_completo);
                 <div class="cv-container">
                     <p class="nombre-completo">@Html.DisplayFor(modelItem => item.nombre_completo)</p>
-                    @*<p class="profesion">@Html.DisplayFor(modelItem => item.profesión)</p>*@
+                    <p class="profesion">@Html.DisplayFor(modelItem => item.profesión)</p>
 
-        @*Ver archivo*@
+                    @*Ver archivo*@
                     <div id="pdf-viewer"></div>
                     <script>
 const url = '@Url.Action("VerArchivo", "Cv", new { id = item.cv_id })';
@@ -144,6 +127,22 @@ loadingTask.promise.then(function(pdf) {
     }
 });
                     </script>
+
+                    @*TECNOLOGIAS*@
+                    <div class="portafolio-container">
+                        <div id="portafolio-titulo">APTITUDES</div>
+
+                        <div class="portafolio">
+                            @for (int i = 0; i < ViewBag.Tecnologias.Length - 1; i++)
+                            {
+                                <div class="portafolio-elemento">
+                                    <p class="portafolio-elemento-nombre">@ViewBag.Tecnologias[i]</p>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
                 </div>
                 <div class="portafolio-container">
                     <div id="portafolio-titulo">PORTAFOLIO</div>

@@ -1,8 +1,4 @@
-@model TfgDAW.Models.Cv
-
-@{
-    ViewBag.Title = "Edit";
-}
+﻿
 
 <!DOCTYPE html>
 <html>
@@ -10,10 +6,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/editarcv2.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/crearElementoTecnologia.css">
     <script src="~/Content/js/scripts.js" defer></script>
-    @*Visor de pdf PDF.js*@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
 </head>
 <body>
     <!-- Menu -->
@@ -23,20 +17,10 @@
             <div class="linea"></div>
             <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
             <div class="linea"></div>
-            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+            <p>Grupos</p>
             <div class="linea"></div>
             <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
-            <div class="linea"></div>
-            <input id="cvDesplegar" type="checkbox">
-            <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
-        </div>
-    </div>
-    <!-- SubMenu CV -->
-    <div id="menuCV">
-        <div id="contenidoMenuCV">
-            <a href="@Url.Action("MiCv", "Cv")">Mi CV</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+            <div class="linea"></div><p>CVs</p>
         </div>
     </div>
     <!-- Nav -->
@@ -64,13 +48,6 @@
             </li>
         </ul>
     </nav>
-    <!-- Filtro -->
-    <div id="filtro">
-        <div id="contenidoFiltro">
-            <p>Categoria</p>
-            <div class="linea"></div>
-        </div>
-    </div>
     <!-- Menu de cuenta -->
     <div id="menuCuenta">
         <div id="contenidoMenuCuenta">
@@ -83,32 +60,28 @@
     </div>
     <!-- main -->
     <main>
-        <div class="contenido">
-            @using (Html.BeginForm("EditarCV2", "Cv", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.AntiForgeryToken()
 
-                @Html.HiddenFor(model => model.cv_id)
+        <!-- contenido -->
+        @using (Html.BeginForm("CrearElementoTecnologia", "Cv", FormMethod.Post))
+        {
 
-                <div class="profesion">
-                    @Html.EditorFor(model => model.profesión, new { htmlAttributes = new { @class = "profesion-campo" } })
+            <div class="contenido">
+
+                <div class="titulo">
+                    <input type="text" name="nombre" class="titulo-campo" placeholder="Nombre" />
                 </div>
-                <div class="visible">
-                    @Html.EditorFor(model => model.visible, new { htmlAttributes = new { @class = "visible-campo" } })
-                </div>
-                <div class="documento">
-                    <input type="file" name="file" class="documento-campo" />
-                </div>
-                <div class="boton">
-                    <input type="submit" value="Guardar" class="guardar" />
-                </div>
-            }
-        </div>
 
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
+                <input class="subir" type="submit" value="Subir" />
+
+            </div>
         }
     </main>
 </body>
 </html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
