@@ -87,29 +87,29 @@
         <div class="contenido">
             @foreach (var item in Model)
             {
-                <div class="cv-container">
-                    <p class="nombre-completo">@Html.DisplayFor(modelItem => item.nombre_completo)</p>
-                    <p class="profesion">@Html.DisplayFor(modelItem => item.profesión)</p>
-                    <div class="visibilidad">
-                        @if (item.visible ?? false)
-                        {
-                            <img class="visibleImg" src="~/Content/imgs/visible.png" />
-                        }
-                        else
-                        {
-                            <img class="visibleImg" src="~/Content/imgs/novisible.png" />
-                        }
-                    </div>
+            <div class="cv-container">
+                <p class="nombre-completo">@Html.DisplayFor(modelItem => item.nombre_completo)</p>
+                <p class="profesion">@Html.DisplayFor(modelItem => item.profesión)</p>
+                <div class="visibilidad">
+                    @if (item.visible ?? false)
+                    {
+                    <img class="visibleImg" src="~/Content/imgs/visible.png" />
+                    }
+                    else
+                    {
+                    <img class="visibleImg" src="~/Content/imgs/novisible.png" />
+                    }
+                </div>
 
-                    <!-- Editar CV -->
-                    <a href="@Url.Action("EditarCV2", "Cv", new { id = item.cv_id })" id="editar">
+                <!-- Editar CV -->
+                <a href="@Url.Action(" EditarCV2", "Cv" , new { id=item.cv_id })" id="editar">
 
-                        <img id="editarImg" src="~/Content/imgs/editar.png" />
-                    </a>
+                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                </a>
 
-                    @*Ver archivo*@
-                    <div id="pdf-viewer"></div>
-                    <script>
+                @*Ver archivo*@
+                <div id="pdf-viewer"></div>
+                <script>
 const url = '@Url.Action("VerArchivo", "Cv", new { id = item.cv_id })';
 
 const pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -140,38 +140,38 @@ loadingTask.promise.then(function(pdf) {
         });
     }
 });
-                    </script>
+                </script>
 
-                    @*TECNOLOGIAS*@
-                    <div class="portafolio-container">
-                        <div id="portafolio-titulo">APTITUDES</div>
+                @*TECNOLOGIAS*@
+                <div class="portafolio-container">
+                    <div id="portafolio-titulo">APTITUDES</div>
 
-                        <!-- Añadir elemento -->
-                        <a href="@Url.Action("CrearElementoTecnologia", "Cv", new { id = item.cv_id })" name="idcrearT" id="anadir">
+                    <!-- Añadir elemento -->
+                    <a href="@Url.Action(" CrearElementoTecnologia", "Cv" , new { id=item.cv_id })" name="idcrearT" id="anadir">
 
-                            <img id="anadirImg" src="~/Content/imgs/anadir.png" />
-                        </a>
-                        <div class="portafolio">
-                            @for (int i = 0; i < ViewBag.Tecnologias.Length - 1; i++)
-                            {
-                                <div class="portafolio-elemento">
-                                    <p class="portafolio-elemento-nombre">@ViewBag.Tecnologias[i]</p>
+                        <img id="anadirImg" src="~/Content/imgs/anadir.png" />
+                    </a>
+                    <div class="portafolio">
+                        @for (int i = 0; i < ViewBag.Tecnologias.Length - 1; i++)
+                        {
+                        <div class="portafolio-elemento">
+                            <p class="portafolio-elemento-nombre">@ViewBag.Tecnologias[i]</p>
 
-                                    <div class="botones">
-                                        <!-- Eliminar elemento tecnologia -->
-                                        <a href="@Url.Action("EliminarTecnologia", "Cv", new { id = i, ideliminarT = item.cv_id })" id="eliminar" name="ideliminarT">
+                            <div class="botones">
+                                <!-- Eliminar elemento tecnologia -->
+                                <a href="@Url.Action(" EliminarTecnologia", "Cv" , new { id=i, ideliminarT=item.cv_id })" id="eliminar" name="ideliminarT">
 
-                                            <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
-                                        </a>
-                                    </div>
-                                </div>
-
-                            }
-
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
+                        }
+
+                    </div>
                 </div>
+
+            </div>
                 //PORTAFOLIO
                 <div class="portafolio-container">
                     <div id="portafolio-titulo">PORTAFOLIO</div>
