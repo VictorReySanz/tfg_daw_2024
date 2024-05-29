@@ -83,7 +83,8 @@
                     <a href="@Url.Action("VerCv", "Cv", new { id = item.cv_id })" class="cv-a" name="id">
                         <div class="user-picture">
 
-                            <img class="img" src="~/Content/imgs/iconocuenta.png" />
+                            @*<img class="img" src="~/Content/imgs/iconocuenta.png" />*@
+                            <img class="cuentaImgCv" src="@Url.Action("GetIcono", "Cv", new { id = item.usuario_id })" alt="Foto del usuario" />
                         </div>
                         <p class="name-client">
                             @Html.DisplayFor(modelItem => item.nombre_completo)
