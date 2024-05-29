@@ -24,6 +24,30 @@ namespace TfgDAW.Controllers
             return View(db.Grupos.ToList());
         }
 
+        public ActionResult Chat()
+        {
+
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // GET: Grupos/Details/5
         public ActionResult Details(int? id)
         {

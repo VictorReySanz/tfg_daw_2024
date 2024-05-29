@@ -66,37 +66,40 @@
     <main>
 
         <!-- contenido -->
-            <div class="contenido">
-                    @*<img class="portada" id="imgPreview" src="@Url.Action("GetImage", "Libros", new { id = Model.usuario_id })" />*@
-                    <img class="imgCuenta" id="imgPreview" src="~/Content/imgs/iconocuenta.png" />
+        @using (Html.BeginForm("MisDatos", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
 
+            @Html.HiddenFor(model => model.usuario_id)
+        <div class="contenido">
+            <img class="imgCuenta" id="imgPreview" src="@Url.Action("GetImage", "Usuarios", new { id = Model.usuario_id })" />
 
-                    <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
 
-                    <div class="campos">
-                        <div>Nombre</div>
-                        <input class="inputs" placeholder="input de prueba" />
-                        @*@Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "titulo-campo" } })*@
-                    </div>
-                    <div class="campos">
-                        <div>Correo electronico</div>
-                        <input class="inputs" placeholder="input de prueba" />
-                        @*@Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "autor-campo" } })*@
-                    </div>
-                    <div class="campos">
-                        <div>Contraseña</div>
-                        <input class="inputs" placeholder="input de prueba" />
-                        @*@Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "descripcion-campo" } })*@
-                    </div>
-
-                <div class="botones">
-                        <input type="submit" name="boton" value="Guardar" class="boton" />
-                        <input type="submit" name="boton" value="Eliminar" class="boton" />
-                </div>
+            <div class="campos">
+                <div>Nombre</div>
+                @*<input class="inputs" placeholder="input de prueba" />*@
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "inputs" } })
             </div>
-        
+            <div class="campos">
+                <div>Correo electronico</div>
+                @*<input class="inputs" placeholder="input de prueba" />*@
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "inputs" } })
+            </div>
+            <div class="campos">
+                <div>Contraseña</div>
+                <input class="inputs" name="password" placeholder="Contraseña antigua" />
+                <input class="inputs" name="passwordN" placeholder="Contraseña nueva" />
+            </div>
 
-    </main>
+            <div class="botones">
+                <input type="submit" name="boton" value="Guardar" class="boton" />
+                <input type="submit" name="boton" value="Eliminar" class="boton" />
+            </div>
+        </div>
+        }
+
+        </main>
 </body>
 </html>
 
@@ -117,3 +120,5 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
+
+

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -587,8 +588,15 @@ namespace TfgDAW.Controllers
             return View("EditarRed");
         }
 
-
-
+        public ActionResult GetIcono(int id)
+        {
+            var usuario = db.Usuarios.FirstOrDefault(u => u.usuario_id == id);
+            if (usuario != null && usuario.foto != null)
+            {
+                return File(usuario.foto, "image/jpg"); 
+            }
+            return HttpNotFound();
+        }
 
 
 

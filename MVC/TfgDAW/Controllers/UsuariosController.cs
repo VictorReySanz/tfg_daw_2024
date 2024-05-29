@@ -2,9 +2,12 @@
 using BCrypt.Net;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using TfgDAW.Models;
 
 namespace TfgDAW.Controllers
@@ -26,10 +29,71 @@ namespace TfgDAW.Controllers
             return View();
         }
 
-        // Mis datos
+        // Mis datos GET
         public ActionResult MisDatos()
         {
-            return View();
+
+            int userId = (int)Session["userId"];
+            Usuarios usuario = db.Usuarios.Find(userId);
+
+            return View(usuario);
+        }
+
+        // Mis datos POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MisDatos(Usuarios usuarios, HttpPostedFileBase imageFile, string password, string passwordN)
+        {
+            var existingUsuario = db.Usuarios.Find(usuarios.usuario_id);
+            if (existingUsuario != null)
+            {
+                existingUsuario.nombre = usuarios.nombre;
+                existingUsuario.email = usuarios.email;
+
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    using (var reader = new System.IO.BinaryReader(imageFile.InputStream))
+                    {
+                        existingUsuario.foto = reader.ReadBytes(imageFile.ContentLength);
+                    }
+                }
+
+                if ((password != null) || (passwordN != null))
+                {
+                    int userId = (int)Session["userId"];
+                    Usuarios usuariosPassword = db.Usuarios.Find(userId);
+                    bool valida = BCrypt.Net.BCrypt.Verify(password, usuariosPassword.password);
+                    if (valida)
+                    {
+                        existingUsuario.password = BCrypt.Net.BCrypt.HashPassword(passwordN);
+                    }
+                }
+
+            }
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(existingUsuario).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("MisDatos");
+            }
+
+            return View(usuarios);
+        }
+
+        //Mostrar imagen en mis datos
+        public ActionResult GetImage(int id)
+        {
+            int userId = (int)Session["userId"];
+            var usuario = db.Usuarios.Find(userId);
+            if (usuario != null && usuario.foto != null)
+            {
+                return File(usuario.foto, "image/jpg");
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
 
@@ -61,6 +125,19 @@ namespace TfgDAW.Controllers
             {
                 password = password.Trim();
 
+                string filePath = Server.MapPath("~/Content/imgs/iconocuenta.png");
+                byte[] imgEjemplo = null;
+                if (System.IO.File.Exists(filePath))
+                {
+                    using (var fileStream = new System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                    {
+                        using (var reader = new System.IO.BinaryReader(fileStream))
+                        {
+                            imgEjemplo = reader.ReadBytes((int)fileStream.Length);
+                        }
+                    }
+                }
+
                 Usuarios nuevo = new Usuarios
                 {
 
@@ -68,7 +145,8 @@ namespace TfgDAW.Controllers
                     nombre = nombre,
                     password = BCrypt.Net.BCrypt.HashPassword(password),
                     email = email,
-                    rol = "usuario"
+                    rol = "usuario",
+                    foto = imgEjemplo
                 };
 
                 this.db.Usuarios.Add(nuevo);
