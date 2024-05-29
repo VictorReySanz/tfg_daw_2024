@@ -8,6 +8,13 @@ namespace TfgDAW.Controllers
 {
     public class HomeController : Controller
     {
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
+        /*
         public ActionResult Index()
         {
             return View();
@@ -25,6 +32,6 @@ namespace TfgDAW.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        }*/
     }
 }
