@@ -32,15 +32,10 @@ namespace TfgDAW.Controllers
             var libros = librosQuery.ToList();
 
             //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
 
-            if (Session["userId"] != null) {
-                int userId = (int)Session["userId"];
-
-                var user = db.Usuarios.Find(userId);
-                ViewBag.user = user.nombre;
-
-            }
-         
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
 
             return View(libros);
         }
@@ -256,6 +251,21 @@ namespace TfgDAW.Controllers
             }
 
             return File(librosArchivo.file_libros, "application/pdf");
+        }
+
+        //Mostrar icono perfil
+        public ActionResult GetIcono()
+        {
+            int userId = (int)Session["userId"];
+            var icono = db.Usuarios.Find(userId);
+            if (icono != null && icono.foto != null)
+            {
+                return File(icono.foto, "image/jpg");
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
 
