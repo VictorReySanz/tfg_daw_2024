@@ -1,10 +1,17 @@
-﻿
-
+/************************ body ************************/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(245, 115, 199, 0.4);
+    overflow-x: hidden;
+}
 
 /************************ nav ************************/
 nav {
     background-color: #F573C7;
     padding: 10px;
+    height: 57px;
 }
 
     nav ul {
@@ -23,16 +30,18 @@ nav {
         nav ul #liVerMenu {
             display: flex;
             justify-content: flex-start;
+            z-index: 1001;
         }
 
 #menu {
     display: none;
-    position: absolute;
+    position: fixed;
     background-color: #F74ABB;
     width: 250px;
     height: 100%;
     text-align: center;
     animation: aparecer 0.75s forwards;
+    z-index: 1000;
 }
 
 #verMenu {
@@ -44,8 +53,20 @@ nav {
     }
 
 #menu #contenidoMenu {
-    margin-top: 20px;
+    margin-top: 50px;
+    width: 100%;
 }
+
+    #menu #contenidoMenu a {
+        text-decoration: none;
+        color: inherit;
+        padding: 0.5em;
+    }
+
+        #menu #contenidoMenu a:hover {
+            margin-left: 2em;
+            color: white;
+        }
 
 /*visual*/
 .verMenuDiv {
@@ -78,82 +99,78 @@ nav {
         z-index: 1;
     }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
-    animation: linea1Menu 0.75s forwards;
+#verMenu:checked + #verMenuLabel {
+    position: fixed;
 }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
-    animation: linea2Menu 0.75s forwards;
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
+        animation: linea1Menu 0.75s forwards;
+    }
+
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
+        animation: linea2Menu 0.75s forwards;
+    }
+
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
+        animation: linea3Menu 0.75s forwards;
+    }
+/****************************** CVS ********************************/
+#cvDesplegar {
+    display: none;
 }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
-    animation: linea3Menu 0.75s forwards;
+#cvDesplegarLabel {
+    cursor: pointer;
+    padding: 0.5em;
 }
+
+    #cvDesplegarLabel:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#contenidoMenuCV a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+    #contenidoMenuCV a:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#menuCV {
+    display: none;
+    position: absolute;
+    top: 20em;
+    left: 8em;
+    background-color: #73E665;
+    width: 250px;
+    height: 7em;
+    text-align: center;
+    padding-top: 1.5em;
+    border-radius: 15px;
+    animation: aparecerCV 0.75s forwards;
+    z-index: 1001;
+}
+
 
 /************************ menu cuenta ************************/
-nav ul #liVerMenuCuenta {
-    display: flex;
-    justify-content: flex-end;
+#liVerMenuCuenta {
+    display: nome;
 }
 
 #menuCuenta {
     display: none;
-    position: absolute;
-    left: 85%;
-    background-color: #F74ABB;
-    width: 250px;
-    height: 200px;
-    border-radius: 15px;
+}
+/************************ extras ************************/
+.linea {
+    width: 50%;
+    height: 1px;
+    margin-left: 65px;
     text-align: center;
-    animation: aparecerCuenta 0.75s forwards;
 }
-
-#verMenuCuenta {
-    display: none;
-}
-
-#menuCuenta #contenidoMenuCuenta {
-    margin-top: 20px;
-}
-
-.cuentaImg {
-    width: 50px;
-    height: auto;
-    cursor: pointer;
-}
-
-.cuentaClose {
-    width: 20px;
-}
-
-    .cuentaClose .linea1 {
-        background: black;
-        height: 4px;
-        border-radius: 10px;
-        z-index: 1;
-        opacity: 0;
-    }
-
-    .cuentaClose .linea2 {
-        background: black;
-        height: 4px;
-        border-radius: 10px;
-        z-index: 1;
-        opacity: 0;
-    }
-
-#verMenuCuenta:checked + #verMenuCuentaLabel .cuentaImg {
-    animation: animacionCuenta 1s forwards;
-}
-
-#verMenuCuenta:checked + #verMenuCuentaLabel .linea1 {
-    animation: animacionCuentaLinea1 1s forwards;
-}
-
-#verMenuCuenta:checked + #verMenuCuentaLabel .linea2 {
-    animation: animacionCuentaLinea2 1s forwards;
-}
-
 
 
 /************************ contenido ************************/
@@ -174,7 +191,7 @@ nav ul #liVerMenuCuenta {
 
 #imageFile {
     color: rgba(0,0,0,0);
-    margin-left: 125px;
+    margin-left: 165px;
     margin-top: 10px;
 }
 
@@ -206,15 +223,46 @@ nav ul #liVerMenuCuenta {
     margin-top: 40px;
 }
 
+/* confirmacion eliminacion */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
-/************************ extras ************************/
-.linea {
-    width: 50%;
-    height: 1px;
-    background-color: #000;
-    position: relative;
-    left: 25%;
-    margin: 5px;
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.btn-confirmar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
 }
 
 /************************ animaciones ************************/
@@ -312,5 +360,65 @@ nav ul #liVerMenuCuenta {
         opacity: 1;
         rotate: 30deg;
         transform: translate(50%, -550%);
+    }
+}
+
+/*Desplegar menu CV*/
+@keyframes aparecerCV {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+/************************ Medias queries ************************/
+@media (max-width: 768px) {
+    /*menu*/
+    #verMenu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: #4F91E8;
+        border: none;
+        cursor: pointer;
+    }
+
+        #verMenu:checked + #menu {
+            display: block;
+        }
+
+    #menu {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 57px;
+        left: 0;
+    }
+
+        #menu #contenidoMenu a {
+            padding: 0em;
+        }
+
+        #menu #contenidoMenu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+    /*menu cv*/
+    #menuCV {
+        position: fixed;
+        top: 18em;
+        left: 0;
+        width: 100%;
     }
 }
