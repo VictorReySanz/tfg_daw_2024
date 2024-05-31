@@ -45,7 +45,7 @@
                 $("#botonenviar").click(function () {
 
                     var nombreusuario = $("#mostrarnombre").val();
-                    var mensajeenviar = $("cajamensaje").val();
+                    var mensajeenviar = $("#cajamensaje").val();
 
                     chat.server.send(nombreusuario, mensajeenviar);
                     $("#cajamensaje").val("").focus();
