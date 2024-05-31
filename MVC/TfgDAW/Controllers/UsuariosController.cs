@@ -34,6 +34,7 @@ namespace TfgDAW.Controllers
         {
 
             int userId = (int)Session["userId"];
+            ViewBag.UserId = userId;
             Usuarios usuario = db.Usuarios.Find(userId);
 
             return View(usuario);
@@ -42,42 +43,47 @@ namespace TfgDAW.Controllers
         // Mis datos POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MisDatos(Usuarios usuarios, HttpPostedFileBase imageFile, string password, string passwordN)
+        public ActionResult MisDatos(Usuarios usuarios, HttpPostedFileBase imageFile, string password, string passwordN, string boton)
         {
-            var existingUsuario = db.Usuarios.Find(usuarios.usuario_id);
-            if (existingUsuario != null)
+            if (boton == "Guardar")
             {
-                existingUsuario.nombre = usuarios.nombre;
-                existingUsuario.email = usuarios.email;
-
-                if (imageFile != null && imageFile.ContentLength > 0)
+                var existingUsuario = db.Usuarios.Find(usuarios.usuario_id);
+                if (existingUsuario != null)
                 {
-                    using (var reader = new System.IO.BinaryReader(imageFile.InputStream))
+                    existingUsuario.nombre = usuarios.nombre;
+                    existingUsuario.email = usuarios.email;
+
+                    if (imageFile != null && imageFile.ContentLength > 0)
                     {
-                        existingUsuario.foto = reader.ReadBytes(imageFile.ContentLength);
+                        using (var reader = new System.IO.BinaryReader(imageFile.InputStream))
+                        {
+                            existingUsuario.foto = reader.ReadBytes(imageFile.ContentLength);
+                        }
                     }
+
+                    if ((password != null) || (passwordN != null))
+                    {
+                        int userId = (int)Session["userId"];
+                        Usuarios usuariosPassword = db.Usuarios.Find(userId);
+                        bool valida = BCrypt.Net.BCrypt.Verify(password, usuariosPassword.password);
+                        if (valida)
+                        {
+                            existingUsuario.password = BCrypt.Net.BCrypt.HashPassword(passwordN);
+                        }
+                    }
+
                 }
 
-                if ((password != null) || (passwordN != null))
+                if (ModelState.IsValid)
                 {
-                    int userId = (int)Session["userId"];
-                    Usuarios usuariosPassword = db.Usuarios.Find(userId);
-                    bool valida = BCrypt.Net.BCrypt.Verify(password, usuariosPassword.password);
-                    if (valida)
-                    {
-                        existingUsuario.password = BCrypt.Net.BCrypt.HashPassword(passwordN);
-                    }
+                    db.Entry(existingUsuario).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("MisDatos");
                 }
-
-            }
-
-            if (ModelState.IsValid)
+            } else if (boton == "Eliminar")
             {
-                db.Entry(existingUsuario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("MisDatos");
-            }
 
+            }
             return View(usuarios);
         }
 
@@ -222,6 +228,44 @@ namespace TfgDAW.Controllers
             }
 
         }
+
+        public ActionResult EliminarUsuario()
+        {
+            if (Session["userId"] != null)
+            {
+                int userId = (int)Session["userId"];
+                var usuario = db.Usuarios.Find(userId);
+                if (usuario != null)
+                {
+                    // Eliminar los libros del usuario
+                    var libros = db.Libros.Where(l => l.usuario_id == userId).ToList();
+                    db.Libros.RemoveRange(libros);
+
+                    // Eliminar los cv del usuario
+                    var cv = db.Cv.Where(l => l.usuario_id == userId).ToList();
+                    db.Cv.RemoveRange(cv);
+
+                    // Eliminar el usuario
+                    db.Usuarios.Remove(usuario);
+
+                    // Guardar los cambios en la base de datos
+                    db.SaveChanges();
+
+                    // Eliminar la sesión
+                    Session["userId"] = null;
+                }
+            }
+
+            // Redirigir a la página de usuarios
+            return RedirectToAction("Index", "Usuarios");
+        }
+
+
+
+
+
+
+
 
         // GET: Usuarios/Details/5
         public ActionResult Details(int id)
