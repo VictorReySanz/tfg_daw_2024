@@ -1,4 +1,4 @@
-﻿@{@model TfgDAW.Models.Usuarios
+@{@model TfgDAW.Models.Usuarios
 ViewData["Title"] = "Inicio Sesion";
 }
 
@@ -18,6 +18,8 @@ ViewData["Title"] = "Inicio Sesion";
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <!--<li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>-->
+                    <!--<li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>-->
                     <li>@Html.ActionLink("Grupo", "Index", "Grupos", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Libros", "Index", "Libros", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("CV", "Index", "cv", new { area = "" }, new { @class = "nav-link" })</li>
@@ -41,7 +43,8 @@ ViewData["Title"] = "Inicio Sesion";
             </div>
 
             <div class="pass">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "inputs", placeholder = "pass", maxlength = "100" } })
+                @Html.PasswordFor(model => model.password, new { @class = "inputs", placeholder = "pass", maxlength = "100" })
+
             </div>
             <input class="boton" type="submit" value="INICIAR SESIÓN" />
         }
