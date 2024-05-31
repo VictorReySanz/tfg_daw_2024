@@ -1,4 +1,4 @@
-﻿@model TfgDAW.Models.Libros
+@model TfgDAW.Models.Libros
 
 @{
     ViewBag.Title = "Editar " + Model.titulo;
@@ -18,13 +18,23 @@
     <div id="menu">
         <div id="contenidoMenu">
             <a href="@Url.Action("Index", "Libros")">Inicio</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
-            <div class="linea"></div>
-            <p>Grupos</p>
-            <div class="linea"></div>
+            <hr class="linea" />
+            <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
+            <hr class="linea" />
+            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+            <hr class="linea" />
             <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
-            <div class="linea"></div><p>CVs</p>
+            <hr class="linea" />
+            <input id="cvDesplegar" type="checkbox">
+            <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+            <!-- SubMenu CV -->
+            <div id="menuCV">
+                <div id="contenidoMenuCV">
+                    <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Nav -->
@@ -43,7 +53,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -55,11 +65,11 @@
     <!-- Menu de cuenta -->
     <div id="menuCuenta">
         <div id="contenidoMenuCuenta">
-            <p>Nombres</p>
-            <div class="linea"></div>
+            <p>@ViewBag.user</p>
+            <hr class="linea" />
             <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
-            <div class="linea"></div>
-            <p>Cerrar sesion</p>
+            <hr class="linea" />
+            <a href="@Url.Action("EliminarSesion", "Libros")">Cerrar sesion</a>
         </div>
     </div>
     <!-- main -->
@@ -74,40 +84,82 @@
 
             @Html.HiddenFor(model => model.libro_id)
 
-        <div class="contenido">
-            <div class="izquierda">
-                <img class="portada" id="imgPreview" src="@Url.Action("GetImage", "Libros", new { id = Model.libro_id })" />
+            <div class="contenido">
+                <div class="izquierda">
+                    <img class="portada" id="imgPreview" src="@Url.Action("GetImage", "Libros", new { id = Model.libro_id })" />
 
 
-                <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
+                    <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
 
-                <div class="visibilidad">
-                    <div>Visibilidad</div>
-                    @Html.EditorFor(model => model.visible)
+                    @{
+                        var opcionesVisibilidad = new List<SelectListItem>
+                                            {
+                        new SelectListItem { Text = "Publico", Value = "true" },
+                        new SelectListItem { Text = "Privado", Value = "false" }
+                    };
+                    }
+
+                    <div class="visibilidad">
+                        <div>Visibilidad</div>
+                        @Html.DropDownListFor(model => model.visible, opcionesVisibilidad, new { @class = "visibilidad-campo" })
+                    </div>
+
+                    <div class="descargar-favorito">
+                        @*DESCARGA*@
+                        <a class="descarga" href="@Url.Action("DescargarArchivo", "Libros", new { id = Model.libro_id })">
+                            <svg viewBox="0 0 256 256"
+                                 height="32"
+                                 width="38"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M74.34 85.66a8 8 0 0 1 11.32-11.32L120 108.69V24a8 8 0 0 1 16 0v84.69l34.34-34.35a8 8 0 0 1 11.32 11.32l-48 48a8 8 0 0 1-11.32 0ZM240 136v64a16 16 0 0 1-16 16H32a16 16 0 0 1-16-16v-64a16 16 0 0 1 16-16h52.4a4 4 0 0 1 2.83 1.17L111 145a24 24 0 0 0 34 0l23.8-23.8a4 4 0 0 1 2.8-1.2H224a16 16 0 0 1 16 16m-40 32a12 12 0 1 0-12 12a12 12 0 0 0 12-12"
+                                      fill="currentColor"></path>
+                            </svg>
+                        </a>
+                        @*LIKE*@
+                        <div class="heart-container" title="Like">
+                            <input type="checkbox" class="checkbox" id="Give-It-An-Id">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+                                    </path>
+                                </svg>
+                                <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+                                    </path>
+                                </svg>
+                                <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                                    <polygon points="10,10 20,20"></polygon>
+                                    <polygon points="10,50 20,50"></polygon>
+                                    <polygon points="20,80 30,70"></polygon>
+                                    <polygon points="90,10 80,20"></polygon>
+                                    <polygon points="90,50 80,50"></polygon>
+                                    <polygon points="80,80 70,70"></polygon>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <a class="descarga" href="@Url.Action("DescargarArchivo", "Libros", new { id = Model.libro_id })">Descargar</a>
+                <div class="derecha">
+                    <div class="titulo">
+                        @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo" } })
+                    </div>
+                    <div class="autor">
+                        @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo" } })
+                    </div>
+                    <div class="descripcion">
+                        @Html.TextAreaFor(model => model.descripcion, new { @class = "descripcion-campo", placeholder = "Sinopsis" })
+                    </div>
 
+
+                    <input type="submit" name="boton" value="Guardar" class="guardar" />
+                    <input type="submit" name="boton" value="Eliminar" class="eliminar" onclick="return confirmarEliminar()" />
+                </div>
             </div>
-            <div class="derecha">
-                <div class="titulo">
-                    @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo" } })
-                </div>
-                <div class="autor">
-                    @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo" } })
-                </div>
-                <div class="descripcion">
-                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "descripcion-campo" } })
-                </div>
-                    
+        }
 
-                    <input type="submit" name="boton" value="Guardar" class="btn btn-default" />
-                    <input type="submit" name="boton" value="Eliminar" class="btn btn-default" />
-                </div>
-            </div>
-                }
-
-        </main>
-    </body>
+    </main>
+</body>
 </html>
 
 
@@ -125,5 +177,36 @@
             imgElement.style.display = 'block';
         };
         reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+
+@*Confirmacion eliminacion de libro*@
+<script type="text/javascript">
+    function confirmarEliminar() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Estás seguro de que elimnar este libro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Eliminado',
+                    text: 'El libro ha sido eliminado correctamente',
+                    icon: 'error',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = '/MisElementos';
+                });
+            }
+        });
+        return false;
     }
 </script>
