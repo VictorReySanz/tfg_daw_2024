@@ -13,102 +13,120 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/crearelemento.css">
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
+<!-- Menu -->
+<div id="menu">
+    <div id="contenidoMenu">
+        <a href="@Url.Action("Index", "Libros")">Inicio</a>
+        <hr class="linea" />
+        <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
+        <hr class="linea" />
+        <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+        <hr class="linea" />
+        <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
+        <hr class="linea" />
+        <input id="cvDesplegar" type="checkbox">
+        <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+        <!-- SubMenu CV -->
+        <div id="menuCV">
+            <div id="contenidoMenuCV">
+                <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+                <hr class="linea" />
+                <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Nav -->
+<nav>
+    <ul>
+        <li id="liVerMenu">
+            <input id="verMenu" type="checkbox">
+            <label id="verMenuLabel" for="verMenu">
+                <div class="verMenuDiv">
+                    <div class="linea1"></div>
+                    <div class="linea2"></div>
+                    <div class="linea3"></div>
+                </div>
+            </label>
+        </li>
+        <li id="liVerMenuCuenta">
+            <input type="checkbox" id="verMenuCuenta">
+            <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                <div class="cuentaClose">
+                    <div class="linea1"></div>
+                    <div class="linea2"></div>
+                </div>
+            </label>
+        </li>
+    </ul>
+</nav>
+<!-- Menu de cuenta -->
+<div id="menuCuenta">
+    <div id="contenidoMenuCuenta">
+        <p>@ViewBag.user</p>
+        <hr class="linea" />
+        <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
+        <hr class="linea" />
+        <a href="@Url.Action("EliminarSesion", "Libros")">Cerrar sesion</a>
+    </div>
+</div>
 <body>
-    <!-- Menu -->
-    <div id="menu">
-        <div id="contenidoMenu">
-            <a href="@Url.Action("Index", "Libros")">Inicio</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
-            <div class="linea"></div>
-            <p>Grupos</p>
-            <div class="linea"></div>
-            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
-            <div class="linea"></div><p>CVs</p>
-        </div>
-    </div>
-    <!-- Nav -->
-    <nav>
-        <ul>
-            <li id="liVerMenu">
-                <input id="verMenu" type="checkbox">
-                <label id="verMenuLabel" for="verMenu">
-                    <div class="verMenuDiv">
-                        <div class="linea1"></div>
-                        <div class="linea2"></div>
-                        <div class="linea3"></div>
-                    </div>
-                </label>
-            </li>
-            <li id="liVerMenuCuenta">
-                <input type="checkbox" id="verMenuCuenta">
-                <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
-                    <div class="cuentaClose">
-                        <div class="linea1"></div>
-                        <div class="linea2"></div>
-                    </div>
-                </label>
-            </li>
-        </ul>
-    </nav>
-    <!-- Menu de cuenta -->
-    <div id="menuCuenta">
-        <div id="contenidoMenuCuenta">
-            <p>Nombres</p>
-            <div class="linea"></div>
-            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
-            <div class="linea"></div>
-            <p>Cerrar sesion</p>
-        </div>
-    </div>
-    <!-- main -->
-    <main>
+<!-- main -->
+<main>
 
-        <!-- contenido -->
-        @using (Html.BeginForm("CrearElemento","Libros",FormMethod.Post,new { enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
+    <!-- contenido -->
+    @using (Html.BeginForm("CrearElemento", "Libros", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-            <div class="contenido">
+        <div class="contenido">
 
-                <div class="izquierda">
+            <div class="izquierda">
 
-                    <img class="portada" id="imgPreview" src="~/Content/imgs/imgpordefecto.jpg" />
-                    <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
+                <img class="portada" id="imgPreview" src="~/Content/imgs/imgpordefecto.jpg" />
+                <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
 
-                    <div class="visibilidad">
-                        <div>Visibilidad</div>
-                        @Html.EditorFor(model => model.visible, new { htmlAttributes = new { @class = "visibilidad-campo" } })
-                    </div>
+                @{
+                    var opcionesVisibilidad = new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Publico", Value = "true" },
+                        new SelectListItem { Text = "Privado", Value = "false" }
+                    };
+                }
+
+            <div class="visibilidad">
+                <div>Visibilidad</div>
+                @Html.DropDownListFor(model => model.visible, opcionesVisibilidad, new { @class = "visibilidad-campo" })
+            </div>
 
 
-                    <input type="file" name="pdfFile" id="pdfFile" />
-
-                </div>
-                <div class="derecha">
-
-
-                    <div class="titulo">
-                        @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo", placeholder = "Titulo", maxlength = "100" } })
-                    </div>
-
-                    <div class="autor">
-                        @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo", placeholder = "Autor", maxlength = "100" } })
-                    </div>
-
-                    <div class="descripcion">
-                        @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "descripcion-campo", placeholder = "Sipnopsis" } })
-                    </div>
-
-                    <input class="subir" type="submit" value="Subir" />
-
-                </div>
-
+                <input type="file" name="pdfFile" id="pdfFile" />
 
             </div>
-        }
-    </main>
+            <div class="derecha">
+
+
+                <div class="titulo">
+                    @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo", placeholder = "Titulo", maxlength = "100" } })
+                </div>
+
+                <div class="autor">
+                    @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo", placeholder = "Autor", maxlength = "100" } })
+                </div>
+
+                <div class="descripcion">
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "descripcion-campo", placeholder = "Sinopsis" })
+                </div>
+
+                <input class="subir" type="submit" value="Subir" />
+
+            </div>
+
+
+        </div>
+    }
+</main>
     </body>
 </html>
 
