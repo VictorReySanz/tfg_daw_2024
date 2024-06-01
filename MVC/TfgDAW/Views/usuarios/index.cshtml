@@ -43,7 +43,8 @@ ViewData["Title"] = "Inicio Sesion";
             </div>
 
             <div class="pass">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "inputs", placeholder = "pass", maxlength = "100" } })
+                @Html.PasswordFor(model => model.password, new { @class = "inputs", placeholder = "pass", maxlength = "100" })
+
             </div>
             <input class="boton" type="submit" value="INICIAR SESIÓN" />
         }

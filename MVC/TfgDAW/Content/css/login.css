@@ -37,6 +37,11 @@
     background-color: #E01B84;
 }
 
+    .boton:hover {
+        background-color: #273692;
+        color: white;
+    }
+
 .crear-cuenta {
     flex-direction: row;
 }

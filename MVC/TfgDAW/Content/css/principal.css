@@ -3,6 +3,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: rgba(164, 203, 255, 0.7);
+    overflow-x: hidden;
 }
 
 /************************ nav ************************/
@@ -27,16 +29,18 @@ nav {
         nav ul #liVerMenu {
             display: flex;
             justify-content: flex-start;
+            z-index: 1001;
         }
 
 #menu {
     display: none;
-    position: absolute;
+    position: fixed;
     background-color: #4F91E8;
     width: 250px;
     height: 100%;
     text-align: center;
     animation: aparecer 0.75s forwards;
+    z-index: 1000;
 }
 
 #verMenu {
@@ -48,7 +52,7 @@ nav {
     }
 
 #menu #contenidoMenu {
-    margin-top: 20px;
+    margin-top: 50px;
     width: 100%;
 }
 
@@ -94,6 +98,10 @@ nav {
         z-index: 1;
     }
 
+#verMenu:checked + #verMenuLabel {
+    position: fixed;
+}
+
 #verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
     animation: linea1Menu 0.75s forwards;
 }
@@ -126,15 +134,15 @@ nav {
     padding: 0.5em;
 }
 
-#contenidoMenuCV a:hover {
-    margin-left: 2em;
-    color: white;
-}
+    #contenidoMenuCV a:hover {
+        margin-left: 2em;
+        color: white;
+    }
 
 #menuCV {
     display: none;
     position: absolute;
-    top: 20%;
+    top: 20em;
     left: 8em;
     background-color: #73E665;
     width: 250px;
@@ -143,24 +151,27 @@ nav {
     padding-top: 1.5em;
     border-radius: 15px;
     animation: aparecerCV 0.75s forwards;
+    z-index: 1001;
 }
 
 /************************ menu cuenta ************************/
 nav ul #liVerMenuCuenta {
     display: flex;
     justify-content: flex-end;
+    z-index: 1001;
 }
 
 #menuCuenta {
     display: none;
     position: absolute;
-    left: 85%;
+    right: 0;
     background-color: #4F91E8;
     width: 250px;
     height: 200px;
     border-radius: 15px;
     text-align: center;
     animation: aparecerCuenta 0.75s forwards;
+    z-index: 1000;
 }
 
 #verMenuCuenta {
@@ -168,9 +179,8 @@ nav ul #liVerMenuCuenta {
 }
 
 #menuCuenta #contenidoMenuCuenta {
-    margin-top: 20px;
+    margin-top: 30px;
 }
-
 
 #contenidoMenuCuenta a {
     text-decoration: none;
@@ -178,10 +188,10 @@ nav ul #liVerMenuCuenta {
     padding: 0.5em;
 }
 
-#contenidoMenuCuenta a:hover {
-    margin-left: 2em;
-    color: white;
-}
+    #contenidoMenuCuenta a:hover {
+        margin-left: 2em;
+        color: white;
+    }
 
 .cuentaImg {
     width: 30px;
@@ -211,6 +221,11 @@ nav ul #liVerMenuCuenta {
         opacity: 0;
     }
 
+#verMenuCuenta:checked + #menuCuenta {
+    display: block;
+    animation: aparecerCuenta 0.75s forwards;
+}
+
 #verMenuCuenta:checked + #verMenuCuentaLabel .cuentaImg {
     animation: animacionCuenta 1s forwards;
 }
@@ -226,7 +241,7 @@ nav ul #liVerMenuCuenta {
 /************************ buscar ************************/
 nav ul #liBuscar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 nav ul li #buscar {
@@ -236,73 +251,13 @@ nav ul li #buscar {
     box-sizing: border-box;
 }
 
-/************************ filtro ************************/
-nav ul #liVerFiltro {
-    display: flex;
-    justify-content: flex-start;
-}
-
-#filtro {
-    display: none;
-    position: absolute;
-    left: 50%;
-    background-color: #4F91E8;
-    width: 250px;
-    height: 200px;
-    border-radius: 15px;
+/************************ extras ************************/
+.linea {
+    width: 50%;
+    height: 1px;
+    margin-left: 65px;
     text-align: center;
-    animation: aparecerFiltro 0.75s forwards;
 }
-
-#verFiltro {
-    display: none;
-}
-
-#filtro #contenidoFiltro {
-    margin-top: 20px;
-}
-
-/*visual*/
-.verFiltroDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-    .verFiltroDiv .linea1 {
-        width: 20px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea2 {
-        width: 12.5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-    .verFiltroDiv .linea3 {
-        width: 5px;
-        background: black;
-        height: 4px;
-        border-radius: 10em;
-        z-index: 1;
-    }
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea2 {
-    animation: linea2Filtro 0.75s forwards;
-}
-
-#verFiltro:checked + #verFiltroLabel .verFiltroDiv .linea3 {
-    animation: linea3Filtro 0.75s forwards;
-}
-
 
 /************************ Contenido ************************/
 #contenido {
@@ -342,17 +297,7 @@ nav ul #liVerFiltro {
     font-size: 12px;
     margin-top: -15px;
     max-width: 150px;
-    margin: 0 auto; 
-}
-
-/************************ extras ************************/
-.linea {
-    width: 50%;
-    height: 1px;
-    background-color: #000;
-    position: relative;
-    left: 25%;
-    margin: 5px;
+    margin: 0 auto;
 }
 
 /************************ animaciones ************************/
@@ -389,20 +334,7 @@ nav ul #liVerFiltro {
 
     100% {
         opacity: 1;
-        transform: translateX(15%);
-    }
-}
-
-/*Desplegar filtro*/
-@keyframes aparecerFiltro {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
+        transform: translateX(0%);
     }
 }
 
@@ -426,21 +358,6 @@ nav ul #liVerFiltro {
 
     100% {
         transform: translateX(-100px);
-    }
-}
-
-/*Animacion de verFiltro*/
-@keyframes linea2Filtro {
-
-    100% {
-        transform: translateX(7.5px);
-    }
-}
-
-@keyframes linea3Filtro {
-
-    100% {
-        transform: translateX(15px);
     }
 }
 
@@ -492,4 +409,85 @@ nav ul #liVerFiltro {
         opacity: 1;
         transform: translateX(0%);
     }
+}
+
+/************************ Medias queries ************************/
+@media (max-width: 768px) {
+    /*menu*/
+    #verMenu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: #4F91E8;
+        border: none;
+        cursor: pointer;
+    }
+
+        #verMenu:checked + #menu {
+            display: block;
+        }
+
+    #menu {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 57px;
+        left: 0;
+    }
+
+        #menu #contenidoMenu a {
+            padding: 0em;
+        }
+
+        #menu #contenidoMenu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+            /*menu cuenta*/
+    #liVerMenuCuenta {
+        justify-content: flex-start;
+    }
+
+    #verMenuCuenta {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: #4F91E8;
+        border: none;
+        cursor: pointer;
+    }
+
+    #menuCuenta {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        border: 1px solid black;
+    }
+
+        #menuCuenta #contenidoMenuCuenta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            #menuCuenta #contenidoMenuCuenta a {
+                padding: 0em;
+            }
+
+            /*menu cv*/
+    #menuCV {
+        position: fixed;
+        top: 18em;
+        left: 0;
+        width: 100%;
+    }
+
 }

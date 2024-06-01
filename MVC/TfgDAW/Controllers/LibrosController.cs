@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -55,6 +56,10 @@ namespace TfgDAW.Controllers
 
             var libros = librosQuery.ToList();
 
+            //Mostrar nombre de usuario en el menu usuario
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
             return View(libros);
         }
 
@@ -73,6 +78,10 @@ namespace TfgDAW.Controllers
 
             var libros = librosQuery.ToList();
 
+            //Mostrar nombre de usuario en el menu usuario
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
             return View(libros);
         }
 
@@ -82,6 +91,12 @@ namespace TfgDAW.Controllers
             var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.libro_id == id);
 
             var libros = librosQuery.ToList();
+
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
 
             return View(libros);
         }
@@ -104,13 +119,13 @@ namespace TfgDAW.Controllers
             return null;
         }
 
-
-
-
-
         //Crear elemento GET
         public ActionResult CrearElemento()
         {
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
             return View();
         }
 
@@ -160,6 +175,11 @@ namespace TfgDAW.Controllers
         public ActionResult EditarElemento(int id)
         {
             Libros libros = db.Libros.Find(id);
+
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
 
             return View(libros);
         }
@@ -268,7 +288,15 @@ namespace TfgDAW.Controllers
             }
         }
 
+        //Cerrar sesion
+        public ActionResult EliminarSesion()
+        {
+            // Eliminar la sesión
+            Session["userId"] = null;
 
+            // Redirigir a la página de usuarios
+            return RedirectToAction("Index", "Usuarios");
+        }
 
 
 

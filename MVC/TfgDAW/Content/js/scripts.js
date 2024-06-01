@@ -12,17 +12,17 @@ verMenu.addEventListener('change', function () {
     }
 });
 
-// Desplegar filtro
-const verFiltro = document.getElementById('verFiltro');
-const filtro = document.getElementById('filtro');
+// Desplegar menu CV
+const cvDesplegar = document.getElementById('cvDesplegar');
+const menuCV = document.getElementById('menuCV');
 
-verFiltro.addEventListener('change', function () {
+cvDesplegar.addEventListener('change', function () {
     if (this.checked) {
-        filtro.style.display = 'block';
-        filtro.classList.add('aparecerFiltro-animacion');
+        menuCV.style.display = 'block';
+        menuCV.classList.add('aparecerCV-animacion');
     } else {
-        filtro.classList.remove('aparecerFiltro-animacion');
-        filtro.style.display = 'none';
+        menuCV.classList.remove('aparecerCV-animacion');
+        menuCV.style.display = 'none';
     }
 });
 
@@ -37,19 +37,5 @@ verMenuCuenta.addEventListener('change', function () {
     } else {
         menuCuenta.classList.remove('aparecerCuenta-animacion');
         menuCuenta.style.display = 'none';
-    }
-});
-
-// Desplegar menu CV
-const cvDesplegar = document.getElementById('cvDesplegar');
-const menuCV = document.getElementById('menuCV');
-
-cvDesplegar.addEventListener('change', function () {
-    if (this.checked) {
-        menuCV.style.display = 'block';
-        menuCV.classList.add('aparecerCV-animacion');
-    } else {
-        menuCV.classList.remove('aparecerCV-animacion');
-        menuCV.style.display = 'none';
     }
 });

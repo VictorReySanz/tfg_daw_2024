@@ -1,23 +1,11 @@
-﻿.contenido {
-    display: grid;
-    grid-template-columns: 0.5fr auto;
-    margin-top: 100px;
+﻿/************************ body ************************/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(164, 203, 255, 0.7);
+    overflow-x: hidden;
 }
-
-.izquierda {
-    text-align: center;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.derecha {
-    text-align: center;
-}
-
-
 /************************ nav ************************/
 nav {
     background-color: #006FFF;
@@ -40,16 +28,18 @@ nav {
         nav ul #liVerMenu {
             display: flex;
             justify-content: flex-start;
+            z-index: 1001;
         }
 
 #menu {
     display: none;
-    position: absolute;
+    position: fixed;
     background-color: #4F91E8;
     width: 250px;
     height: 100%;
     text-align: center;
     animation: aparecer 0.75s forwards;
+    z-index: 1000;
 }
 
 #verMenu {
@@ -61,8 +51,20 @@ nav {
     }
 
 #menu #contenidoMenu {
-    margin-top: 20px;
+    margin-top: 50px;
+    width: 100%;
 }
+
+    #menu #contenidoMenu a {
+        text-decoration: none;
+        color: inherit;
+        padding: 0.5em;
+    }
+
+        #menu #contenidoMenu a:hover {
+            margin-left: 2em;
+            color: white;
+        }
 
 /*visual*/
 .verMenuDiv {
@@ -95,34 +97,80 @@ nav {
         z-index: 1;
     }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
-    animation: linea1Menu 0.75s forwards;
+#verMenu:checked + #verMenuLabel {
+    position: fixed;
 }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
-    animation: linea2Menu 0.75s forwards;
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
+        animation: linea1Menu 0.75s forwards;
+    }
+
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
+        animation: linea2Menu 0.75s forwards;
+    }
+
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
+        animation: linea3Menu 0.75s forwards;
+    }
+/****************************** CVS ********************************/
+#cvDesplegar {
+    display: none;
 }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
-    animation: linea3Menu 0.75s forwards;
+#cvDesplegarLabel {
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+    #cvDesplegarLabel:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#contenidoMenuCV a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+    #contenidoMenuCV a:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#menuCV {
+    display: none;
+    position: absolute;
+    top: 20em;
+    left: 8em;
+    background-color: #73E665;
+    width: 250px;
+    height: 7em;
+    text-align: center;
+    padding-top: 1.5em;
+    border-radius: 15px;
+    animation: aparecerCV 0.75s forwards;
+    z-index: 1001;
 }
 
 /************************ menu cuenta ************************/
 nav ul #liVerMenuCuenta {
     display: flex;
     justify-content: flex-end;
+    z-index: 1001;
 }
 
 #menuCuenta {
     display: none;
     position: absolute;
-    left: 85%;
+    right: 0;
     background-color: #4F91E8;
     width: 250px;
     height: 200px;
     border-radius: 15px;
     text-align: center;
     animation: aparecerCuenta 0.75s forwards;
+    z-index: 1000;
 }
 
 #verMenuCuenta {
@@ -130,13 +178,26 @@ nav ul #liVerMenuCuenta {
 }
 
 #menuCuenta #contenidoMenuCuenta {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
+#contenidoMenuCuenta a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+    #contenidoMenuCuenta a:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
 .cuentaImg {
-    width: 50px;
-    height: auto;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
+    border-radius: 100%;
+    object-fit: cover;
 }
 
 .cuentaClose {
@@ -159,6 +220,11 @@ nav ul #liVerMenuCuenta {
         opacity: 0;
     }
 
+#verMenuCuenta:checked + #menuCuenta {
+    display: block;
+    animation: aparecerCuenta 0.75s forwards;
+}
+
 #verMenuCuenta:checked + #verMenuCuentaLabel .cuentaImg {
     animation: animacionCuenta 1s forwards;
 }
@@ -172,7 +238,33 @@ nav ul #liVerMenuCuenta {
 }
 
 
+/************************ extras ************************/
+.linea {
+    width: 50%;
+    height: 1px;
+    margin-left: 65px;
+    text-align: center;
+}
+
 /************************ contenido ************************/
+.contenido {
+    display: grid;
+    grid-template-columns: 0.5fr auto;
+    margin-top: 100px;
+}
+
+.izquierda {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.derecha {
+    text-align: center;
+}
+
 .portada {
     width: 300px;
     height: 425px;
@@ -200,22 +292,47 @@ nav ul #liVerMenuCuenta {
     margin: 0 auto;
 }
 
-.descarga {
-    margin-top: 100px;
-    background-color: #1CC4FC;
-    border-radius: 20px;
-    width: 40%;
-    font-size: 40px;
-    text-decoration: none;
-    color: black;
+/*boton descarga*/
+.descargar-favorito {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
 }
+.descarga {
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.397);
+    background: #1CC4FC;
+    overflow: hidden;
+    font-size: 0.9rem;
+    font-weight: 600;
+    gap: 8px;
+    border-radius: 5px;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+
+    .descarga:hover {
+        border-color: #1CC4FC;
+        background: linear-gradient( to bottom, rgba(255, 255, 255, 0.144), rgba(255, 255, 255, 0.247), rgba(255, 255, 255, 0.39) );
+        box-shadow: 0 6px #1CC4FC;
+        transform: translateY(-6px);
+    }
+
+    .descarga:active {
+        transform: translateY(2px);
+        box-shadow: none;
+    }
 
 /*Vista archivo*/
 #pdf-viewer {
-    margin-top: 50px;
+    margin-top: 30px;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
     overflow: auto;
     grid-column: span 2;
     text-align: center;
@@ -223,18 +340,163 @@ nav ul #liVerMenuCuenta {
 
 .pdf-page {
     width: 51%;
+    border: 1px solid black;
 }
 
+/*Botones anterior y siguiente*/
+.botones-pasar-pagina {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
 
-/************************ extras ************************/
-.linea {
-    width: 50%;
-    height: 1px;
-    background-color: #000;
+.btn-conteiner {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    padding: 5px 30px;
+    text-decoration: none;
+    font-size: 30px;
+    color: white;
+    background: #1CC4FC;
+    transition: 1s;
+    border-radius: 100px;
+    box-shadow: 0 0 0.2em 0 #1CC4FC;
+}
+
+    .btn-content:hover, .btn-content:focus {
+        transition: 0.5s;
+        -webkit-animation: btn-content 1s;
+        animation: btn-content 1s;
+        outline: 0.1em solid transparent;
+        outline-offset: 0.2em;
+        box-shadow: 0 0 0.4em 0 #1CC4FC;
+    }
+
+    .btn-content .icon-arrow {
+        transition: 0.5s;
+        margin-right: 0px;
+        transform: scale(0.6);
+    }
+
+.btn-content .icon-arrow2 {
+    transition: 0.5s;
+    margin-left: 0px;
+    transform: scale(0.6) rotate(180deg);
+}
+
+    .btn-content:hover .icon-arrow {
+        transition: 0.5s;
+        margin-right: 25px;
+    }
+
+    .btn-content:hover .icon-arrow2 {
+        transition: 0.5s;
+        margin-right: 25px;
+    }
+
+.icon-arrow {
+    width: 20px;
+    margin-left: 15px;
     position: relative;
-    left: 25%;
-    margin: 5px;
+    top: 6%;
 }
+
+.icon-arrow2 {
+    width: 20px;
+    margin-right: 15px;
+    position: relative;
+    top: 6%;
+    transform: rotate(180deg);
+}
+
+#arrow-icon-one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+#arrow-icon-two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.btn-content:hover #arrow-icon-three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.btn-content:hover #arrow-icon-one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.btn-content:hover #arrow-icon-two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+/*Favorito*/
+.heart-container {
+    --heart-color: rgb(255, 91, 137);
+    position: relative;
+    width: 50px;
+    height: 50px;
+    transition: .3s;
+}
+
+    .heart-container .checkbox {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 20;
+        cursor: pointer;
+    }
+
+    .heart-container .svg-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .heart-container .svg-outline,
+    .heart-container .svg-filled {
+        fill: var(--heart-color);
+        position: absolute;
+    }
+
+    .heart-container .svg-filled {
+        animation: keyframes-svg-filled 1s;
+        display: none;
+    }
+
+    .heart-container .svg-celebrate {
+        position: absolute;
+        animation: keyframes-svg-celebrate .5s;
+        animation-fill-mode: forwards;
+        display: none;
+        stroke: var(--heart-color);
+        fill: var(--heart-color);
+        stroke-width: 2px;
+    }
+
+    .heart-container .checkbox:checked ~ .svg-container .svg-filled {
+        display: block
+    }
+
+    .heart-container .checkbox:checked ~ .svg-container .svg-celebrate {
+        display: block
+    }
+
 
 /************************ animaciones ************************/
 /*Desplegar menu*/
@@ -270,20 +532,7 @@ nav ul #liVerMenuCuenta {
 
     100% {
         opacity: 1;
-        transform: translateX(15%);
-    }
-}
-
-/*Desplegar filtro*/
-@keyframes aparecerFiltro {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
+        transform: translateX(0%);
     }
 }
 
@@ -307,21 +556,6 @@ nav ul #liVerMenuCuenta {
 
     100% {
         transform: translateX(-100px);
-    }
-}
-
-/*Animacion de verFiltro*/
-@keyframes linea2Filtro {
-
-    100% {
-        transform: translateX(7.5px);
-    }
-}
-
-@keyframes linea3Filtro {
-
-    100% {
-        transform: translateX(15px);
     }
 }
 
@@ -359,5 +593,162 @@ nav ul #liVerMenuCuenta {
         opacity: 1;
         rotate: 30deg;
         transform: translate(50%, -550%);
+    }
+}
+
+/*Desplegar menu CV*/
+@keyframes aparecerCV {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+/*Botones anterior y siguiente*/
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+
+    50% {
+        fill: #1CC4FC;
+    }
+
+    100% {
+        fill: white;
+    }
+}
+
+@-webkit-keyframes btn-content {
+    0% {
+        outline: 0.2em solid #1CC4FC;
+        outline-offset: 0;
+    }
+}
+
+@keyframes btn-content {
+    0% {
+        outline: 0.2em solid #1CC4FC;
+        outline-offset: 0;
+    }
+}
+/*Favorito*/
+@keyframes keyframes-svg-filled {
+    0% {
+        transform: scale(0);
+    }
+
+    25% {
+        transform: scale(1.2);
+    }
+
+    50% {
+        transform: scale(1);
+        filter: brightness(1.5);
+    }
+}
+
+@keyframes keyframes-svg-celebrate {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+        display: none;
+    }
+}
+
+
+
+
+/************************ Medias queries ************************/
+@media (max-width: 768px) {
+    /*menu*/
+    #verMenu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: #4F91E8;
+        border: none;
+        cursor: pointer;
+    }
+
+        #verMenu:checked + #menu {
+            display: block;
+        }
+
+    #menu {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 57px;
+        left: 0;
+    }
+
+        #menu #contenidoMenu a {
+            padding: 0em;
+        }
+
+        #menu #contenidoMenu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+    /*menu cuenta*/
+    #liVerMenuCuenta {
+        justify-content: flex-start;
+    }
+
+    #verMenuCuenta {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: #4F91E8;
+        border: none;
+        cursor: pointer;
+    }
+
+    #menuCuenta {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        border: 1px solid black;
+    }
+
+        #menuCuenta #contenidoMenuCuenta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            #menuCuenta #contenidoMenuCuenta a {
+                padding: 0em;
+            }
+
+    /*menu cv*/
+    #menuCV {
+        position: fixed;
+        top: 18em;
+        left: 0;
+        width: 100%;
     }
 }

@@ -23,7 +23,8 @@ ViewData["Title"] = "Registro";
             </div>
 
             <div class="pass">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "inputs", placeholder = "pass", maxlength = "100" } })
+                @Html.PasswordFor(model => model.password, new { @class = "inputs", placeholder = "pass", maxlength = "100" })
+
             </div>
             <div class="pass2">
                 <input type="password" name="pass2" class="inputs" placeholder="pass" maxlength="100" />
@@ -31,6 +32,9 @@ ViewData["Title"] = "Registro";
 
             <input class="boton" type="submit" value="REGISTRARSE" />
         }
+        <div class="crear-sesion">
+            <p>¿Ya tienes una cuenta? <a href="@Url.Action("Index", "Usuarios")"><b>INICIAR SESION</b></a></p>
+        </div>
     </div>
 </body>
 </html>
