@@ -20,11 +20,24 @@ namespace TfgDAW.Models
                 return false;
             }
             else
-            {
-                this.Role = "usuario";
-                return true;
+            {  
+                if (usuario.ToUpper() == "admin" && password == "admin")
+
+                {
+
+                    this.Role = "admin";
+                    return true;
+
+                }
+                else if (usuario == "usuario" && password == "usuario")
+
+                {
+                    this.Role = "usuario";
+                    return true;
+                }
 
             }
+            return false;
         }
     }
 }
