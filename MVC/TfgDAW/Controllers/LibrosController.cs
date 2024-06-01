@@ -34,9 +34,10 @@ namespace TfgDAW.Controllers
             var libros = librosQuery.ToList();
 
             //Mostrar nombre de usuario en el menu usuario
-            int userId = (int)Session["userId"];
+       
             if (Session["userId"] != null)
             {
+                int userId = (int)Session["userId"];
                 var user = db.Usuarios.Find(userId);
                 ViewBag.user = user.nombre;
 
@@ -99,11 +100,18 @@ namespace TfgDAW.Controllers
             var libros = librosQuery.ToList();
 
             //Mostrar nombre de usuario en el menu usuario
-            int userId = (int)Session["userId"];
+            if (Session["userId"] != null)
+            {
+                int userId = (int)Session["userId"];
+                var user = db.Usuarios.Find(userId);
+                ViewBag.user = user.nombre;
 
-            var user = db.Usuarios.Find(userId);
-            ViewBag.user = user.nombre;
-
+            }
+            else
+            {
+                ViewBag.user = "invitado";
+            }
+ 
             return View(libros);
         }
 
@@ -282,15 +290,23 @@ namespace TfgDAW.Controllers
         //Mostrar icono perfil
         public ActionResult GetIcono()
         {
-            int userId = (int)Session["userId"];
-            var icono = db.Usuarios.Find(userId);
+
+           var icono = new Usuarios();
+            if (Session["userId"] != null)
+            {
+                int userId = (int)Session["userId"];
+                 icono = db.Usuarios.Find(userId);
+            }
+
+         
+       
             if (icono != null && icono.foto != null)
             {
                 return File(icono.foto, "image/jpg");
             }
             else
             {
-                return HttpNotFound();
+                return File("∼/Content/imgs/iconocuenta.jpg", "image/jpg");
             }
         }
 
