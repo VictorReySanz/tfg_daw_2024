@@ -12,6 +12,13 @@ namespace TfgDAW.Controllers
 {
     public class GruposController : Controller
     {
+
+        public ActionResult Chat()
+        {
+            return View();
+        } 
+
+    /*
         private share_enjoyEntities db = new share_enjoyEntities();
 
         // GET: Grupos
@@ -126,6 +133,6 @@ namespace TfgDAW.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }*/
     }
 }
