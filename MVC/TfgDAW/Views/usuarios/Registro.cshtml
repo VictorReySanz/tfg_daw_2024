@@ -9,6 +9,27 @@ ViewData["Title"] = "Registro";
     <link rel="stylesheet" type="text/css" href="~/Content/css/login.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Share & Enjoy", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("GRUPO", "Index", "Grupos", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("lIBROS", "Index", "Libros", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("CV", "Index", "cv", new { area = "" }, new { @class = "nav-link" })</li>
+                    <!--Prueba inicio de app-->
+                    <!--<li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>-->
+                    <!--Prueba seguridad -->
+                    <!--<li>@Html.ActionLink("Seguridad", "Index", "Seguridad", new { area = "" }, new { @class = "nav-link" })</li>-->
+                </ul>
+            
+            </div>
+        </div>
+    </nav>
     <div class="login-container">
         <img class="logo" src="~/Content/imgs/shareenjoylogo.png" alt="Imagen de ejemplo" />
 
@@ -35,6 +56,7 @@ ViewData["Title"] = "Registro";
         <div class="crear-sesion">
             <p>¿Ya tienes una cuenta? <a href="@Url.Action("Index", "Usuarios")"><b>INICIAR SESION</b></a></p>
         </div>
+        <p>@TempData["Message"]</p>
     </div>
 </body>
 </html>

@@ -17,13 +17,13 @@ ViewData["Title"] = "Inicio Sesion";
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <!--<li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>-->
-                    <!--<li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>-->
-                    <li>@Html.ActionLink("Grupo", "Index", "Grupos", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Libros", "Index", "Libros", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("GRUPO", "Index", "Grupos", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("lIBROS", "Index", "Libros", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("CV", "Index", "cv", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Seguridad", "Index", "Seguridad", new { area = "" }, new { @class = "nav-link" })</li>
+                    <!--Prueba inicio de app-->
+                   <!--<li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>-->
+                    <!--Prueba seguridad -->
+                    <!--<li>@Html.ActionLink("Seguridad", "Index", "Seguridad", new { area = "" }, new { @class = "nav-link" })</li>-->
                 </ul>
             </div>
         </div>
@@ -49,7 +49,7 @@ ViewData["Title"] = "Inicio Sesion";
             <input class="boton" type="submit" value="INICIAR SESIÓN" />
         }
         <div class="crear-cuenta">
-            <p>¿Aun no tienes cuenta? <a href="@Url.Action("Registro", "Usuarios")"><b>CREAR CUENTA</b></a></p>
+            <p>¿Aún no tienes cuenta? <a href="@Url.Action("Registro", "Usuarios")"><b>CREAR CUENTA</b></a></p>
         </div>
 
     </div>

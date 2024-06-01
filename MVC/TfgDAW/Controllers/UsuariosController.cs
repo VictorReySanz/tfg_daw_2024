@@ -122,47 +122,50 @@ namespace TfgDAW.Controllers
 
             }
 
-
         }
 
         public ActionResult CrearUser(string nombre, string password, string email, string pass2)
         {
-            if (Validapass(password, pass2))
+
+            List<Usuarios> useremail = db.Usuarios.Where(u => u.email == email).ToList();
+
+            if (useremail.Count == 0 && Validapass(password, pass2))
             {
                 password = password.Trim();
 
-                string filePath = Server.MapPath("~/Content/imgs/iconocuenta.png");
-                byte[] imgEjemplo = null;
-                if (System.IO.File.Exists(filePath))
-                {
-                    using (var fileStream = new System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                    string filePath = Server.MapPath("~/Content/imgs/iconocuenta.png");
+                    byte[] imgEjemplo = null;
+                    if (System.IO.File.Exists(filePath))
                     {
-                        using (var reader = new System.IO.BinaryReader(fileStream))
+                        using (var fileStream = new System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
                         {
-                            imgEjemplo = reader.ReadBytes((int)fileStream.Length);
+                            using (var reader = new System.IO.BinaryReader(fileStream))
+                            {
+                                imgEjemplo = reader.ReadBytes((int)fileStream.Length);
+                            }
                         }
                     }
+
+                    Usuarios nuevo = new Usuarios
+                    {
+
+                        usuario_id = this.GetMaxID() + 1,
+                        nombre = nombre,
+                        password = BCrypt.Net.BCrypt.HashPassword(password),
+                        email = email,
+                        rol = "usuario",
+                        foto = imgEjemplo
+                    };
+
+                    this.db.Usuarios.Add(nuevo);
+                    this.db.SaveChanges();
+                    Session["userId"] = nuevo.usuario_id;
+                    return RedirectToAction("index", "Libros");
+
                 }
-
-                Usuarios nuevo = new Usuarios
-                {
-
-                    usuario_id = this.GetMaxID() + 1,
-                    nombre = nombre,
-                    password = BCrypt.Net.BCrypt.HashPassword(password),
-                    email = email,
-                    rol = "usuario",
-                    foto = imgEjemplo
-                };
-
-                this.db.Usuarios.Add(nuevo);
-                this.db.SaveChanges();
-                Session["userId"] = nuevo.usuario_id;
-                return RedirectToAction("index", "Libros");
-
-            }
+            TempData["Message"] = "Ya existe ese correo o revisa tu password";
             return RedirectToAction("Registro");
-
+          
         }
 
         private int GetMaxID()
