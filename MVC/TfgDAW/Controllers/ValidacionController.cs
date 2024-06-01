@@ -22,18 +22,18 @@ namespace TfgDAW.Controllers
 
         }
         [HttpPost]
-        public ActionResult Login(String usuario, String password)
+        public ActionResult Login(String email, String password)
         {
 
             ValidaUser v = new ValidaUser();
 
-            if (v.ExisteUsuario(usuario, password))
+            if (v.ExisteUsuario(email, password))
 
             {
                 //EL USUARIO EXISTE Y NOS CREAMOS UN TICKET 
                 //PARA LA AUTORIZACION 
                 FormsAuthenticationTicket ticket =
-                new FormsAuthenticationTicket(1, usuario
+                new FormsAuthenticationTicket(1, email
                 , DateTime.Now, DateTime.Now.AddMinutes(3)
                 , true, v.Role, FormsAuthentication.FormsCookiePath);
                 string datoscifrados = FormsAuthentication.Encrypt(ticket);
