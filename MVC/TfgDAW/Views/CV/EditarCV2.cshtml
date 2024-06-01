@@ -1,7 +1,13 @@
 @model TfgDAW.Models.Cv
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Mi CV";
+
+    var opcionesVisibilidad = new List<SelectListItem>
+    {
+    new SelectListItem { Text = "Publico", Value = "true" },
+    new SelectListItem { Text = "Privado", Value = "false" }
+};
 }
 
 <!DOCTYPE html>
@@ -20,23 +26,23 @@
     <div id="menu">
         <div id="contenidoMenu">
             <a href="@Url.Action("Index", "Libros")">Inicio</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
+            <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
+            <hr class="linea" />
             <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
             <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
             <input id="cvDesplegar" type="checkbox">
             <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
-        </div>
-    </div>
-    <!-- SubMenu CV -->
-    <div id="menuCV">
-        <div id="contenidoMenuCV">
-            <a href="@Url.Action("MiCv", "Cv")">Mi CV</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+            <!-- SubMenu CV -->
+            <div id="menuCV">
+                <div id="contenidoMenuCV">
+                    <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Nav -->
@@ -55,7 +61,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -64,21 +70,14 @@
             </li>
         </ul>
     </nav>
-    <!-- Filtro -->
-    <div id="filtro">
-        <div id="contenidoFiltro">
-            <p>Categoria</p>
-            <div class="linea"></div>
-        </div>
-    </div>
     <!-- Menu de cuenta -->
     <div id="menuCuenta">
         <div id="contenidoMenuCuenta">
-            <p>Nombres</p>
-            <div class="linea"></div>
+            <p>@ViewBag.user</p>
+            <hr class="linea" />
             <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
-            <div class="linea"></div>
-            <p>Cerrar sesion</p>
+            <hr class="linea" />
+            <a href="@Url.Action("EliminarSesion", "Libros")">Cerrar sesion</a>
         </div>
     </div>
     <!-- main -->
@@ -93,9 +92,11 @@
                 <div class="profesion">
                     @Html.EditorFor(model => model.profesión, new { htmlAttributes = new { @class = "profesion-campo" } })
                 </div>
+
                 <div class="visible">
-                    @Html.EditorFor(model => model.visible, new { htmlAttributes = new { @class = "visible-campo" } })
+                    @Html.DropDownListFor(model => model.visible, opcionesVisibilidad, new { @class = "visible-campo" })
                 </div>
+
                 <div class="documento">
                     <input type="file" name="file" class="documento-campo" />
                 </div>

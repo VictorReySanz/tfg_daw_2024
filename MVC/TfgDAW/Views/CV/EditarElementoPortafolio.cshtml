@@ -1,3 +1,6 @@
+@{
+    ViewBag.Title = "Editar " + @ViewBag.NombrePortafolioEditar;
+}
 
 <!DOCTYPE html>
 <html>
@@ -13,13 +16,23 @@
     <div id="menu">
         <div id="contenidoMenu">
             <a href="@Url.Action("Index", "Libros")">Inicio</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
-            <div class="linea"></div>
-            <p>Grupos</p>
-            <div class="linea"></div>
+            <hr class="linea" />
+            <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
+            <hr class="linea" />
+            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+            <hr class="linea" />
             <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
-            <div class="linea"></div><p>CVs</p>
+            <hr class="linea" />
+            <input id="cvDesplegar" type="checkbox">
+            <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+            <!-- SubMenu CV -->
+            <div id="menuCV">
+                <div id="contenidoMenuCV">
+                    <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Nav -->
@@ -38,7 +51,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -50,11 +63,11 @@
     <!-- Menu de cuenta -->
     <div id="menuCuenta">
         <div id="contenidoMenuCuenta">
-            <p>Nombres</p>
-            <div class="linea"></div>
+            <p>@ViewBag.user</p>
+            <hr class="linea" />
             <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
-            <div class="linea"></div>
-            <p>Cerrar sesion</p>
+            <hr class="linea" />
+            <a href="@Url.Action("EliminarSesion", "Libros")">Cerrar sesion</a>
         </div>
     </div>
     <!-- main -->
@@ -75,6 +88,9 @@
                 </div>
 
                 <input class="subir" type="submit" value="Subir" />
+
+
+                <input type="hidden" name="ideditar" value="@ViewBag.Ideditar" />
 
             </div>
         }
