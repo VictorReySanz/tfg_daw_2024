@@ -21,7 +21,7 @@ namespace TfgDAW.Models
             }
             else
             {  
-                if (usuario.ToUpper() == "admin" && password == "admin")
+                if (usuario == "admin" && password == "admin")
 
                 {
 
