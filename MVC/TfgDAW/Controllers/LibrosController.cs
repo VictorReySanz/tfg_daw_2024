@@ -20,6 +20,7 @@ namespace TfgDAW.Controllers
 
 
         // Principal
+    
         public ActionResult Index(string buscar)
         {
             var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.visible == true);
@@ -34,9 +35,14 @@ namespace TfgDAW.Controllers
 
             //Mostrar nombre de usuario en el menu usuario
             int userId = (int)Session["userId"];
+            if (Session["userId"] != null)
+            {
+                var user = db.Usuarios.Find(userId);
+                ViewBag.user = user.nombre;
 
-            var user = db.Usuarios.Find(userId);
-            ViewBag.user = user.nombre;
+            }else {
+                ViewBag.user = "invitado";
+            }
 
             return View(libros);
         }

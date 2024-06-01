@@ -14,7 +14,7 @@ namespace TfgDAW.Models
         public bool ExisteUsuario(String usuario, String password)
         {
 
-            List<Usuarios> userObj = db.Usuarios.Where(u => u.nombre == usuario).ToList();
+            List<Usuarios> userObj = db.Usuarios.Where(u => u.email == usuario).ToList();
             if (userObj.Count == 0)
             {
                 return false;
@@ -35,7 +35,7 @@ namespace TfgDAW.Models
                     this.Role = "usuario";
                     return true;
                 }
-
+              
             }
             return false;
         }
