@@ -20,23 +20,23 @@
     <div id="menu">
         <div id="contenidoMenu">
             <a href="@Url.Action("Index", "Libros")">Inicio</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
+            <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
+            <hr class="linea" />
             <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
             <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
             <input id="cvDesplegar" type="checkbox">
             <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
-        </div>
-    </div>
-    <!-- SubMenu CV -->
-    <div id="menuCV">
-        <div id="contenidoMenuCV">
-            <a href="@Url.Action("MiCv", "Cv")">Mi CV</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+            <!-- SubMenu CV -->
+            <div id="menuCV">
+                <div id="contenidoMenuCV">
+                    <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Nav -->
@@ -55,7 +55,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -64,21 +64,14 @@
             </li>
         </ul>
     </nav>
-    <!-- Filtro -->
-    <div id="filtro">
-        <div id="contenidoFiltro">
-            <p>Categoria</p>
-            <div class="linea"></div>
-        </div>
-    </div>
     <!-- Menu de cuenta -->
     <div id="menuCuenta">
         <div id="contenidoMenuCuenta">
-            <p>Nombres</p>
-            <div class="linea"></div>
+            <p>@ViewBag.user</p>
+            <hr class="linea" />
             <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
-            <div class="linea"></div>
-            <p>Cerrar sesion</p>
+            <hr class="linea" />
+            <a href="@Url.Action("EliminarSesion", "Libros")">Cerrar sesion</a>
         </div>
     </div>
     <!-- main -->
@@ -172,132 +165,136 @@ loadingTask.promise.then(function(pdf) {
                     </div>
 
                 </div>
-                
+
                 //REDES SOCIALES
-        <div class="portafolio-container">
-            <div id="portafolio-titulo">REDES SOCIALES</div>
-            <div class="portafolio">
-                @*X*@
-                <div class="portafolio-elemento">
-                    <a href="@ViewBag.RedesPersonal[0]" class="portafolio-elemento-nombre">
-                        <img class="redesImg" src="~/Content/imgs/x.png" />
-                        X
-                    </a>
-
-                    <div class="botones">
-                        <!-- Editar elemento red -->
-                        <a href="@Url.Action("EditarRed", "Cv", new { id = 0, enlace = @ViewBag.RedesPersonal[0], ideditarR = item.cv_id })" id="editar" name="ideditarR">
-                            <img id="editarImg" src="~/Content/imgs/editar.png" />
-                        </a>
-                        <!-- Eliminar elemento red -->
-                        <a href="@Url.Action("EliminarRed", "Cv", new { id = 0, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
-                            <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
-                        </a>
-                    </div>
-                </div>
-                @*Instagram*@
-                <div class="portafolio-elemento">
-                    <a href="@ViewBag.RedesPersonal[1]" class="portafolio-elemento-nombre">
-
-                        <img class="redesImg" src="~/Content/imgs/instagram.png" />
-                        Instagram
-                    </a>
-
-                    <div class="botones">
-                        <!-- Editar elemento red -->
-                        <a href="@Url.Action("EditarRed", "Cv", new { id = 1, enlace = @ViewBag.RedesPersonal[1], ideditarR = item.cv_id })" id="editar" name="ideditarR">
-                            <img id="editarImg" src="~/Content/imgs/editar.png" />
-                        </a>
-                        <!-- Eliminar elemento red -->
-                        <a href="@Url.Action("EliminarRed", "Cv", new { id = 1, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
-                            <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
-                        </a>
-                    </div>
-                </div>
-                @*Facebook*@
-                <div class="portafolio-elemento">
-                    <a href="@ViewBag.RedesPersonal[2]" class="portafolio-elemento-nombre">
-                        <img class="redesImg" src="~/Content/imgs/facebook.png" />
-                        Facebook
-                    </a>
-
-                    <div class="botones">
-                        <!-- Editar elemento red -->
-                        <a href="@Url.Action("EditarRed", "Cv", new { id = 2, enlace = @ViewBag.RedesPersonal[2], ideditarR = item.cv_id })" id="editar" name="ideditarR">
-                            <img id="editarImg" src="~/Content/imgs/editar.png" />
-                        </a>
-                        <!-- Eliminar elemento red -->
-                        <a href="@Url.Action("EliminarRed", "Cv", new { id = 2, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
-                            <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
-                        </a>
-                    </div>
-                </div>
-                @*Linkedin*@
-                <div class="portafolio-elemento">
-                    <a href="@ViewBag.RedesPersonal[3]" class="portafolio-elemento-nombre">
-                        <img class="redesImg" src="~/Content/imgs/linkedin.png" />
-                        Linkedin
-                    </a>
-
-                    <div class="botones">
-                        <!-- Editar elemento red -->
-                        <a href="@Url.Action("EditarRed", "Cv", new { id = 3, enlace = @ViewBag.RedesPersonal[3], ideditarR = item.cv_id })" id="editar" name="ideditarR">
-                            <img id="editarImg" src="~/Content/imgs/editar.png" />
-                        </a>
-                        <!-- Eliminar elemento red -->
-                        <a href="@Url.Action("EliminarRed", "Cv", new { id = 3, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
-                            <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
-                        </a>
-                    </div>
-                </div>
-
-
-            </div>
-
-            @*PORTAFOLIO*@
-            <div id="portafolio-titulo" style="margin-top:50px;">PORTAFOLIO</div>
-
-            <!-- Añadir elemento -->
-            <a href="@Url.Action("CrearElementoPortafolio", "Cv", new { id = item.cv_id })" name="idcrear" id="anadir">
-
-                <img id="anadirImg" src="~/Content/imgs/anadir.png" />
-            </a>
-            <div class="portafolio">
-                @for (int i = 0; i < ViewBag.Nombres.Count; i++)
-                {
-                    <div class="portafolio-elemento">
-                        <a href="@ViewBag.Enlaces[i]" class="portafolio-elemento-nombre">@ViewBag.Nombres[i]</a>
-
-                        <div class="botones">
-                            <!-- Editar elemento portafolio -->
-                            <a href="@Url.Action("EditarElementoPortafolio", "Cv", new { id = i, nombre = @ViewBag.Nombres[i], enlace = @ViewBag.Enlaces[i], ideditar = item.cv_id })" id="editar" name="ideditar">
-
-                                <img id="editarImg" src="~/Content/imgs/editar.png" />
+                <div class="portafolio-container">
+                    <div id="portafolio-titulo">REDES SOCIALES</div>
+                    <div class="portafolio">
+                        @*X*@
+                        <div class="portafolio-elemento">
+                            <a href="@ViewBag.RedesPersonal[0]" class="portafolio-elemento-nombre">
+                                <img class="redesImg" src="~/Content/imgs/x.png" />
+                                X
                             </a>
 
-                            <!-- Eliminar elemento portafolio -->
-                            <a href="@Url.Action("EliminarPortafolio", "Cv", new { id = i, ideliminar = item.cv_id  })" id="eliminar" name="ideliminar">
-
-                                <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
-                            </a>
+                            <div class="botones">
+                                <!-- Editar elemento red -->
+                                <a href="@Url.Action("EditarRed", "Cv", new { id = 0, enlace = @ViewBag.RedesPersonal[0], ideditarR = item.cv_id })" id="editar" name="ideditarR">
+                                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                </a>
+                                <!-- Eliminar elemento red -->
+                                <a href="@Url.Action("EliminarRed", "Cv", new { id = 0, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                </a>
+                            </div>
                         </div>
+                        @*Instagram*@
+                        <div class="portafolio-elemento">
+                            <a href="@ViewBag.RedesPersonal[1]" class="portafolio-elemento-nombre">
+
+                                <img class="redesImg" src="~/Content/imgs/instagram.png" />
+                                Instagram
+                            </a>
+
+                            <div class="botones">
+                                <!-- Editar elemento red -->
+                                <a href="@Url.Action("EditarRed", "Cv", new { id = 1, enlace = @ViewBag.RedesPersonal[1], ideditarR = item.cv_id })" id="editar" name="ideditarR">
+                                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                </a>
+                                <!-- Eliminar elemento red -->
+                                <a href="@Url.Action("EliminarRed", "Cv", new { id = 1, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                </a>
+                            </div>
+                        </div>
+                        @*Facebook*@
+                        <div class="portafolio-elemento">
+                            <a href="@ViewBag.RedesPersonal[2]" class="portafolio-elemento-nombre">
+                                <img class="redesImg" src="~/Content/imgs/facebook.png" />
+                                Facebook
+                            </a>
+
+                            <div class="botones">
+                                <!-- Editar elemento red -->
+                                <a href="@Url.Action("EditarRed", "Cv", new { id = 2, enlace = @ViewBag.RedesPersonal[2], ideditarR = item.cv_id })" id="editar" name="ideditarR">
+                                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                </a>
+                                <!-- Eliminar elemento red -->
+                                <a href="@Url.Action("EliminarRed", "Cv", new { id = 2, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                </a>
+                            </div>
+                        </div>
+                        @*Linkedin*@
+                        <div class="portafolio-elemento">
+                            <a href="@ViewBag.RedesPersonal[3]" class="portafolio-elemento-nombre">
+                                <img class="redesImg" src="~/Content/imgs/linkedin.png" />
+                                Linkedin
+                            </a>
+
+                            <div class="botones">
+                                <!-- Editar elemento red -->
+                                <a href="@Url.Action("EditarRed", "Cv", new { id = 3, enlace = @ViewBag.RedesPersonal[3], ideditarR = item.cv_id })" id="editar" name="ideditarR">
+                                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                </a>
+                                <!-- Eliminar elemento red -->
+                                <a href="@Url.Action("EliminarRed", "Cv", new { id = 3, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                </a>
+                            </div>
+                        </div>
+
+
                     </div>
 
-                }
+                    @*PORTAFOLIO*@
+                    <div id="portafolio-titulo" style="margin-top:50px;">PORTAFOLIO</div>
 
-            </div>
+                    <!-- Añadir elemento -->
+                    <a href="@Url.Action("CrearElementoPortafolio", "Cv", new { id = item.cv_id })" name="idcrear" id="anadir">
 
+                        <img id="anadirImg" src="~/Content/imgs/anadir.png" />
+                    </a>
+                    <div class="portafolio">
+                        @for (int i = 0; i < ViewBag.Nombres.Count; i++)
+                        {
 
+                            <div class="portafolio-elemento">
+                                <a href="@ViewBag.Enlaces[i]" class="portafolio-elemento-nombre">@ViewBag.Nombres[i]</a>
 
+                                <div class="botones">
+                                    <!-- Editar elemento portafolio -->
+                                    <a href="@Url.Action("EditarElementoPortafolio", "Cv", new { id = i, nombre = @ViewBag.Nombres[i], enlace = @ViewBag.Enlaces[i], ideditar = item.cv_id })" id="editar" name="ideditar">
 
+                                        <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                    </a>
 
+                                    <!-- Eliminar elemento portafolio -->
+                                    <a href="@Url.Action("EliminarPortafolio", "Cv", new { id = i, ideliminar = item.cv_id  })" id="eliminar" name="ideliminar">
 
+                                        <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                    </a>
+                                </div>
+                            </div>
 
+                        }
 
-
-        </div>
+                    </div>
+                </div>
             }
         </div>
     </main>
 </body>
 </html>
+
+@*Si no hay enlace en la red social q se vea en rojo*@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var links = document.querySelectorAll(".portafolio-elemento-nombre");
+        links.forEach(function (link) {
+            if (link.getAttribute("href") === "#") {
+                link.classList.add("red-text");
+            }
+        });
+    });
+</script>

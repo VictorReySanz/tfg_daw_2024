@@ -54,6 +54,13 @@ namespace TfgDAW.Controllers
                 ViewBag.RedesIndex = null;
             }
 
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
+
             return View(cv);
         }
 
@@ -61,7 +68,6 @@ namespace TfgDAW.Controllers
         public ActionResult VerCv(int id)
         {
 
-            int userId = (int)Session["userId"];
             var cvQuery = db.Cv.Where(c => c.cv_id == id);
             var cv = cvQuery.ToList();
 
@@ -99,7 +105,7 @@ namespace TfgDAW.Controllers
             }
 
             //Listar tecnologias
-            var cvTecnologiasQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.tecnología).FirstOrDefault();
+            var cvTecnologiasQuery = db.Cv.Where(c => c.usuario_id == id).Select(c => c.tecnología).FirstOrDefault();
 
             if (cvTecnologiasQuery != null)
             {
@@ -113,6 +119,14 @@ namespace TfgDAW.Controllers
 
                 ViewBag.Tecnologias = tecnologiasVacio;
             }
+
+
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
 
             return View(cv);
         }
@@ -222,6 +236,11 @@ namespace TfgDAW.Controllers
                 ViewBag.RedesPersonal = null;
             }
 
+            //Mostrar nombre de usuario en el menu usuario
+
+            var idUser = db.Usuarios.Find(userId);
+            ViewBag.user = idUser.nombre;
+
             return View(cv);
         }
 
@@ -241,6 +260,12 @@ namespace TfgDAW.Controllers
         //Crear un elemento del portafolio: get
         public ActionResult CrearElementoPortafolio()
         {
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
             return View();
         }
         //Crear un elemento del portafolio: put
@@ -329,6 +354,13 @@ namespace TfgDAW.Controllers
             ViewBag.NombrePortafolioEditar = nombre;
             ViewBag.EnlacePortafolioEditar = enlace;
             ViewBag.Ideditar = ideditar;
+
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
             return View();
         }
         //Editar un elemento del portafolio: put
@@ -393,6 +425,12 @@ namespace TfgDAW.Controllers
         public ActionResult EditarCV2(int id)
         {
             Cv cv = db.Cv.Find(id);
+
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
 
             return View(cv);
         }
@@ -472,6 +510,13 @@ namespace TfgDAW.Controllers
         //Crear un elemento de tecnologia: get
         public ActionResult CrearElementoTecnologia()
         {
+
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
             return View();
         }
         //Crear un elemento de tecnologia: put
@@ -539,6 +584,13 @@ namespace TfgDAW.Controllers
         {
             ViewBag.EnlaceRPortafolioEditar = enlace;
             ViewBag.IdeditarR = ideditarR;
+
+            //Mostrar nombre de usuario en el menu usuario
+            int userId = (int)Session["userId"];
+
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
+
             return View();
         }
         //Editar un elemento de red social: put
@@ -598,90 +650,6 @@ namespace TfgDAW.Controllers
             return HttpNotFound();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET: CV/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CV/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CV/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CV/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CV/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CV/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 
 }

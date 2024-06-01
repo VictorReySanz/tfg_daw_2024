@@ -14,29 +14,31 @@
     <script src="~/Content/js/scripts.js" defer></script>
     @*Visor de pdf PDF.js*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    @*Animaciones ya hechas*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 <body>
     <!-- Menu -->
     <div id="menu">
         <div id="contenidoMenu">
             <a href="@Url.Action("Index", "Libros")">Inicio</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("MisElementos", "Libros")">MisElementos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
+            <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
+            <hr class="linea" />
             <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
             <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
-            <div class="linea"></div>
+            <hr class="linea" />
             <input id="cvDesplegar" type="checkbox">
             <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
-        </div>
-    </div>
-    <!-- SubMenu CV -->
-    <div id="menuCV">
-        <div id="contenidoMenuCV">
-            <a href="@Url.Action("MiCv", "Cv")">Mi CV</a>
-            <div class="linea"></div>
-            <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+            <!-- SubMenu CV -->
+            <div id="menuCV">
+                <div id="contenidoMenuCV">
+                    <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Nav -->
@@ -55,7 +57,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="~/Content/imgs/iconocuenta.png" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -64,21 +66,14 @@
             </li>
         </ul>
     </nav>
-    <!-- Filtro -->
-    <div id="filtro">
-        <div id="contenidoFiltro">
-            <p>Categoria</p>
-            <div class="linea"></div>
-        </div>
-    </div>
     <!-- Menu de cuenta -->
     <div id="menuCuenta">
         <div id="contenidoMenuCuenta">
-            <p>Nombres</p>
-            <div class="linea"></div>
+            <p>@ViewBag.user</p>
+            <hr class="linea" />
             <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
-            <div class="linea"></div>
-            <p>Cerrar sesion</p>
+            <hr class="linea" />
+            <a href="@Url.Action("EliminarSesion", "Libros")">Cerrar sesion</a>
         </div>
     </div>
     <!--  main  -->
@@ -90,11 +85,11 @@
 
                 ViewBag.Title = "CV de " + @Html.DisplayFor(modelItem => item.nombre_completo);
                 <div class="cv-container">
-                    <p class="nombre-completo">@Html.DisplayFor(modelItem => item.nombre_completo)</p>
-                    <p class="profesion">@Html.DisplayFor(modelItem => item.profesión)</p>
+                    <p class="nombre-completo animate__animated animate__slow animate__bounceInDown">@Html.DisplayFor(modelItem => item.nombre_completo)</p>
+                    <p class="profesion animate__animated animate__slow animate__bounceInLeft">@Html.DisplayFor(modelItem => item.profesión)</p>
 
                     @*Ver archivo*@
-                    <div id="pdf-viewer"></div>
+                    <div id="pdf-viewer" class="animate__animated animate__slow animate__bounceIn"></div>
                     <script>
 const url = '@Url.Action("VerArchivo", "Cv", new { id = item.cv_id })';
 
@@ -130,12 +125,12 @@ loadingTask.promise.then(function(pdf) {
 
                     @*TECNOLOGIAS*@
                     <div class="portafolio-container">
-                        <div id="portafolio-titulo">APTITUDES</div>
+                        <div id="portafolio-titulo" class="animate__animated animate__slow animate__bounceInDown">APTITUDES</div>
 
                         <div class="portafolio">
                             @for (int i = 0; i < ViewBag.Tecnologias.Length - 1; i++)
                             {
-                                <div class="portafolio-elemento">
+                                <div class="portafolio-elemento animate__animated animate__slow animate__bounceInLeft">
                                     <p class="portafolio-elemento-nombre">@ViewBag.Tecnologias[i]</p>
                                 </div>
                             }
@@ -144,17 +139,18 @@ loadingTask.promise.then(function(pdf) {
                     </div>
 
                 </div>
+                //PORTAFOLIO
                 <div class="portafolio-container">
-                    <div id="portafolio-titulo">PORTAFOLIO</div>
+                    <div id="portafolio-titulo" class="animate__animated animate__slow animate__bounceInDown">PORTAFOLIO</div>
                     <div class="portafolio">
                         @for (int i = 0; i < ViewBag.Nombres.Count; i++)
                         {
-                            <a href="@ViewBag.Enlaces[i]" class="portafolio-elemento">@ViewBag.Nombres[i]</a>
+                            <a href="@ViewBag.Enlaces[i]" class="portafolio-elemento animate__animated animate__slow animate__bounceInLeft">@ViewBag.Nombres[i]</a>
                         }
                     </div>
                 </div>
             }
-            </div>
+        </div>
     </main>
 </body>
 </html>
