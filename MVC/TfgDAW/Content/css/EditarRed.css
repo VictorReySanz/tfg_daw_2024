@@ -1,4 +1,4 @@
-﻿/************************ body ************************/
+/************************ body ************************/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -151,6 +151,47 @@ nav {
     padding-top: 1.5em;
     border-radius: 15px;
     animation: aparecerCV 0.75s forwards;
+    z-index: 1001;
+}
+
+/****************************** ADMIN ********************************/
+#adminDesplegar {
+    display: none;
+}
+
+#adminDesplegarLabel {
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+    #adminDesplegarLabel:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#contenidoMenuAdmin a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+    #contenidoMenuAdmin a:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#menuAdmin {
+    display: none;
+    position: absolute;
+    top: 24em;
+    left: 8em;
+    background-color: #F573C7;
+    width: 250px;
+    height: 11em;
+    text-align: center;
+    padding-top: 1.5em;
+    border-radius: 15px;
+    animation: aparecerAdmin 0.75s forwards;
     z-index: 1001;
 }
 
@@ -400,6 +441,19 @@ nav ul #liVerMenuCuenta {
     }
 }
 
+/*Desplegar menu Admin*/
+@keyframes aparecerAdmin {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
 /************************ Medias queries ************************/
 @media (max-width: 768px) {
     /*menu*/
@@ -477,7 +531,14 @@ nav ul #liVerMenuCuenta {
         top: 18em;
         left: 0;
         width: 100%;
+        border: 1px solid black;
+    }
+
+    /*menu admin*/
+    #menuAdmin {
+        position: fixed;
+        top: 23em;
+        left: 0;
+        width: 100%;
     }
 }
-
-
