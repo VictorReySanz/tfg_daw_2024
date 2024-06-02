@@ -157,14 +157,14 @@ namespace TfgDAW.Controllers
             }
 
             //verificar si esta en favoritos
-            var favoritos = db.Favoritos.Where(f => f.usuario_id == userId && f.favorito_ref_id == id).ToList();
+            /*var favoritos = db.Favoritos.Where(f => f.usuario_id == userId && f.favorito_ref_id == id).ToList();
             if(favoritos.Count != 0)
             {
                 ViewBag.Favorito = true;
             } else
             {
                 ViewBag.Favorito = false;
-            }
+            }*/
  
             return View(libros);
         }
