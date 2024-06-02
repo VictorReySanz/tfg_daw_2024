@@ -1,0 +1,134 @@
+﻿@model IEnumerable<TfgDAW.Models.Libros>
+
+@{
+    ViewData["Title"] = "Administrar libros";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/adminLibros.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+    @*Animaciones ya hechas*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Libros")">Inicio</a>
+            <hr class="linea" />
+            <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
+            <hr class="linea" />
+            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+            <hr class="linea" />
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
+            <hr class="linea" />
+            <input id="cvDesplegar" type="checkbox">
+            <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+            @if (ViewBag.IsAdmin)
+            {
+                <hr class="linea" />
+                <input id="adminDesplegar" type="checkbox">
+                <label id="adminDesplegarLabel" for="adminDesplegar">Adminstrar</label>
+            }
+            <!-- SubMenu Admin -->
+            <div id="menuAdmin">
+                <div id="contenidoMenuAdmin">
+                    <a href="@Url.Action("Index", "Admin")">Administrar usuarios</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("AdministrarLibros", "Admin")">Administrar libros</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("AdministrarCVs", "Admin")">Administrar CVs</a>
+                </div>
+            </div>
+            <!-- SubMenu CV -->
+            <div id="menuCV">
+                <div id="contenidoMenuCV">
+                    <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liBuscar">
+
+                @using (Html.BeginForm("AdministrarLibros", "Admin", FormMethod.Get))
+                {
+                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo o autor">
+                }
+            </li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+        <div id="contenidoMenuCuenta">
+            <p>@ViewBag.user</p>
+            <hr class="linea" />
+            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
+            <hr class="linea" />
+            <a href="@Url.Action("EliminarSesion", "Libros")">Cerrar sesion</a>
+        </div>
+    </div>
+    <!-- main -->
+    <main>
+        <!-- Contenido -->
+        <div id="contenido">
+
+            @foreach (var item in Model)
+            {
+                <div class="todo animate__animated animate__slow animate__backInLeft">
+                    <div class="elemento" name="id">
+                        @if (item.portada != null && item.portada.Length > 0)
+                        {
+                            <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
+                        }
+                        else
+                        {
+                            <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
+                        }
+                        <div class="tituloAutor">
+                            <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
+                            <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
+                        </div>
+                    </div>
+
+                    <!-- Eliminar elemento -->
+                    <a href="@Url.Action("EliminarLibro", "Admin", new { id = item.libro_id })" id="eliminar" name="ideliminarT">
+
+                        <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                    </a>
+                </div>
+            }
+
+        </div>
+    </main>
+</body>
+</html>
