@@ -131,6 +131,7 @@ namespace TfgDAW.Controllers
         }
 
         // Editar CV
+        [AutorizeAttribute]
         public ActionResult EditarCv()
         {
 
@@ -244,6 +245,7 @@ namespace TfgDAW.Controllers
         }
 
         //Mostrar archivo
+        [AutorizeAttribute]
         public ActionResult VerArchivo(int id)
         {
             var cvArchivo = db.Cv.Find(id);
@@ -257,6 +259,7 @@ namespace TfgDAW.Controllers
 
 
         //Crear un elemento del portafolio: get
+        [AutorizeAttribute]
         public ActionResult CrearElementoPortafolio()
         {
             //Mostrar nombre de usuario en el menu usuario
@@ -269,6 +272,7 @@ namespace TfgDAW.Controllers
         }
         //Crear un elemento del portafolio: put
         [HttpPost]
+        [AutorizeAttribute]
         public ActionResult CrearElementoPortafolio(int id, FormCollection form)
         {
             string titulo = form["titulo"];
@@ -294,6 +298,7 @@ namespace TfgDAW.Controllers
         }
 
         //Eliminar un elemento del portafolio
+        [AutorizeAttribute]
         public ActionResult EliminarPortafolio(int id, int ideliminar)
         {
 
@@ -347,6 +352,7 @@ namespace TfgDAW.Controllers
         }
 
         //Editar un elemento del portafolio: get
+        [AutorizeAttribute]
         public ActionResult EditarElementoPortafolio(string nombre, string enlace, int ideditar)
         {
 
@@ -421,6 +427,7 @@ namespace TfgDAW.Controllers
         }
 
         // Editar cv2
+        [AutorizeAttribute]
         public ActionResult EditarCV2(int id)
         {
             Cv cv = db.Cv.Find(id);
@@ -437,6 +444,7 @@ namespace TfgDAW.Controllers
         // Editar cv2
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AutorizeAttribute]
         public ActionResult EditarCV2(Cv cv, HttpPostedFileBase file)
         {
 
@@ -472,6 +480,7 @@ namespace TfgDAW.Controllers
         }
 
         //Eliminar un elemento de tecnologia
+        [AutorizeAttribute]
         public ActionResult EliminarTecnologia(int id, int ideliminarT)
         {
 
@@ -507,6 +516,7 @@ namespace TfgDAW.Controllers
         }
 
         //Crear un elemento de tecnologia: get
+        [AutorizeAttribute]
         public ActionResult CrearElementoTecnologia()
         {
 
@@ -520,6 +530,7 @@ namespace TfgDAW.Controllers
         }
         //Crear un elemento de tecnologia: put
         [HttpPost]
+        [AutorizeAttribute]
         public ActionResult CrearElementoTecnologia(int id, FormCollection form)
         {
             string nombre = form["nombre"];
@@ -579,6 +590,7 @@ namespace TfgDAW.Controllers
         }
 
         //Editar un elemento de rede social: get
+        [AutorizeAttribute]
         public ActionResult EditarRed(string enlace, int ideditarR)
         {
             ViewBag.EnlaceRPortafolioEditar = enlace;
@@ -594,6 +606,7 @@ namespace TfgDAW.Controllers
         }
         //Editar un elemento de red social: put
         [HttpPost]
+        [AutorizeAttribute]
         public ActionResult EditarRed(int id, string enlace, int ideditarR)
         {
 
@@ -638,7 +651,7 @@ namespace TfgDAW.Controllers
 
             return View("EditarRed");
         }
-
+     
         public ActionResult GetIcono(int id)
         {
             var usuario = db.Usuarios.FirstOrDefault(u => u.usuario_id == id);
