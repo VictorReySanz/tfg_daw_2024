@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using System.Web.WebPages;
+
 using TfgDAW.Models;
 
 namespace TfgDAW.Controllers
@@ -129,7 +131,7 @@ namespace TfgDAW.Controllers
 
             List<Usuarios> useremail = db.Usuarios.Where(u => u.email == email).ToList();
 
-            if (useremail.Count == 0 && Validapass(password, pass2))
+            if (email != "" && useremail.Count == 0 && Validapass(password, pass2)  )
             {
                 password = password.Trim();
 
