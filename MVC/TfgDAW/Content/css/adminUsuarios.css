@@ -1,0 +1,610 @@
+﻿/************************ body ************************/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(245, 115, 199, 0.4);
+    overflow-x: hidden;
+}
+
+/************************ nav ************************/
+nav {
+    background-color: #F573C7;
+    padding: 10px;
+}
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        text-align: center;
+    }
+
+        nav ul li {
+            flex-grow: 1;
+        }
+
+        /************************ menu ************************/
+        nav ul #liVerMenu {
+            display: flex;
+            justify-content: flex-start;
+            z-index: 1001;
+        }
+
+#menu {
+    display: none;
+    position: fixed;
+    background-color: #F74ABB;
+    width: 250px;
+    height: 100%;
+    text-align: center;
+    animation: aparecer 0.75s forwards;
+    z-index: 1000;
+}
+
+#verMenu {
+    display: none;
+}
+
+    #verMenu:checked {
+        animation: mover 0.75s forwards;
+    }
+
+#menu #contenidoMenu {
+    margin-top: 50px;
+    width: 100%;
+}
+
+    #menu #contenidoMenu a {
+        text-decoration: none;
+        color: inherit;
+        padding: 0.5em;
+    }
+
+        #menu #contenidoMenu a:hover {
+            margin-left: 2em;
+            color: white;
+        }
+
+/*visual*/
+.verMenuDiv {
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+    .verMenuDiv .linea1 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    .verMenuDiv .linea2 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    .verMenuDiv .linea3 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+#verMenu:checked + #verMenuLabel {
+    position: fixed;
+}
+
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
+        animation: linea1Menu 0.75s forwards;
+    }
+
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
+        animation: linea2Menu 0.75s forwards;
+    }
+
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
+        animation: linea3Menu 0.75s forwards;
+    }
+
+/****************************** CVS ********************************/
+#cvDesplegar {
+    display: none;
+}
+
+#cvDesplegarLabel {
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+    #cvDesplegarLabel:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#contenidoMenuCV a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+    #contenidoMenuCV a:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#menuCV {
+    display: none;
+    position: absolute;
+    top: 20em;
+    left: 8em;
+    background-color: #73E665;
+    width: 250px;
+    height: 7em;
+    text-align: center;
+    padding-top: 1.5em;
+    border-radius: 15px;
+    animation: aparecerCV 0.75s forwards;
+    z-index: 1001;
+}
+
+/****************************** ADMIN ********************************/
+#adminDesplegar {
+    display: none;
+}
+
+#adminDesplegarLabel {
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+    #adminDesplegarLabel:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#contenidoMenuAdmin a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+    #contenidoMenuAdmin a:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+#menuAdmin {
+    display: none;
+    position: absolute;
+    top: 24em;
+    left: 8em;
+    background-color: #F573C7;
+    width: 250px;
+    height: 11em;
+    text-align: center;
+    padding-top: 1.5em;
+    border-radius: 15px;
+    animation: aparecerAdmin 0.75s forwards;
+    z-index: 1001;
+}
+
+/************************ menu cuenta ************************/
+nav ul #liVerMenuCuenta {
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1001;
+}
+
+#menuCuenta {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #F74ABB;
+    width: 250px;
+    height: 200px;
+    border-radius: 15px;
+    text-align: center;
+    animation: aparecerCuenta 0.75s forwards;
+    z-index: 1000;
+}
+
+#verMenuCuenta {
+    display: none;
+}
+
+#menuCuenta #contenidoMenuCuenta {
+    margin-top: 30px;
+}
+
+#contenidoMenuCuenta a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5em;
+}
+
+    #contenidoMenuCuenta a:hover {
+        margin-left: 2em;
+        color: white;
+    }
+
+.cuentaImg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.cuentaClose {
+    width: 20px;
+}
+
+    .cuentaClose .linea1 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+        opacity: 0;
+    }
+
+    .cuentaClose .linea2 {
+        background: black;
+        height: 4px;
+        border-radius: 10px;
+        z-index: 1;
+        opacity: 0;
+    }
+
+#verMenuCuenta:checked + #menuCuenta {
+    display: block;
+    animation: aparecerCuenta 0.75s forwards;
+}
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .cuentaImg {
+    animation: animacionCuenta 1s forwards;
+}
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .linea1 {
+    animation: animacionCuentaLinea1 1s forwards;
+}
+
+#verMenuCuenta:checked + #verMenuCuentaLabel .linea2 {
+    animation: animacionCuentaLinea2 1s forwards;
+}
+
+/************************ buscar ************************/
+nav ul #liBuscar {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li #buscar {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+/************************ extras ************************/
+.linea {
+    width: 50%;
+    height: 1px;
+    margin-left: 65px;
+    text-align: center;
+}
+
+/************************ contenido ************************/
+.contenido {
+    display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 100px;
+    justify-content: center;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cv-a {
+    text-decoration: none;
+    color: inherit;
+}
+
+    .cv-a:hover {
+        color: inherit;
+    }
+
+
+/**/
+.card-client {
+    background: #ff99db;
+    width: 13rem;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 4px solid black;
+    box-shadow: 0 6px 10px rgba(207, 212, 222, 1);
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease;
+}
+
+    .card-client:hover {
+        transform: translateY(-10px);
+    }
+
+.user-picture {
+    overflow: hidden;
+    width: 5rem;
+    height: 5rem;
+    border: 4px solid white;
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.name-client {
+    margin: 0;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+    .name-client span {
+        display: block;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+.cuentaImgCv {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+#eliminar {
+}
+
+#eliminarImg {
+    width: 40px;
+    height: auto;
+    border-radius: 100%;
+}
+
+    #eliminarImg:hover {
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+    }
+
+
+
+/************************ animaciones ************************/
+/*Desplegar menu*/
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+/* Mover el checkbox del menu */
+@keyframes mover {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(2300%);
+    }
+}
+
+/*Desplegar menu de cuenta*/
+@keyframes aparecerCuenta {
+    0% {
+        opacity: 0;
+        transform: translateX(200%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(15%);
+    }
+}
+
+/*Animacion de verMenu*/
+@keyframes linea1Menu {
+
+    100% {
+        rotate: -30deg;
+    }
+}
+
+@keyframes linea2Menu {
+
+    100% {
+        rotate: 30deg;
+        transform: translate(2px, 2px);
+    }
+}
+
+@keyframes linea3Menu {
+
+    100% {
+        transform: translateX(-100px);
+    }
+}
+
+/*Animacion de verCuenta*/
+@keyframes animacionCuenta {
+
+    100% {
+        rotate: 360deg;
+        transform: translateX(200%);
+    }
+}
+
+@keyframes animacionCuentaLinea1 {
+
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        rotate: -30deg;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes animacionCuentaLinea2 {
+
+    0% {
+        opacity: 0;
+        transform: translate(200%, -500%);
+    }
+
+    100% {
+        opacity: 1;
+        rotate: 30deg;
+        transform: translate(50%, -550%);
+    }
+}
+
+/*Desplegar menu CV*/
+@keyframes aparecerCV {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+
+/*Desplegar menu Admin*/
+@keyframes aparecerAdmin {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+/************************ Medias queries ************************/
+@media (max-width: 768px) {
+    /*menu*/
+    #verMenu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: #4F91E8;
+        border: none;
+        cursor: pointer;
+    }
+
+        #verMenu:checked + #menu {
+            display: block;
+        }
+
+    #menu {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 57px;
+        left: 0;
+    }
+
+        #menu #contenidoMenu a {
+            padding: 0em;
+        }
+
+        #menu #contenidoMenu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+    /*menu cuenta*/
+    #liVerMenuCuenta {
+        justify-content: flex-start;
+    }
+
+    #verMenuCuenta {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: #4F91E8;
+        border: none;
+        cursor: pointer;
+    }
+
+    #menuCuenta {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        border: 1px solid black;
+    }
+
+        #menuCuenta #contenidoMenuCuenta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            #menuCuenta #contenidoMenuCuenta a {
+                padding: 0em;
+            }
+
+    /*menu cv*/
+    #menuCV {
+        position: fixed;
+        top: 18em;
+        left: 0;
+        width: 100%;
+        border: 1px solid black;
+    }
+
+    /*menu admin*/
+    #menuAdmin {
+        position: fixed;
+        top: 23em;
+        left: 0;
+        width: 100%;
+    }
+}
