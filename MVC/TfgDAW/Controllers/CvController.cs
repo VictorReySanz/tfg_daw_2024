@@ -60,6 +60,15 @@ namespace TfgDAW.Controllers
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
 
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
 
             return View(cv);
         }
@@ -127,6 +136,15 @@ namespace TfgDAW.Controllers
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
 
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
 
             return View(cv);
         }
@@ -241,6 +259,16 @@ namespace TfgDAW.Controllers
             var idUser = db.Usuarios.Find(userId);
             ViewBag.user = idUser.nombre;
 
+            //Verificar si es un admin
+            if (idUser.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
             return View(cv);
         }
 
@@ -265,6 +293,16 @@ namespace TfgDAW.Controllers
 
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
+
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
 
             return View();
         }
@@ -361,6 +399,16 @@ namespace TfgDAW.Controllers
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
 
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
             return View();
         }
         //Editar un elemento del portafolio: put
@@ -431,6 +479,16 @@ namespace TfgDAW.Controllers
 
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
+
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
 
             return View(cv);
         }
@@ -517,6 +575,16 @@ namespace TfgDAW.Controllers
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
 
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
             return View();
         }
         //Crear un elemento de tecnologia: put
@@ -591,6 +659,16 @@ namespace TfgDAW.Controllers
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
 
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
             return View();
         }
         //Editar un elemento de red social: put
@@ -648,6 +726,16 @@ namespace TfgDAW.Controllers
                 return File(usuario.foto, "image/jpg"); 
             }
             return HttpNotFound();
+        }
+
+        //Cerrar sesion
+        public ActionResult EliminarSesion()
+        {
+            // Eliminar la sesión
+            Session["userId"] = null;
+
+            // Redirigir a la página de usuarios
+            return RedirectToAction("Index", "Usuarios");
         }
 
     }

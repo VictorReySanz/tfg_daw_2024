@@ -3,13 +3,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgba(115, 230, 101, 0.3);
+    background-color: rgba(245, 115, 199, 0.4);
     overflow-x: hidden;
 }
 
 /************************ nav ************************/
 nav {
-    background-color: #73E665;
+    background-color: #F573C7;
     padding: 10px;
 }
 
@@ -35,7 +35,7 @@ nav {
 #menu {
     display: none;
     position: fixed;
-    background-color: #5DE3AB;
+    background-color: #F74ABB;
     width: 250px;
     height: 100%;
     text-align: center;
@@ -113,6 +113,7 @@ nav {
     #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
         animation: linea3Menu 0.75s forwards;
     }
+
 /****************************** CVS ********************************/
 #cvDesplegar {
     display: none;
@@ -206,7 +207,7 @@ nav ul #liVerMenuCuenta {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #5DE3AB;
+    background-color: #F74ABB;
     width: 250px;
     height: 200px;
     border-radius: 15px;
@@ -279,6 +280,19 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
+/************************ buscar ************************/
+nav ul #liBuscar {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li #buscar {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
 /************************ extras ************************/
 .linea {
     width: 50%;
@@ -289,44 +303,96 @@ nav ul #liVerMenuCuenta {
 
 /************************ contenido ************************/
 .contenido {
-    margin-top: 100px;
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-}
-
-.titulo {
-    max-width: 100%;
-    text-align: center;
-}
-
-.titulo-campo {
-    font-size: 55px;
-    max-width: 50%;
-    text-align: center;
-    background-color: #A5E35D;
-    width: 100%;
-    padding: 10px;
-    border: 3px solid;
-    border-radius: 15px;
-}
-
-    .titulo-campo::placeholder {
-        color: black;
-    }
-
-.subir {
+    display: flex;
     margin-top: 50px;
-    background-color: #5DE37E;
-    border-radius: 20px;
-    width: 10%;
-    font-size: 40px;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 100px;
+    justify-content: center;
 }
 
-    .subir:hover {
-        box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-        background-color: #42c48f;
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cv-a {
+    text-decoration: none;
+    color: inherit;
+}
+
+    .cv-a:hover {
+        color: inherit;
     }
+
+
+/**/
+.card-client {
+    background: #ff99db;
+    width: 13rem;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 4px solid black;
+    box-shadow: 0 6px 10px rgba(207, 212, 222, 1);
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease;
+}
+
+    .card-client:hover {
+        transform: translateY(-10px);
+    }
+
+.user-picture {
+    overflow: hidden;
+    width: 5rem;
+    height: 5rem;
+    border: 4px solid white;
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.name-client {
+    margin: 0;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+    .name-client span {
+        display: block;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+.cuentaImgCv {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+#eliminar {
+}
+
+#eliminarImg {
+    width: 40px;
+    height: auto;
+    border-radius: 100%;
+}
+
+    #eliminarImg:hover {
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+    }
+
 
 
 /************************ animaciones ************************/
@@ -439,6 +505,7 @@ nav ul #liVerMenuCuenta {
         transform: translateX(0%);
     }
 }
+
 
 /*Desplegar menu Admin*/
 @keyframes aparecerAdmin {

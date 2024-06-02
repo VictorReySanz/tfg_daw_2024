@@ -28,6 +28,26 @@
             <hr class="linea" />
             <input id="cvDesplegar" type="checkbox">
             <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+            @if (ViewBag.IsAdmin)
+            {
+                <hr class="linea" />
+                <input id="adminDesplegar" type="checkbox">
+                <label id="adminDesplegarLabel" for="adminDesplegar">Adminstrar</label>
+            }
+            else
+            {
+                <input id="adminDesplegar" type="checkbox">
+            }
+            <!-- SubMenu Admin -->
+            <div id="menuAdmin">
+                <div id="contenidoMenuAdmin">
+                    <a href="@Url.Action("Index", "Admin")">Administrar usuarios</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("AdministrarLibros", "Admin")">Administrar libros</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("AdministrarCVs", "Admin")">Administrar CVs</a>
+                </div>
+            </div>
             <!-- SubMenu CV -->
             <div id="menuCV">
                 <div id="contenidoMenuCV">
@@ -142,23 +162,5 @@
             }
         });
         return false;
-    }
-</script>
-
-
-@*Alerta modificacion de cuenta*@
-<script type="text/javascript">
-    function alertaModificacion() {
-        Swal.fire({
-            title: 'Modificación',
-            text: 'El usuario se ha modificado correctamente',
-            icon: 'success',
-            timer: 3000,
-            timerProgressBar: true,
-            showConfirmButton: false
-        }).then((result) => {
-            window.location.href = '/Usuarios/MisDatos';
-            return true;
-        });
     }
 </script>

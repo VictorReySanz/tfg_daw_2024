@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TfgDAW.Models.Libros>
 
 @{
-    ViewData["Title"] = "Favoritos";
+    ViewData["Title"] = "Administrar libros";
 }
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/principal.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/adminLibros.css">
     <script src="~/Content/js/scripts.js" defer></script>
     @*Animaciones ya hechas*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -34,10 +34,6 @@
                 <hr class="linea" />
                 <input id="adminDesplegar" type="checkbox">
                 <label id="adminDesplegarLabel" for="adminDesplegar">Adminstrar</label>
-            }
-            else
-            {
-                <input id="adminDesplegar" type="checkbox">
             }
             <!-- SubMenu Admin -->
             <div id="menuAdmin">
@@ -74,9 +70,9 @@
             </li>
             <li id="liBuscar">
 
-                @using (Html.BeginForm("Favoritos", "Libros", FormMethod.Get))
+                @using (Html.BeginForm("AdministrarLibros", "Admin", FormMethod.Get))
                 {
-                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
+                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo o autor">
                 }
             </li>
             <li id="liVerMenuCuenta">
@@ -108,21 +104,28 @@
 
             @foreach (var item in Model)
             {
-
-                <a href="@Url.Action("VerElemento", "Libros", new { id = item.libro_id })" class="elemento animate__animated animate__slow animate__backInLeft" name="id">
-                    @if (item.portada != null && item.portada.Length > 0)
-                    {
-                        <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
-                    }
-                    else
-                    {
-                        <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
-                    }
-                    <div class="tituloAutor">
-                        <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
-                        <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
+                <div class="todo animate__animated animate__slow animate__backInLeft">
+                    <div class="elemento" name="id">
+                        @if (item.portada != null && item.portada.Length > 0)
+                        {
+                            <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
+                        }
+                        else
+                        {
+                            <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
+                        }
+                        <div class="tituloAutor">
+                            <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
+                            <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
+                        </div>
                     </div>
-                </a>
+
+                    <!-- Eliminar elemento -->
+                    <a href="@Url.Action("EliminarLibro", "Admin", new { id = item.libro_id })" id="eliminar" name="ideliminarT">
+
+                        <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                    </a>
+                </div>
             }
 
         </div>

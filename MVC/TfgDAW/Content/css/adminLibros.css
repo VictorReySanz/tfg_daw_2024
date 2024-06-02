@@ -3,13 +3,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgba(115, 230, 101, 0.3);
+    background-color: rgba(245, 115, 199, 0.4);
     overflow-x: hidden;
 }
 
 /************************ nav ************************/
 nav {
-    background-color: #73E665;
+    background-color: #F573C7;
     padding: 10px;
 }
 
@@ -35,7 +35,7 @@ nav {
 #menu {
     display: none;
     position: fixed;
-    background-color: #5DE3AB;
+    background-color: #F74ABB;
     width: 250px;
     height: 100%;
     text-align: center;
@@ -206,7 +206,7 @@ nav ul #liVerMenuCuenta {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #5DE3AB;
+    background-color: #F74ABB;
     width: 250px;
     height: 200px;
     border-radius: 15px;
@@ -279,6 +279,19 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
+/************************ buscar ************************/
+nav ul #liBuscar {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li #buscar {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
 /************************ extras ************************/
 .linea {
     width: 50%;
@@ -287,45 +300,59 @@ nav ul #liVerMenuCuenta {
     text-align: center;
 }
 
-/************************ contenido ************************/
-.contenido {
-    margin-top: 100px;
-    width: 100%;
-    padding: 20px;
-    text-align: center;
+/************************ Contenido ************************/
+#contenido {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px 50px;
+    padding: 30px;
 }
 
-.titulo {
-    max-width: 100%;
-    text-align: center;
-}
+    #contenido .elemento {
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+    }
 
-.titulo-campo {
-    font-size: 55px;
-    max-width: 50%;
-    text-align: center;
-    background-color: #A5E35D;
-    width: 100%;
-    padding: 10px;
-    border: 3px solid;
+        #contenido .elemento:hover > .portada {
+            border-radius: 15px;
+            box-shadow: 20px 20px 7px rgba(0, 0, 0, 0.3);
+            width: 160px;
+            height: 235px;
+        }
+
+.portada {
+    width: 150px;
+    height: 225px;
     border-radius: 15px;
 }
 
-    .titulo-campo::placeholder {
-        color: black;
-    }
-
-.subir {
-    margin-top: 50px;
-    background-color: #5DE37E;
-    border-radius: 20px;
-    width: 10%;
-    font-size: 40px;
+.tituloAutor {
+    margin-top: 10px;
+    max-width: 150px;
+    margin: 0 auto;
 }
 
-    .subir:hover {
-        box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-        background-color: #42c48f;
+.autor {
+    font-size: 12px;
+    margin-top: -15px;
+    max-width: 150px;
+    margin: 0 auto;
+}
+
+#eliminar {
+    margin-left: 50px;
+}
+
+#eliminarImg {
+    width: 40px;
+    height: auto;
+    border-radius: 100%;
+}
+
+    #eliminarImg:hover {
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
     }
 
 
@@ -363,7 +390,7 @@ nav ul #liVerMenuCuenta {
 
     100% {
         opacity: 1;
-        transform: translateX(15%);
+        transform: translateX(0%);
     }
 }
 

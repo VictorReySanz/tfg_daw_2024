@@ -1,7 +1,7 @@
-﻿@model IEnumerable<TfgDAW.Models.Libros>
+﻿@model IEnumerable<TfgDAW.Models.Cv>
 
 @{
-    ViewData["Title"] = "Favoritos";
+    ViewBag.Title = "Administrar CVs";
 }
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/principal.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/adminCv.css">
     <script src="~/Content/js/scripts.js" defer></script>
     @*Animaciones ya hechas*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -34,10 +34,6 @@
                 <hr class="linea" />
                 <input id="adminDesplegar" type="checkbox">
                 <label id="adminDesplegarLabel" for="adminDesplegar">Adminstrar</label>
-            }
-            else
-            {
-                <input id="adminDesplegar" type="checkbox">
             }
             <!-- SubMenu Admin -->
             <div id="menuAdmin">
@@ -74,9 +70,9 @@
             </li>
             <li id="liBuscar">
 
-                @using (Html.BeginForm("Favoritos", "Libros", FormMethod.Get))
+                @using (Html.BeginForm("AdministrarCVs", "Admin", FormMethod.Get))
                 {
-                    <input name="buscar" id="buscar" type="text" placeholder="Buscar titulo u autor">
+                    <input name="buscar" id="buscar" type="text" placeholder="Buscar profesion o nombre">
                 }
             </li>
             <li id="liVerMenuCuenta">
@@ -103,29 +99,40 @@
     </div>
     <!-- main -->
     <main>
-        <!-- Contenido -->
-        <div id="contenido">
 
+        <!-- contenido  -->
+        <div class="contenido animate__animated animate__slow animate__backInLeft">
             @foreach (var item in Model)
             {
-
-                <a href="@Url.Action("VerElemento", "Libros", new { id = item.libro_id })" class="elemento animate__animated animate__slow animate__backInLeft" name="id">
-                    @if (item.portada != null && item.portada.Length > 0)
-                    {
-                        <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
-                    }
-                    else
-                    {
-                        <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
-                    }
-                    <div class="tituloAutor">
-                        <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
-                        <p class="autor">@Html.DisplayFor(modelItem => item.autor)</p>
+                <div class="card-client">
+                    <div class="cv-a" name="id">
+                        <div class="user-picture">
+                            <img class="cuentaImgCv" src="@Url.Action("GetIcono", "Cv", new { id = item.usuario_id })" alt="Foto del usuario" />
+                        </div>
+                        <p class="name-client">
+                            @Html.DisplayFor(modelItem => item.nombre_completo)
+                            <span>
+                                @Html.DisplayFor(modelItem => item.profesión)
+                            </span>
+                        </p>
                     </div>
-                </a>
+
+
+                    <!-- Eliminar elemento -->
+                    <a href="@Url.Action("EliminarCV", "Admin", new { id = item.cv_id })" id="eliminar" name="ideliminarT">
+
+                        <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                    </a>
+                </div>
             }
 
         </div>
     </main>
 </body>
 </html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

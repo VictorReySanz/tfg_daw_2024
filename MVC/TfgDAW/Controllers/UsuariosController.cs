@@ -37,6 +37,17 @@ namespace TfgDAW.Controllers
             ViewBag.UserId = userId;
             Usuarios usuario = db.Usuarios.Find(userId);
 
+            //Verificar si es un admin
+            if (usuario.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
+
             return View(usuario);
         }
 
@@ -78,7 +89,7 @@ namespace TfgDAW.Controllers
                 {
                     db.Entry(existingUsuario).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("MisDatos");
+                    return RedirectToAction("Index", "Libros");
                 }
             } else if (boton == "Eliminar")
             {
@@ -229,6 +240,7 @@ namespace TfgDAW.Controllers
 
         }
 
+        //Eliminar usuario
         public ActionResult EliminarUsuario()
         {
             if (Session["userId"] != null)
