@@ -49,6 +49,7 @@ namespace TfgDAW.Controllers
         }
 
         // Favoritos
+        [AutorizeAttribute]
         public ActionResult Favoritos(string buscar)
         {
 
@@ -71,6 +72,7 @@ namespace TfgDAW.Controllers
         }
 
         //Mis elementos
+       [AutorizeAttribute]
         public ActionResult MisElementos(string buscar)
         {
 
@@ -116,6 +118,7 @@ namespace TfgDAW.Controllers
         }
 
         //Descargar elemento
+        [AutorizeAttribute]
         public FileResult DescargarArchivo(int id)
         {
             var libro = db.Libros.FirstOrDefault(l => l.libro_id == id);
@@ -134,6 +137,7 @@ namespace TfgDAW.Controllers
         }
 
         //Crear elemento GET
+        [AutorizeAttribute]
         public ActionResult CrearElemento()
         {
             //Mostrar nombre de usuario en el menu usuario
@@ -147,6 +151,7 @@ namespace TfgDAW.Controllers
         //Crear elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AutorizeAttribute]
         public ActionResult CrearElemento(Libros libros, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
 
@@ -186,6 +191,7 @@ namespace TfgDAW.Controllers
 
 
         // Editar/eliminar elemento GET
+        [AutorizeAttribute]
         public ActionResult EditarElemento(int id)
         {
             Libros libros = db.Libros.Find(id);
@@ -201,6 +207,7 @@ namespace TfgDAW.Controllers
         // Editar/eliminar elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AutorizeAttribute]
         public ActionResult EditarElemento([Bind(Include = "libro_id,titulo,autor,descripcion,visible,portada")] Libros libros, string boton, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
 
@@ -262,6 +269,7 @@ namespace TfgDAW.Controllers
         }
 
         //Mostrar imagen en editar elemento
+        [AutorizeAttribute]
         public ActionResult GetImage(int id)
         {
             var libro = db.Libros.Find(id);
@@ -276,6 +284,7 @@ namespace TfgDAW.Controllers
         }
 
         //Mostrar archivo
+        [AutorizeAttribute]
         public ActionResult VerArchivo(int id)
         {
             var librosArchivo = db.Libros.Find(id);
@@ -311,6 +320,7 @@ namespace TfgDAW.Controllers
         }
 
         //Cerrar sesion
+        [AutorizeAttribute]
         public ActionResult EliminarSesion()
         {
             // Eliminar la sesión

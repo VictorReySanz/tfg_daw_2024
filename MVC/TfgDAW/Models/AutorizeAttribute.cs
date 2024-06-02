@@ -35,9 +35,10 @@ namespace TfgDAW.Models
             else
             {
                 //EL USUARIO NO SE HA VALIDADO TODAVIA 
-                //Y LLAMAMOS A LA PAGINA DE LOGIN 
+                //Y LLAMAMOS A LA PAGINA DE LOGIN DE user
+               
                 filterContext.Result = new RedirectToRouteResult(new
-                  RouteValueDictionary(new { controller = "Validacion", action = "Login" }));
+                  RouteValueDictionary(new { controller = "Usuarios", action = "Index" }));
 
             }
 
