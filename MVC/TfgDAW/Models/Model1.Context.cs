@@ -31,7 +31,7 @@ namespace TfgDAW.Models
         public virtual DbSet<Grupos> Grupos { get; set; }
         public virtual DbSet<Juegos> Juegos { get; set; }
         public virtual DbSet<Libros> Libros { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+   
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }
