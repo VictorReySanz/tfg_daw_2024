@@ -191,7 +191,7 @@ loadingTask.promise.then(function(pdf) {
                     <div id="portafolio-titulo">REDES SOCIALES</div>
                     <div class="portafolio">
                         @*X*@
-                        <div class="portafolio-elemento">
+                        <div class="portafolio-elemento" onclick="location.href='@ViewBag.RedesPersonal[0]';">
                             <a href="@ViewBag.RedesPersonal[0]" class="portafolio-elemento-nombre">
                                 <img class="redesImg" src="~/Content/imgs/x.png" />
                                 X
@@ -209,7 +209,7 @@ loadingTask.promise.then(function(pdf) {
                             </div>
                         </div>
                         @*Instagram*@
-                        <div class="portafolio-elemento">
+                        <div class="portafolio-elemento" onclick="location.href='@ViewBag.RedesPersonal[1]';">
                             <a href="@ViewBag.RedesPersonal[1]" class="portafolio-elemento-nombre">
 
                                 <img class="redesImg" src="~/Content/imgs/instagram.png" />
@@ -228,7 +228,7 @@ loadingTask.promise.then(function(pdf) {
                             </div>
                         </div>
                         @*Facebook*@
-                        <div class="portafolio-elemento">
+                        <div class="portafolio-elemento" onclick="location.href='@ViewBag.RedesPersonal[2]';">
                             <a href="@ViewBag.RedesPersonal[2]" class="portafolio-elemento-nombre">
                                 <img class="redesImg" src="~/Content/imgs/facebook.png" />
                                 Facebook
@@ -246,7 +246,7 @@ loadingTask.promise.then(function(pdf) {
                             </div>
                         </div>
                         @*Linkedin*@
-                        <div class="portafolio-elemento">
+                        <div class="portafolio-elemento" onclick="location.href='@ViewBag.RedesPersonal[3]';">
                             <a href="@ViewBag.RedesPersonal[3]" class="portafolio-elemento-nombre">
                                 <img class="redesImg" src="~/Content/imgs/linkedin.png" />
                                 Linkedin
@@ -279,7 +279,7 @@ loadingTask.promise.then(function(pdf) {
                         @for (int i = 0; i < ViewBag.Nombres.Count; i++)
                         {
 
-                            <div class="portafolio-elemento">
+                            <div class="portafolio-elemento" onclick="location.href='@ViewBag.Enlaces[i]';">
                                 <a href="@ViewBag.Enlaces[i]" class="portafolio-elemento-nombre">@ViewBag.Nombres[i]</a>
 
                                 <div class="botones">
