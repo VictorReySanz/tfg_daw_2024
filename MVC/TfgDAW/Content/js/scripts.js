@@ -12,6 +12,21 @@ verMenu.addEventListener('change', function () {
     }
 });
 
+// Desplegar menu Admin
+const adminDesplegar = document.getElementById('adminDesplegar');
+const menuAdmin = document.getElementById('menuAdmin');
+
+adminDesplegar.addEventListener('change', function () {
+    if (this.checked) {
+        menuAdmin.style.display = 'block';
+        menuAdmin.classList.add('aparecerAdmin-animacion');
+    } else {
+        menuAdmin.classList.remove('aparecerAdmin-animacion');
+        menuAdmin.style.display = 'none';
+    }
+});
+
+
 // Desplegar menu CV
 const cvDesplegar = document.getElementById('cvDesplegar');
 const menuCV = document.getElementById('menuCV');
@@ -25,7 +40,6 @@ cvDesplegar.addEventListener('change', function () {
         menuCV.style.display = 'none';
     }
 });
-
 // Desplegar menu de cuenta
 const verMenuCuenta = document.getElementById('verMenuCuenta');
 const menuCuenta = document.getElementById('menuCuenta');
