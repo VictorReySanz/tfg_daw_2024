@@ -39,6 +39,16 @@ namespace TfgDAW.Controllers
             ViewBag.UserId = userId;
             Usuarios usuario = db.Usuarios.Find(userId);
 
+            //Verificar si es un admin
+            if (usuario.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
             return View(usuario);
         }
 
@@ -235,36 +245,37 @@ namespace TfgDAW.Controllers
 
         }
 
-        public ActionResult EliminarUsuario()
+        //Eliminar usuario
+public ActionResult EliminarUsuario()
+{
+    if (Session["userId"] != null)
+    {
+        int userId = (int)Session["userId"];
+        var usuario = db.Usuarios.Find(userId);
+        if (usuario != null)
         {
-            if (Session["userId"] != null)
-            {
-                int userId = (int)Session["userId"];
-                var usuario = db.Usuarios.Find(userId);
-                if (usuario != null)
-                {
-                    // Eliminar los libros del usuario
-                    var libros = db.Libros.Where(l => l.usuario_id == userId).ToList();
-                    db.Libros.RemoveRange(libros);
+            // Eliminar los libros del usuario
+            var libros = db.Libros.Where(l => l.usuario_id == userId).ToList();
+            db.Libros.RemoveRange(libros);
 
-                    // Eliminar los cv del usuario
-                    var cv = db.Cv.Where(l => l.usuario_id == userId).ToList();
-                    db.Cv.RemoveRange(cv);
+            // Eliminar los cv del usuario
+            var cv = db.Cv.Where(l => l.usuario_id == userId).ToList();
+            db.Cv.RemoveRange(cv);
 
-                    // Eliminar el usuario
-                    db.Usuarios.Remove(usuario);
+            // Eliminar el usuario
+            db.Usuarios.Remove(usuario);
 
-                    // Guardar los cambios en la base de datos
-                    db.SaveChanges();
+            // Guardar los cambios en la base de datos
+            db.SaveChanges();
 
-                    // Eliminar la sesión
-                    Session["userId"] = null;
-                }
-            }
-
-            // Redirigir a la página de usuarios
-            return RedirectToAction("Index", "Usuarios");
+            // Eliminar la sesión
+            Session["userId"] = null;
         }
+    }
+
+    // Redirigir a la página de usuarios
+    return RedirectToAction("Index", "Usuarios");
+}
 
 
 
