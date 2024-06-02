@@ -6,6 +6,8 @@ ViewData["Title"] = "Inicio Sesion";
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="~/Content/css/login.css">
+    <link href="~/Content/css/message.css" rel="stylesheet" />
+
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -52,6 +54,8 @@ ViewData["Title"] = "Inicio Sesion";
             <p>¿Aún no tienes cuenta? <a href="@Url.Action("Registro", "Usuarios")"><b>CREAR CUENTA</b></a></p>
         </div>
 
+        <p class="message-box" id="messageBox">@TempData["Message"]</p>
+        <script src="~/Content/js/message.js"></script>
     </div>
 </body>
 </html>

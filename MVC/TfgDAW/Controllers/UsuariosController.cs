@@ -219,14 +219,15 @@ namespace TfgDAW.Controllers
                 else
                 {
 
-                    ViewData["ERROR"] = "Revisa tus datos";
+              
+                    TempData["Message"] = "Revisa tus datos";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
 
-                ViewData["ERROR"] = "Revisa tus datos";
+                TempData["Message"] = "Revisa tus datos";
                 return RedirectToAction("Index");
             }
 
