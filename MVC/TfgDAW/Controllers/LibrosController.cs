@@ -140,8 +140,19 @@ namespace TfgDAW.Controllers
                 var user = db.Usuarios.Find(userId);
                 ViewBag.user = user.nombre;
 
-            //Verificar si es un admin
-            if (user.rol == "admin")
+                //verificar si esta en favoritos
+                var favoritos = db.Favoritos.Where(f => f.usuario_id == userId && f.favorito_ref_id == id).ToList();
+                if (favoritos.Count != 0)
+                {
+                    ViewBag.Favorito = true;
+                }
+                else
+                {
+                    ViewBag.Favorito = false;
+                }
+
+                //Verificar si es un admin
+                if (user.rol == "admin")
             {
                 ViewBag.IsAdmin = true;
             }
@@ -154,16 +165,6 @@ namespace TfgDAW.Controllers
             else
             {
                 ViewBag.user = "invitado";
-            }
-
-            //verificar si esta en favoritos
-            var favoritos = db.Favoritos.Where(f => f.usuario_id == userId && f.favorito_ref_id == id).ToList();
-            if(favoritos.Count != 0)
-            {
-                ViewBag.Favorito = true;
-            } else
-            {
-                ViewBag.Favorito = false;
             }
  
             return View(libros);

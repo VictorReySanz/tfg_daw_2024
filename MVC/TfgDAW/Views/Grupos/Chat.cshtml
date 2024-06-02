@@ -1,58 +1,191 @@
-﻿<h2>ChatBox</h2>
+﻿@model IEnumerable<TfgDAW.Models.Libros>
 
-<div class="container">
+@{
+    ViewData["Title"] = "Chat";
+}
 
-    <div>
-        <input type="text" id="cajamensaje" />
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/chat.css">
+    <script src="~/Content/js/scripts.js" defer></script>
+    @*Animaciones ya hechas*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu">
+        <div id="contenidoMenu">
+            <a href="@Url.Action("Index", "Libros")">Inicio</a>
+            <hr class="linea" />
+            <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
+            <hr class="linea" />
+            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+            <hr class="linea" />
+            <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
+            <hr class="linea" />
+            <input id="cvDesplegar" type="checkbox">
+            <label id="cvDesplegarLabel" for="cvDesplegar">CVs</label>
+            @if (ViewBag.IsAdmin)
+            {
+                <hr class="linea" />
+                <input id="adminDesplegar" type="checkbox">
+                <label id="adminDesplegarLabel" for="adminDesplegar">Adminstrar</label>
+            }
+            else
+            {
+                <input id="adminDesplegar" type="checkbox">
+            }
+            <!-- SubMenu Admin -->
+            <div id="menuAdmin">
+                <div id="contenidoMenuAdmin">
+                    <a href="@Url.Action("Index", "Admin")">Administrar usuarios</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("AdministrarLibros", "Admin")">Administrar libros</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("AdministrarCVs", "Admin")">Administrar CVs</a>
+                </div>
+            </div>
+            <!-- SubMenu CV -->
+            <div id="menuCV">
+                <div id="contenidoMenuCV">
+                    <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
+                    <hr class="linea" />
+                    <a href="@Url.Action("Index", "Cv")">Ver CVs</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <input type="button" id="botonenviar" value="Enviar" />
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li id="liVerMenu">
+                <input id="verMenu" type="checkbox">
+                <label id="verMenuLabel" for="verMenu">
+                    <div class="verMenuDiv">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                        <div class="linea3"></div>
+                    </div>
+                </label>
+            </li>
+            <li id="liVerMenuCuenta">
+                <input type="checkbox" id="verMenuCuenta">
+                <label id="verMenuCuentaLabel" for="verMenuCuenta">
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                    <div class="cuentaClose">
+                        <div class="linea1"></div>
+                        <div class="linea2"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </nav>
+    <!-- Menu de cuenta -->
+    <div id="menuCuenta">
+        <div id="contenidoMenuCuenta">
+            <p>@ViewBag.user</p>
+            <hr class="linea" />
+            <a href="@Url.Action("MisDatos", "Usuarios")">Mis datos</a>
+            <hr class="linea" />
+            <a href="@Url.Action("EliminarSesion", "Libros")">Cerrar sesion</a>
+        </div>
     </div>
-    <div>
+    <!-- main -->
+    <main>
 
-        <ul id="mensajesenchat"></ul>
-    </div>
+        @*Contenido*@
 
-  
-</div>
-<input type="hidden" id="mostrarnombre" /> <!-- Corrección aquí -->
-@section scripts {
+        <div class="container">
+            <div class="envio">
+                <div class="Message">
+                    <input title="Write Message" tabindex="i" pattern="\d+" placeholder="Escribe un mensaje..." class="MsgInput" id="cajamensaje" type="text">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="30.000000pt" height="30.000000pt" viewBox="0 0 30.000000 30.000000" preserveAspectRatio="xMidYMid meet" class="SendSVG" id="botonenviar">
+                        <g transform="translate(0.000000,30.000000) scale(0.100000,-0.100000)" fill="#ffffff70" stroke="none">
+                            <path d="M44 256 c-3 -8 -4 -29 -2 -48 3 -31 5 -33 56 -42 28 -5 52 -13 52 -16 0 -3 -24 -11 -52 -16 -52 -9 -53 -9 -56 -48 -2 -21 1 -43 6 -48 10 -10 232 97 232 112 0 7 -211 120 -224 120 -4 0 -9 -6 -12 -14z"></path>
+                        </g>
+                    </svg><span class="l"></span>
 
-    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
-   
-    <script src="~/signalr/hubs"></script>
+                </div>
+                @*<input type="text" id="cajamensaje" placeholder="Escribe un mensaje..." />*@
+                @*<input type="button" id="botonenviar" value="Enviar" />*@
+            </div>
+            <div>
 
-    <!--SignalR script to update the chat page and send messages.-->
-    <script type="text/javascript">
+                <ul id="mensajesenchat">
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola queHola que taHola que ta tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">HHola que taola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola qHola que taue tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola qHola que taHola que taue tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">HolaHola que ta que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">HolHola que taa que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tHola que taal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">HolaHola que taHola que taHola que ta que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                    <li><b>Victor</b><p id="mensaje">Hola que tal!!!</p></li>
+                </ul>
 
-        $(document).ready(function () {
+            </div>
 
-            var chat = $.connection.chatHub;
-            chat.client.EnviarMensaje = function (usuario, mensaje) {
 
-                var divnombre = $("<div/>").text(usuario).html();
-                var divmensaje = $("<div/>").text(mensaje).html();
-                $("#mensajesenchat").append("<li>" + "<b>" + divnombre + "</b>" + ": " + divmensaje + "</li>");
+        </div>
+        <input type="hidden" id="mostrarnombre" /> <!-- Corrección aquí -->
+        @section scripts {
 
-            };
+            <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
 
-            var nombreusuario = prompt("escribe tu nombre");
-            $("#mostrarnombre").val(nombreusuario);
-            $("#cajamensaje").focus();
+            <script src="~/signalr/hubs"></script>
 
-            $.connection.hub.start().done(function () {
+            <!--SignalR script to update the chat page and send messages.-->
+            <script type="text/javascript">
 
-                $("#botonenviar").click(function () {
+                $(document).ready(function () {
 
-                    var nombreusuario = $("#mostrarnombre").val();
-                    var mensajeenviar = $("#cajamensaje").val();
+                    var chat = $.connection.chatHub;
+                    chat.client.EnviarMensaje = function (usuario, mensaje) {
 
-                    chat.server.send(nombreusuario, mensajeenviar);
-                    $("#cajamensaje").val("").focus();
+                        var divnombre = $("<div/>").text(usuario).html();
+                        var divmensaje = $("<div/>").text(mensaje).html();
+                        $("#mensajesenchat").append("<li>" + "<b>" + divnombre + "</b>" + ": " + divmensaje + "</li>");
+
+                    };
+
+                    var nombreusuario = prompt("escribe tu nombre");
+                    $("#mostrarnombre").val(nombreusuario);
+                    $("#cajamensaje").focus();
+
+                    $.connection.hub.start().done(function () {
+
+                        $("#botonenviar").click(function () {
+
+                            var nombreusuario = $("#mostrarnombre").val();
+                            var mensajeenviar = $("#cajamensaje").val();
+
+                            chat.server.send(nombreusuario, mensajeenviar);
+                            $("#cajamensaje").val("").focus();
+                        });
+
+                    });
                 });
 
-            });
-        });
+            </script>
+        }
+    </main>
+</body>
+</html>
 
-    </script>
-}
