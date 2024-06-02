@@ -40,6 +40,15 @@ namespace TfgDAW.Controllers
                 int userId = (int)Session["userId"];
                 var user = db.Usuarios.Find(userId);
                 ViewBag.user = user.nombre;
+                
+            //Verificar si es un admin
+            if(user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            } else
+            {
+                ViewBag.IsAdmin = false;
+            }
 
             }else {
                 ViewBag.user = "invitado";
@@ -54,7 +63,10 @@ namespace TfgDAW.Controllers
         {
 
             int userId = (int)Session["userId"];
-            var librosQuery = db.Libros.Where(a => db.Favoritos.Any(b => b.favorito_id == a.libro_id)).Where(l => l.usuario_id == userId);
+            var librosQuery = (from fav in db.Favoritos
+                         join libro in db.Libros on fav.favorito_ref_id equals libro.libro_id
+                         where fav.usuario_id == userId
+                   select libro);
 
             // Aplicamos el filtro si searchString no está vacío
             if (!string.IsNullOrEmpty(buscar))
@@ -67,6 +79,16 @@ namespace TfgDAW.Controllers
             //Mostrar nombre de usuario en el menu usuario
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
+
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
 
             return View(libros);
         }
@@ -91,6 +113,16 @@ namespace TfgDAW.Controllers
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
 
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
             return View(libros);
         }
 
@@ -108,10 +140,30 @@ namespace TfgDAW.Controllers
                 var user = db.Usuarios.Find(userId);
                 ViewBag.user = user.nombre;
 
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
             }
             else
             {
                 ViewBag.user = "invitado";
+            }
+
+            //verificar si esta en favoritos
+            var favoritos = db.Favoritos.Where(f => f.usuario_id == userId && f.favorito_ref_id == id).ToList();
+            if(favoritos.Count != 0)
+            {
+                ViewBag.Favorito = true;
+            } else
+            {
+                ViewBag.Favorito = false;
             }
  
             return View(libros);
@@ -144,6 +196,17 @@ namespace TfgDAW.Controllers
             int userId = (int)Session["userId"];
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
+
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+            
             return View();
         }
 
@@ -201,6 +264,16 @@ namespace TfgDAW.Controllers
             var user = db.Usuarios.Find(userId);
             ViewBag.user = user.nombre;
 
+            //Verificar si es un admin
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
             return View(libros);
         }
 
@@ -212,60 +285,49 @@ namespace TfgDAW.Controllers
         {
 
             int userId = (int)Session["userId"];
-            libros.categoria_id = 1;
-            libros.usuario_id = userId;
+libros.categoria_id = 1;
+libros.usuario_id = userId;
 
-            if (boton == "Guardar")
+
+    var existingLibro = db.Libros.Find(libros.libro_id);
+    if (existingLibro != null)
+    {
+
+        // Leer la imagen del archivo
+        if (imageFile != null && imageFile.ContentLength > 0)
+        {
+            using (var binaryReader = new BinaryReader(imageFile.InputStream))
             {
-
-
-
-                var existingLibro = db.Libros.Find(libros.libro_id);
-                if (existingLibro != null)
-                {
-
-                    // Leer la imagen del archivo
-                    if (imageFile != null && imageFile.ContentLength > 0)
-                    {
-                        using (var binaryReader = new BinaryReader(imageFile.InputStream))
-                        {
-                            libros.portada = binaryReader.ReadBytes(imageFile.ContentLength);
-                            existingLibro.portada = libros.portada;
-                        }
-                    }
-
-                    // Actualizar solo las propiedades necesarias
-                    existingLibro.titulo = libros.titulo;
-                    existingLibro.autor = libros.autor;
-                    existingLibro.descripcion = libros.descripcion;
-                    existingLibro.visible = libros.visible;
-                    existingLibro.categoria_id = libros.categoria_id;
-                    existingLibro.usuario_id = libros.usuario_id;
-
-                    // Mantener el valor existente de file_libros si no se modifica
-                    if (imageFile == null || imageFile.ContentLength == 0)
-                    {
-                        // Conservar el valor existente de file_libros
-                        libros.file_libros = existingLibro.file_libros;
-                    }
-                }
-
-                if (ModelState.IsValid)
-                {
-                    db.Entry(existingLibro).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("MisElementos");
-                }
+                libros.portada = binaryReader.ReadBytes(imageFile.ContentLength);
+                existingLibro.portada = libros.portada;
             }
-            else if (boton == "Eliminar")
-            {
-                Libros librosEliminar = db.Libros.Find(libros.libro_id);
-                db.Libros.Remove(librosEliminar);
-                db.SaveChanges();
-                return RedirectToAction("MisElementos");
-            }
+        }
 
-            return View(libros);
+        // Actualizar solo las propiedades necesarias
+        existingLibro.titulo = libros.titulo;
+        existingLibro.autor = libros.autor;
+        existingLibro.descripcion = libros.descripcion;
+        existingLibro.visible = libros.visible;
+        existingLibro.categoria_id = libros.categoria_id;
+        existingLibro.usuario_id = libros.usuario_id;
+
+        // Mantener el valor existente de file_libros si no se modifica
+        if (imageFile == null || imageFile.ContentLength == 0)
+        {
+            // Conservar el valor existente de file_libros
+            libros.file_libros = existingLibro.file_libros;
+        }
+    }
+
+    if (ModelState.IsValid)
+    {
+        db.Entry(existingLibro).State = EntityState.Modified;
+        db.SaveChanges();
+        return RedirectToAction("MisElementos");
+    }
+
+
+return View(libros);
         }
 
         //Mostrar imagen en editar elemento
@@ -329,6 +391,49 @@ namespace TfgDAW.Controllers
             // Redirigir a la página de usuarios
             return RedirectToAction("Index", "Usuarios");
         }
+
+        //Añadir a favoritos
+        [HttpPost]
+        public ActionResult AgregarFavorito(int libroId)
+        {
+            int userId = (int)Session["userId"];
+
+            // Verificar si el libro ya está en favoritos para este usuario
+            var favoritoExistente = db.Favoritos.FirstOrDefault(f => f.favorito_ref_id == libroId && f.usuario_id == userId);
+
+            if (favoritoExistente != null)
+            {
+                // Si ya existe, lo eliminamos
+                db.Favoritos.Remove(favoritoExistente);
+            }
+            else
+            {
+                // Si no existe, lo agregamos
+                Favoritos favorito = new Favoritos
+                {
+                    categoria_id = 1,
+                    usuario_id = userId,
+                    favorito_ref_id = libroId
+                };
+                db.Favoritos.Add(favorito);
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("VerElemento", new { id = libroId });
+        }
+
+
+        //Eliminar libro
+        public ActionResult EliminarElemento(int id)
+        {
+
+            Libros librosEliminar = db.Libros.Find(id);
+            db.Libros.Remove(librosEliminar);
+            db.SaveChanges();
+            return RedirectToAction("MisElementos");
+        }
+
 
 
 
