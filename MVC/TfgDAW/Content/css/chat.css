@@ -288,6 +288,34 @@ nav ul #liVerMenuCuenta {
 }
 
 /************************ Contenido ************************/
+
+/*GRUPOS*/
+.menuGrupos {
+    width: 500px;
+    float: left;
+    border-right: 1px solid #ddd;
+    background-color: #A08095;
+    height: 94%;
+}
+
+    .menuGrupos ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .menuGrupos li {
+        padding: 10px;
+    }
+
+        .menuGrupos li.selected {
+            background-color: #eee;
+        }
+
+.chat-container {
+    margin-left: 200px;
+    padding: 20px;
+}
+
 .envio {
     display: flex;
     justify-content: center;
@@ -421,9 +449,6 @@ nav ul #liVerMenuCuenta {
             transform: rotate(-75deg);
             right: calc(-7%);
         }
-
-
-
 
 /************************ animaciones ************************/
 /*Desplegar menu*/

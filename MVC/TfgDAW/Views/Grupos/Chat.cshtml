@@ -1,13 +1,12 @@
-﻿@model IEnumerable<TfgDAW.Models.Libros>
-
-@{
+﻿@{
     ViewData["Title"] = "Chat";
+    var groups = ViewBag.Groups as List<TfgDAW.Models.Grupos>;
+    var selectedGroupId = ViewBag.GroupId as int?;
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/chat.css">
@@ -39,18 +38,18 @@
             {
                 <input id="adminDesplegar" type="checkbox">
             }
-            <!-- SubMenu Admin -->
-            <div id="menuAdmin">
-                <div id="contenidoMenuAdmin">
-                    <a href="@Url.Action("Index", "Admin")">Administrar usuarios</a>
-                    <hr class="linea" />
-                    <a href="@Url.Action("AdministrarLibros", "Admin")">Administrar libros</a>
-                    <hr class="linea" />
-                    <a href="@Url.Action("AdministrarCVs", "Admin")">Administrar CVs</a>
-                </div>
-            </div>
-            <!-- SubMenu CV -->
-            <div id="menuCV">
+    <!-- SubMenu Admin -->
+    <div id="menuAdmin">
+        <div id="contenidoMenuAdmin">
+            <a href="@Url.Action("Index", "Admin")">Administrar usuarios</a>
+            <hr class="linea" />
+            <a href="@Url.Action("AdministrarLibros", "Admin")">Administrar libros</a>
+            <hr class="linea" />
+            <a href="@Url.Action("AdministrarCVs", "Admin")">Administrar CVs</a>
+        </div>
+    </div>
+    <!-- SubMenu CV -->
+    <div id="menuCV">
                 <div id="contenidoMenuCV">
                     <a href="@Url.Action("EditarCv", "Cv")">Mi CV</a>
                     <hr class="linea" />
@@ -96,37 +95,44 @@
     </div>
     <!-- main -->
     <main>
-
-        @*Contenido*@
-
-        <div class="container">
-            <div>
-                <ul id="mensajesenchat"></ul>
-            </div>
-            <div class="envio">
-                <div class="Message">
-                    <input title="Write Message" tabindex="i" pattern="\d+" placeholder="Escribe un mensaje..." class="MsgInput" id="cajamensaje" type="text">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="30.000000pt" height="30.000000pt" viewBox="0 0 30.000000 30.000000" preserveAspectRatio="xMidYMid meet" class="SendSVG" id="botonenviar">
-                        <g transform="translate(0.000000,30.000000) scale(0.100000,-0.100000)" fill="#ffffff70" stroke="none">
-                            <path d="M44 256 c-3 -8 -4 -29 -2 -48 3 -31 5 -33 56 -42 28 -5 52 -13 52 -16 0 -3 -24 -11 -52 -16 -52 -9 -53 -9 -56 -48 -2 -21 1 -43 6 -48 10 -10 232 97 232 112 0 7 -211 120 -224 120 -4 0 -9 -6 -12 -14z"></path>
-                        </g>
-                    </svg><span class="l"></span>
-
+        <div class="menuGrupos">
+            <ul>
+                @foreach (var group in groups)
+                {
+                    <li class="@(selectedGroupId == group.grupo_id ? "selected" : "")">
+                        <a href="@Url.Action("Chat", "Grupos", new { groupId = group.grupo_id })">@group.nombre_grupo</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="chat-container">
+            <div class="container">
+                <div>
+                    <ul id="mensajesenchat"></ul>
+                </div>
+                <div class="envio">
+                    <div class="Message">
+                        <input title="Write Message" tabindex="i" pattern="\d+" placeholder="Escribe un mensaje..." class="MsgInput" id="cajamensaje" type="text">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="30.000000pt" height="30.000000pt" viewBox="0 0 30.000000 30.000000" preserveAspectRatio="xMidYMid meet" class="SendSVG" id="botonenviar">
+                            <g transform="translate(0.000000,30.000000) scale(0.100000,-0.100000)" fill="#ffffff70" stroke="none">
+                                <path d="M44 256 c-3 -8 -4 -29 -2 -48 3 -31 5 -33 56 -42 28 -5 52 -13 52 -16 0 -3 -24 -11 -52 -16 -52 -9 -53 -9 -56 -48 -2 -21 1 -43 6 -48 10 -10 232 97 232 112 0 7 -211 120 -224 120 -4 0 -9 -6 -12 -14z"></path>
+                            </g>
+                        </svg><span class="l"></span>
+                    </div>
                 </div>
             </div>
-
-
+            <input type="hidden" id="mostrarnombre" value="@ViewBag.user" />
+            <input type="hidden" id="nombregrupo" value="@ViewBag.GroupName" /> <!-- Hidden field to store group name -->
         </div>
-        <input type="hidden" id="mostrarnombre" value="@ViewBag.user" />
 
         @section scripts {
             <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
             <script src="~/signalr/hubs"></script>
 
-            <!-- SignalR script to update the chat page and send messages. -->
             <script type="text/javascript">
                 $(document).ready(function () {
                     var chat = $.connection.chatHub;
+                    var groupName = $("#nombregrupo").val();
 
                     chat.client.EnviarMensaje = function (usuario, mensaje) {
                         var nombreusuario = $("#mostrarnombre").val();
@@ -136,28 +142,23 @@
 
                         $("#mensajesenchat").append("<li class='" + claseMensaje + "'>" + "<b>" + divnombre + "</b>" + "<p class='mensaje'>" + divmensaje + "</p>" + "</li>");
 
-                        // Desplazar el scroll hacia abajo
                         var chatContainer = $("#mensajesenchat");
                         chatContainer.scrollTop(chatContainer[0].scrollHeight);
                     };
 
-
-                    var nombreusuario = $("#mostrarnombre").val();
-                    $("#cajamensaje").focus();
-
                     $.connection.hub.start().done(function () {
-                        $("#botonenviar").click(function () {
-                            var nombreusuario = $("#mostrarnombre").val();
-                            var mensajeenviar = $("#cajamensaje").val();
-                            chat.server.send(nombreusuario, mensajeenviar);
-                            $("#cajamensaje").val("").focus();
+                        chat.server.joinGroup(groupName).done(function () {
+                            $("#botonenviar").click(function () {
+                                var nombreusuario = $("#mostrarnombre").val();
+                                var mensajeenviar = $("#cajamensaje").val();
+                                chat.server.send(groupName, nombreusuario, mensajeenviar);
+                                $("#cajamensaje").val("").focus();
+                            });
                         });
                     });
                 });
-
             </script>
         }
     </main>
 </body>
 </html>
-

@@ -14,25 +14,34 @@ namespace TfgDAW.Controllers
     {
         private share_enjoyEntities db = new share_enjoyEntities();
 
-        public ActionResult Chat()
+        public ActionResult Chat(int groupId)
         {
-            //Mostrar nombre de usuario en el menu usuario
-                int userId = (int)Session["userId"];
-                var user = db.Usuarios.Find(userId);
-                ViewBag.user = user.nombre;
+            int userId = (int)Session["userId"];
+            var user = db.Usuarios.Find(userId);
+            ViewBag.user = user.nombre;
 
-                //Verificar si es un admin
-                if (user.rol == "admin")
-                {
-                    ViewBag.IsAdmin = true;
-                }
-                else
-                {
-                    ViewBag.IsAdmin = false;
-                }
+            if (user.rol == "admin")
+            {
+                ViewBag.IsAdmin = true;
+            }
+            else
+            {
+                ViewBag.IsAdmin = false;
+            }
+
+            var group = db.Grupos.Find(groupId);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.GroupName = group.nombre_grupo;
+
+            ViewBag.GroupId = groupId;
+            ViewBag.Groups = db.Grupos.ToList();
 
             return View();
         }
+
     }
 }
  
