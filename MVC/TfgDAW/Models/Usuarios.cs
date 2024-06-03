@@ -11,7 +11,8 @@ namespace TfgDAW.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,6 +28,8 @@ namespace TfgDAW.Models
         public int usuario_id { get; set; }
         public string nombre { get; set; }
         public byte[] foto { get; set; }
+
+        [EmailAddress(ErrorMessage = "Por favor, introduce un correo electrónico válido.")]
         public string email { get; set; }
         public string rol { get; set; }
         public string password { get; set; }

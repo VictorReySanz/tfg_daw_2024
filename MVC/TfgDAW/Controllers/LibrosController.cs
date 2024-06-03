@@ -58,7 +58,7 @@ namespace TfgDAW.Controllers
         }
 
         // Favoritos
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult Favoritos(string buscar)
         {
 
@@ -94,7 +94,7 @@ namespace TfgDAW.Controllers
         }
 
         //Mis elementos
-       [AutorizeAttribute]
+      // [AutorizeAttribute]
         public ActionResult MisElementos(string buscar)
         {
 
@@ -171,7 +171,7 @@ namespace TfgDAW.Controllers
         }
 
         //Descargar elemento
-        [AutorizeAttribute]
+        //[AutorizeAttribute]
         public FileResult DescargarArchivo(int id)
         {
             var libro = db.Libros.FirstOrDefault(l => l.libro_id == id);
@@ -190,7 +190,7 @@ namespace TfgDAW.Controllers
         }
 
         //Crear elemento GET
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult CrearElemento()
         {
             //Mostrar nombre de usuario en el menu usuario
@@ -215,7 +215,7 @@ namespace TfgDAW.Controllers
         //Crear elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AutorizeAttribute]
+        //[AutorizeAttribute]
         public ActionResult CrearElemento(Libros libros, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
 
@@ -226,6 +226,13 @@ namespace TfgDAW.Controllers
 
             if (ModelState.IsValid)
             {
+                if((libros.titulo == null) || (libros.autor == null) || (libros.descripcion == null))
+                {
+                    TempData["Message"] = "No puede haber datos vacios";
+                    return RedirectToAction("CrearElemento");
+                }
+
+
                 // Leer la imagen del archivo
                 if (imageFile != null && imageFile.ContentLength > 0)
                 {
@@ -242,6 +249,10 @@ namespace TfgDAW.Controllers
                     {
                         libros.file_libros = binaryReader.ReadBytes(pdfFile.ContentLength);
                     }
+                } else
+                {
+                    TempData["Message"] = "El libro tiene que tener un archivo";
+                    return RedirectToAction("CrearElemento");
                 }
 
                 // Guardar el libro en la base de datos
@@ -254,8 +265,8 @@ namespace TfgDAW.Controllers
         }
 
 
-        // Editar/eliminar elemento GET
-        [AutorizeAttribute]
+        // Editar elemento GET
+       // [AutorizeAttribute]
         public ActionResult EditarElemento(int id)
         {
             Libros libros = db.Libros.Find(id);
@@ -278,10 +289,10 @@ namespace TfgDAW.Controllers
             return View(libros);
         }
 
-        // Editar/eliminar elemento POST
+        // Editar elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult EditarElemento([Bind(Include = "libro_id,titulo,autor,descripcion,visible,portada")] Libros libros, string boton, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
 
@@ -293,9 +304,14 @@ libros.usuario_id = userId;
     var existingLibro = db.Libros.Find(libros.libro_id);
     if (existingLibro != null)
     {
+                if ((libros.titulo == null) || (libros.autor == null) || (libros.descripcion == null))
+                {
+                    TempData["Message"] = "No puede haber datos vacios";
+                    return RedirectToAction("EditarElemento");
+                }
 
-        // Leer la imagen del archivo
-        if (imageFile != null && imageFile.ContentLength > 0)
+                // Leer la imagen del archivo
+                if (imageFile != null && imageFile.ContentLength > 0)
         {
             using (var binaryReader = new BinaryReader(imageFile.InputStream))
             {
@@ -332,7 +348,7 @@ return View(libros);
         }
 
         //Mostrar imagen en editar elemento
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult GetImage(int id)
         {
             var libro = db.Libros.Find(id);
@@ -347,7 +363,7 @@ return View(libros);
         }
 
         //Mostrar archivo
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult VerArchivo(int id)
         {
             var librosArchivo = db.Libros.Find(id);
@@ -383,7 +399,7 @@ return View(libros);
         }
 
         //Cerrar sesion
-        [AutorizeAttribute]
+      //  [AutorizeAttribute]
         public ActionResult EliminarSesion()
         {
             // Eliminar la sesión

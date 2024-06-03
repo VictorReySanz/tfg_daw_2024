@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/editarRed.css">
+    <link href="~/Content/css/message.css" rel="stylesheet" />
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
 <body>
@@ -107,6 +108,9 @@
                 <input class="subir" type="submit" value="Subir" />
 
                 <input type="hidden" name="ideditarR" value="@ViewBag.IdeditarR" />
+
+                <p class="message-box" id="messageBox">@TempData["Message"]</p>
+                <script src="~/Content/js/message.js"></script>
 
             </div>
         }

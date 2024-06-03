@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/crearElementoPortafolio.css">
+    <link href="~/Content/css/message.css" rel="stylesheet" />
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
 <body>
@@ -96,9 +97,7 @@
         <!-- contenido -->
         @using (Html.BeginForm("CrearElementoPortafolio", "Cv", FormMethod.Post))
         {
-
             <div class="contenido">
-
                 <div class="titulo">
                     <input type="text" name="titulo" class="titulo-campo" placeholder="Titulo" />
                 </div>
@@ -109,6 +108,8 @@
 
                 <input class="subir" type="submit" value="Subir" />
 
+                <p class="message-box" id="messageBox">@TempData["Message"]</p>
+                <script src="~/Content/js/message.js"></script>
             </div>
         }
     </main>
@@ -119,4 +120,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

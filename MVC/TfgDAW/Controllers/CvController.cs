@@ -158,7 +158,7 @@ namespace TfgDAW.Controllers
         }
 
         // Editar CV
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult EditarCv()
         {
 
@@ -190,6 +190,7 @@ namespace TfgDAW.Controllers
                     visible = false,
                     categoria_id = 2,
                     usuario_id = user.usuario_id,
+                    profesión = "Sin asignar",
                     redes_sociales = "#;#;#;#;",
                     file_cv = documentoEjemplo
                 };
@@ -281,7 +282,7 @@ namespace TfgDAW.Controllers
         }
 
         //Mostrar archivo
-        [AutorizeAttribute]
+        //[AutorizeAttribute]
         public ActionResult VerArchivo(int id)
         {
             var cvArchivo = db.Cv.Find(id);
@@ -295,7 +296,7 @@ namespace TfgDAW.Controllers
 
 
         //Crear un elemento del portafolio: get
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult CrearElementoPortafolio()
         {
             //Mostrar nombre de usuario en el menu usuario
@@ -318,7 +319,7 @@ namespace TfgDAW.Controllers
         }
         //Crear un elemento del portafolio: put
         [HttpPost]
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult CrearElementoPortafolio(int id, FormCollection form)
         {
             string titulo = form["titulo"];
@@ -328,7 +329,12 @@ namespace TfgDAW.Controllers
             if (existingCv != null)
             {
 
-                // Actualizar solo las propiedades necesarias
+                if ((titulo == "") || (enlace == ""))
+                {
+                    TempData["Message"] = "No puede haber campos vacios";
+                    return RedirectToAction("CrearElementoPortafolio");
+                }
+
                 existingCv.Portafolio = existingCv.Portafolio + titulo + ";" + enlace + "|";
             }
 
@@ -344,15 +350,15 @@ namespace TfgDAW.Controllers
         }
 
         //Eliminar un elemento del portafolio
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult EliminarPortafolio(int id, int ideliminar)
         {
 
             int userId = (int)Session["userId"];
-            var cvQuery = db.Cv.Where(c => c.usuario_id == userId);/*cambiar por id del usuario correcto*/
+            var cvQuery = db.Cv.Where(c => c.usuario_id == userId);
             var cv = cvQuery.ToList();
 
-            //Listar portafolio                      /*cambiar por id del usuario correcto*/
+            //Listar portafolio
             var cvPortafolioQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.Portafolio).FirstOrDefault();
 
             if (cvPortafolioQuery != null)
@@ -398,7 +404,7 @@ namespace TfgDAW.Controllers
         }
 
         //Editar un elemento del portafolio: get
-        [AutorizeAttribute]
+      //  [AutorizeAttribute]
         public ActionResult EditarElementoPortafolio(string nombre, string enlace, int ideditar)
         {
 
@@ -429,15 +435,22 @@ namespace TfgDAW.Controllers
         public ActionResult EditarElementoPortafolio(int id, string nombre, string enlace, int ideditar)
         {
 
+            if ((nombre == "") || (enlace == ""))
+            {
+                TempData["Message"] = "No puede haber campos vacios";
+                return RedirectToAction("EditarElementoPortafolio", new { nombre = nombre, enlace = enlace, ideditar = ideditar });
+            }
+
             int userId = (int)Session["userId"];
-            var cvQuery = db.Cv.Where(c => c.usuario_id == userId);/*cambiar por id del usuario correcto*/
+            var cvQuery = db.Cv.Where(c => c.usuario_id == userId);
             var cv = cvQuery.ToList();
 
-            //Listar portafolio                      /*cambiar por id del usuario correcto*/
+            //Listar portafolio
             var cvPortafolioQuery = db.Cv.Where(c => c.usuario_id == userId).Select(c => c.Portafolio).FirstOrDefault();
 
             if (cvPortafolioQuery != null)
             {
+
                 string[] elementos = cvPortafolioQuery.Split('|');
                 List<string> nombres = new List<string>();
                 List<string> enlaces = new List<string>();
@@ -483,7 +496,7 @@ namespace TfgDAW.Controllers
         }
 
         // Editar cv2
-        [AutorizeAttribute]
+        //[AutorizeAttribute]
         public ActionResult EditarCV2(int id)
         {
             Cv cv = db.Cv.Find(id);
@@ -510,7 +523,7 @@ namespace TfgDAW.Controllers
         // Editar cv2
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult EditarCV2(Cv cv, HttpPostedFileBase file)
         {
 
@@ -523,7 +536,16 @@ namespace TfgDAW.Controllers
                 if (existingCv != null)
                 {
                 existingCv.visible = cv.visible;
-                existingCv.profesión = cv.profesión;
+
+                if (cv.profesión != null)
+                {
+                    existingCv.profesión = cv.profesión;
+                }
+                else
+                {
+                    TempData["Message"] = "La profesion no puede estar vacia";
+                    return RedirectToAction("EditarCV2");
+                }
 
                 if (file != null && file.ContentLength > 0)
                 {
@@ -546,7 +568,7 @@ namespace TfgDAW.Controllers
         }
 
         //Eliminar un elemento de tecnologia
-        [AutorizeAttribute]
+       // [AutorizeAttribute]
         public ActionResult EliminarTecnologia(int id, int ideliminarT)
         {
 
@@ -582,7 +604,7 @@ namespace TfgDAW.Controllers
         }
 
         //Crear un elemento de tecnologia: get
-        [AutorizeAttribute]
+      //  [AutorizeAttribute]
         public ActionResult CrearElementoTecnologia()
         {
 
@@ -606,10 +628,16 @@ namespace TfgDAW.Controllers
         }
         //Crear un elemento de tecnologia: put
         [HttpPost]
-        [AutorizeAttribute]
+      //  [AutorizeAttribute]
         public ActionResult CrearElementoTecnologia(int id, FormCollection form)
         {
             string nombre = form["nombre"];
+
+            if (nombre == "")
+            {
+                TempData["Message"] = "No puede haber campos vacios";
+                return RedirectToAction("CrearElementoTecnologia");
+            }
 
             var existingCv = db.Cv.Find(id);
             if (existingCv != null)
@@ -666,10 +694,16 @@ namespace TfgDAW.Controllers
         }
 
         //Editar un elemento de rede social: get
-        [AutorizeAttribute]
+      //  [AutorizeAttribute]
         public ActionResult EditarRed(string enlace, int ideditarR)
         {
-            ViewBag.EnlaceRPortafolioEditar = enlace;
+            if (enlace == "#")
+            {
+                ViewBag.EnlaceRPortafolioEditar = "";
+            } else
+            {
+                ViewBag.EnlaceRPortafolioEditar = enlace;
+            }
             ViewBag.IdeditarR = ideditarR;
 
             //Mostrar nombre de usuario en el menu usuario
@@ -692,9 +726,15 @@ namespace TfgDAW.Controllers
         }
         //Editar un elemento de red social: put
         [HttpPost]
-        [AutorizeAttribute]
+      //  [AutorizeAttribute]
         public ActionResult EditarRed(int id, string enlace, int ideditarR)
         {
+
+            if (enlace == "")
+            {
+                TempData["Message"] = "No puede haber campos vacios";
+                return RedirectToAction("EditarRed", new { enlace = enlace, ideditarR = ideditarR });
+            }
 
             int userId = (int)Session["userId"];
             var cvQuery = db.Cv.Where(c => c.usuario_id == userId);

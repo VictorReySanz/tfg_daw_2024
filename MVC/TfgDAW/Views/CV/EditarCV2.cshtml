@@ -17,6 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/editarcv2.css">
+    <link href="~/Content/css/message.css" rel="stylesheet" />
     <script src="~/Content/js/scripts.js" defer></script>
     @*Visor de pdf PDF.js*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
@@ -123,6 +124,9 @@
                 <div class="boton">
                     <input type="submit" value="Guardar" class="guardar" />
                 </div>
+
+                <p class="message-box" id="messageBox">@TempData["Message"]</p>
+                <script src="~/Content/js/message.js"></script>
             }
         </div>
 

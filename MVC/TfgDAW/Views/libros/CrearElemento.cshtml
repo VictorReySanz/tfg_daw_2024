@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/crearelemento.css">
+    <link href="~/Content/css/message.css" rel="stylesheet" />
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
 <!-- Menu -->
@@ -100,51 +101,52 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="contenido">
+        <div class="contenido">
 
-                <div class="izquierda">
+            <div class="izquierda">
 
-                    <img class="portada" id="imgPreview" src="~/Content/imgs/imgpordefecto.jpg" />
-                    <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
+                <img class="portada" id="imgPreview" src="~/Content/imgs/imgpordefecto.jpg" />
+                <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
 
-                    @{
-                        var opcionesVisibilidad = new List<SelectListItem>
-                            {
+                @{
+                    var opcionesVisibilidad = new List<SelectListItem>
+                                        {
                         new SelectListItem { Text = "Publico", Value = "true" },
                         new SelectListItem { Text = "Privado", Value = "false" }
                     };
-                    }
+                }
 
-                    <div class="visibilidad">
-                        <div>Visibilidad</div>
-                        @Html.DropDownListFor(model => model.visible, opcionesVisibilidad, new { @class = "visibilidad-campo" })
-                    </div>
-
-
-                    <input type="file" name="pdfFile" id="pdfFile" />
-
-                </div>
-                <div class="derecha">
-
-
-                    <div class="titulo">
-                        @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo", placeholder = "Titulo", maxlength = "100" } })
-                    </div>
-
-                    <div class="autor">
-                        @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo", placeholder = "Autor", maxlength = "100" } })
-                    </div>
-
-                    <div class="descripcion">
-                        @Html.TextAreaFor(model => model.descripcion, new { @class = "descripcion-campo", placeholder = "Sinopsis" })
-                    </div>
-
-                    <input class="subir" type="submit" value="Subir" />
-
+                <div class="visibilidad">
+                    <div>Visibilidad</div>
+                    @Html.DropDownListFor(model => model.visible, opcionesVisibilidad, new { @class = "visibilidad-campo" })
                 </div>
 
+
+                <input type="file" name="pdfFile" id="pdfFile" />
 
             </div>
+            <div class="derecha">
+
+
+                <div class="titulo">
+                    @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "titulo-campo", placeholder = "Titulo", maxlength = "100" } })
+                </div>
+
+                <div class="autor">
+                    @Html.EditorFor(model => model.autor, new { htmlAttributes = new { @class = "autor-campo", placeholder = "Autor", maxlength = "100" } })
+                </div>
+
+                <div class="descripcion">
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "descripcion-campo", placeholder = "Sinopsis" })
+                </div>
+
+                <p class="message-box" id="messageBox">@TempData["Message"]</p>
+                <script src="~/Content/js/message.js"></script>
+
+                <input class="subir" type="submit" value="Subir" />
+            </div>
+
+        </div>
         }
     </main>
 </body>

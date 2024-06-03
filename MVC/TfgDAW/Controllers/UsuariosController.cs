@@ -62,8 +62,28 @@ namespace TfgDAW.Controllers
                 var existingUsuario = db.Usuarios.Find(usuarios.usuario_id);
                 if (existingUsuario != null)
                 {
-                    existingUsuario.nombre = usuarios.nombre;
-                    existingUsuario.email = usuarios.email;
+                    if(usuarios.nombre != null)
+                    {
+
+                        existingUsuario.nombre = usuarios.nombre;
+                    }
+                    else
+                    {
+
+                        TempData["Message"] = "El nombre no puede estar vacio";
+                        return RedirectToAction("MisDatos");
+                    }
+
+                    if (usuarios.email != null)
+                    {
+
+                        existingUsuario.email = usuarios.email;
+                    }
+                    else
+                    {
+                        TempData["Message"] = "El email no puede estar vacio";
+                        return RedirectToAction("MisDatos");
+                    }
 
                     if (imageFile != null && imageFile.ContentLength > 0)
                     {

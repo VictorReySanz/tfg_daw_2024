@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/misdatos.css">
+    <link href="~/Content/css/message.css" rel="stylesheet" />
     <script src="~/Content/js/scripts.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -86,30 +87,34 @@
             @Html.AntiForgeryToken()
 
             @Html.HiddenFor(model => model.usuario_id)
-            <div class="contenido">
-                <img class="imgCuenta" id="imgPreview" src="@Url.Action("GetImage", "Usuarios", new { id = Model.usuario_id })" />
+        <div class="contenido">
+            <img class="imgCuenta" id="imgPreview" src="@Url.Action("GetImage", "Usuarios", new { id = Model.usuario_id })" />
 
-                <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
 
-                <div class="campos">
-                    <div>Nombre</div>
-                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "inputs" } })
-                </div>
-                <div class="campos">
-                    <div>Correo electronico</div>
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "inputs" } })
-                </div>
-                <div class="campos">
-                    <div>Contraseña</div>
-                    <input class="inputs" name="password" placeholder="Contraseña antigua" />
-                    <input class="inputs" name="passwordN" placeholder="Contraseña nueva" />
-                </div>
-
-                <div class="botones">
-                    <input type="submit" name="boton" value="Guardar" class="boton" onclick="return alertaModificacion()" />
-                    <input type="submit" name="boton" value="Eliminar" class="boton" onclick="return confirmarEliminar()" />
-                </div>
+            <div class="campos">
+                <div>Nombre</div>
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "inputs" } })
             </div>
+            <div class="campos">
+                <div>Correo electronico</div>
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "inputs" } })
+            </div>
+            <div class="campos">
+                <div>Contraseña</div>
+                <input class="inputs" name="password" placeholder="Contraseña antigua" />
+                <input class="inputs" name="passwordN" placeholder="Contraseña nueva" />
+            </div>
+
+            <div class="botones">
+                <input type="submit" name="boton" value="Guardar" class="boton" onclick="return alertaModificacion()" />
+                <input type="submit" name="boton" value="Eliminar" class="boton" onclick="return confirmarEliminar()" />
+            </div>
+
+            @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+            <p class="message-box" id="messageBox">@TempData["Message"]</p>
+            <script src="~/Content/js/message.js"></script>
+        </div>
 
         }
 

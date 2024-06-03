@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/editarelemento.css">
+    <link href="~/Content/css/message.css" rel="stylesheet" />
     <script src="~/Content/js/scripts.js" defer></script>
     <!-- Script de SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -118,7 +119,7 @@
 
                     @{
                         var opcionesVisibilidad = new List<SelectListItem>
-                                                            {
+                                                                    {
                         new SelectListItem { Text = "Publico", Value = "true" },
                         new SelectListItem { Text = "Privado", Value = "false" }
                     };
@@ -154,13 +155,16 @@
                         @Html.TextAreaFor(model => model.descripcion, new { @class = "descripcion-campo", placeholder = "Sinopsis" })
                     </div>
 
+                    <p class="message-box" id="messageBox">@TempData["Message"]</p>
+                    <script src="~/Content/js/message.js"></script>
 
                     <input type="submit" value="Guardar" class="guardar" />
+                    <input type="submit" value="Eliminar" class="eliminar" onclick="return confirmarEliminar()" />
                 </div>
             </div>
         }
 
-        <input type="submit" value="Eliminar" class="eliminar" onclick="return confirmarEliminar()" />
+
 
     </main>
 </body>

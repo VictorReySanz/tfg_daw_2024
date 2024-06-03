@@ -339,27 +339,52 @@ nav ul #liVerMenuCuenta {
 }
 
 #mensajesenchat {
-    margin-top: 100px;
+    margin-top: 20px;
     overflow-y: scroll;
     height: 700px;
     list-style-type: none;
-
+    padding: 0;
 }
 
-#mensaje {
+    #mensajesenchat::-webkit-scrollbar {
+        width: 12px; 
+    }
+
+    #mensajesenchat::-webkit-scrollbar-track {
+        background: none;
+    }
+
+    #mensajesenchat::-webkit-scrollbar-thumb {
+        background: #E81C26;
+        border-radius: 10px;
+    }
+
+        #mensajesenchat::-webkit-scrollbar-thumb:hover {
+            background: #ca1a23;
+        }
+
+.mensaje {
     position: relative;
     height: auto;
     width: 300px;
-    background: #E8601C;
     box-shadow: 1px 12px 33px rgba(0, 0, 0, 0.5);
-    padding-left: 20px;
+    padding: 5px 20px;
+    border-radius: 15px;
+    margin: 10px 0;
+}
+
+.mensaje-ajeno {
+    margin-left: 50px;
+}
+.mensaje-ajeno .mensaje {
+    background: #E8601C;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 8px;
-    padding: 5px;
+    text-align: left;
 }
 
-    #mensaje:before {
+    .mensaje-ajeno .mensaje:before {
         border: 13px solid #E8601C;
         content: '';
         border-left-color: transparent;
@@ -368,8 +393,36 @@ nav ul #liVerMenuCuenta {
         position: absolute;
         bottom: -4px;
         transform: rotate(75deg);
-        left: calc(-7.5%);
+        left: calc(-7%);
     }
+
+.mensaje-propio {
+    text-align: right;
+    margin-right: 50px;
+}
+
+    .mensaje-propio .mensaje {
+        background: #F74828;
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 8px;
+        text-align: right;
+        margin-left: auto;
+    }
+
+        .mensaje-propio .mensaje:before {
+            border: 13px solid #F74828;
+            content: '';
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            position: absolute;
+            bottom: -4px;
+            transform: rotate(-75deg);
+            right: calc(-7%);
+        }
+
+
 
 
 /************************ animaciones ************************/

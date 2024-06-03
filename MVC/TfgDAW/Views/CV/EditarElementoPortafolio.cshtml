@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/editarElementoPortafolio.css">
+    <link href="~/Content/css/message.css" rel="stylesheet" />
     <script src="~/Content/js/scripts.js" defer></script>
 </head>
 <body>
@@ -112,6 +113,9 @@
 
                 <input type="hidden" name="ideditar" value="@ViewBag.Ideditar" />
 
+                <p class="message-box" id="messageBox">@TempData["Message"]</p>
+                <script src="~/Content/js/message.js"></script>
+
             </div>
         }
     </main>
@@ -122,4 +126,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

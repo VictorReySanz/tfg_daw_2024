@@ -54,14 +54,17 @@ ViewData["Title"] = "Registro";
             </div>
 
             <input class="boton" type="submit" value="REGISTRARSE" />
-        }
-        <div class="crear-sesion">
-            <p>¿Ya tienes una cuenta? <a href="@Url.Action("Index", "Usuarios")"><b>INICIAR SESION</b></a></p>
-        </div>
 
-        <p class="message-box" id="messageBox">@TempData["Message"]</p>
+            <div class="crear-sesion">
+                <p>¿Ya tienes una cuenta? <a href="@Url.Action("Index", "Usuarios")"><b>INICIAR SESION</b></a></p>
+            </div>
+
+            @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+
+            <p class="message-box" id="messageBox">@TempData["Message"]</p>
+            <script src="~/Content/js/message.js"></script>
+        }
     </div>
-    <script src="~/Content/js/message.js"></script>
 </body>
 </html>
 @section Scripts {
