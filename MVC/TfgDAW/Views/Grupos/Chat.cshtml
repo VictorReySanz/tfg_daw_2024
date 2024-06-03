@@ -22,7 +22,7 @@
             <hr class="linea" />
             <a href="@Url.Action("MisElementos", "Libros")">Mis libros</a>
             <hr class="linea" />
-            <a href="@Url.Action("Index", "Grupos", new { id = 1 })">Grupos</a>
+            <a href="@Url.Action("Chat", "Grupos", new { groupId = 0 })">Grupos</a>
             <hr class="linea" />
             <a href="@Url.Action("Favoritos", "Libros")">Favoritos</a>
             <hr class="linea" />
@@ -71,6 +71,7 @@
                     </div>
                 </label>
             </li>
+            <li id="miembros">Victor, Luis,Maria Jose, ...</li>
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
@@ -105,60 +106,65 @@
                 }
             </ul>
         </div>
-        <div class="chat-container">
-            <div class="container">
-                <div>
-                    <ul id="mensajesenchat"></ul>
-                </div>
-                <div class="envio">
-                    <div class="Message">
-                        <input title="Write Message" tabindex="i" pattern="\d+" placeholder="Escribe un mensaje..." class="MsgInput" id="cajamensaje" type="text">
-                        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="30.000000pt" height="30.000000pt" viewBox="0 0 30.000000 30.000000" preserveAspectRatio="xMidYMid meet" class="SendSVG" id="botonenviar">
-                            <g transform="translate(0.000000,30.000000) scale(0.100000,-0.100000)" fill="#ffffff70" stroke="none">
-                                <path d="M44 256 c-3 -8 -4 -29 -2 -48 3 -31 5 -33 56 -42 28 -5 52 -13 52 -16 0 -3 -24 -11 -52 -16 -52 -9 -53 -9 -56 -48 -2 -21 1 -43 6 -48 10 -10 232 97 232 112 0 7 -211 120 -224 120 -4 0 -9 -6 -12 -14z"></path>
-                            </g>
-                        </svg><span class="l"></span>
+
+        @if (!ViewBag.NoChat)
+        {
+            <div class="chat-container">
+                <div class="container">
+                    <div>
+                        <ul id="mensajesenchat"></ul>
+                    </div>
+                    <div class="envio">
+                        <div class="Message">
+                            <input title="Write Message" tabindex="i" pattern="\d+" placeholder="Escribe un mensaje..." class="MsgInput" id="cajamensaje" type="text">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="30.000000pt" height="30.000000pt" viewBox="0 0 30.000000 30.000000" preserveAspectRatio="xMidYMid meet" class="SendSVG" id="botonenviar">
+                                <g transform="translate(0.000000,30.000000) scale(0.100000,-0.100000)" fill="#ffffff70" stroke="none">
+                                    <path d="M44 256 c-3 -8 -4 -29 -2 -48 3 -31 5 -33 56 -42 28 -5 52 -13 52 -16 0 -3 -24 -11 -52 -16 -52 -9 -53 -9 -56 -48 -2 -21 1 -43 6 -48 10 -10 232 97 232 112 0 7 -211 120 -224 120 -4 0 -9 -6 -12 -14z"></path>
+                                </g>
+                            </svg><span class="l"></span>
+                        </div>
                     </div>
                 </div>
+                <input type="hidden" id="mostrarnombre" value="@ViewBag.user" />
+                <input type="hidden" id="nombregrupo" value="@ViewBag.GroupName" /> <!-- Hidden field to store group name -->
             </div>
-            <input type="hidden" id="mostrarnombre" value="@ViewBag.user" />
-            <input type="hidden" id="nombregrupo" value="@ViewBag.GroupName" /> <!-- Hidden field to store group name -->
-        </div>
 
-        @section scripts {
-            <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
-            <script src="~/signalr/hubs"></script>
+            @section scripts {
+                
+                    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+                    <script src="~/signalr/hubs"></script>
 
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    var chat = $.connection.chatHub;
-                    var groupName = $("#nombregrupo").val();
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            var chat = $.connection.chatHub;
+                            var groupName = $("#nombregrupo").val();
 
-                    chat.client.EnviarMensaje = function (usuario, mensaje) {
-                        var nombreusuario = $("#mostrarnombre").val();
-                        var divnombre = $("<div/>").text(usuario).html();
-                        var divmensaje = $("<div/>").text(mensaje).html();
-                        var claseMensaje = usuario === nombreusuario ? "mensaje-propio" : "mensaje-ajeno";
-
-                        $("#mensajesenchat").append("<li class='" + claseMensaje + "'>" + "<b>" + divnombre + "</b>" + "<p class='mensaje'>" + divmensaje + "</p>" + "</li>");
-
-                        var chatContainer = $("#mensajesenchat");
-                        chatContainer.scrollTop(chatContainer[0].scrollHeight);
-                    };
-
-                    $.connection.hub.start().done(function () {
-                        chat.server.joinGroup(groupName).done(function () {
-                            $("#botonenviar").click(function () {
+                            chat.client.EnviarMensaje = function (usuario, mensaje) {
                                 var nombreusuario = $("#mostrarnombre").val();
-                                var mensajeenviar = $("#cajamensaje").val();
-                                chat.server.send(groupName, nombreusuario, mensajeenviar);
-                                $("#cajamensaje").val("").focus();
+                                var divnombre = $("<div/>").text(usuario).html();
+                                var divmensaje = $("<div/>").text(mensaje).html();
+                                var claseMensaje = usuario === nombreusuario ? "mensaje-propio" : "mensaje-ajeno";
+
+                                $("#mensajesenchat").append("<li class='" + claseMensaje + "'>" + "<b>" + divnombre + "</b>" + "<p class='mensaje'>" + divmensaje + "</p>" + "</li>");
+
+                                var chatContainer = $("#mensajesenchat");
+                                chatContainer.scrollTop(chatContainer[0].scrollHeight);
+                            };
+
+                            $.connection.hub.start().done(function () {
+                                chat.server.joinGroup(groupName).done(function () {
+                                    $("#botonenviar").click(function () {
+                                        var nombreusuario = $("#mostrarnombre").val();
+                                        var mensajeenviar = $("#cajamensaje").val();
+                                        chat.server.send(groupName, nombreusuario, mensajeenviar);
+                                        $("#cajamensaje").val("").focus();
+                                    });
+                                });
                             });
                         });
-                    });
-                });
-            </script>
-        }
-    </main>
+                    </script>
+                }
+            }
+        </main>
 </body>
 </html>

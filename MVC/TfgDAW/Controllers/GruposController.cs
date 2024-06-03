@@ -29,14 +29,24 @@ namespace TfgDAW.Controllers
                 ViewBag.IsAdmin = false;
             }
 
-            var group = db.Grupos.Find(groupId);
-            if (group == null)
+            if (groupId == 0)
             {
-                return HttpNotFound();
+                ViewBag.NoChat = true;
             }
-            ViewBag.GroupName = group.nombre_grupo;
+            else
+            {
 
-            ViewBag.GroupId = groupId;
+                ViewBag.NoChat = false;
+
+                var group = db.Grupos.Find(groupId);
+                if (group == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.GroupName = group.nombre_grupo;
+
+                ViewBag.GroupId = groupId;
+            }
             ViewBag.Groups = db.Grupos.ToList();
 
             return View();

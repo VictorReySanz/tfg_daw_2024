@@ -288,13 +288,16 @@ nav ul #liVerMenuCuenta {
 }
 
 /************************ Contenido ************************/
+#miembros {
+    text-align: left;
+}
 
 /*GRUPOS*/
 .menuGrupos {
-    width: 500px;
+    width: 27%;
+    position: absolute;
     float: left;
-    border-right: 1px solid #ddd;
-    background-color: #A08095;
+    background-color: #a7909f;
     height: 94%;
 }
 
@@ -304,15 +307,30 @@ nav ul #liVerMenuCuenta {
     }
 
     .menuGrupos li {
-        padding: 10px;
+        padding: 20px;
+        text-align: center;
     }
 
-        .menuGrupos li.selected {
-            background-color: #eee;
+        .menuGrupos li:hover {
+            color: white;
+            background-color: #d4afc5;
         }
 
+        .menuGrupos li.selected {
+            background-color: #e2d8de;
+        }
+
+            .menuGrupos li.selected:hover {
+                color: black;
+            }
+
+    .menuGrupos li a {
+        text-decoration: none;
+        color: inherit;
+    }
+
 .chat-container {
-    margin-left: 200px;
+    margin-left: 27%;
     padding: 20px;
 }
 
