@@ -479,6 +479,7 @@ nav ul #liVerMenuCuenta {
         height: auto;
         position: fixed;
         border: 1px solid black;
+        padding-bottom: 25px;
     }
 
         #menuCuenta #contenidoMenuCuenta {
@@ -497,8 +498,43 @@ nav ul #liVerMenuCuenta {
         top: 18em;
         left: 0;
         width: 100%;
+        border: 1px solid black;
+    }
+
+        #menuCV .linea {
+            margin-left: 25%;
+        }
+
+    /*menu admin*/
+    #menuAdmin {
+        position: fixed;
+        top: 23em;
+        left: 0;
+        width: 100%;
+    }
+
+    /*EXTRAS*/
+    .linea {
+        margin-left: 0;
+    }
+
+    /*CONTENIDO*/
+    .subir {
+        font-size: 20px;
+    }
+
+    .titulo-campo {
+        font-size: 35px;
+    }
+
+    .enlace-campo {
+        font-size: 20px;
     }
 }
 
+@media (max-width: 1200px) {
 
-
+    .subir {
+        width: 20%;
+    }
+}

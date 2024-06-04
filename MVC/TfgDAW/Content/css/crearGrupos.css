@@ -1,15 +1,15 @@
-/************************ body ************************/
+﻿/************************ body ************************/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgba(164, 203, 255, 0.7);
+    background-color: rgba(160, 128, 149, 0.3);
     overflow-x: hidden;
 }
 
 /************************ nav ************************/
 nav {
-    background-color: #006FFF;
+    background-color: #A08095;
     padding: 10px;
 }
 
@@ -35,7 +35,7 @@ nav {
 #menu {
     display: none;
     position: fixed;
-    background-color: #4F91E8;
+    background-color: #a08a99;
     width: 250px;
     height: 100%;
     text-align: center;
@@ -102,17 +102,17 @@ nav {
     position: fixed;
 }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
-    animation: linea1Menu 0.75s forwards;
-}
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea1 {
+        animation: linea1Menu 0.75s forwards;
+    }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
-    animation: linea2Menu 0.75s forwards;
-}
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea2 {
+        animation: linea2Menu 0.75s forwards;
+    }
 
-#verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
-    animation: linea3Menu 0.75s forwards;
-}
+    #verMenu:checked + #verMenuLabel .verMenuDiv .linea3 {
+        animation: linea3Menu 0.75s forwards;
+    }
 /****************************** CVS ********************************/
 #cvDesplegar {
     display: none;
@@ -206,7 +206,7 @@ nav ul #liVerMenuCuenta {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #4F91E8;
+    background-color: #a08a99;
     width: 250px;
     height: 200px;
     border-radius: 15px;
@@ -279,19 +279,6 @@ nav ul #liVerMenuCuenta {
     animation: animacionCuentaLinea2 1s forwards;
 }
 
-/************************ buscar ************************/
-nav ul #liBuscar {
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li #buscar {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
 /************************ extras ************************/
 .linea {
     width: 50%;
@@ -300,46 +287,91 @@ nav ul li #buscar {
     text-align: center;
 }
 
-/************************ Contenido ************************/
-#contenido {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px 50px;
-    padding: 30px;
+
+/******************* CONTENIDO ******************/
+
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-    #contenido .elemento {
-        text-align: center;
-        text-decoration: none;
-        color: inherit;
+    form div {
+        margin-bottom: 15px;
     }
 
-        #contenido .elemento:hover > .portada {
-            border-radius: 15px;
-            box-shadow: 20px 20px 7px rgba(0, 0, 0, 0.3);
-            width: 160px;
-            height: 235px;
+    form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    form input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: #a7909f;
+        border: 3px solid;
+        border-radius: 15px;
+    }
+
+    form input[type="text"]::placeholder {
+        color: black;
+    }
+
+    form ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        form ul li {
+            margin-bottom: 10px;
+            cursor: pointer;
+            text-align: center;
         }
 
-.portada {
-    width: 150px;
-    height: 225px;
-    border-radius: 15px;
-}
+    form input[type="checkbox"] {
+        display: none;
+    }
 
-.tituloAutor {
-    margin-top: 10px;
-    max-width: 150px;
-    margin: 0 auto;
-}
+        form input[type="checkbox"] + label {
+            text-align: center;
+        }
 
-.autor {
-    font-size: 12px;
-    margin-top: -15px;
-    max-width: 150px;
-    margin: 0 auto;
-}
+        form input[type="checkbox"]:checked + label {
+            background-color: #a7909f;
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        form input[type="checkbox"]:hover + label {
+            border: 3px solid#a7909f ;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+    form label {
+        padding: 5px;
+    }
+
+    form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #A7669B;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        form button:hover {
+            box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+            background-color: #8e5683;
+        }
 
 /************************ animaciones ************************/
 /*Desplegar menu*/
@@ -546,7 +578,7 @@ nav ul li #buscar {
         border: 1px solid black;
     }
 
-       #menuCV .linea {
+        #menuCV .linea {
             margin-left: 25%;
         }
 
@@ -560,7 +592,6 @@ nav ul li #buscar {
 
     /*EXTRAS*/
     .linea {
-        margin-left:0;
+        margin-left: 0;
     }
-
 }
