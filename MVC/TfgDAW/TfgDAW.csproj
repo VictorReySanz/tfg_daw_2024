@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CvController.cs" />
     <Compile Include="Controllers\FavoritosController.cs" />
@@ -235,15 +236,29 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\adminCv.css" />
+    <Content Include="Content\css\adminLibros.css" />
+    <Content Include="Content\css\adminUsuarios.css" />
+    <Content Include="Content\css\buscarCv.css" />
+    <Content Include="Content\css\chat.css" />
     <Content Include="Content\css\crearelemento.css" />
+    <Content Include="Content\css\crearElementoPortafolio.css" />
+    <Content Include="Content\css\crearElementoTecnologia.css" />
+    <Content Include="Content\css\crearGrupos.css" />
+    <Content Include="Content\css\editarcv.css" />
+    <Content Include="Content\css\editarcv2.css" />
     <Content Include="Content\css\editarelemento.css" />
+    <Content Include="Content\css\editarElementoPortafolio.css" />
+    <Content Include="Content\css\EditarRed.css" />
     <Content Include="Content\css\favoritos.css" />
     <Content Include="Content\css\grupos.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\message.css" />
     <Content Include="Content\css\misdatos.css" />
     <Content Include="Content\css\miselementos.css" />
     <Content Include="Content\css\principal.css" />
     <Content Include="Content\css\site.css" />
+    <Content Include="Content\css\vercv.css" />
     <Content Include="Content\css\verelemento.css" />
     <Content Include="Content\imgs\anadir.png" />
     <Content Include="Content\imgs\iconocuenta.png" />
@@ -349,6 +364,17 @@
     <Content Include="Views\Usuarios\MisDatos.cshtml" />
     <Content Include="Views\Libros\Favoritos.cshtml" />
     <Content Include="Views\Grupos\Chat.cshtml" />
+    <Content Include="Views\Cv\CrearElementoPortafolio.cshtml" />
+    <Content Include="Views\Cv\CrearElementoTecnologia.cshtml" />
+    <Content Include="Views\Cv\EditarCv.cshtml" />
+    <Content Include="Views\Cv\EditarCV2.cshtml" />
+    <Content Include="Views\Cv\EditarElementoPortafolio.cshtml" />
+    <Content Include="Views\Cv\EditarRed.cshtml" />
+    <Content Include="Views\Cv\VerCv.cshtml" />
+    <Content Include="Views\Admin\AdministrarCVs.cshtml" />
+    <Content Include="Views\Admin\AdministrarLibros.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Grupos\CrearGrupo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

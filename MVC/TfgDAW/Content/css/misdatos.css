@@ -468,14 +468,23 @@ nav {
             margin-bottom: 20px;
         }
 
-    /*menu cv*/
-    #menuCV {
-        position: fixed;
-        top: 18em;
-        left: 0;
+    #menuCuenta {
         width: 100%;
+        height: auto;
+        position: fixed;
         border: 1px solid black;
+        padding-bottom: 25px;
     }
+
+        #menuCuenta #contenidoMenuCuenta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            #menuCuenta #contenidoMenuCuenta a {
+                padding: 0em;
+            }
 
     /*menu admin*/
     #menuAdmin {
@@ -483,5 +492,10 @@ nav {
         top: 23em;
         left: 0;
         width: 100%;
+    }
+
+    /*EXTRAS*/
+    .linea {
+        margin-left: 0;
     }
 }

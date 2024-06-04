@@ -503,7 +503,7 @@ nav ul li #buscar {
             margin-bottom: 20px;
         }
 
-            /*menu cuenta*/
+    /*menu cuenta*/
     #liVerMenuCuenta {
         justify-content: flex-start;
     }
@@ -524,6 +524,7 @@ nav ul li #buscar {
         height: auto;
         position: fixed;
         border: 1px solid black;
+        padding-bottom: 25px;
     }
 
         #menuCuenta #contenidoMenuCuenta {
@@ -536,7 +537,7 @@ nav ul li #buscar {
                 padding: 0em;
             }
 
-            /*menu cv*/
+    /*menu cv*/
     #menuCV {
         position: fixed;
         top: 18em;
@@ -545,12 +546,21 @@ nav ul li #buscar {
         border: 1px solid black;
     }
 
+       #menuCV .linea {
+            margin-left: 25%;
+        }
+
     /*menu admin*/
     #menuAdmin {
         position: fixed;
         top: 23em;
         left: 0;
         width: 100%;
+    }
+
+    /*EXTRAS*/
+    .linea {
+        margin-left:0;
     }
 
 }

@@ -137,6 +137,16 @@ namespace TfgDAW.Controllers
             return RedirectToAction("Chat", "Grupos", new { groupId = 0 });
         }
 
+        //Cerrar sesion
+        //  [AutorizeAttribute]
+        public ActionResult EliminarSesion()
+        {
+            // Eliminar la sesión
+            Session["userId"] = null;
+
+            // Redirigir a la página de usuarios
+            return RedirectToAction("Index", "Usuarios");
+        }
 
 
 
