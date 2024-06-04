@@ -287,291 +287,91 @@ nav ul #liVerMenuCuenta {
     text-align: center;
 }
 
-/************************ Contenido ************************/
-#miembros {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: 10px;
-}
 
-/*GRUPOS*/
-.menuGrupos {
-    width: 27%;
-    position: absolute;
-    float: left;
-    background-color: #a7909f;
-    height: 94%;
-    overflow-y: scroll;
-}
+/******************* CONTENIDO ******************/
 
-    .menuGrupos::-webkit-scrollbar {
-        width: 12px;
-    }
-
-    .menuGrupos::-webkit-scrollbar-track {
-        background: none;
-    }
-
-    .menuGrupos::-webkit-scrollbar-thumb {
-        background: #E81C26;
-        border-radius: 10px;
-    }
-
-        .menuGrupos::-webkit-scrollbar-thumb:hover {
-            background: #ca1a23;
-        }
-
-
-    .menuGrupos ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .menuGrupos li {
-        padding: 20px;
-        text-align: center;
-    }
-
-        .menuGrupos li:hover {
-            color: white;
-            background-color: #d4afc5;
-        }
-
-        .menuGrupos li.selected {
-            background-color: #e2d8de;
-        }
-
-            .menuGrupos li.selected:hover {
-                color: black;
-            }
-
-    .menuGrupos li a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-#crearImg {
-    width: 40px;
-    height: auto;
-    border-radius: 100%;
-}
-
-    #crearImg:hover {
-        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
-    }
-
-.menuGrupos #liCrear:hover {
-    background-color: #a7909f;
-}
-
-    /*CHAT*/
-.chat-container {
-    margin-left: 27%;
+form {
+    width: 300px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-.envio {
-    display: flex;
-    justify-content: center;
-}
-.Message {
-    margin-top: 30px;
-    width: 360px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: #E81C26;
-    transform: translate(0px,0px);
-    box-shadow: 5px 5px #34343f;
-}
-
-.MsgInput {
-    font-size: 18px;
-    border-radius: 5px;
-    background-color: #40414f;
-    border: none;
-    outline: none;
-    width: 1000px;
-    height: 30px;
-    transform: translate(5px,-3px);
-    color: white;
-    padding: 10px;
-    font-weight: bold;
-}
-
-.SendSVG {
-    width: 30px;
-    height: 30px;
-    border-width: 50px;
-    transform: translate(20px,5px);
-    background-size: 10px;
-    border-radius: 10px;
-    transition: 0.3s;
-}
-
-    .SendSVG:hover {
-        background-color: #2b2b35;
+    form div {
+        margin-bottom: 15px;
     }
 
-.l {
-    position: absolute;
-    width: 1%;
-    height: 30px;
-    background-color: #2e2f38;
-    transform: translate(-20px,5px);
-}
-
-#mensajesenchat {
-    margin-top: 20px;
-    overflow-y: scroll;
-    height: 700px;
-    list-style-type: none;
-    padding: 0;
-}
-
-    #mensajesenchat::-webkit-scrollbar {
-        width: 12px; 
+    form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
     }
 
-    #mensajesenchat::-webkit-scrollbar-track {
-        background: none;
+    form input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: #a7909f;
+        border: 3px solid;
+        border-radius: 15px;
     }
 
-    #mensajesenchat::-webkit-scrollbar-thumb {
-        background: #E81C26;
-        border-radius: 10px;
+    form input[type="text"]::placeholder {
+        color: black;
     }
 
-        #mensajesenchat::-webkit-scrollbar-thumb:hover {
-            background: #ca1a23;
+    form ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        form ul li {
+            margin-bottom: 10px;
+            cursor: pointer;
+            text-align: center;
         }
 
-.mensaje {
-    position: relative;
-    height: auto;
-    width: 300px;
-    box-shadow: 1px 12px 33px rgba(0, 0, 0, 0.5);
-    padding: 5px 20px;
-    border-radius: 15px;
-    margin: 10px 0;
-}
-
-.mensaje-ajeno {
-    margin-left: 50px;
-}
-.mensaje-ajeno .mensaje {
-    background: #E8601C;
-    border-bottom-right-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 8px;
-    text-align: left;
-}
-
-    .mensaje-ajeno .mensaje:before {
-        border: 13px solid #E8601C;
-        content: '';
-        border-left-color: transparent;
-        border-bottom-color: transparent;
-        border-right-color: transparent;
-        position: absolute;
-        bottom: -4px;
-        transform: rotate(75deg);
-        left: calc(-7%);
+    form input[type="checkbox"] {
+        display: none;
     }
 
-.mensaje-propio {
-    text-align: right;
-    margin-right: 50px;
-}
-
-    .mensaje-propio .mensaje {
-        background: #F74828;
-        border-bottom-left-radius: 15px;
-        border-top-left-radius: 15px;
-        border-bottom-right-radius: 8px;
-        text-align: right;
-        margin-left: auto;
-    }
-
-        .mensaje-propio .mensaje:before {
-            border: 13px solid #F74828;
-            content: '';
-            border-right-color: transparent;
-            border-bottom-color: transparent;
-            border-left-color: transparent;
-            position: absolute;
-            bottom: -4px;
-            transform: rotate(-75deg);
-            right: calc(-7%);
+        form input[type="checkbox"] + label {
+            text-align: center;
         }
 
-        /*Boton defs salir*/
-.Btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition-duration: .3s;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-    background-color: rgb(255, 65, 65);
-}
-
-/* plus sign */
-.sign {
-    width: 100%;
-    transition-duration: .3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-    .sign svg {
-        width: 17px;
-    }
-
-        .sign svg path {
-            fill: white;
+        form input[type="checkbox"]:checked + label {
+            background-color: #a7909f;
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
         }
-/* text */
-.text {
-    position: absolute;
-    right: 0%;
-    width: 0%;
-    opacity: 0;
-    color: white;
-    font-size: 1.2em;
-    font-weight: 600;
-    transition-duration: .3s;
-}
-/* hover effect on button width */
-.Btn:hover {
-    width: 125px;
-    border-radius: 40px;
-    transition-duration: .3s;
-}
 
-    .Btn:hover .sign {
-        width: 30%;
-        transition-duration: .3s;
-        padding-left: 20px;
+        form input[type="checkbox"]:hover + label {
+            border: 3px solid#a7909f ;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+    form label {
+        padding: 5px;
     }
-    /* hover effect button's text */
-    .Btn:hover .text {
-        opacity: 1;
-        width: 70%;
-        transition-duration: .3s;
-        padding-right: 10px;
+
+    form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #A7669B;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
     }
-/* button click effect*/
-.Btn:active {
-    transform: translate(2px,2px);
-}
+
+        form button:hover {
+            box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+            background-color: #8e5683;
+        }
 
 /************************ animaciones ************************/
 /*Desplegar menu*/
