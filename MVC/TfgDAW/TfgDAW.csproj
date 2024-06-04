@@ -163,7 +163,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CvController.cs" />
     <Compile Include="Controllers\FavoritosController.cs" />
@@ -244,7 +243,6 @@
     <Content Include="Content\css\crearelemento.css" />
     <Content Include="Content\css\crearElementoPortafolio.css" />
     <Content Include="Content\css\crearElementoTecnologia.css" />
-    <Content Include="Content\css\crearGrupos.css" />
     <Content Include="Content\css\editarcv.css" />
     <Content Include="Content\css\editarcv2.css" />
     <Content Include="Content\css\editarelemento.css" />
@@ -261,13 +259,19 @@
     <Content Include="Content\css\vercv.css" />
     <Content Include="Content\css\verelemento.css" />
     <Content Include="Content\imgs\anadir.png" />
+    <Content Include="Content\imgs\cvEjemplo.jpg" />
+    <Content Include="Content\imgs\editar.png" />
+    <Content Include="Content\imgs\eliminar.png" />
     <Content Include="Content\imgs\iconocuenta.png" />
     <Content Include="Content\imgs\imgpordefecto.jpg" />
+    <Content Include="Content\imgs\linkedin.png" />
     <Content Include="Content\imgs\novisible.png" />
     <Content Include="Content\imgs\quijote.jpg" />
     <Content Include="Content\imgs\senordelosanillos.jpg" />
     <Content Include="Content\imgs\shareenjoylogo.png" />
     <Content Include="Content\imgs\visible.png" />
+    <Content Include="Content\imgs\x.png" />
+    <Content Include="Content\js\message.js" />
     <Content Include="Content\js\scripts.js" />
     <Content Include="Content\js\site.js" />
     <Content Include="favicon.ico" />
@@ -303,6 +307,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -371,10 +377,6 @@
     <Content Include="Views\Cv\EditarElementoPortafolio.cshtml" />
     <Content Include="Views\Cv\EditarRed.cshtml" />
     <Content Include="Views\Cv\VerCv.cshtml" />
-    <Content Include="Views\Admin\AdministrarCVs.cshtml" />
-    <Content Include="Views\Admin\AdministrarLibros.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Grupos\CrearGrupo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

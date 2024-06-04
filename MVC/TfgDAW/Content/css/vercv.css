@@ -319,7 +319,6 @@ nav ul #liVerMenuCuenta {
     text-align: center;
 }
 
-
 .portafolio-container {
     padding: 20px;
     text-align: center;
@@ -561,7 +560,6 @@ nav ul #liVerMenuCuenta {
         height: auto;
         position: fixed;
         border: 1px solid black;
-        padding-bottom: 25px;
     }
 
         #menuCuenta #contenidoMenuCuenta {
@@ -583,10 +581,6 @@ nav ul #liVerMenuCuenta {
         border: 1px solid black;
     }
 
-        #menuCV .linea {
-            margin-left: 25%;
-        }
-
     /*menu admin*/
     #menuAdmin {
         position: fixed;
@@ -594,26 +588,4 @@ nav ul #liVerMenuCuenta {
         left: 0;
         width: 100%;
     }
-
-    /*EXTRAS*/
-    .linea {
-        margin-left: 0;
-    }
 }
-
-    @media (max-width: 1000px) {
-        .contenido {
-            display: flex;
-            flex-direction: column;
-        }
-    }
-
-    @media (max-width: 1500px) {
-
-        #pdf-viewer {
-            height: auto;
-        }
-
-        .pdf-page {
-            width: 100%;
-        }

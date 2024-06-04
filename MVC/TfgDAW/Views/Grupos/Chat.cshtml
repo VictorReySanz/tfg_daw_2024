@@ -2,7 +2,6 @@
     ViewData["Title"] = "Chat";
     var groups = ViewBag.Groups as List<TfgDAW.Models.Grupos>;
     var selectedGroupId = ViewBag.GroupId as int?;
-    var members = ViewBag.Members as List<string>;
 }
 
 <!DOCTYPE html>
@@ -12,8 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/css/chat.css">
     <script src="~/Content/js/scripts.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
     @*Animaciones ya hechas*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
@@ -74,25 +71,7 @@
                     </div>
                 </label>
             </li>
-            <li id="miembros">
-
-                @if (!ViewBag.NoChat && members != null && members.Count > 0)
-                {
-                    @String.Join(", ", members)
-
-                <form action="@Url.Action("EliminarUsuario", "Grupos", new { groupId = ViewBag.GroupId })" method="post">
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="Btn">
-                        <div class="sign">
-                            <svg viewBox="0 0 512 512">
-                                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
-                            </svg>
-                        </div>
-                        <div class="text">Salir</div>
-                    </button>
-                </form>
-                }
-            </li>
+            <li id="miembros">Victor, Luis,Maria Jose, ...</li>
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
@@ -119,13 +98,6 @@
     <main>
         <div class="menuGrupos">
             <ul>
-                <li id="liCrear">
-                    <!-- Grupo nuevo -->
-                    <a href="@Url.Action("CrearGrupo", "Grupos")" id="crear">
-
-                        <img id="crearImg" src="~/Content/imgs/anadir.png" />
-                    </a>
-                </li>
                 @foreach (var group in groups)
                 {
                     <li class="@(selectedGroupId == group.grupo_id ? "selected" : "")">
@@ -154,46 +126,45 @@
                     </div>
                 </div>
                 <input type="hidden" id="mostrarnombre" value="@ViewBag.user" />
-                <input type="hidden" id="nombregrupo" value="@ViewBag.GroupName" />
+                <input type="hidden" id="nombregrupo" value="@ViewBag.GroupName" /> <!-- Hidden field to store group name -->
             </div>
 
             @section scripts {
+                
+                    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+                    <script src="~/signalr/hubs"></script>
 
-                <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
-                <script src="~/signalr/hubs"></script>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            var chat = $.connection.chatHub;
+                            var groupName = $("#nombregrupo").val();
 
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        var chat = $.connection.chatHub;
-                        var groupName = $("#nombregrupo").val();
+                            chat.client.EnviarMensaje = function (usuario, mensaje) {
+                                var nombreusuario = $("#mostrarnombre").val();
+                                var divnombre = $("<div/>").text(usuario).html();
+                                var divmensaje = $("<div/>").text(mensaje).html();
+                                var claseMensaje = usuario === nombreusuario ? "mensaje-propio" : "mensaje-ajeno";
 
-                        chat.client.EnviarMensaje = function (usuario, mensaje) {
-                            var nombreusuario = $("#mostrarnombre").val();
-                            var divnombre = $("<div/>").text(usuario).html();
-                            var divmensaje = $("<div/>").text(mensaje).html();
-                            var claseMensaje = usuario === nombreusuario ? "mensaje-propio" : "mensaje-ajeno";
+                                $("#mensajesenchat").append("<li class='" + claseMensaje + "'>" + "<b>" + divnombre + "</b>" + "<p class='mensaje'>" + divmensaje + "</p>" + "</li>");
 
-                            $("#mensajesenchat").append("<li class='" + claseMensaje + "'>" + "<b>" + divnombre + "</b>" + "<p class='mensaje'>" + divmensaje + "</p>" + "</li>");
+                                var chatContainer = $("#mensajesenchat");
+                                chatContainer.scrollTop(chatContainer[0].scrollHeight);
+                            };
 
-                            var chatContainer = $("#mensajesenchat");
-                            chatContainer.scrollTop(chatContainer[0].scrollHeight);
-                        };
-
-                        $.connection.hub.start().done(function () {
-                            chat.server.joinGroup(groupName).done(function () {
-                                $("#botonenviar").click(function () {
-                                    var nombreusuario = $("#mostrarnombre").val();
-                                    var mensajeenviar = $("#cajamensaje").val();
-                                    chat.server.send(groupName, nombreusuario, mensajeenviar);
-                                    $("#cajamensaje").val("").focus();
+                            $.connection.hub.start().done(function () {
+                                chat.server.joinGroup(groupName).done(function () {
+                                    $("#botonenviar").click(function () {
+                                        var nombreusuario = $("#mostrarnombre").val();
+                                        var mensajeenviar = $("#cajamensaje").val();
+                                        chat.server.send(groupName, nombreusuario, mensajeenviar);
+                                        $("#cajamensaje").val("").focus();
+                                    });
                                 });
                             });
                         });
-                    });
-                </script>
+                    </script>
+                }
             }
-        }
-
-    </main>
+        </main>
 </body>
 </html>

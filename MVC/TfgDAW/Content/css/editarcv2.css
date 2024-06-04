@@ -594,7 +594,6 @@ nav ul #liVerMenuCuenta {
         height: auto;
         position: fixed;
         border: 1px solid black;
-        padding-bottom: 25px;
     }
 
         #menuCuenta #contenidoMenuCuenta {
@@ -616,20 +615,11 @@ nav ul #liVerMenuCuenta {
         border: 1px solid black;
     }
 
-        #menuCV .linea {
-            margin-left: 25%;
-        }
-
     /*menu admin*/
     #menuAdmin {
         position: fixed;
         top: 23em;
         left: 0;
         width: 100%;
-    }
-
-    /*EXTRAS*/
-    .linea {
-        margin-left: 0;
     }
 }

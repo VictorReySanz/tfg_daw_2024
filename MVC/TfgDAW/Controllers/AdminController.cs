@@ -156,16 +156,7 @@ namespace TfgDAW.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
-        //Cerrar sesion
-        //  [AutorizeAttribute]
-        public ActionResult EliminarSesion()
-        {
-            // Eliminar la sesión
-            Session["userId"] = null;
 
-            // Redirigir a la página de usuarios
-            return RedirectToAction("Index", "Usuarios");
-        }
 
     }
 }
