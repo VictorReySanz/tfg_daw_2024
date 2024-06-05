@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace TfgDAW.Models
@@ -12,16 +13,16 @@ namespace TfgDAW.Models
         public String Role { get; set; }
         private share_enjoyEntities db = new share_enjoyEntities();
         public bool ExisteUsuario(String usuario, String password)
-        {
+        {    
+            Usuarios userObj = db.Usuarios.FirstOrDefault(u => u.email == usuario);
 
-            List<Usuarios> userObj = db.Usuarios.Where(u => u.email == usuario).ToList();
-            if (userObj.Count == 0)
+            if (userObj == null)
             {
                 return false;
             }
             else
             {  
-                if (usuario == "admin" && password == "admin")
+                if (userObj.rol == "admin")
 
                 {
 
@@ -29,7 +30,7 @@ namespace TfgDAW.Models
                     return true;
 
                 }
-                else if (usuario == "usuario" && password == "usuario")
+                else if (userObj.rol == "usuario")
 
                 {
                     this.Role = "usuario";

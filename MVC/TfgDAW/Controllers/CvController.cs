@@ -71,12 +71,14 @@ namespace TfgDAW.Controllers
                 ViewBag.IsAdmin = false;
             }
              }else {
-       ViewBag.user = "invitado";
-   }
+             ViewBag.user = "invitado";
+             ViewBag.IsAdmin = false;
+            }
             return View(cv);
         }
 
         // Ver CV
+      
         public ActionResult VerCv(int id)
         {
 
@@ -149,16 +151,19 @@ namespace TfgDAW.Controllers
             else
             {
                 ViewBag.IsAdmin = false;
+
             }
- }else {
+                }else {
        ViewBag.user = "invitado";
-   }
+                ViewBag.IsAdmin = false;
+            }
 
             return View(cv);
         }
 
         // Editar CV
-       // [AutorizeAttribute]
+        // [AutorizeAttribute]
+        [Autorize]
         public ActionResult EditarCv()
         {
 
@@ -296,7 +301,8 @@ namespace TfgDAW.Controllers
 
 
         //Crear un elemento del portafolio: get
-       // [AutorizeAttribute]
+        // [AutorizeAttribute]
+        [Autorize]
         public ActionResult CrearElementoPortafolio()
         {
             //Mostrar nombre de usuario en el menu usuario
@@ -404,7 +410,8 @@ namespace TfgDAW.Controllers
         }
 
         //Editar un elemento del portafolio: get
-      //  [AutorizeAttribute]
+        //  [AutorizeAttribute]
+        [Autorize]
         public ActionResult EditarElementoPortafolio(string nombre, string enlace, int ideditar)
         {
 
@@ -497,6 +504,7 @@ namespace TfgDAW.Controllers
 
         // Editar cv2
         //[AutorizeAttribute]
+        [Autorize]
         public ActionResult EditarCV2(int id)
         {
             Cv cv = db.Cv.Find(id);
@@ -604,7 +612,8 @@ namespace TfgDAW.Controllers
         }
 
         //Crear un elemento de tecnologia: get
-      //  [AutorizeAttribute]
+        //  [AutorizeAttribute]
+        [Autorize]
         public ActionResult CrearElementoTecnologia()
         {
 
@@ -694,7 +703,8 @@ namespace TfgDAW.Controllers
         }
 
         //Editar un elemento de rede social: get
-      //  [AutorizeAttribute]
+        //  [AutorizeAttribute]
+        [Autorize]
         public ActionResult EditarRed(string enlace, int ideditarR)
         {
             if (enlace == "#")

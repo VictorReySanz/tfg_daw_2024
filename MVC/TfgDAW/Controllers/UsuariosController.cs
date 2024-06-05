@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 using System.Web.WebPages;
 
@@ -32,6 +33,7 @@ namespace TfgDAW.Controllers
         }
 
         // Mis datos GET
+        [Autorize]
         public ActionResult MisDatos()
         {
 
@@ -227,46 +229,52 @@ namespace TfgDAW.Controllers
         [HttpPost]
         public ActionResult EnviarFormulario(string email, string password)
         {
-
-            /*Prueba del bcrypt
-             * 
-                    string originalPassword = "luis";
-                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(originalPassword);
-
-                    bool isMatch = BCrypt.Net.BCrypt.Verify(originalPassword, hashedPassword);
-                    Console.WriteLine($"Password matches: {isMatch}"); // Debería imprimir "Password matches: True"
-              */
-
-
+            // Obtener el usuario por su email
             Usuarios usermail = this.GetUserbyEmail(email);
             if (usermail != null)
             {
+                // Validar la contraseña usando BCrypt
                 bool valida = BCrypt.Net.BCrypt.Verify(password, usermail.password);
                 if (valida)
                 {
+                    // Crear una sesión y ticket de autenticación
                     Session["userId"] = usermail.usuario_id;
-                    int userId = (int)Session["userId"];
-                    return RedirectToAction("index", "Libros");
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                        1,
+                        email,
+                        DateTime.Now,
+                        DateTime.Now.AddMinutes(30),
+                        true,
+                        "usuario", // Puedes ajustar este valor según el rol del usuario
+                        FormsAuthentication.FormsCookiePath
+                    );
+
+                    // Encriptar el ticket y crear una cookie
+                    string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+                    HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    authCookie.HttpOnly = true;
+                    Response.Cookies.Add(authCookie);
+
+                    // Redirigir a la página segura
+                    return RedirectToAction("Index", "Libros");
                 }
                 else
                 {
-
-              
+                    // Contraseña incorrecta
                     TempData["Message"] = "Revisa tus datos";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-
+                // Usuario no encontrado
                 TempData["Message"] = "Revisa tus datos";
                 return RedirectToAction("Index");
             }
-
         }
 
         //Eliminar usuario
-public ActionResult EliminarUsuario()
+        public ActionResult EliminarUsuario()
 {
     if (Session["userId"] != null)
     {

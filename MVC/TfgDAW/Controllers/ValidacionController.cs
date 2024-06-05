@@ -21,6 +21,8 @@ namespace TfgDAW.Controllers
             return View();
 
         }
+        
+        /*pruba para validar
         [HttpPost]
         public ActionResult Login(String email, String password)
         {
@@ -53,7 +55,7 @@ namespace TfgDAW.Controllers
                 return View();
             }
 
-        }
+        }*/
         public ActionResult ErrorAcceso()
         {
 

@@ -16,6 +16,7 @@ namespace TfgDAW.Controllers
         private share_enjoyEntities db = new share_enjoyEntities();
 
         //chats
+        [Autorize]
         public ActionResult Chat(int groupId)
         {
             int userId = (int)Session["userId"];
@@ -56,6 +57,7 @@ namespace TfgDAW.Controllers
 
         //crear grupo get
         [HttpGet]
+        [Autorize]
         public ActionResult CrearGrupo()
         {
             int userId = (int)Session["userId"];

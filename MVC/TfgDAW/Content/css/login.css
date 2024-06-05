@@ -45,3 +45,10 @@
 .crear-cuenta {
     flex-direction: row;
 }
+
+.name {
+    color:white;
+
+   font-size:25px;
+   margin-right:10px;
+}

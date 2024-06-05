@@ -21,17 +21,19 @@ namespace TfgDAW
         }
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
         {
-            HttpCookie cookie = Request.Cookies["cookieseguridad"];
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
-            if (cookie != null)
+            if (authCookie != null)
             {
-                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
-                GenericIdentity identidad =    new GenericIdentity(ticket.Name);
-                String role = ticket.UserData;
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (ticket != null && !ticket.Expired)
+                {
+                    GenericIdentity identidad = new GenericIdentity(ticket.Name);
+                    string role = ticket.UserData;
 
-                GenericPrincipal usuarioprincipal =  new GenericPrincipal(identidad, new String[] { role });
-                HttpContext.Current.User = usuarioprincipal;
-
+                    GenericPrincipal usuarioprincipal = new GenericPrincipal(identidad, new string[] { role });
+                    HttpContext.Current.User = usuarioprincipal;
+                }
             }
 
         }

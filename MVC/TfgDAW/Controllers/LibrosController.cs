@@ -8,6 +8,7 @@ using System.Net;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 using TfgDAW.Models;
 using static System.Net.Mime.MediaTypeNames;
@@ -52,13 +53,14 @@ namespace TfgDAW.Controllers
 
             }else {
                 ViewBag.user = "invitado";
+                ViewBag.IsAdmin = false;
             }
 
             return View(libros);
         }
 
         // Favoritos
-       // [AutorizeAttribute]
+        [Autorize]
         public ActionResult Favoritos(string buscar)
         {
 
@@ -94,7 +96,7 @@ namespace TfgDAW.Controllers
         }
 
         //Mis elementos
-      // [AutorizeAttribute]
+       [Autorize]
         public ActionResult MisElementos(string buscar)
         {
 
@@ -127,6 +129,7 @@ namespace TfgDAW.Controllers
         }
 
         //Ver elemento
+      
         public ActionResult VerElemento(int id)
         {
             var librosQuery = db.Libros.Include(l => l.Categorias).Include(l => l.Usuarios).Where(l => l.libro_id == id);
@@ -165,6 +168,7 @@ namespace TfgDAW.Controllers
             else
             {
                 ViewBag.user = "invitado";
+                ViewBag.IsAdmin = false;
             }
  
             return View(libros);
@@ -190,7 +194,8 @@ namespace TfgDAW.Controllers
         }
 
         //Crear elemento GET
-       // [AutorizeAttribute]
+        // [AutorizeAttribute]
+        [Autorize]
         public ActionResult CrearElemento()
         {
             //Mostrar nombre de usuario en el menu usuario
@@ -215,7 +220,6 @@ namespace TfgDAW.Controllers
         //Crear elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[AutorizeAttribute]
         public ActionResult CrearElemento(Libros libros, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
 
@@ -266,7 +270,8 @@ namespace TfgDAW.Controllers
 
 
         // Editar elemento GET
-       // [AutorizeAttribute]
+        // [AutorizeAttribute]
+        [Autorize]
         public ActionResult EditarElemento(int id)
         {
             Libros libros = db.Libros.Find(id);
@@ -292,7 +297,7 @@ namespace TfgDAW.Controllers
         // Editar elemento POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-       // [AutorizeAttribute]
+      
         public ActionResult EditarElemento([Bind(Include = "libro_id,titulo,autor,descripcion,visible,portada")] Libros libros, string boton, HttpPostedFileBase imageFile, HttpPostedFileBase pdfFile)
         {
 
@@ -384,26 +389,31 @@ return View(libros);
             {
                 int userId = (int)Session["userId"];
                  icono = db.Usuarios.Find(userId);
-            }
+                if (icono != null && icono.foto != null)
+                {
+                    return File(icono.foto, "image/jpg");
+                }
+                else
+                {
+                    return File("∼/Content/imgs/iconocuenta.jpg", "image/jpg");
+                }
 
-         
-       
-            if (icono != null && icono.foto != null)
-            {
-                return File(icono.foto, "image/jpg");
             }
             else
             {
                 return File("∼/Content/imgs/iconocuenta.jpg", "image/jpg");
             }
+  
+         
         }
 
         //Cerrar sesion
-      //  [AutorizeAttribute]
+        
         public ActionResult EliminarSesion()
         {
             // Eliminar la sesión
             Session["userId"] = null;
+            FormsAuthentication.SignOut();
 
             // Redirigir a la página de usuarios
             return RedirectToAction("Index", "Usuarios");
