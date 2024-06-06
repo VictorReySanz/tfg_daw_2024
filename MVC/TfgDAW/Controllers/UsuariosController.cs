@@ -194,11 +194,11 @@ namespace TfgDAW.Controllers
                     this.db.Usuarios.Add(nuevo);
                     this.db.SaveChanges();
                     Session["userId"] = nuevo.usuario_id;
-                    return RedirectToAction("index", "Libros");
+                    return RedirectToAction("index", "Usuarios");
 
                 }
             TempData["Message"] = "Ya existe ese correo o revisa tu password";
-            return RedirectToAction("Registro");
+            return RedirectToAction("Index");
           
         }
 
