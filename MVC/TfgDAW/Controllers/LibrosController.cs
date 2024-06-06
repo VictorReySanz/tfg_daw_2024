@@ -395,13 +395,13 @@ return View(libros);
                 }
                 else
                 {
-                    return File("∼/Content/imgs/iconocuenta.jpg", "image/jpg");
+                    return File("~/Content/imgs/iconocuenta.png", "image/jpg");
                 }
 
             }
             else
             {
-                return File("∼/Content/imgs/iconocuenta.jpg", "image/jpg");
+                return File("~/Content/imgs/iconocuenta.png", "image/jpg");
             }
   
          

@@ -145,14 +145,14 @@ loadingTask.promise.then(function(pdf) {
 
                     @*TECNOLOGIAS*@
                     <div class="portafolio-container">
-                        <div id="portafolio-titulo" class="animate__animated animate__slow animate__bounceInDown">APTITUDES</div>
-
+                        <div id="portafolio-titulo">APTITUDES</div>
                         <div class="portafolio">
                             @for (int i = 0; i < ViewBag.Tecnologias.Length - 1; i++)
                             {
-                                <div class="portafolio-elemento animate__animated animate__slow animate__bounceInLeft">
+                                <div class="portafolio-elemento">
                                     <p class="portafolio-elemento-nombre">@ViewBag.Tecnologias[i]</p>
                                 </div>
+
                             }
 
                         </div>

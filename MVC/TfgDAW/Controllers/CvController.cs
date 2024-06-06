@@ -119,7 +119,8 @@ namespace TfgDAW.Controllers
             }
 
             //Listar tecnologias
-            var cvTecnologiasQuery = db.Cv.Where(c => c.usuario_id == id).Select(c => c.tecnología).FirstOrDefault();
+            var cvTecnologiasQuery = db.Cv.Where(c => c.cv_id == id).Select(c => c.tecnología).FirstOrDefault();
+
 
             if (cvTecnologiasQuery != null)
             {
@@ -129,7 +130,7 @@ namespace TfgDAW.Controllers
             }
             else
             {
-                string[] tecnologiasVacio = { "No se han añadido aptitudes" };
+                string[] tecnologiasVacio = { "Añade aqui tus tecnologias" };
 
                 ViewBag.Tecnologias = tecnologiasVacio;
             }
