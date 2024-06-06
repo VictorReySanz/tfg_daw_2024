@@ -96,7 +96,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" alt="Foto de perfil" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -123,7 +123,7 @@
                     <!-- Grupo nuevo -->
                     <a href="@Url.Action("CrearGrupo", "Grupos")" id="crear">
 
-                        <img id="crearImg" src="~/Content/imgs/anadir.png" />
+                        <img id="crearImg" src="~/Content/imgs/anadir.png" alt="Crear grupo" />
                     </a>
                 </li>
                 @foreach (var group in groups)

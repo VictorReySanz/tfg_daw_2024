@@ -75,7 +75,7 @@
                 <!-- Añadir elemento -->
                 <a href="@Url.Action("CrearElemento", "Libros")" id="anadir">
 
-                    <img class="anadirImg" src="~/Content/imgs/anadir.png" />
+                    <img class="anadirImg" src="~/Content/imgs/anadir.png" alt="Agregar libro nuevo" />
                 </a>
             </li>
             <li id="liBuscar">
@@ -88,7 +88,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" alt="Foto de perfil" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -118,11 +118,11 @@
                 <a href="@Url.Action("EditarElemento", "Libros", new { id = item.libro_id })" class="elemento animate__animated animate__slow animate__backInLeft" name="id">
                     @if (item.portada != null && item.portada.Length > 0)
                     {
-                        <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" />
+                        <img class="portada" src="data:image;base64,@Convert.ToBase64String(item.portada)" alt="Portada" />
                     }
                     else
                     {
-                        <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" />
+                        <img class="portada" src="~/Content/imgs/imgpordefecto.jpg" alt="Portada" />
                     }
                     <div class="tituloAutor">
                         <p class="nombre">@Html.DisplayFor(modelItem => item.titulo)</p>
@@ -131,11 +131,11 @@
                     <div class="visibilidad">
                         @if (item.visible ?? false)
                         {
-                            <img class="visibleImg" src="~/Content/imgs/visible.png" />
+                            <img class="visibleImg" src="~/Content/imgs/visible.png" alt="Libro visible" />
                         }
                         else
                         {
-                            <img class="visibleImg" src="~/Content/imgs/novisible.png" />
+                            <img class="visibleImg" src="~/Content/imgs/novisible.png" alt="Libro no visible" />
                         }
                     </div>
                 </a>

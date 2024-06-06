@@ -79,7 +79,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" alt="Foto de perfil" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -112,7 +112,7 @@
 
             <div class="contenido">
                 <div class="izquierda">
-                    <img class="portada" id="imgPreview" src="@Url.Action("GetImage", "Libros", new { id = Model.libro_id })" />
+                    <img class="portada" id="imgPreview" src="@Url.Action("GetImage", "Libros", new { id = Model.libro_id })" alt="Portada" />
 
 
                     <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
