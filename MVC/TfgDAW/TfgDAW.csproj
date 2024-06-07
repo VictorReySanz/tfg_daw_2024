@@ -261,13 +261,21 @@
     <Content Include="Content\css\vercv.css" />
     <Content Include="Content\css\verelemento.css" />
     <Content Include="Content\imgs\anadir.png" />
+    <Content Include="Content\imgs\cvEjemplo.jpg" />
+    <Content Include="Content\imgs\editar.png" />
+    <Content Include="Content\imgs\eliminar.png" />
+    <Content Include="Content\imgs\facebook.png" />
     <Content Include="Content\imgs\iconocuenta.png" />
     <Content Include="Content\imgs\imgpordefecto.jpg" />
+    <Content Include="Content\imgs\instagram.png" />
+    <Content Include="Content\imgs\linkedin.png" />
     <Content Include="Content\imgs\novisible.png" />
     <Content Include="Content\imgs\quijote.jpg" />
     <Content Include="Content\imgs\senordelosanillos.jpg" />
     <Content Include="Content\imgs\shareenjoylogo.png" />
     <Content Include="Content\imgs\visible.png" />
+    <Content Include="Content\imgs\x.png" />
+    <Content Include="Content\js\message.js" />
     <Content Include="Content\js\scripts.js" />
     <Content Include="Content\js\site.js" />
     <Content Include="favicon.ico" />
@@ -297,6 +305,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="libman.json" />
+    <Content Include="Content\archivos\cvejemplo.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
