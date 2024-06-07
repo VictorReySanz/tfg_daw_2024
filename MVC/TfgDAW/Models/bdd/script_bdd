@@ -1,0 +1,174 @@
+USE [share_enjoy]
+GO
+/****** Object:  Table [dbo].[Categorias]    Script Date: 27/05/2024 1:06:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categorias](
+	[categoria_id] [int] IDENTITY(1,1) NOT NULL,
+	[nombre_categoria] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[categoria_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cv]    Script Date: 27/05/2024 1:06:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cv](
+	[cv_id] [int] IDENTITY(1,1) NOT NULL,
+	[nombre_completo] [varchar](100) NULL,
+	[visible] [bit] NULL,
+	[categoria_id] [int] NULL,
+	[usuario_id] [int] NULL,
+	[profesión] [varchar](100) NULL,
+	[Portafolio] [varchar](max) NULL,
+	[tecnología] [varchar](max) NULL,
+	[file_cv] [varbinary](max) NULL,
+	[redes_sociales] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[cv_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Favoritos]    Script Date: 27/05/2024 1:06:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Favoritos](
+	[favorito_id] [int] IDENTITY(1,1) NOT NULL,
+	[usuario_id] [int] NULL,
+	[categoria_id] [int] NULL,
+	[favorito_ref_id] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[favorito_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Grupos]    Script Date: 27/05/2024 1:06:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Grupos](
+	[grupo_id] [int] IDENTITY(1,1) NOT NULL,
+	[nombre_grupo] [varchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[grupo_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Juegos]    Script Date: 27/05/2024 1:06:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Juegos](
+	[juego_id] [int] IDENTITY(1,1) NOT NULL,
+	[nombre_juego] [varchar](100) NULL,
+	[descripcion] [varchar](100) NULL,
+	[archivo] [varbinary](max) NULL,
+	[visible] [bit] NULL,
+	[ing] [varbinary](max) NULL,
+	[file_juegos] [varbinary](max) NULL,
+	[categoria_id] [int] NULL,
+	[usuario_id] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[juego_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Libros]    Script Date: 27/05/2024 1:06:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Libros](
+	[libro_id] [int] IDENTITY(1,1) NOT NULL,
+	[titulo] [varchar](100) NULL,
+	[autor] [varchar](100) NULL,
+	[genero] [varchar](100) NULL,
+	[portada] [varbinary](max) NULL,
+	[file_libros] [varbinary](max) NULL,
+	[descripcion] [text] NULL,
+	[visible] [bit] NULL,
+	[categoria_id] [int] NULL,
+	[usuario_id] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[libro_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 27/05/2024 1:06:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuarios](
+	[usuario_id] [int] IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](50) NULL,
+	[foto] [varbinary](max) NULL,
+	[email] [varchar](50) NULL,
+	[rol] [varchar](10) NULL,
+	[password] [varchar](64) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[usuario_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Usuarios_Grupos]    Script Date: 27/05/2024 1:06:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuarios_Grupos](
+	[usuario_id] [int] IDENTITY(1,1) NOT NULL,
+	[grupo_id] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[usuario_id] ASC,
+	[grupo_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Cv]  WITH NOCHECK ADD FOREIGN KEY([categoria_id])
+REFERENCES [dbo].[Categorias] ([categoria_id])
+GO
+ALTER TABLE [dbo].[Cv]  WITH NOCHECK ADD FOREIGN KEY([usuario_id])
+REFERENCES [dbo].[Usuarios] ([usuario_id])
+GO
+ALTER TABLE [dbo].[Favoritos]  WITH NOCHECK ADD FOREIGN KEY([categoria_id])
+REFERENCES [dbo].[Categorias] ([categoria_id])
+GO
+ALTER TABLE [dbo].[Favoritos]  WITH NOCHECK ADD FOREIGN KEY([usuario_id])
+REFERENCES [dbo].[Usuarios] ([usuario_id])
+GO
+ALTER TABLE [dbo].[Juegos]  WITH NOCHECK ADD FOREIGN KEY([categoria_id])
+REFERENCES [dbo].[Categorias] ([categoria_id])
+GO
+ALTER TABLE [dbo].[Juegos]  WITH NOCHECK ADD FOREIGN KEY([usuario_id])
+REFERENCES [dbo].[Usuarios] ([usuario_id])
+GO
+ALTER TABLE [dbo].[Libros]  WITH NOCHECK ADD FOREIGN KEY([categoria_id])
+REFERENCES [dbo].[Categorias] ([categoria_id])
+GO
+ALTER TABLE [dbo].[Libros]  WITH NOCHECK ADD FOREIGN KEY([usuario_id])
+REFERENCES [dbo].[Usuarios] ([usuario_id])
+GO
+ALTER TABLE [dbo].[Usuarios_Grupos]  WITH NOCHECK ADD FOREIGN KEY([grupo_id])
+REFERENCES [dbo].[Grupos] ([grupo_id])
+GO
+ALTER TABLE [dbo].[Usuarios_Grupos]  WITH NOCHECK ADD FOREIGN KEY([usuario_id])
+REFERENCES [dbo].[Usuarios] ([usuario_id])
+GO

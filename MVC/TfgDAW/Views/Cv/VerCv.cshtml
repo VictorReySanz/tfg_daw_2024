@@ -77,7 +77,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" alt="Foto de perfil" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -145,14 +145,14 @@ loadingTask.promise.then(function(pdf) {
 
                     @*TECNOLOGIAS*@
                     <div class="portafolio-container">
-                        <div id="portafolio-titulo" class="animate__animated animate__slow animate__bounceInDown">APTITUDES</div>
-
+                        <div id="portafolio-titulo">APTITUDES</div>
                         <div class="portafolio">
                             @for (int i = 0; i < ViewBag.Tecnologias.Length - 1; i++)
                             {
-                                <div class="portafolio-elemento animate__animated animate__slow animate__bounceInLeft">
+                                <div class="portafolio-elemento">
                                     <p class="portafolio-elemento-nombre">@ViewBag.Tecnologias[i]</p>
                                 </div>
+
                             }
 
                         </div>

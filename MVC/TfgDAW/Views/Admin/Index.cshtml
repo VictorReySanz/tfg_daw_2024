@@ -78,7 +78,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" alt="Foto de perfil" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -121,7 +121,7 @@
                     <!-- Eliminar elemento -->
                     <a href="@Url.Action("EliminarUsuario", "Admin", new { id = item.usuario_id })" id="eliminar" name="ideliminarT">
 
-                        <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                        <img id="eliminarImg" src="~/Content/imgs/eliminar.png" alt="Eliminar usuario" />
                     </a>
                 </div>
             }

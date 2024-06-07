@@ -11,6 +11,7 @@ body {
 nav {
     background-color: #A08095;
     padding: 10px;
+    height: 65px;
 }
 
     nav ul {
@@ -301,7 +302,7 @@ nav ul #liVerMenuCuenta {
     position: absolute;
     float: left;
     background-color: #a7909f;
-    height: 93.3%;
+    height: 93.3vh;
     overflow-y: scroll;
 }
 
@@ -369,12 +370,121 @@ nav ul #liVerMenuCuenta {
 .chat-container {
     margin-left: 27%;
     padding: 20px;
+    height: 93.3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
 }
+
+    .chat-container::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .chat-container::-webkit-scrollbar-track {
+        background: none;
+    }
+
+    .chat-container::-webkit-scrollbar-thumb {
+        background: #E81C26;
+        border-radius: 10px;
+    }
+
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: #ca1a23;
+        }
+
+
+/* Lista de mensajes */
+#mensajesenchat {
+    flex-grow: 1;
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+    #mensajesenchat::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    #mensajesenchat::-webkit-scrollbar-track {
+        background: none;
+    }
+
+    #mensajesenchat::-webkit-scrollbar-thumb {
+        background: #E81C26;
+        border-radius: 10px;
+    }
+
+        #mensajesenchat::-webkit-scrollbar-thumb:hover {
+            background: #ca1a23;
+        }
+
+.mensaje {
+    position: relative;
+    width: auto;
+    max-width: 300px;
+    box-shadow: 1px 12px 33px rgba(0, 0, 0, 0.5);
+    padding: 5px 20px;
+    border-radius: 15px;
+    margin: 10px 0;
+}
+
+.mensaje-ajeno {
+    align-self: flex-start;
+}
+
+    .mensaje-ajeno .mensaje {
+        background: #E8601C;
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 8px;
+        text-align: left;
+    }
+
+        .mensaje-ajeno .mensaje:before {
+            border: 13px solid #E8601C;
+            content: '';
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            position: absolute;
+            bottom: -4px;
+            transform: rotate(75deg);
+            left: calc(-7%);
+        }
+
+.mensaje-propio {
+    align-self: flex-end;
+}
+
+    .mensaje-propio .mensaje {
+        background: #F74828;
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 8px;
+        text-align: right;
+        margin-left: auto;
+    }
+
+        .mensaje-propio .mensaje:before {
+            border: 13px solid #F74828;
+            content: '';
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            position: absolute;
+            bottom: -4px;
+            transform: rotate(-75deg);
+            right: calc(-7%);
+        }
 
 .envio {
     display: flex;
     justify-content: center;
 }
+
 .Message {
     margin-top: 30px;
     width: 360px;
@@ -807,17 +917,26 @@ nav ul #liVerMenuCuenta {
     }
 
     /*CHAT*/
-    #mensajesenchat {
-        margin-top: 200px;
-        height: 550px;
-    }
-
     .chat-container {
         margin-left: 0;
+    }
+    .container {
+        margin-top: 200px;
     }
 
     .mensaje {
         width: 200px;
     }
 
+    #mensajesenchat {
+        height: auto;
+    }
+
+    #cajamensaje {
+        width: 190px;
+    }
+
+    .Message {
+        width:255px;
+    }
 }

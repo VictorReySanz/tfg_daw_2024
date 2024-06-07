@@ -75,7 +75,7 @@
             <li id="liVerMenuCuenta">
                 <input type="checkbox" id="verMenuCuenta">
                 <label id="verMenuCuentaLabel" for="verMenuCuenta">
-                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" />
+                    <img class="cuentaImg" src="@Url.Action("GetIcono", "Libros")" alt="Foto de perfil" />
                     <div class="cuentaClose">
                         <div class="linea1"></div>
                         <div class="linea2"></div>
@@ -106,18 +106,18 @@
                     <div class="visibilidad">
                         @if (item.visible ?? false)
                         {
-                            <img class="visibleImg" src="~/Content/imgs/visible.png" />
+                            <img class="visibleImg" src="~/Content/imgs/visible.png" alt="CV vsble" />
                         }
                         else
                         {
-                            <img class="visibleImg" src="~/Content/imgs/novisible.png" />
+                            <img class="visibleImg" src="~/Content/imgs/novisible.png" alt="CV no visible" />
                         }
                     </div>
 
                     <!-- Editar CV -->
                     <a href="@Url.Action("EditarCV2", "Cv", new { id = item.cv_id })" id="editar">
 
-                        <img id="editarImg" src="~/Content/imgs/editar.png" />
+                        <img id="editarImg" src="~/Content/imgs/editar.png" alt="Editar CV" />
                     </a>
 
                     @*Ver archivo*@
@@ -162,7 +162,7 @@ loadingTask.promise.then(function(pdf) {
                         <!-- Añadir elemento -->
                         <a href="@Url.Action("CrearElementoTecnologia", "Cv", new { id = item.cv_id })" name="idcrearT" id="anadir">
 
-                            <img id="anadirImg" src="~/Content/imgs/anadir.png" />
+                            <img id="anadirImg" src="~/Content/imgs/anadir.png" alt="Agregar aptitud" />
                         </a>
                         <div class="portafolio">
                             @for (int i = 0; i < ViewBag.Tecnologias.Length - 1; i++)
@@ -174,7 +174,7 @@ loadingTask.promise.then(function(pdf) {
                                         <!-- Eliminar elemento tecnologia -->
                                         <a href="@Url.Action("EliminarTecnologia", "Cv", new { id = i, ideliminarT = item.cv_id })" id="eliminar" name="ideliminarT">
 
-                                            <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                            <img id="eliminarImg" src="~/Content/imgs/eliminar.png" alt="Eliminar aptitud" />
                                         </a>
                                     </div>
                                 </div>
@@ -193,18 +193,18 @@ loadingTask.promise.then(function(pdf) {
                         @*X*@
                         <div class="portafolio-elemento" onclick="location.href='@ViewBag.RedesPersonal[0]';">
                             <a href="@ViewBag.RedesPersonal[0]" class="portafolio-elemento-nombre">
-                                <img class="redesImg" src="~/Content/imgs/x.png" />
+                                <img class="redesImg" src="~/Content/imgs/x.png" alt="X" />
                                 X
                             </a>
 
                             <div class="botones">
                                 <!-- Editar elemento red -->
                                 <a href="@Url.Action("EditarRed", "Cv", new { id = 0, enlace = @ViewBag.RedesPersonal[0], ideditarR = item.cv_id })" id="editar" name="ideditarR">
-                                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                    <img id="editarImg" src="~/Content/imgs/editar.png" alt="Editar enlace de X" />
                                 </a>
                                 <!-- Eliminar elemento red -->
                                 <a href="@Url.Action("EliminarRed", "Cv", new { id = 0, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
-                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" alt="Eliminar enlace de X" />
                                 </a>
                             </div>
                         </div>
@@ -212,54 +212,54 @@ loadingTask.promise.then(function(pdf) {
                         <div class="portafolio-elemento" onclick="location.href='@ViewBag.RedesPersonal[1]';">
                             <a href="@ViewBag.RedesPersonal[1]" class="portafolio-elemento-nombre">
 
-                                <img class="redesImg" src="~/Content/imgs/instagram.png" />
+                                <img class="redesImg" src="~/Content/imgs/instagram.png" alt="Instagram" />
                                 Instagram
                             </a>
 
                             <div class="botones">
                                 <!-- Editar elemento red -->
                                 <a href="@Url.Action("EditarRed", "Cv", new { id = 1, enlace = @ViewBag.RedesPersonal[1], ideditarR = item.cv_id })" id="editar" name="ideditarR">
-                                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                    <img id="editarImg" src="~/Content/imgs/editar.png" alt="Editar enlace de Instagram" />
                                 </a>
                                 <!-- Eliminar elemento red -->
                                 <a href="@Url.Action("EliminarRed", "Cv", new { id = 1, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
-                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" alt="Eliminar enlace de Instagram" />
                                 </a>
                             </div>
                         </div>
                         @*Facebook*@
                         <div class="portafolio-elemento" onclick="location.href='@ViewBag.RedesPersonal[2]';">
                             <a href="@ViewBag.RedesPersonal[2]" class="portafolio-elemento-nombre">
-                                <img class="redesImg" src="~/Content/imgs/facebook.png" />
+                                <img class="redesImg" src="~/Content/imgs/facebook.png" alt="Facebook" />
                                 Facebook
                             </a>
 
                             <div class="botones">
                                 <!-- Editar elemento red -->
                                 <a href="@Url.Action("EditarRed", "Cv", new { id = 2, enlace = @ViewBag.RedesPersonal[2], ideditarR = item.cv_id })" id="editar" name="ideditarR">
-                                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                    <img id="editarImg" src="~/Content/imgs/editar.png" alt="Editar enlace de Facebook" />
                                 </a>
                                 <!-- Eliminar elemento red -->
                                 <a href="@Url.Action("EliminarRed", "Cv", new { id = 2, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
-                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" alt="Eliminar enlace de Facebook" />
                                 </a>
                             </div>
                         </div>
                         @*Linkedin*@
                         <div class="portafolio-elemento" onclick="location.href='@ViewBag.RedesPersonal[3]';">
                             <a href="@ViewBag.RedesPersonal[3]" class="portafolio-elemento-nombre">
-                                <img class="redesImg" src="~/Content/imgs/linkedin.png" />
+                                <img class="redesImg" src="~/Content/imgs/linkedin.png" alt="Linkedin" />
                                 Linkedin
                             </a>
 
                             <div class="botones">
                                 <!-- Editar elemento red -->
                                 <a href="@Url.Action("EditarRed", "Cv", new { id = 3, enlace = @ViewBag.RedesPersonal[3], ideditarR = item.cv_id })" id="editar" name="ideditarR">
-                                    <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                    <img id="editarImg" src="~/Content/imgs/editar.png" alt="Editar enlace de Linkedin" />
                                 </a>
                                 <!-- Eliminar elemento red -->
                                 <a href="@Url.Action("EliminarRed", "Cv", new { id = 3, ideliminarR = item.cv_id })" id="eliminar" name="ideliminarR">
-                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                    <img id="eliminarImg" src="~/Content/imgs/eliminar.png" alt="Eliminar enlace de Linkedin" />
                                 </a>
                             </div>
                         </div>
@@ -273,7 +273,7 @@ loadingTask.promise.then(function(pdf) {
                     <!-- Añadir elemento -->
                     <a href="@Url.Action("CrearElementoPortafolio", "Cv", new { id = item.cv_id })" name="idcrear" id="anadir">
 
-                        <img id="anadirImg" src="~/Content/imgs/anadir.png" />
+                        <img id="anadirImg" src="~/Content/imgs/anadir.png" alt="Agregar elemento al portafolio" />
                     </a>
                     <div class="portafolio">
                         @for (int i = 0; i < ViewBag.Nombres.Count; i++)
@@ -286,13 +286,13 @@ loadingTask.promise.then(function(pdf) {
                                     <!-- Editar elemento portafolio -->
                                     <a href="@Url.Action("EditarElementoPortafolio", "Cv", new { id = i, nombre = @ViewBag.Nombres[i], enlace = @ViewBag.Enlaces[i], ideditar = item.cv_id })" id="editar" name="ideditar">
 
-                                        <img id="editarImg" src="~/Content/imgs/editar.png" />
+                                        <img id="editarImg" src="~/Content/imgs/editar.png" alt="Editar elemento del portafolio" />
                                     </a>
 
                                     <!-- Eliminar elemento portafolio -->
                                     <a href="@Url.Action("EliminarPortafolio", "Cv", new { id = i, ideliminar = item.cv_id  })" id="eliminar" name="ideliminar">
 
-                                        <img id="eliminarImg" src="~/Content/imgs/eliminar.png" />
+                                        <img id="eliminarImg" src="~/Content/imgs/eliminar.png" alt="Eliminar elemento del portafolio" />
                                     </a>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@ loadingTask.promise.then(function(pdf) {
 </body>
 </html>
 
-@*Si no hay enlace en la red social q se vea en rojo*@
+@*Si no hay enlace en la red social*@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var links = document.querySelectorAll(".portafolio-elemento-nombre");

@@ -88,7 +88,7 @@
 
             @Html.HiddenFor(model => model.usuario_id)
         <div class="contenido">
-            <img class="imgCuenta" id="imgPreview" src="@Url.Action("GetImage", "Usuarios", new { id = Model.usuario_id })" />
+            <img class="imgCuenta" id="imgPreview" src="@Url.Action("GetImage", "Usuarios", new { id = Model.usuario_id })" alt="Foto de perfil" />
 
             <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
 
